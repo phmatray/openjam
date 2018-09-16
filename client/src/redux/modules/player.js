@@ -10,6 +10,7 @@ const SKIP_TO = 'player/SKIP_TO';
 const VOLUME = 'player/VOLUME';
 const UPDATE_PLAYLIST = 'player/UPDATE_PLAYLIST';
 const UPDATE_CURRENT = 'player/UPDATE_CURRENT';
+const UPDATE_AUDIO_INFO = 'player/UPDATE_AUDIO_INFO';
 
 // Reducer
 //
@@ -17,10 +18,16 @@ const initialState = {
   playlist: [],
   current: null,
   playing: false,
-  loading: false,
+  loading: true,
   volume: 0.6,
   progress: 0,
   seek: 0,
+  audioInfo: {
+    seek: 0,
+    duration: 0,
+    seekPercentage: 0,
+    volume: 0,
+  },
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -79,6 +86,12 @@ export default function reducer(state = initialState, action = {}) {
         current: action.payload,
       };
 
+    case UPDATE_AUDIO_INFO:
+      return {
+        ...state,
+        audioInfo: action.payload,
+      };
+
     default:
       return state;
   }
@@ -120,6 +133,11 @@ export const updatePlaylist = playlist => ({
 export const updateCurrent = current => ({
   type: UPDATE_CURRENT,
   payload: current,
+});
+
+export const updateAudioInfo = audioInfo => ({
+  type: UPDATE_AUDIO_INFO,
+  payload: audioInfo,
 });
 
 // Side effects, only as applicable (thunks)
