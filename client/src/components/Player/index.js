@@ -15,7 +15,8 @@ class PlayerContainer extends Component {
   }
 
   render() {
-    return <Player {...this.props} />;
+    const { current } = this.props;
+    return current !== null && <Player {...this.props} />;
   }
 }
 
