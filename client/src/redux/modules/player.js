@@ -23,8 +23,8 @@ const initialState = {
   progress: 0,
   seek: 0,
   audioInfo: {
-    seek: 0,
-    duration: 0,
+    seek: '00:00',
+    duration: '00:00',
     seekPercentage: 0,
     volume: 0,
   },

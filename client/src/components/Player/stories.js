@@ -1,12 +1,14 @@
+import '../../index.css';
+import 'semantic-ui-css/semantic.min.css';
+import 'rc-slider/assets/index.css';
+import '../../App.css';
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Player from './presenter';
 import { Cover, ColumnInfo, TrackName, ArtistName } from './style';
-import '../../index.css';
-import 'semantic-ui-css/semantic.min.css';
-import 'rc-slider/assets/index.css';
 
 const current = {
   _id: '5b9236dbfb6fc0289619f97d',
@@ -16,7 +18,11 @@ const current = {
 };
 
 storiesOf('Player', module)
-  .addDecorator(story => <Router>{story()}</Router>)
+  .addDecorator(story => (
+    <Router>
+      <div style={{ margin: '1em' }}>{story()}</div>
+    </Router>
+  ))
 
   .add('player', () => (
     <Player
