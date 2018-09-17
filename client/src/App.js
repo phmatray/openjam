@@ -17,7 +17,7 @@ import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
-import Profiles from './components/profiles/Profiles';
+import Profiles from './components/Profiles';
 import Profile from './components/profile/Profile';
 import NotFound from './components/not-found/NotFound';
 import Share from './components/share/Share';
