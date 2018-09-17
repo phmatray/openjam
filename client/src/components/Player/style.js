@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import RcSlider from 'rc-slider';
 
 export const PlayerStyled = styled.div`
-  height: ${props => (props.height ? props.height : '5em')};
+  height: ${props => (props.height ? props.height : '8em')};
   background-color: black;
   margin: 0;
 `;

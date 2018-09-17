@@ -18,18 +18,8 @@ import {
 } from './style';
 
 class Player extends Component {
-  componentDidMount() {
-    const { fetchTracks, updatePlaylist } = this.props;
-
-    fetchTracks().then(() => {
-      const { tracks } = this.props.track;
-      updatePlaylist(tracks);
-    });
-  }
-
   render() {
-    const { height, player, play, pause } = this.props;
-    const { playing, current, audioInfo } = player;
+    const { height, play, pause, playing, current, audioInfo } = this.props;
 
     let buttonPlayPause = playing ? (
       <Button icon onClick={pause} color="teal" size="big">
@@ -104,12 +94,23 @@ class Player extends Component {
 }
 
 Player.propTypes = {
-  fetchTracks: PropTypes.func.isRequired,
-  updatePlaylist: PropTypes.func.isRequired,
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
   previous: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
+
+  current: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    coverurl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    artist: PropTypes.string.isRequired,
+  }).isRequired,
+
+  audioInfo: PropTypes.shape({
+    seek: PropTypes.string.isRequired,
+    seekPercentage: PropTypes.number.isRequired,
+    duration: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Player;
