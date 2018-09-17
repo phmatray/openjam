@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import NavbarDesktop from './navbar/NavbarDesktop';
 import NavbarMobile from './navbar/NavbarMobile';
 import NavbarSide from './navbar/NavbarSide';
-import Player from '../player/Player';
+import Player from '../Player';
 import { Responsive, Sidebar, Segment, Container } from 'semantic-ui-react';
 import background from '../../img/backgrounds/background.jpg';
 
