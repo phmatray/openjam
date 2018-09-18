@@ -39,9 +39,9 @@ class NavbarSide extends Component {
         </Menu.Item>
         <Menu.Item
           as={Link}
-          to="/profiles"
-          name="profiles"
-          active={activeItem === 'profiles'}
+          to="/jammers"
+          name="jammers"
+          active={activeItem === 'jammers'}
           onClick={this.handleItemClick && hideSidebar}
           style={{ textAlign: 'left' }}
         >

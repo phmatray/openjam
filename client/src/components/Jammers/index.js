@@ -6,7 +6,7 @@ import { Segment, Header, Card } from 'semantic-ui-react';
 import ProfileItems from './presenter';
 import JoinUs from '../common/messages/JoinUs';
 
-class Profiles extends Component {
+class Jammers extends Component {
   componentDidMount() {
     this.props.getProfiles();
   }
@@ -34,7 +34,7 @@ class Profiles extends Component {
   }
 }
 
-Profiles.propTypes = {
+Jammers.propTypes = {
   getProfiles: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
@@ -48,4 +48,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProfiles },
-)(Profiles);
+)(Jammers);
