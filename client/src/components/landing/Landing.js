@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Segment, Header, Image } from 'semantic-ui-react';
+import { Segment, Header, Image, Grid } from 'semantic-ui-react';
 import JoinUs from '../common/messages/JoinUs';
+import FollowUs from '../common/messages/FollowUs';
 import cover from '../../img/backgrounds/cover-social.jpg';
 
 class Landing extends Component {
@@ -14,8 +15,6 @@ class Landing extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
-
     return (
       <Segment basic>
         <Header as="h1">
@@ -25,9 +24,17 @@ class Landing extends Component {
           </Header.Subheader>
         </Header>
 
-        <Image src={cover} />
-
-        <JoinUs />
+        <Grid>
+          <Grid.Column width={16}>
+            <Image src={cover} />
+          </Grid.Column>
+          <Grid.Column mobile={16} tablet={8} computer={8}>
+            <JoinUs />
+          </Grid.Column>
+          <Grid.Column mobile={16} tablet={8} computer={8}>
+            <FollowUs />
+          </Grid.Column>
+        </Grid>
       </Segment>
     );
   }
