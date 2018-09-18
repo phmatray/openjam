@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+
+// Load Input Validation
+const validateTrackInput = require('../../validation/track');
 
 // Load Track Model
 const Track = require('../../models/Track');
@@ -26,6 +30,28 @@ router.get('/:id', (req, res) => {
   Track.findById(req.params.id)
     .then(track => res.json(track))
     .catch(err => res.status(404).json({ nopostfound: 'No track found with that ID' }));
+});
+
+// @route  POST api/tracks/
+// @desc   Create Track
+// @access Private
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validateTrackInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const newTrack = new Track({
+    artists: req.body.artists,
+    title: req.body.title,
+    label: req.body.label,
+    edit: req.body.edit,
+    audiourl: req.body.audiourl,
+  });
+
+  newTrack.save().then(track => res.json(track));
 });
 
 module.exports = router;

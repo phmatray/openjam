@@ -7,8 +7,8 @@ const TrackSchema = new Schema({
     type: String,
     required: true,
   },
-  artist: {
-    type: String,
+  artists: {
+    type: [String],
     required: true,
   },
   date: {
@@ -21,11 +21,15 @@ const TrackSchema = new Schema({
   },
   coverurl: {
     type: String,
-    required: true,
   },
   licenceurl: {
     type: String,
-    required: true,
+  },
+  edit: {
+    type: String,
+  },
+  label: {
+    type: String,
   },
   meta: {
     tags: [String],

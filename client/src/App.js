@@ -17,7 +17,7 @@ import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
-import Profiles from './components/Profiles';
+import Jammers from './components/Jammers';
 import Profile from './components/profile/Profile';
 import NotFound from './components/not-found/NotFound';
 import Share from './components/share/Share';
@@ -58,7 +58,7 @@ class App extends Component {
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/profiles" component={Profiles} />
+                <Route exact path="/jammers" component={Jammers} />
                 <Route exact path="/profile/:handle" component={Profile} />
                 <Route exact path="/track/:id" component={Track} />
                 <Route exact path="/share" component={Share} />
