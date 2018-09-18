@@ -1,6 +1,9 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "engines": {
+    "node": "10.9.0"
+  },
   "private": true,
   "dependencies": {
     "ajv": "^6.5.3",
