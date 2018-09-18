@@ -17,7 +17,7 @@ class ProfileGithub extends Component {
             color="blue"
             style={{ borderRadius: '.28571429rem .28571429rem 0 0' }}
           >
-            <Button as={Link} to="/profiles" floated="left">
+            <Button as={Link} to="/jammers" floated="left">
               Back to Profiles
             </Button>
           </Grid.Column>
