@@ -46,6 +46,13 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
+
+  // Force https (for Heroku)
+  app.use(function(req, res, next) {
+    if (req.get('X-Forwarded-Proto') !== 'https') {
+      res.redirect('https://' + req.get('Host') + req.url);
+    } else next();
+  });
 }
 
 const port = process.env.PORT || 5000;
