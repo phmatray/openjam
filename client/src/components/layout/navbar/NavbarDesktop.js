@@ -27,6 +27,15 @@ class NavbarDesktop extends Component {
       <React.Fragment>
         <Menu.Item
           as={Link}
+          to="/tracks"
+          name="tracks"
+          active={activeItem === 'tracks'}
+          onClick={this.handleItemClick}
+        >
+          Tracks
+        </Menu.Item>
+        <Menu.Item
+          as={Link}
           to="/share"
           name="share"
           active={activeItem === 'share'}
