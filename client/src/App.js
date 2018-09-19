@@ -23,6 +23,7 @@ import NotFound from './components/not-found/NotFound';
 import Share from './components/share/Share';
 import Post from './components/post/Post';
 import Track from './components/track/Track';
+import Tracks from './components/Tracks';
 
 import './App.css';
 
@@ -60,6 +61,7 @@ class App extends Component {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/jammers" component={Jammers} />
                 <Route exact path="/profile/:handle" component={Profile} />
+                <Route exact path="/tracks" component={Tracks} />
                 <Route exact path="/track/:id" component={Track} />
                 <Route exact path="/share" component={Share} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
