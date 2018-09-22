@@ -4,6 +4,7 @@ import { Segment, Header, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchTrack } from '../../redux/modules/track';
 import Spinner from '../common/Spinner';
+import ArtistNameLinks from '../../elements/ArtistNameLinks';
 
 class Track extends Component {
   state = {
@@ -34,7 +35,9 @@ class Track extends Component {
       trackContent = (
         <React.Fragment>
           <Header as="h1">{track.title}</Header>
-          <Header as="h2">{track.artists.join(' & ')}</Header>
+          <Header as="h2">
+            <ArtistNameLinks track={track} />
+          </Header>
           <Header as="h3">{track.album.name}</Header>
           <Image src={track.coverurl.w400} alt={track.title} />
         </React.Fragment>

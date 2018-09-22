@@ -67,7 +67,7 @@ export const PlayerLink = styled(Link)`
   }
 `;
 
-export const TrackName = styled.h5`
+export const TrackName = styled.p`
   margin-top: 1em !important;
   margin-bottom: 0em;
   font-family: Comfortaa, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -82,7 +82,7 @@ export const Edit = styled.p`
   font-weight: 400;
 `;
 
-export const ArtistName = styled.h5`
+export const ArtistName = styled.p`
   margin-top: 1em !important;
   font-family: Ubuntu, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 300;

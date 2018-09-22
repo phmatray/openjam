@@ -8,7 +8,12 @@ const TrackSchema = new Schema({
     required: true,
   },
   artists: {
-    type: [String],
+    type: [
+      {
+        _id: String,
+        name: String,
+      },
+    ],
     required: true,
   },
   date: {

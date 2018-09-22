@@ -17,6 +17,7 @@ import {
   Slider,
   ButtonCollection,
 } from './style';
+import ArtistNameLinks from '../../elements/ArtistNameLinks';
 
 class Player extends Component {
   render() {
@@ -42,12 +43,12 @@ class Player extends Component {
             <ColumnInfo>
               <PlayerLink to={`/track/${current._id}`}>
                 <TrackName>{current.title}</TrackName>
-                {current.edit && <Edit>( {current.edit} )</Edit>}
+                <Edit>{current.edit ? current.edit : <br />}</Edit>
               </PlayerLink>
               <ArtistName>
                 <i>by</i>
                 &nbsp;&nbsp;
-                {current.artists.join(' & ')}
+                <ArtistNameLinks track={current} />
               </ArtistName>
             </ColumnInfo>
             <ColumnTimeLeft>{audioInfo && audioInfo.seek ? audioInfo.seek : '0:00'}</ColumnTimeLeft>

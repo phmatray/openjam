@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import TrackItem from './children/TrackItem';
-import { Container, Grid, Item } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 const TrackItems = ({ tracks, loading }) =>
   tracks === null || loading ? (
