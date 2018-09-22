@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Header, Image } from 'semantic-ui-react';
+import { Segment, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchAlbum } from '../../redux/modules/album';
 import Spinner from '../common/Spinner';
