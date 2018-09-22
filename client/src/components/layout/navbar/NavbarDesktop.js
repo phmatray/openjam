@@ -39,6 +39,15 @@ class NavbarDesktop extends Component {
               </Dropdown.Item>
               <Dropdown.Item
                 as={Link}
+                to="/albums"
+                name="albums"
+                active={activeItem === 'albums'}
+                onClick={this.handleItemClick}
+              >
+                Albums
+              </Dropdown.Item>
+              <Dropdown.Item
+                as={Link}
                 to="/artists"
                 name="artists"
                 active={activeItem === 'artists'}
