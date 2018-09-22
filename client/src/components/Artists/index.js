@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchTracks } from '../../redux/modules/track';
+import { fetchArtists } from '../../redux/modules/artist';
 import { Segment, Header, Card } from 'semantic-ui-react';
-import TrackItems from './presenter';
+import ArtistItems from './presenter';
 
-class Tracks extends Component {
+class Artists extends Component {
   componentDidMount() {
-    this.props.fetchTracks();
+    this.props.fetchArtists();
   }
 
   render() {
-    const { tracks, loading } = this.props;
+    const { artists, loading } = this.props;
 
     return (
       <Segment basic>
         <Header as="h1">
-          Tracks
+          Artists
           <Header.Subheader>Pick some music by title, artist, remix or label.</Header.Subheader>
         </Header>
 
-        {tracks !== null && (
+        {artists !== null && (
           <Card.Group itemsPerRow={3}>
-            <TrackItems tracks={tracks} loading={loading} />
+            <ArtistItems artists={artists} loading={loading} />
           </Card.Group>
         )}
       </Segment>
@@ -30,17 +30,17 @@ class Tracks extends Component {
   }
 }
 
-Tracks.propTypes = {
-  tracks: PropTypes.array,
+Artists.propTypes = {
+  artists: PropTypes.array,
   loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  tracks: state.track.tracks,
-  loading: state.track.loading,
+  artists: state.artist.artists,
+  loading: state.artist.loading,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchTracks },
-)(Tracks);
+  { fetchArtists },
+)(Artists);

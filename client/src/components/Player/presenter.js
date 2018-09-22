@@ -11,7 +11,9 @@ import {
   ColumnControls,
   ColumnTimeRight,
   Cover,
+  PlayerLink,
   TrackName,
+  Edit,
   ArtistName,
   Slider,
   ButtonCollection,
@@ -36,16 +38,17 @@ class Player extends Component {
         {current && (
           <FlexFill>
             <ColumnCover>
-              <Cover src={current.coverurl} alt="cover" />
+              <Cover src={current.coverurl.w200} alt="cover" />
             </ColumnCover>
             <ColumnInfo>
-              <Link to={`/track/${current._id}`}>
+              <PlayerLink to={`/track/${current._id}`}>
                 <TrackName>{current.title}</TrackName>
-              </Link>
+                {current.edit && <Edit>( {current.edit} )</Edit>}
+              </PlayerLink>
               <ArtistName>
                 <i>by</i>
                 &nbsp;&nbsp;
-                {current.artist}
+                {current.artists.join(' & ')}
               </ArtistName>
             </ColumnInfo>
             <ColumnTimeLeft>{audioInfo && audioInfo.seek ? audioInfo.seek : '0:00'}</ColumnTimeLeft>
@@ -53,11 +56,11 @@ class Player extends Component {
               <Slider min={0} max={100} value={(audioInfo && audioInfo.seekPercentage) || 0} />
               <ButtonCollection>
                 {/* TODO: open current playlist */}
-                <Button icon disabled size="big">
+                <Button icon disabled>
                   <Icon name="list" />
                 </Button>
                 {/* TODO: set random */}
-                <Button icon disabled size="big">
+                <Button icon disabled>
                   <Icon name="random" />
                 </Button>
                 <Button.Group>
@@ -70,7 +73,7 @@ class Player extends Component {
                   </Button>
                 </Button.Group>{' '}
                 {/* TODO: set loop one and loop all */}
-                <Button icon disabled size="big">
+                <Button icon disabled>
                   <Icon name="repeat" />
                 </Button>
                 {/* TODO: share on other medias with a dropdown
@@ -78,7 +81,7 @@ class Player extends Component {
                   - generate QR code
                   - share to facebook and twitter
                 */}
-                <Button icon disabled size="big">
+                <Button icon disabled>
                   <Icon name="share alternate" />
                 </Button>
               </ButtonCollection>
@@ -101,9 +104,11 @@ Player.propTypes = {
 
   current: PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    coverurl: PropTypes.string.isRequired,
+    coverurl: PropTypes.shape({
+      w200: PropTypes.string.isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
-    artist: PropTypes.string.isRequired,
+    artists: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
 
   audioInfo: PropTypes.shape({

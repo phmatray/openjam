@@ -24,6 +24,7 @@ import Share from './components/share/Share';
 import Post from './components/post/Post';
 import Track from './components/track/Track';
 import Tracks from './components/Tracks';
+import Artists from './components/Artists';
 
 import './App.css';
 
@@ -63,6 +64,7 @@ class App extends Component {
                 <Route exact path="/profile/:handle" component={Profile} />
                 <Route exact path="/tracks" component={Tracks} />
                 <Route exact path="/track/:id" component={Track} />
+                <Route exact path="/artists" component={Artists} />
                 <Route exact path="/share" component={Share} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
