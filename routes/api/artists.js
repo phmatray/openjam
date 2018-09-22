@@ -19,4 +19,13 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ noartistsfound: 'No artists found' }));
 });
 
+// @route  GET api/artists/:id
+// @desc   Get artist by ID
+// @access Public
+router.get('/:id', (req, res) => {
+  Artist.findById(req.params.id)
+    .then(artist => res.json(artist))
+    .catch(err => res.status(404).json({ noartistfound: 'No artist found with that ID' }));
+});
+
 module.exports = router;

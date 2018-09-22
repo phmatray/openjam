@@ -34,8 +34,9 @@ class Track extends Component {
       trackContent = (
         <React.Fragment>
           <Header as="h1">{track.title}</Header>
-          <Header as="h2">{track.artist}</Header>
-          <Image src={track.coverurl} alt={track.title} />
+          <Header as="h2">{track.artists.join(' & ')}</Header>
+          <Header as="h3">{track.album.name}</Header>
+          <Image src={track.coverurl.w400} alt={track.title} />
         </React.Fragment>
       );
     }
@@ -46,7 +47,17 @@ class Track extends Component {
 
 Track.propTypes = {
   fetchTrack: PropTypes.func.isRequired,
-  track: PropTypes.object.isRequired,
+  track: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    artists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    album: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    coverurl: PropTypes.shape({
+      w400: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

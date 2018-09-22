@@ -19,4 +19,13 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ noalbumsfound: 'No albums found' }));
 });
 
+// @route  GET api/albums/:id
+// @desc   Get album by ID
+// @access Public
+router.get('/:id', (req, res) => {
+  Album.findById(req.params.id)
+    .then(album => res.json(album))
+    .catch(err => res.status(404).json({ noalbumfound: 'No album found with that ID' }));
+});
+
 module.exports = router;

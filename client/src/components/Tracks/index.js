@@ -20,11 +20,7 @@ class Tracks extends Component {
           <Header.Subheader>Pick some music by title, artist, remix or label.</Header.Subheader>
         </Header>
 
-        {tracks !== null && (
-          <Card.Group itemsPerRow={3}>
-            <TrackItems tracks={tracks} loading={loading} />
-          </Card.Group>
-        )}
+        {tracks !== null && <TrackItems tracks={tracks} loading={loading} />}
       </Segment>
     );
   }
