@@ -1,54 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, Item, Image } from 'semantic-ui-react';
 import { Cover, Title, Edit, Artists } from './style';
+import ArtistNameLinks from '../../../elements/ArtistNameLinks';
 
-const TrackItem = ({ track, color }) => {
-  const artistNames = track.artists.join(' & ');
-
-  return (
-    <div style={{ width: '170px', margin: '0 auto 1.5em auto' }}>
+const TrackItem = ({ track }) => (
+  <div style={{ width: '170px', margin: '0 auto 1.5em auto' }}>
+    <Link to={`/track/${track._id}`}>
       <Cover src={track.coverurl.w400} />
-      <br />
+    </Link>
+    <br />
 
-      <Link to={`/track/${track._id}`}>
-        <Title style={{ width: '170px' }}>
-          {track.title} {track.edit && <Edit>{`(${track.edit})`}</Edit>}
-        </Title>
-      </Link>
+    <Link to={`/track/${track._id}`}>
+      <Title style={{ width: '170px' }}>
+        {track.title} {track.edit && <Edit>{`(${track.edit})`}</Edit>}
+      </Title>
+    </Link>
 
-      <Artists>{artistNames}</Artists>
-    </div>
-  );
-
-  // <Card color={color}>
-  //   <Card.Content>
-  //     <Card.Header>
-  //       <Image src={track.coverurl.w200} />
-  //       <Link to={`/track/${track._id}`}>{track.title}</Link>
-  //       <br />
-  //       {track.edit && (
-  //         <i
-  //           style={{ color: '#666', fontFamily: 'Ubuntu', fontWeight: '300', fontSize: '0.8em' }}
-  //         >{`(${track.edit})`}</i>
-  //       )}
-  //     </Card.Header>
-  //     <Card.Meta>{artistNames}</Card.Meta>
-  //   </Card.Content>
-  // </Card>
-};
+    <Artists>
+      <ArtistNameLinks track={track} />
+    </Artists>
+  </div>
+);
 
 TrackItem.propTypes = {
   track: PropTypes.shape({
-    artists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    artists: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
     title: PropTypes.string.isRequired,
     coverurl: PropTypes.shape({
       w200: PropTypes.string.isRequired,
     }).isRequired,
     edit: PropTypes.string,
   }).isRequired,
-  color: PropTypes.string,
 };
 
 TrackItem.defaultProps = {
