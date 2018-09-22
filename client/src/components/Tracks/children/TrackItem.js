@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
 
 const TrackItem = ({ track, color }) => {
@@ -10,7 +11,7 @@ const TrackItem = ({ track, color }) => {
       <Card.Content>
         <Card.Header>
           <img src={track.coverurl.w200} width="50" height="50" />
-          {track.title}
+          <Link to={`/track/${track._id}`}>{track.title}</Link>
           <br />
           {track.edit && (
             <i
