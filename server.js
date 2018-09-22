@@ -9,6 +9,7 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const github = require('./routes/api/github');
 const artists = require('./routes/api/artists');
+const labels = require('./routes/api/labels');
 const tracks = require('./routes/api/tracks');
 
 const app = express();
@@ -38,6 +39,7 @@ app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 app.use('/api/github', github);
 app.use('/api/artists', artists);
+app.use('/api/labels', labels);
 app.use('/api/tracks', tracks);
 
 // Server static assets if in production
