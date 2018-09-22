@@ -52,6 +52,19 @@ class NavbarSide extends Component {
         </Menu.Item>
         <Menu.Item
           as={Link}
+          to="/labels"
+          name="labels"
+          active={activeItem === 'labels'}
+          onClick={this.handleItemClick && hideSidebar}
+          style={{ textAlign: 'left' }}
+        >
+          <span>
+            <Icon name="music" size="big" style={{ margin: '0.75em' }} />
+            Labels
+          </span>
+        </Menu.Item>
+        <Menu.Item
+          as={Link}
           to="/share"
           name="share"
           active={activeItem === 'share'}

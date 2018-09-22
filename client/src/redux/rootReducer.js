@@ -6,6 +6,7 @@ import profile from './modules/profile';
 import post from './modules/post';
 import github from './modules/github';
 import artist from './modules/artist';
+import label from './modules/label';
 import track from './modules/track';
 import player from './modules/player';
 
@@ -16,6 +17,7 @@ const reducers = {
   post,
   github,
   artist,
+  label,
   track,
   player,
 };
