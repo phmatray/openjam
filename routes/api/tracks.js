@@ -49,6 +49,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     label: req.body.label,
     edit: req.body.edit,
     audiourl: req.body.audiourl,
+    coverurl: req.body.coverurl,
   });
 
   newTrack.save().then(track => res.json(track));
