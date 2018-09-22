@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import RcSlider from 'rc-slider';
 
 export const PlayerStyled = styled.div`
@@ -57,11 +58,28 @@ export const Cover = styled.img`
   margin: 0.2em;
 `;
 
+export const PlayerLink = styled(Link)`
+  color: #fff;
+  transition: color 100ms ease-in-out;
+
+  &:hover {
+    color: #00b5ad;
+  }
+`;
+
 export const TrackName = styled.h5`
   margin-top: 1em !important;
-  font-family: Ubuntu, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin-bottom: 0em;
+  font-family: Comfortaa, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 400;
-  color: white;
+`;
+
+export const Edit = styled.p`
+  margin-top: 0.2em !important;
+  font-family: Comfortaa, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 0.8em;
+  font-style: italic;
+  font-weight: 400;
 `;
 
 export const ArtistName = styled.h5`

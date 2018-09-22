@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Menu, Container, Image } from 'semantic-ui-react';
+import { Menu, Container, Image, Dropdown } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
@@ -25,14 +25,29 @@ class NavbarDesktop extends Component {
 
     const leftLinks = (
       <React.Fragment>
-        <Menu.Item
-          as={Link}
-          to="/tracks"
-          name="tracks"
-          active={activeItem === 'tracks'}
-          onClick={this.handleItemClick}
-        >
-          Tracks
+        <Menu.Item>
+          <Dropdown item text="Discover">
+            <Dropdown.Menu>
+              <Dropdown.Item
+                as={Link}
+                to="/tracks"
+                name="tracks"
+                active={activeItem === 'tracks'}
+                onClick={this.handleItemClick}
+              >
+                Tracks
+              </Dropdown.Item>
+              <Dropdown.Item
+                as={Link}
+                to="/artists"
+                name="artists"
+                active={activeItem === 'artists'}
+                onClick={this.handleItemClick}
+              >
+                Artists
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Menu.Item>
         <Menu.Item
           as={Link}
