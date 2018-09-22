@@ -27,6 +27,7 @@ import Tracks from './components/Tracks';
 import Artist from './components/Artist';
 import Artists from './components/Artists';
 import Albums from './components/Albums';
+import Album from './components/Album';
 import Labels from './components/Labels';
 
 import './App.css';
@@ -70,6 +71,7 @@ class App extends Component {
                 <Route exact path="/artists" component={Artists} />
                 <Route exact path="/artist/:id" component={Artist} />
                 <Route exact path="/albums" component={Albums} />
+                <Route exact path="/album/:id" component={Album} />
                 <Route exact path="/labels" component={Labels} />
                 <Route exact path="/share" component={Share} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
