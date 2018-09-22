@@ -110,7 +110,9 @@ const audio = store => {
 
     // load playlist
     if (!isEqual(prevPlaylist, playlist)) {
-      audioPlaylist = playlist.map(track => new Howl({ src: [track.audiourl] }));
+      audioPlaylist = playlist.map(
+        track => new Howl({ src: [track.audiourl], html5: true, preload: false }),
+      );
     }
 
     // previous and next

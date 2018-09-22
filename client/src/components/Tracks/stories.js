@@ -6,8 +6,9 @@ import '../../App.css';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { linkTo } from '@storybook/addon-links';
 
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import TrackItem from './children/TrackItem';
 
 const track = {
@@ -26,6 +27,7 @@ const track = {
   edit: 'Alke Mist Remix',
   audiourl:
     'https://s3.eu-west-3.amazonaws.com/openjamaudio/Pandhora+-+Oghab+(Alke+Mist+Remix)+%5BArt+Vibes+Music%5D.mp3',
+  coverurl: 'http://placekitten.com/200/200',
   __v: 0,
 };
 
@@ -36,4 +38,10 @@ storiesOf('Tracks', module)
     </Router>
   ))
 
-  .add('track item', () => <TrackItem track={track} />);
+  .add('track item', () => (
+    <div>
+      <h1>Color variations</h1>
+      <TrackItem track={track} />
+      <TrackItem track={track} color="red" />
+    </div>
+  ));

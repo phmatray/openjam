@@ -20,7 +20,9 @@ const TrackSchema = new Schema({
     required: true,
   },
   coverurl: {
-    type: String,
+    w200: { type: String },
+    w400: { type: String },
+    w800: { type: String },
   },
   licenceurl: {
     type: String,

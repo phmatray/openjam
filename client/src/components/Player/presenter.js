@@ -36,7 +36,7 @@ class Player extends Component {
         {current && (
           <FlexFill>
             <ColumnCover>
-              <Cover src={current.coverurl} alt="cover" />
+              <Cover src={current.coverurl.w200} alt="cover" />
             </ColumnCover>
             <ColumnInfo>
               <Link to={`/track/${current._id}`}>

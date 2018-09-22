@@ -30,6 +30,11 @@ class Tracks extends Component {
   }
 }
 
+Tracks.propTypes = {
+  tracks: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = state => ({
   tracks: state.track.tracks,
   loading: state.track.loading,
