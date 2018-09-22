@@ -12,9 +12,9 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
-    "rc-slider": "^8.6.2",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1",
+    "rc-slider": "^8.6.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-moment": "^0.7.9",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
@@ -22,19 +22,23 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-css": "^2.4.0",
     "semantic-ui-react": "^0.82.5",
-    "styled-components": "^3.4.6"
+    "styled-components": "^3.4.9"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "build-storybook -s public"
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "@storybook/react": "^3.4.10"
+    "@storybook/react": "^3.4.11",
+    "@storybook/addon-actions": "^3.4.11",
+    "@storybook/addon-links": "^3.4.11",
+    "@storybook/addons": "^3.4.11"
   }
 }
