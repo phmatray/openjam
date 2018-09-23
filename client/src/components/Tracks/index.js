@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTracks } from '../../redux/modules/track';
-import { Segment, Header, Card } from 'semantic-ui-react';
+import { Segment, Header } from 'semantic-ui-react';
 import TrackItems from './presenter';
 
 class Tracks extends Component {

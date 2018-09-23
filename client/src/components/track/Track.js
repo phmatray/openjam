@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchTrack } from '../../redux/modules/track';
 import Spinner from '../common/Spinner';
 import ArtistNameLinks from '../../elements/ArtistNameLinks';
+import LinkAlbum from '../../elements/Links/LinkAlbum';
 
 class Track extends Component {
   state = {
@@ -38,7 +39,12 @@ class Track extends Component {
           <Header as="h2">
             <ArtistNameLinks track={track} />
           </Header>
-          <Header as="h3">{track.album.name}</Header>
+          <Header as="h3">
+            <LinkAlbum album={track.album} />
+          </Header>
+          <p>Explicit : {track.explicit ? 'true' : 'false'}</p>
+          <p>Disc number : {track.disc_number}</p>
+          <p>Track number : {track.track_number}</p>
           <Image src={track.coverurl.w400} alt={track.title} />
         </React.Fragment>
       );

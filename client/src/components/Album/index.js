@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Header } from 'semantic-ui-react';
+import { Segment, Header, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchAlbum } from '../../redux/modules/album';
+import Moment from 'react-moment';
 import Spinner from '../common/Spinner';
+import LinkTrack from '../../elements/Links/LinkTrack';
 
 class Album extends Component {
   state = {
@@ -34,6 +36,17 @@ class Album extends Component {
       trackContent = (
         <React.Fragment>
           <Header as="h1">{album.name}</Header>
+          <p>
+            EP release date : <Moment format="LL">{album.release_date}</Moment>
+          </p>
+          <Image src={album.images[1].href} alt={album.title} />
+
+          <Header as="h1">Tracks</Header>
+          {album.tracks.map(track => (
+            <p>
+              <LinkTrack track={track} />
+            </p>
+          ))}
         </React.Fragment>
       );
     }
@@ -46,6 +59,11 @@ Album.propTypes = {
   fetchAlbum: PropTypes.func.isRequired,
   album: PropTypes.shape({
     name: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    tracks: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   loading: PropTypes.bool.isRequired,
 };
