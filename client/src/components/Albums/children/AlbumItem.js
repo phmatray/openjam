@@ -1,17 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card } from 'semantic-ui-react';
+import { Cover, Title, Label } from './style';
+import LinkLabel from '../../../elements/Links/LinkLabel';
 
-const AlbumItem = ({ album, color }) => {
+const AlbumItem = ({ album }) => {
   return (
-    <Card color={color}>
-      <Card.Content>
-        <Card.Header>
-          <Link to={`/album/${album._id}`}>{album.name}</Link>
-        </Card.Header>
-      </Card.Content>
-    </Card>
+    <div style={{ width: '170px', marginBottom: '1.5em' }}>
+      <Link to={`/album/${album._id}`}>
+        <Cover src={album.images[1].href} />
+      </Link>
+      <br />
+
+      <Title style={{ width: '170px' }}>
+        {album.name} - {album.album_type}
+      </Title>
+
+      <Label>
+        <LinkLabel label={album.label} />
+      </Label>
+    </div>
   );
 };
 
@@ -19,11 +27,6 @@ AlbumItem.propTypes = {
   album: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
-  color: PropTypes.string,
-};
-
-AlbumItem.defaultProps = {
-  color: 'teal',
 };
 
 export default AlbumItem;
