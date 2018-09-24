@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLabels } from '../../redux/modules/label';
-import { Segment, Header, Card } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import LabelItems from './presenter';
+import Body from '../../elements/UI/Body';
+import H2 from '../../elements/Titles/H2';
 
 class Labels extends Component {
   componentDidMount() {
@@ -14,18 +16,15 @@ class Labels extends Component {
     const { labels, loading } = this.props;
 
     return (
-      <Segment basic>
-        <Header as="h1">
-          Labels
-          <Header.Subheader>Pick some music by title, label, remix or label.</Header.Subheader>
-        </Header>
+      <Body header={['Labels']} description="Pick some music by label.">
+        <H2 header="What's new" />
 
         {labels !== null && (
           <Card.Group itemsPerRow={3}>
             <LabelItems labels={labels} loading={loading} />
           </Card.Group>
         )}
-      </Segment>
+      </Body>
     );
   }
 }

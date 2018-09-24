@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArtists } from '../../redux/modules/artist';
-import { Segment, Header, Card } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import ArtistItems from './presenter';
+import Body from '../../elements/UI/Body';
+import H2 from '../../elements/Titles/H2';
 
 class Artists extends Component {
   componentDidMount() {
@@ -14,18 +16,14 @@ class Artists extends Component {
     const { artists, loading } = this.props;
 
     return (
-      <Segment basic>
-        <Header as="h1">
-          Artists
-          <Header.Subheader>Pick some music by title, artist, remix or label.</Header.Subheader>
-        </Header>
-
+      <Body header={['Artists']} description="Pick some music by artist.">
+        <H2 header="What's new" />
         {artists !== null && (
           <Card.Group itemsPerRow={3}>
             <ArtistItems artists={artists} loading={loading} />
           </Card.Group>
         )}
-      </Segment>
+      </Body>
     );
   }
 }
