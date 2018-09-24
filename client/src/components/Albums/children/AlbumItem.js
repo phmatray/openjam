@@ -6,7 +6,7 @@ import LinkLabel from '../../../elements/Links/LinkLabel';
 
 const AlbumItem = ({ album }) => {
   return (
-    <div style={{ width: '170px', marginBottom: '1.5em' }}>
+    <div style={{ width: '170px', marginBottom: '1.5em', marginRight: '1.5em' }}>
       <Link to={`/album/${album._id}`}>
         <Cover src={album.images[1].href} />
       </Link>

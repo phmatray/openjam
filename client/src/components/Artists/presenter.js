@@ -1,24 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
 import ArtistItem from './children/ArtistItem';
+import Body from '../../elements/UI/Body';
+import Flex from '../../elements/UI/Flex';
+import H2 from '../../elements/Titles/H2';
 
-const ArtistItems = ({ artists, loading }) =>
-  artists === null || loading ? (
-    <Spinner />
-  ) : artists.length > 0 ? (
-    artists.map(artist => <ArtistItem key={artist._id} artist={artist} />)
-  ) : (
-    <h4>No artists found...</h4>
-  );
+const ArtistsPresenter = ({ artists }) => (
+  <Body breadcrumbSegments={['Artists']} description="Pick some music by artist.">
+    <H2 header="What's new" />
+    <Flex>
+      {artists.map(artist => (
+        <ArtistItem key={artist._id} artist={artist} />
+      ))}
+    </Flex>
+  </Body>
+);
 
-ArtistItems.propTypes = {
+ArtistsPresenter.propTypes = {
   artists: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
-export default ArtistItems;
+export default ArtistsPresenter;

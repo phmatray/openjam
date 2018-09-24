@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
 import LabelItem from './children/LabelItem';
+import Body from '../../elements/UI/Body';
+import Flex from '../../elements/UI/Flex';
+import H2 from '../../elements/Titles/H2';
 
-const LabelItems = ({ labels, loading }) =>
-  labels === null || loading ? (
-    <Spinner />
-  ) : labels.length > 0 ? (
-    labels.map(label => <LabelItem key={label._id} label={label} />)
-  ) : (
-    <h4>No labels found...</h4>
-  );
+const LabelItems = ({ labels }) => (
+  <Body breadcrumbSegments={['Labels']} description="Pick some music by label.">
+    <H2 header="What's new" />
+    <Flex>
+      {labels.map(label => (
+        <LabelItem key={label._id} label={label} />
+      ))}
+    </Flex>
+  </Body>
+);
 
 LabelItems.propTypes = {
   labels: PropTypes.arrayOf(
@@ -18,7 +22,6 @@ LabelItems.propTypes = {
       _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 export default LabelItems;

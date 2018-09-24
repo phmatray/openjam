@@ -1,50 +1,31 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loginUser } from '../../redux/modules/auth';
-
 import { Link } from 'react-router-dom';
 import { Segment, Header, Form, Message, Grid } from 'semantic-ui-react';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextFieldGroup from '../../common/TextFieldGroup';
 
-class Login extends Component {
+class LoginPresenter extends Component {
   state = {
     email: '',
     password: '',
-    errors: {},
   };
-
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/share');
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/share');
-    }
-
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
     const { email, password } = this.state;
+    const { loginUser } = this.props;
 
     const userData = {
       email: email,
       password: password,
     };
 
-    this.props.loginUser(userData);
+    loginUser(userData);
   };
 
   render() {
-    const { email, password, errors } = this.state;
+    const { email, password } = this.state;
+    const { errors } = this.props;
 
     return (
       <Segment basic>
@@ -92,18 +73,4 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(
-  mapStateToProps,
-  { loginUser },
-)(Login);
+export default LoginPresenter;

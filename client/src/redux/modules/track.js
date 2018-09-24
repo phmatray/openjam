@@ -12,9 +12,9 @@ const FETCH_TRACK_ERROR = 'track/FETCH_TRACK_ERROR';
 // Reducer
 //
 const initialState = {
-  tracks: null,
-  track: {},
-  loading: false,
+  tracks: null, // array
+  track: null, // object
+  loading: false, // bool
   error: null,
 };
 
@@ -58,7 +58,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         error: action.payload,
-        track: {},
+        track: initialState.track,
         loading: false,
       };
 

@@ -18,7 +18,7 @@ const TrackItem = ({ track }) => (
     </Link>
 
     <Artists>
-      <ArtistNameLinks track={track} />
+      <ArtistNameLinks artists={track.artists} />
     </Artists>
   </div>
 );
