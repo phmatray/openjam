@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchAlbum } from '../../redux/modules/album';
-import Moment from 'react-moment';
-import Spinner from '../common/Spinner';
-import LinkTrack from '../../elements/Links/LinkTrack';
-import Body from '../../elements/UI/Body';
-import H2 from '../../elements/Titles/H2';
+import AlbumPresenter from './presenter';
 
 class Album extends Component {
   state = {
@@ -29,41 +24,14 @@ class Album extends Component {
 
   render() {
     const { album, loading } = this.props.album;
-
-    let trackContent =
-      album === null || loading || Object.keys(album).length === 0 ? (
-        <Spinner />
-      ) : (
-        <React.Fragment>
-          <p>
-            EP release date : <Moment format="LL">{album.release_date}</Moment>
-          </p>
-          <Image src={album.images[1].href} alt={album.title} />
-
-          <H2 header="Tracks" />
-          {album.tracks.map(track => (
-            <p>
-              <LinkTrack track={track} />
-            </p>
-          ))}
-        </React.Fragment>
-      );
-
-    return <Body header={['Albums', album.name]}>{trackContent}</Body>;
+    return <AlbumPresenter album={album} loading={loading} />;
   }
 }
 
 Album.propTypes = {
   fetchAlbum: PropTypes.func.isRequired,
-  album: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    tracks: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  loading: PropTypes.bool.isRequired,
+  album: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

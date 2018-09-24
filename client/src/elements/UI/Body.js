@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Breadcrumb, Segment, Divider, Header } from 'semantic-ui-react';
-import H1 from '../Titles/H1';
 
 const Body = ({ header, description, children }) => {
   return (
     <Segment basic>
       <Header as="h1">
-        <Breadcrumb as="h1" size="massive">
+        <Breadcrumb size="massive">
           {header
             .map(segment => (
-              <Breadcrumb.Section active>
+              <Breadcrumb.Section active key={segment}>
                 <strong style={{ fontWeight: '900', fontSize: '1.1em' }}>{segment}</strong>
               </Breadcrumb.Section>
             ))
-            .reduce((prev, curr) => [prev, <Breadcrumb.Divider icon="right chevron" />, curr])}
+            .reduce((prev, curr, idx) => [
+              prev,
+              <Breadcrumb.Divider icon="right chevron" key={idx} />,
+              curr,
+            ])}
 
           {/* <Breadcrumb.Section active>
             <strong style={{ fontWeight: '900', fontSize: '1.1em' }}>{header}</strong>
@@ -37,7 +40,7 @@ const Body = ({ header, description, children }) => {
 
 Body.propTypes = {
   header: PropTypes.arrayOf(PropTypes.any).isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
 };
 
 export default Body;
