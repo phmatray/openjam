@@ -37,7 +37,7 @@ class Track extends Component {
         <React.Fragment>
           <Header as="h1">{track.title}</Header>
           <Header as="h2">
-            <ArtistNameLinks track={track} />
+            <ArtistNameLinks artists={track.artists} />
           </Header>
           <Header as="h3">
             <LinkAlbum album={track.album} />

@@ -1,4 +1,4 @@
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import isEqual from '../../../validation/is-equal';
 import { fancyTimeFormat } from '../../../utils/playerHelpers';
 
@@ -13,7 +13,6 @@ function optionsAreValid(type) {
 const playbackOrigin = 'playbackOrigin';
 
 let audioPlaylist = [];
-let howlId = null;
 let intervalId = null;
 
 // Utility functions
@@ -74,7 +73,7 @@ const setEvents = (howl, dispatch) => {
 
 const play = (howl, dispatch) => {
   setEvents(howl, dispatch);
-  howlId = howl.play();
+  howl.play();
   dispatch(extractAction(howl));
 };
 
@@ -91,7 +90,7 @@ const audio = store => {
   const { dispatch, getState } = store;
 
   // Ensure we reflect the store's initial state
-  const initialState = getState();
+  // const initialState = getState();
 
   // Do the job...
   return next => action => {

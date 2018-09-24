@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchLabel } from '../../redux/modules/label';
 import Spinner from '../common/Spinner';
+import LabelPresenter from './presenter';
 
 class Label extends Component {
   state = {
@@ -26,28 +26,18 @@ class Label extends Component {
   render() {
     const { label, loading } = this.props.label;
 
-    let trackContent;
-
-    if (label === null || loading || Object.keys(label).length === 0) {
-      trackContent = <Spinner />;
-    } else {
-      trackContent = (
-        <React.Fragment>
-          <Header as="h1">{label.name}</Header>
-        </React.Fragment>
-      );
-    }
-
-    return <Segment basic>{trackContent}</Segment>;
+    return label === null || label === undefined || loading ? (
+      <Spinner />
+    ) : (
+      <LabelPresenter label={label} />
+    );
   }
 }
 
 Label.propTypes = {
   fetchLabel: PropTypes.func.isRequired,
-  label: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  loading: PropTypes.bool.isRequired,
+  label: PropTypes.object,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

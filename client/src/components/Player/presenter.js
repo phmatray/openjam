@@ -48,7 +48,7 @@ class Player extends Component {
               <ArtistName>
                 <i>by</i>
                 &nbsp;&nbsp;
-                <ArtistNameLinks track={current} />
+                <ArtistNameLinks artists={current.artists} />
               </ArtistName>
             </ColumnInfo>
             <ColumnTimeLeft>{audioInfo && audioInfo.seek ? audioInfo.seek : '0:00'}</ColumnTimeLeft>
@@ -108,7 +108,7 @@ Player.propTypes = {
       w200: PropTypes.string.isRequired,
     }).isRequired,
     title: PropTypes.string.isRequired,
-    artists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    artists: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
 
   audioInfo: PropTypes.shape({

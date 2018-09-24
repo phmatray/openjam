@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArtists } from '../../redux/modules/artist';
-import { Segment, Header, Card } from 'semantic-ui-react';
-import ArtistItems from './presenter';
+import Spinner from '../common/Spinner';
+import ArtistsPresenter from './presenter';
 
 class Artists extends Component {
   componentDidMount() {
@@ -13,24 +13,18 @@ class Artists extends Component {
   render() {
     const { artists, loading } = this.props;
 
-    return (
-      <Segment basic>
-        <Header as="h1">
-          Artists
-          <Header.Subheader>Pick some music by title, artist, remix or label.</Header.Subheader>
-        </Header>
-
-        {artists !== null && (
-          <Card.Group itemsPerRow={3}>
-            <ArtistItems artists={artists} loading={loading} />
-          </Card.Group>
-        )}
-      </Segment>
+    return artists === null || loading ? (
+      <Spinner />
+    ) : artists.length > 0 ? (
+      <ArtistsPresenter artists={artists} />
+    ) : (
+      <h4>No artists found...</h4>
     );
   }
 }
 
 Artists.propTypes = {
+  fetchArtists: PropTypes.func.isRequired,
   artists: PropTypes.array,
   loading: PropTypes.bool.isRequired,
 };

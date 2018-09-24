@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLabels } from '../../redux/modules/label';
-import { Segment, Header, Card } from 'semantic-ui-react';
-import LabelItems from './presenter';
+import Spinner from '../common/Spinner';
+import LabelsPresenter from './presenter';
 
 class Labels extends Component {
   componentDidMount() {
@@ -13,24 +13,18 @@ class Labels extends Component {
   render() {
     const { labels, loading } = this.props;
 
-    return (
-      <Segment basic>
-        <Header as="h1">
-          Labels
-          <Header.Subheader>Pick some music by title, label, remix or label.</Header.Subheader>
-        </Header>
-
-        {labels !== null && (
-          <Card.Group itemsPerRow={3}>
-            <LabelItems labels={labels} loading={loading} />
-          </Card.Group>
-        )}
-      </Segment>
+    return labels === null || loading ? (
+      <Spinner />
+    ) : labels.length > 0 ? (
+      <LabelsPresenter labels={labels} />
+    ) : (
+      <h4>No labels found...</h4>
     );
   }
 }
 
 Labels.propTypes = {
+  fetchLabels: PropTypes.func.isRequired,
   labels: PropTypes.array,
   loading: PropTypes.bool.isRequired,
 };
