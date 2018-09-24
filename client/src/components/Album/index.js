@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Header, Image } from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchAlbum } from '../../redux/modules/album';
 import Moment from 'react-moment';
 import Spinner from '../common/Spinner';
 import LinkTrack from '../../elements/Links/LinkTrack';
+import Body from '../../elements/UI/Body';
+import H2 from '../../elements/Titles/H2';
 
 class Album extends Component {
   state = {
@@ -28,20 +30,17 @@ class Album extends Component {
   render() {
     const { album, loading } = this.props.album;
 
-    let trackContent;
-
-    if (album === null || loading || Object.keys(album).length === 0) {
-      trackContent = <Spinner />;
-    } else {
-      trackContent = (
+    let trackContent =
+      album === null || loading || Object.keys(album).length === 0 ? (
+        <Spinner />
+      ) : (
         <React.Fragment>
-          <Header as="h1">{album.name}</Header>
           <p>
             EP release date : <Moment format="LL">{album.release_date}</Moment>
           </p>
           <Image src={album.images[1].href} alt={album.title} />
 
-          <Header as="h1">Tracks</Header>
+          <H2 header="Tracks" />
           {album.tracks.map(track => (
             <p>
               <LinkTrack track={track} />
@@ -49,9 +48,8 @@ class Album extends Component {
           ))}
         </React.Fragment>
       );
-    }
 
-    return <Segment basic>{trackContent}</Segment>;
+    return <Body header={['Albums', album.name]}>{trackContent}</Body>;
   }
 }
 
