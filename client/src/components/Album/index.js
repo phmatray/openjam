@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlbum } from '../../redux/modules/album';
+import Spinner from '../common/Spinner';
 import AlbumPresenter from './presenter';
 
 class Album extends Component {
@@ -24,7 +25,12 @@ class Album extends Component {
 
   render() {
     const { album, loading } = this.props.album;
-    return <AlbumPresenter album={album} loading={loading} />;
+
+    return album === null || album === undefined || loading ? (
+      <Spinner />
+    ) : (
+      <AlbumPresenter album={album} />
+    );
   }
 }
 

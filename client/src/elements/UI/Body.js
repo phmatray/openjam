@@ -21,7 +21,7 @@ const Body = ({ breadcrumbSegments, description, children }) => {
 
 Body.propTypes = {
   breadcrumbSegments: PropTypes.arrayOf(PropTypes.any).isRequired,
-  description: PropTypes.string,
+  description: PropTypes.any,
 };
 
 export default Body;

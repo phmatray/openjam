@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Image } from 'semantic-ui-react';
 import Moment from 'react-moment';
-import Spinner from '../common/Spinner';
 import Body from '../../elements/UI/Body';
 import H2 from '../../elements/Titles/H2';
 import TableTracks from './children/TableTracks';
 
-const AlbumPresenter = ({ album, loading }) => {
+const AlbumPresenter = ({ album }) => {
   const albumName = album.album_type === 'EP' ? `${album.name} - EP` : album.name;
 
   const description = (
@@ -17,9 +16,7 @@ const AlbumPresenter = ({ album, loading }) => {
     </span>
   );
 
-  return album === null || loading || Object.keys(album).length === 0 ? (
-    <Spinner />
-  ) : (
+  return (
     <Body
       breadcrumbSegments={[<Link to="/albums">Albums</Link>, albumName]}
       description={description}
@@ -43,7 +40,6 @@ AlbumPresenter.propTypes = {
     ).isRequired,
     tracks: PropTypes.array.isRequired,
   }).isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 export default AlbumPresenter;

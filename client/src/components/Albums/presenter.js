@@ -1,26 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
 import AlbumItem from './children/AlbumItem';
+import Body from '../../elements/UI/Body';
+import Flex from '../../elements/UI/Flex';
+import H2 from '../../elements/Titles/H2';
 
-const AlbumsPresenter = ({ albums, loading }) =>
-  albums === null || loading ? (
-    <Spinner />
-  ) : albums.length > 0 ? (
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-      }}
-    >
+const AlbumsPresenter = ({ albums }) => (
+  <Body breadcrumbSegments={['Albums']} description="Pick some music by album.">
+    <H2 header="What's new" />
+    <Flex>
       {albums.map(album => (
-        <AlbumItem album={album} key={album._id} />
+        <AlbumItem key={album._id} album={album} />
       ))}
-    </div>
-  ) : (
-    <h4>No albums found...</h4>
-  );
+    </Flex>
+  </Body>
+);
 
 AlbumsPresenter.propTypes = {
   albums: PropTypes.arrayOf(
@@ -28,7 +22,6 @@ AlbumsPresenter.propTypes = {
       _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 export default AlbumsPresenter;

@@ -12,9 +12,9 @@ const FETCH_ALBUM_ERROR = 'album/FETCH_ALBUM_ERROR';
 // Reducer
 //
 const initialState = {
-  albums: null,
-  album: {},
-  loading: false,
+  albums: null, // array
+  album: null, // object
+  loading: false, // bool
   error: null,
 };
 
@@ -58,7 +58,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         error: action.payload,
-        album: {},
+        album: initialState.album,
         loading: false,
       };
 

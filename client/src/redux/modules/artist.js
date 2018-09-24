@@ -12,9 +12,9 @@ const FETCH_ARTIST_ERROR = 'artist/FETCH_ARTIST_ERROR';
 // Reducer
 //
 const initialState = {
-  artists: null,
-  artist: {},
-  loading: false,
+  artists: null, // array
+  artist: null, // object
+  loading: false, // bool
   error: null,
 };
 
@@ -58,7 +58,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         error: action.payload,
-        artist: {},
+        artist: initialState.artist,
         loading: false,
       };
 

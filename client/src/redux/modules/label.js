@@ -12,9 +12,9 @@ const FETCH_LABEL_ERROR = 'label/FETCH_LABEL_ERROR';
 // Reducer
 //
 const initialState = {
-  labels: null,
-  label: {},
-  loading: false,
+  labels: null, // array
+  label: null, // object
+  loading: false, // bool
   error: null,
 };
 
@@ -58,7 +58,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         error: action.payload,
-        label: {},
+        label: initialState.label,
         loading: false,
       };
 
