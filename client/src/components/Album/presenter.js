@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Image } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import Spinner from '../common/Spinner';
@@ -7,20 +8,29 @@ import Body from '../../elements/UI/Body';
 import H2 from '../../elements/Titles/H2';
 import TableTracks from './children/TableTracks';
 
-const AlbumPresenter = ({ album, loading }) =>
-  album === null || loading || Object.keys(album).length === 0 ? (
+const AlbumPresenter = ({ album, loading }) => {
+  const albumName = album.album_type === 'EP' ? `${album.name} - EP` : album.name;
+
+  const description = (
+    <span>
+      Release date: <Moment format="LL">{album.release_date}</Moment>
+    </span>
+  );
+
+  return album === null || loading || Object.keys(album).length === 0 ? (
     <Spinner />
   ) : (
-    <Body header={['Albums', album.name]}>
-      <p>
-        EP release date : <Moment format="LL">{album.release_date}</Moment>
-      </p>
+    <Body
+      breadcrumbSegments={[<Link to="/albums">Albums</Link>, albumName]}
+      description={description}
+    >
       <Image src={album.images[1].href} alt={album.name} />
 
       <H2 header="Tracks" />
       <TableTracks tracks={album.tracks} />
     </Body>
   );
+};
 
 AlbumPresenter.propTypes = {
   album: PropTypes.shape({

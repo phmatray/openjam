@@ -16,7 +16,7 @@ class Labels extends Component {
     const { labels, loading } = this.props;
 
     return (
-      <Body header={['Labels']} description="Pick some music by label.">
+      <Body breadcrumbSegments={['Labels']} description="Pick some music by label.">
         <H2 header="What's new" />
 
         {labels !== null && (

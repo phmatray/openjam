@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlbums } from '../../redux/modules/album';
-import AlbumItems from './presenter';
+import AlbumsPresenter from './presenter';
 import Body from '../../elements/UI/Body';
 import H2 from '../../elements/Titles/H2';
 
@@ -15,9 +15,9 @@ class Albums extends Component {
     const { albums, loading } = this.props;
 
     return (
-      <Body header={['Albums']} description="Pick some music by album.">
+      <Body breadcrumbSegments={['Albums']} description="Pick some music by album.">
         <H2 header="What's new" />
-        {albums !== null && <AlbumItems albums={albums} loading={loading} />}
+        {albums !== null && <AlbumsPresenter albums={albums} loading={loading} />}
       </Body>
     );
   }

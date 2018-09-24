@@ -15,7 +15,7 @@ class Tracks extends Component {
     const { tracks, loading } = this.props;
 
     return (
-      <Body header={['Tracks']} description="Pick some music by track.">
+      <Body breadcrumbSegments={['Tracks']} description="Pick some music by track.">
         <H2 header="What's new" />
         {tracks !== null && <TrackItems tracks={tracks} loading={loading} />}
       </Body>

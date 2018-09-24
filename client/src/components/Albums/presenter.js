@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import AlbumItem from './children/AlbumItem';
 
-const AlbumItems = ({ albums, loading }) =>
+const AlbumsPresenter = ({ albums, loading }) =>
   albums === null || loading ? (
     <Spinner />
   ) : albums.length > 0 ? (
@@ -22,7 +22,7 @@ const AlbumItems = ({ albums, loading }) =>
     <h4>No albums found...</h4>
   );
 
-AlbumItems.propTypes = {
+AlbumsPresenter.propTypes = {
   albums: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
@@ -31,4 +31,4 @@ AlbumItems.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default AlbumItems;
+export default AlbumsPresenter;

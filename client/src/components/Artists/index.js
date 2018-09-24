@@ -16,7 +16,7 @@ class Artists extends Component {
     const { artists, loading } = this.props;
 
     return (
-      <Body header={['Artists']} description="Pick some music by artist.">
+      <Body breadcrumbSegments={['Artists']} description="Pick some music by artist.">
         <H2 header="What's new" />
         {artists !== null && (
           <Card.Group itemsPerRow={3}>
