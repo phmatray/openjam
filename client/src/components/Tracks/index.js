@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTracks } from '../../redux/modules/track';
-import TrackItems from './presenter';
-import Body from '../../elements/UI/Body';
-import H2 from '../../elements/Titles/H2';
+import Spinner from '../common/Spinner';
+import TracksPresenter from './presenter';
 
 class Tracks extends Component {
   componentDidMount() {
@@ -14,16 +13,18 @@ class Tracks extends Component {
   render() {
     const { tracks, loading } = this.props;
 
-    return (
-      <Body breadcrumbSegments={['Tracks']} description="Pick some music by track.">
-        <H2 header="What's new" />
-        {tracks !== null && <TrackItems tracks={tracks} loading={loading} />}
-      </Body>
+    return tracks === null || loading ? (
+      <Spinner />
+    ) : tracks.length > 0 ? (
+      <TracksPresenter tracks={tracks} />
+    ) : (
+      <h4>No tracks found...</h4>
     );
   }
 }
 
 Tracks.propTypes = {
+  fetchTracks: PropTypes.func.isRequired,
   tracks: PropTypes.array,
   loading: PropTypes.bool.isRequired,
 };

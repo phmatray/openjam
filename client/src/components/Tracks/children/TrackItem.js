@@ -5,12 +5,11 @@ import { Cover, Title, Edit, Artists } from './style';
 import ArtistNameLinks from '../../../elements/ArtistNameLinks';
 
 const TrackItem = ({ track }) => (
-  <div style={{ width: '170px', margin: '0 auto 1.5em auto' }}>
+  <div style={{ width: '170px', marginBottom: '1.5em', marginRight: '0.9em' }}>
     <Link to={`/track/${track._id}`}>
       <Cover src={track.coverurl.w400} />
     </Link>
     <br />
-
     <Link to={`/track/${track._id}`}>
       <Title style={{ width: '170px' }}>
         {track.title} {track.edit && <Edit>{`(${track.edit})`}</Edit>}
