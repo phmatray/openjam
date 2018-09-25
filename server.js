@@ -11,6 +11,7 @@ const github = require('./routes/api/github');
 const artists = require('./routes/api/artists');
 const albums = require('./routes/api/albums');
 const labels = require('./routes/api/labels');
+const playlists = require('./routes/api/playlists');
 const tracks = require('./routes/api/tracks');
 
 const app = express();
@@ -42,6 +43,7 @@ app.use('/api/github', github);
 app.use('/api/artists', artists);
 app.use('/api/albums', albums);
 app.use('/api/labels', labels);
+app.use('/api/playlists', playlists);
 app.use('/api/tracks', tracks);
 
 // Server static assets if in production
