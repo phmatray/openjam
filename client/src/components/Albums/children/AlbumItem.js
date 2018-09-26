@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Cover, Title, Label } from './style';
-import LinkLabel from '../../../elements/Links/LinkLabel';
+import LinkEntity from '../../../elements/Links/LinkEntity';
 
 const AlbumItem = ({ album }) => {
   return (
@@ -17,7 +17,7 @@ const AlbumItem = ({ album }) => {
       </Title>
 
       <Label>
-        <LinkLabel label={album.label} />
+        <LinkEntity entity={album.label} />
       </Label>
     </div>
   );
