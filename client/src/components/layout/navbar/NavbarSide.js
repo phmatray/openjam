@@ -26,6 +26,19 @@ class NavbarSide extends Component {
       <React.Fragment>
         <Menu.Item
           as={Link}
+          to="/playlists"
+          name="playlists"
+          active={activeItem === 'playlists'}
+          onClick={this.handleItemClick && hideSidebar}
+          style={{ textAlign: 'left' }}
+        >
+          <span>
+            <Icon name="music" size="big" style={{ margin: '0.75em' }} />
+            Playlists
+          </span>
+        </Menu.Item>
+        <Menu.Item
+          as={Link}
           to="/tracks"
           name="tracks"
           active={activeItem === 'tracks'}

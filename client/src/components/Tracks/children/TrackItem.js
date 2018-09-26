@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Cover, Title, Edit, Artists } from './style';
-import ArtistNameLinks from '../../../elements/ArtistNameLinks';
+import LinkArtistNames from '../../../elements/Links/LinkArtistNames';
 
 const TrackItem = ({ track }) => (
-  <div style={{ width: '170px', margin: '0 auto 1.5em auto' }}>
+  <div style={{ width: '170px', marginBottom: '1.5em', marginRight: '0.9em' }}>
     <Link to={`/track/${track._id}`}>
       <Cover src={track.coverurl.w400} />
     </Link>
     <br />
-
     <Link to={`/track/${track._id}`}>
       <Title style={{ width: '170px' }}>
         {track.title} {track.edit && <Edit>{`(${track.edit})`}</Edit>}
@@ -18,7 +17,7 @@ const TrackItem = ({ track }) => (
     </Link>
 
     <Artists>
-      <ArtistNameLinks artists={track.artists} />
+      <LinkArtistNames artists={track.artists} />
     </Artists>
   </div>
 );

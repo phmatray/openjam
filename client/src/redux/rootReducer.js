@@ -10,6 +10,7 @@ import album from './modules/album';
 import label from './modules/label';
 import track from './modules/track';
 import player from './modules/player';
+import playlist from './modules/playlist';
 
 const reducers = {
   auth,
@@ -20,6 +21,7 @@ const reducers = {
   artist,
   album,
   label,
+  playlist,
   track,
   player,
 };
