@@ -8,7 +8,9 @@ import Jammers from '../components/Jammers';
 import Profile from '../components/profile/Profile';
 import Share from '../components/share/Share';
 import Post from '../components/post/Post';
-import Track from '../components/track/Track';
+import Playlist from '../components/Playlist';
+import Playlists from '../components/Playlists';
+import Track from '../components/Track';
 import Tracks from '../components/Tracks';
 import Artist from '../components/Artist';
 import Artists from '../components/Artists';
@@ -47,6 +49,18 @@ const routes = [
     exact: true,
     isPrivate: false,
     main: Profile,
+  },
+  {
+    path: '/playlists',
+    exact: true,
+    isPrivate: false,
+    main: Playlists,
+  },
+  {
+    path: '/playlist/:id',
+    exact: true,
+    isPrivate: false,
+    main: Playlist,
   },
   {
     path: '/tracks',

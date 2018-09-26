@@ -3,27 +3,37 @@ import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import LinkEntity from '../../../elements/Links/LinkEntity';
 import LinkArtistNames from '../../../elements/Links/LinkArtistNames';
+import { HeaderCell, CoverCell } from './style';
 
 const TableTracks = ({ tracks }) => {
   return (
-    <Table singleLine>
+    <Table basic="very">
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell />
-          <Table.HeaderCell>Title</Table.HeaderCell>
-          <Table.HeaderCell>Artist</Table.HeaderCell>
+          <HeaderCell colSpan="2">Track</HeaderCell>
+          <HeaderCell>Artist</HeaderCell>
+          <HeaderCell>Album</HeaderCell>
         </Table.Row>
       </Table.Header>
 
       <Table.Body>
         {tracks.map(track => (
           <Table.Row key={track._id}>
-            <Table.Cell>{track.track_number}</Table.Cell>
+            <CoverCell>
+              <img
+                src={track.coverurl.w200}
+                style={{ width: '3em', height: '3em', borderRadius: '5%' }}
+                alt={track.title}
+              />
+            </CoverCell>
             <Table.Cell>
-              <LinkEntity entity={track} />
+              <LinkEntity entity={track} as="table" strong={true} />
             </Table.Cell>
             <Table.Cell>
-              <LinkArtistNames artists={track.artists} />
+              <LinkArtistNames artists={track.artists} as="table" />
+            </Table.Cell>
+            <Table.Cell>
+              <LinkEntity entity={track.album} as="table" />
             </Table.Cell>
           </Table.Row>
         ))}

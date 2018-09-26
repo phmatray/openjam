@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Cover, Title, Label } from './style';
-import LinkLabel from '../../../elements/Links/LinkLabel';
+import LinkEntity from '../../../elements/Links/LinkEntity';
 
 const AlbumItem = ({ album }) => {
   return (
-    <div style={{ width: '170px', marginBottom: '1.5em', marginRight: '1.5em' }}>
+    <div style={{ width: '170px', marginBottom: '1.5em', marginRight: '0.9em' }}>
       <Link to={`/album/${album._id}`}>
         <Cover src={album.images[1].href} />
       </Link>
@@ -17,7 +17,7 @@ const AlbumItem = ({ album }) => {
       </Title>
 
       <Label>
-        <LinkLabel label={album.label} />
+        <LinkEntity entity={album.label} />
       </Label>
     </div>
   );

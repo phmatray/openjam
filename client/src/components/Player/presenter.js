@@ -17,7 +17,7 @@ import {
   Slider,
   ButtonCollection,
 } from './style';
-import ArtistNameLinks from '../../elements/ArtistNameLinks';
+import LinkArtistNames from '../../elements/Links/LinkArtistNames';
 
 class Player extends Component {
   render() {
@@ -48,7 +48,7 @@ class Player extends Component {
               <ArtistName>
                 <i>by</i>
                 &nbsp;&nbsp;
-                <ArtistNameLinks artists={current.artists} />
+                <LinkArtistNames artists={current.artists} />
               </ArtistName>
             </ColumnInfo>
             <ColumnTimeLeft>{audioInfo && audioInfo.seek ? audioInfo.seek : '0:00'}</ColumnTimeLeft>

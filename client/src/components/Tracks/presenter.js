@@ -1,33 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
 import TrackItem from './children/TrackItem';
-import { Grid } from 'semantic-ui-react';
+import Body from '../../elements/UI/Body';
+import Flex from '../../elements/UI/Flex';
+import H2 from '../../elements/Titles/H2';
 
-const TrackItems = ({ tracks, loading }) =>
-  tracks === null || loading ? (
-    <Spinner />
-  ) : tracks.length > 0 ? (
-    <Grid columns={5}>
-      <Grid.Row>
-        {tracks.map(track => (
-          <Grid.Column key={track._id}>
-            <TrackItem track={track} />
-          </Grid.Column>
-        ))}
-      </Grid.Row>
-    </Grid>
-  ) : (
-    <h4>No tracks found...</h4>
-  );
+const TracksPresenter = ({ tracks }) => (
+  <Body breadcrumbSegments={['Tracks']} description="Pick some music by track.">
+    <H2 header="What's new" />
+    <Flex>
+      {tracks.map(track => (
+        <TrackItem key={track._id} track={track} />
+      ))}
+    </Flex>
+  </Body>
+);
 
-TrackItems.propTypes = {
+TracksPresenter.propTypes = {
   tracks: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
-export default TrackItems;
+export default TracksPresenter;
