@@ -26,7 +26,7 @@ class Landing extends Component {
 
         <Grid>
           <Grid.Column width={16}>
-            <Image src={cover} />
+            <Image src={cover} alt="landing page cover" />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={8} computer={8}>
             <JoinUs />
