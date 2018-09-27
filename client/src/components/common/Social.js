@@ -53,7 +53,7 @@ const Social = ({ href }) => {
   const icon = getIcon(domainName);
   const color = getColor(domainName);
 
-  return <Button as="a" href={href} target="_blank" circular color={color} icon={icon} />;
+  return <Button as="a" href={href} target="_blank" rel="noopener noreferrer" circular color={color} icon={icon} />;
 };
 
 Social.propTypes = {
