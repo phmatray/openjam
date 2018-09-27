@@ -7,6 +7,7 @@ import { clearCurrentProfile } from './redux/modules/profile';
 
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import HttpsRedirect from 'react-https-redirect';
 
 import Layout from './components/layout/Layout';
 import NotFound from './components/not-found/NotFound';
@@ -35,16 +36,18 @@ if (localStorage.jwtToken) {
 
 const App = () => (
   <Provider store={store}>
-    <Router>
-      <div className="App" style={{ height: '100vh' }}>
-        <Layout>
-          <Switch>
-            <CustomRoutes />
-            <Route component={NotFound} />
-          </Switch>
-        </Layout>
-      </div>
-    </Router>
+    <HttpsRedirect>
+      <Router>
+        <div className="App" style={{ height: '100vh' }}>
+          <Layout>
+            <Switch>
+              <CustomRoutes />
+              <Route component={NotFound} />
+            </Switch>
+          </Layout>
+        </div>
+      </Router>
+    </HttpsRedirect>
   </Provider>
 );
 
