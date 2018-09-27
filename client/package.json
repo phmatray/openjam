@@ -6,16 +6,19 @@
   },
   "private": true,
   "dependencies": {
-    "ajv": "^6.5.3",
+    "ajv": "^6.5.4",
     "axios": "^0.18.0",
     "howler": "^2.0.15",
+    "husky": "^1.0.1",
     "jwt-decode": "^2.2.0",
+    "lint-staged": "^7.3.0",
     "moment": "^2.22.2",
+    "prettier": "^1.14.3",
     "prop-types": "^15.6.2",
     "rc-slider": "^8.6.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-moment": "^0.7.9",
+    "react-moment": "^0.8.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
@@ -25,6 +28,12 @@
     "semantic-ui-css": "^2.4.0",
     "semantic-ui-react": "^0.82.5",
     "styled-components": "^3.4.9"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +49,10 @@
     "@storybook/addon-actions": "^3.4.11",
     "@storybook/addon-links": "^3.4.11",
     "@storybook/addons": "^3.4.11"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

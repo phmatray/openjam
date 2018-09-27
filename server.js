@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
-
+const http = require('http');
+const enforce = require('express-sslify');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
@@ -55,14 +56,11 @@ if (process.env.NODE_ENV === 'production') {
     res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 
-  // Force https (for Heroku)
-  app.use(function(req, res, next) {
-    if (req.get('X-Forwarded-Proto') !== 'https') {
-      res.redirect('https://' + req.get('Host') + req.url);
-    } else next();
-  });
+  // Use enforce.HTTPS({ trustProtoHeader: true }) in case you are behind
+  // a load balancer (e.g. Heroku). See further comments below
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`server running on ${port}`));
+http.createServer(app).listen(port, () => console.log(`server running on ${port}`));
