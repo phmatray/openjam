@@ -1,4 +1,4 @@
-import Landing from '../components/landing/Landing';
+import Landing from '../components/Landing';
 import Register from '../components/auth/Register';
 import Login from '../components/auth/Login';
 import Dashboard from '../components/dashboard/Dashboard';
@@ -6,7 +6,7 @@ import CreateProfile from '../components/create-profile/CreateProfile';
 import EditProfile from '../components/edit-profile/EditProfile';
 import Jammers from '../components/Jammers';
 import Profile from '../components/profile/Profile';
-import Share from '../components/share/Share';
+import Share from '../components/Share';
 import Post from '../components/post/Post';
 import Playlist from '../components/Playlist';
 import Playlists from '../components/Playlists';

@@ -1,24 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../common/Spinner';
-import ProfileItem from './children/ProfileItem';
+import { Card } from 'semantic-ui-react';
+import Jammer from './children/Jammer';
+import Body from '../../elements/UI/Body';
+import JoinUs from '../common/messages/JoinUs';
 
-const ProfileItems = ({ profiles, loading }) =>
-  profiles === null || loading ? (
-    <Spinner />
-  ) : profiles.length > 0 ? (
-    profiles.map(profile => <ProfileItem key={profile._id} profile={profile} />)
-  ) : (
-    <h4>No profiles found...</h4>
-  );
+const JammersPresenter = ({ jammers, isAuthenticated }) => (
+  <Body
+    breadcrumbSegments={['Jammers']}
+    description="Browse and connect with listeners and musicians."
+  >
+    {!isAuthenticated && <JoinUs />}
 
-ProfileItems.propTypes = {
-  profiles: PropTypes.arrayOf(
+    {jammers !== null && (
+      <Card.Group itemsPerRow={4} stackable>
+        {jammers.map(jammer => (
+          <Jammer key={jammer._id} jammer={jammer} />
+        ))}
+      </Card.Group>
+    )}
+  </Body>
+);
+
+JammersPresenter.propTypes = {
+  jammers: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  loading: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default ProfileItems;
+export default JammersPresenter;
