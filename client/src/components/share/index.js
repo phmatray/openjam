@@ -6,11 +6,12 @@ import PostFeed from './PostFeed';
 import TrackItem from './TrackItem';
 import TwitterTimeline from './TwitterTimeline';
 import Spinner from '../common/Spinner';
-import { Segment, Header, Feed, Grid } from 'semantic-ui-react';
+import { Feed, Grid } from 'semantic-ui-react';
 import { getPosts } from '../../redux/modules/post';
 import { fetchTracks } from '../../redux/modules/track';
 import { playSelected, pause } from '../../redux/modules/player';
 import JoinUs from '../common/messages/JoinUs';
+import Body from '../../elements/UI/Body';
 
 class Share extends Component {
   handlePlayClick = trackId => {
@@ -65,12 +66,10 @@ class Share extends Component {
     }
 
     return (
-      <Segment basic>
-        <Header as="h1">
-          Share
-          <Header.Subheader>Your latest musical favorites are on OpenJam.</Header.Subheader>
-        </Header>
-
+      <Body
+        breadcrumbSegments={['Share']}
+        description="Your latest musical favorites are on OpenJam."
+      >
         {postForm}
 
         <Grid divided padded>
@@ -88,7 +87,7 @@ class Share extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Segment>
+      </Body>
     );
   }
 }

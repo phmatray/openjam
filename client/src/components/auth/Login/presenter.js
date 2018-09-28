@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Segment, Header, Form, Message, Grid } from 'semantic-ui-react';
+import { Form, Message, Grid } from 'semantic-ui-react';
+import Body from '../../../elements/UI/Body';
 import TextFieldGroup from '../../common/TextFieldGroup';
 
 class LoginPresenter extends Component {
@@ -28,12 +29,7 @@ class LoginPresenter extends Component {
     const { errors } = this.props;
 
     return (
-      <Segment basic>
-        <Header as="h1">
-          Log In
-          <Header.Subheader>Sign in to your OpenJam account</Header.Subheader>
-        </Header>
-
+      <Body breadcrumbSegments={['Log In']} description="Sign in to your OpenJam account.">
         <Grid style={{ height: '100%' }} verticalAlign="middle">
           <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
             <Form error noValidate onSubmit={this.handleSubmit}>
@@ -68,7 +64,7 @@ class LoginPresenter extends Component {
             </Message>
           </Grid.Column>
         </Grid>
-      </Segment>
+      </Body>
     );
   }
 }

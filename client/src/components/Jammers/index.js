@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getProfiles } from '../../redux/modules/profile';
-import { Segment, Header, Card } from 'semantic-ui-react';
-import ProfileItems from './presenter';
-import JoinUs from '../common/messages/JoinUs';
+import Spinner from '../common/Spinner';
+import JammersPresenter from './presenter';
 
 class Jammers extends Component {
   componentDidMount() {
@@ -15,21 +14,12 @@ class Jammers extends Component {
     const { profiles, loading } = this.props.profile;
     const { isAuthenticated } = this.props.auth;
 
-    return (
-      <Segment basic>
-        <Header as="h1">
-          Jammers
-          <Header.Subheader>Browse and connect with listeners and musicians</Header.Subheader>
-        </Header>
-
-        {!isAuthenticated && <JoinUs />}
-
-        {profiles !== null && (
-          <Card.Group itemsPerRow={4} stackable>
-            <ProfileItems profiles={profiles} loading={loading} />
-          </Card.Group>
-        )}
-      </Segment>
+    return profiles === null || loading ? (
+      <Spinner />
+    ) : profiles.length > 0 ? (
+      <JammersPresenter jammers={profiles} isAuthenticated={isAuthenticated} />
+    ) : (
+      <h4>No profiles found...</h4>
     );
   }
 }
