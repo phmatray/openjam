@@ -1,38 +1,23 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { registerUser } from '../../redux/modules/auth';
+import { Link } from 'react-router-dom';
+import { Form, Message, Grid } from 'semantic-ui-react';
+import Body from '../../../elements/UI/Body';
+import TextFieldGroup from '../../common/TextFieldGroup';
 
-import { withRouter, Link } from 'react-router-dom';
-import { Header, Form, Message, Grid, Segment } from 'semantic-ui-react';
-import TextFieldGroup from '../common/TextFieldGroup';
-
-class Register extends Component {
+class RegisterPresenter extends Component {
   state = {
     firstname: '',
     lastname: '',
     email: '',
     password: '',
     password2: '',
-    errors: {},
   };
-
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/share');
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
     const { firstname, lastname, email, password, password2 } = this.state;
+    const { registerUser } = this.props;
 
     const newUser = {
       firstname: firstname,
@@ -42,21 +27,17 @@ class Register extends Component {
       password2: password2,
     };
 
-    this.props.registerUser(newUser, this.props.history);
+    registerUser(newUser, this.props.history);
   };
 
   render() {
-    const { firstname, lastname, email, password, password2, errors } = this.state;
+    const { firstname, lastname, email, password, password2 } = this.state;
+    const { errors } = this.props;
 
     return (
-      <Segment basic>
+      <Body breadcrumbSegments={['Register']} description="Create your OpenJam account.">
         <Grid style={{ height: '100%' }} verticalAlign="middle">
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h1">
-              Register
-              <Header.Subheader>Create your OpenJam account</Header.Subheader>
-            </Header>
-
             <Form error noValidate onSubmit={this.handleSubmit}>
               <TextFieldGroup
                 name="firstname"
@@ -121,23 +102,9 @@ class Register extends Component {
             </Message>
           </Grid.Column>
         </Grid>
-      </Segment>
+      </Body>
     );
   }
 }
 
-Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(
-  mapStateToProps,
-  { registerUser },
-)(withRouter(Register));
+export default RegisterPresenter;

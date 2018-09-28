@@ -4,24 +4,24 @@ import { Card, Responsive } from 'semantic-ui-react';
 import ProfileCardMobile from './ProfileCardMobile';
 import ProfileCardDefault from './ProfileCardDefault';
 
-const ProfileItem = ({ profile }) => {
+const Jammer = ({ jammer }) => {
   return (
     <React.Fragment>
       <Responsive as={Card} {...Responsive.onlyMobile}>
-        <ProfileCardMobile profile={profile} />
+        <ProfileCardMobile profile={jammer} />
       </Responsive>
       <Responsive as={Card} {...Responsive.onlyTablet}>
-        <ProfileCardDefault profile={profile} />
+        <ProfileCardDefault profile={jammer} />
       </Responsive>
       <Responsive as={Card} {...Responsive.onlyComputer}>
-        <ProfileCardDefault profile={profile} />
+        <ProfileCardDefault profile={jammer} />
       </Responsive>
     </React.Fragment>
   );
 };
 
-ProfileItem.propTypes = {
-  profile: PropTypes.object.isRequired,
+Jammer.propTypes = {
+  jammer: PropTypes.object.isRequired,
 };
 
-export default ProfileItem;
+export default Jammer;
