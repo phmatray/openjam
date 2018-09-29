@@ -1,17 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card } from 'semantic-ui-react';
+import { Title, Description } from './style';
+import PlaylistCover from '../../../elements/UI/PlaylistCover';
 
 const PlaylistItem = ({ playlist, color }) => {
   return (
-    <Card color={color}>
-      <Card.Content>
-        <Card.Header>
-          <Link to={`/playlist/${playlist._id}`}>{playlist.name}</Link>
-        </Card.Header>
-      </Card.Content>
-    </Card>
+    <div
+      style={{
+        width: 'calc(340px + 0.9em)',
+        marginBottom: '1.5em',
+        marginRight: '0.9em',
+      }}
+    >
+      <Link to={`/playlist/${playlist._id}`}>
+        <PlaylistCover tracks={playlist.tracks} />
+      </Link>
+
+      <Title>{playlist.name}</Title>
+      <Description>{playlist.description}</Description>
+    </div>
   );
 };
 

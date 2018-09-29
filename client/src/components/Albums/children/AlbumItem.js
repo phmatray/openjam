@@ -17,7 +17,7 @@ const AlbumItem = ({ album }) => {
       </Title>
 
       <Label>
-        <LinkEntity entity={album.label} />
+        <LinkEntity entity={album.label} as="table" />
       </Label>
     </div>
   );

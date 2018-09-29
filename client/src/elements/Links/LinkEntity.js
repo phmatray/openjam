@@ -17,7 +17,7 @@ const LinkEntity = ({ entity, as, strong }) => {
   if (entity.title) {
     content = entity.title;
     if (entity.edit) {
-      content += ` ${entity.edit}`;
+      content += ` (${entity.edit})`;
     }
   } else {
     content = entity.name;
