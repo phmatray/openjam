@@ -52,7 +52,7 @@ LinkEntity.propTypes = {
 };
 
 LinkEntity.defaultProps = {
-  type: 'link',
+  as: 'link',
   strong: false,
 };
 
