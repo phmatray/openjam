@@ -24,7 +24,7 @@ const TrackPresenter = ({ track }) => (
 TrackPresenter.propTypes = {
   track: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    artists: PropTypes.arrayOf(PropTypes.string).isRequired,
+    artists: PropTypes.arrayOf(PropTypes.object).isRequired,
     album: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,

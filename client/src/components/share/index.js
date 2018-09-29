@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PostForm from './PostForm';
 import PostFeed from './PostFeed';
 import TrackItem from './TrackItem';
-import TwitterTimeline from './TwitterTimeline';
 import Spinner from '../common/Spinner';
 import { Feed, Grid } from 'semantic-ui-react';
 import { getPosts } from '../../redux/modules/post';
@@ -77,13 +76,6 @@ class Share extends Component {
             <Grid.Column mobile={16} tablet={11} computer={11}>
               {this.renderTracks()}
               {postContent}
-            </Grid.Column>
-            <Grid.Column width={5} only="computer" style={{ padding: 0 }}>
-              <TwitterTimeline
-                url={'https://twitter.com/OpenJam_EU?ref_src=twsrc%5Etfw'}
-                chrome="noborders noheader nofooter noscrollbar"
-                height={515}
-              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
