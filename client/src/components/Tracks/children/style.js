@@ -1,18 +1,12 @@
 import styled from 'styled-components';
 
 export const Cover = styled.img`
-  width: 12em;
-  height: 12em;
+  width: 50px;
+  height: 50px;
   border: 1px solid #ccc;
   border-radius: 0.3em;
-`;
-
-export const Title = styled.p`
-  font-size: 0.95em;
-`;
-
-export const Edit = styled.span`
-  font-size: 0.95em;
+  margin-right: 0.5em;
+  margin: 0.2em 0.5em 0.2em 0;
 `;
 
 export const Artists = styled.p`
