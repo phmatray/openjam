@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Image } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import Moment from 'react-moment';
+import AlbumTracks from './children/AlbumTracks';
+import AlbumCover from '../../elements/UI/AlbumCover';
 import Body from '../../elements/UI/Body';
-import H2 from '../../elements/Titles/H2';
-import TableTracks from './children/TableTracks';
 
 const AlbumPresenter = ({ album }) => {
   const albumName = album.album_type === 'EP' ? `${album.name} - EP` : album.name;
@@ -21,10 +21,16 @@ const AlbumPresenter = ({ album }) => {
       breadcrumbSegments={[<Link to="/albums">Albums</Link>, albumName]}
       description={description}
     >
-      <Image src={album.images[1].href} alt={album.name} />
-
-      <H2 header="Tracks" />
-      <TableTracks tracks={album.tracks} />
+      <Grid>
+        <Grid.Row>
+          <Grid.Column mobile={16} tablet={6} computer={5}>
+            <AlbumCover album={album} />
+          </Grid.Column>
+          <Grid.Column mobile={16} tablet={10} computer={11}>
+            <AlbumTracks tracks={album.tracks} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Body>
   );
 };
