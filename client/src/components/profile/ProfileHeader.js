@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Image, Button } from 'semantic-ui-react';
 import isEmpty from '../../validation/is-empty';
-import Social from '../common/Social';
+import Social from '../../elements/UI/Social';
 import PropTypes from 'prop-types';
 
 class ProfileGithub extends Component {

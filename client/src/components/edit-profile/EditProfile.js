@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import SelectListGroup from '../common/SelectListGroup';
-import InputGroup from '../common/InputGroup';
+import TextFieldGroup from '../../elements/Inputs/TextFieldGroup';
+import TextAreaFieldGroup from '../../elements/Inputs/TextAreaFieldGroup';
+import SelectListGroup from '../../elements/Inputs/SelectListGroup';
+import InputGroup from '../../elements/Inputs/InputGroup';
 import { createProfile, getCurrentProfile } from '../../redux/modules/profile';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 import isEmpty from '../../validation/is-empty';
@@ -27,7 +27,7 @@ class EditProfile extends Component {
     youtube: '',
     instagram: '',
     errors: {},
-  }
+  };
 
   componentDidMount() {
     this.props.getCurrentProfile();

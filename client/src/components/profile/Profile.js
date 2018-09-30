@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
-import Spinner from '../common/Spinner';
+import Spinner from '../../elements/UI/Spinner';
 import { getProfileByHandle } from '../../redux/modules/profile';
 import { Segment, Grid } from 'semantic-ui-react';
-import JoinUs from '../common/messages/JoinUs';
+import JoinUs from '../../elements/Messages/JoinUs';
 
 class Profile extends Component {
   componentDidMount() {
