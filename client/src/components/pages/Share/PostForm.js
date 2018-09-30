@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../../elements/Inputs/TextAreaFieldGroup';
-import { addComment } from '../../redux/modules/post';
+import TextAreaFieldGroup from '../../../elements/Inputs/TextAreaFieldGroup';
+import { addPost } from '../../../redux/modules/post';
 import { Form } from 'semantic-ui-react';
 
-class CommentForm extends Component {
+class PostForm extends Component {
   state = {
     text: '',
     errors: {},
@@ -23,28 +23,27 @@ class CommentForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
-    const { postId } = this.props;
 
-    const newComment = {
+    const newPost = {
       text: this.state.text,
       firstname: user.firstname,
       lastname: user.lastname,
       avatar: user.avatar,
     };
 
-    this.props.addComment(postId, newComment);
+    this.props.addPost(newPost);
     this.setState({ text: '' });
   };
 
   render() {
+    const { user } = this.props.auth;
     const { errors } = this.state;
 
     return (
       <div>
-        <p>Make a comment...</p>
         <Form error noValidate onSubmit={this.handleSubmit}>
           <TextAreaFieldGroup
-            placeholder={'Reply to post'}
+            placeholder={`Speak your mind, ${user.firstName}`}
             name="text"
             value={this.state.text}
             onChange={this.handleChange}
@@ -54,7 +53,7 @@ class CommentForm extends Component {
             fluid
             size="large"
             color="teal"
-            content="Submit"
+            content="Share"
             onClick={this.handleSubmit}
           />
         </Form>
@@ -63,10 +62,9 @@ class CommentForm extends Component {
   }
 }
 
-CommentForm.propTypes = {
-  addComment: PropTypes.func.isRequired,
+PostForm.propTypes = {
+  addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  postId: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
@@ -77,5 +75,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addComment },
-)(CommentForm);
+  { addPost },
+)(PostForm);

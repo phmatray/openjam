@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../redux/modules/profile';
 
 import { Segment, Header, Button, Icon } from 'semantic-ui-react';
-import Spinner from '../common/Spinner';
+import Spinner from '../../elements/UI/Spinner';
 import ProfileActions from './ProfileActions';
 
 class Dashboard extends Component {

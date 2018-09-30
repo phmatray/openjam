@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-import PrivateRoute from '../components/common/PrivateRoute';
+import PrivateRoute from '../elements/Navigation/PrivateRoute';
 
 const CustomRoute = ({ path, exact, isPrivate, main }) =>
   isPrivate ? (
