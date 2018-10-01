@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
+import logoWhite from '../../img/logos/logo_white.svg';
 
 const Social = ({ href }) => {
   const extractHostname = url => {
@@ -92,20 +93,24 @@ const Social = ({ href }) => {
   };
 
   const domainName = extractWithoutExtension(href);
-  const icon = getIcon(domainName);
-  const color = getColor(domainName);
+  if (domainName === 'openjam') {
+    return <Button as="a" href={href} target="_blank" rel="noopener noreferrer" circular />;
+  } else {
+    const icon = getIcon(domainName);
+    const color = getColor(domainName);
 
-  return (
-    <Button
-      as="a"
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      circular
-      icon={icon}
-      color={color}
-    />
-  );
+    return (
+      <Button
+        as="a"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        circular
+        icon={icon}
+        color={color}
+      />
+    );
+  }
 };
 
 Social.propTypes = {
