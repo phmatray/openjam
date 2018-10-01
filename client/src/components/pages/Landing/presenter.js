@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Grid } from 'semantic-ui-react';
 import JoinUs from '../../../elements/Messages/JoinUs';
 import FollowUs from '../../../elements/Messages/FollowUs';
+import WhitepaperLink from '../../../elements/Messages/WhitepaperLink';
 import Body from '../../../elements/UI/Body';
 import cover from '../../../img/backgrounds/cover-social.jpg';
 
@@ -20,6 +21,9 @@ const LandingPresenter = () => {
         </Grid.Column>
         <Grid.Column mobile={16} tablet={8} computer={8}>
           <FollowUs />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={8} computer={8}>
+          <WhitepaperLink />
         </Grid.Column>
       </Grid>
     </Body>
