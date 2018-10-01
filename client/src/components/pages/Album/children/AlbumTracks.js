@@ -6,6 +6,12 @@ import LinkArtistNames from '../../../../elements/Links/LinkArtistNames';
 import { HeaderCell } from './style';
 
 const AlbumTracks = ({ tracks }) => {
+  const compare = (a, b) => {
+    if (a.track_number < b.track_number) return -1;
+    if (a.track_number > b.track_number) return 1;
+    return 0;
+  };
+
   return (
     <Table basic="very">
       <Table.Header>
@@ -16,7 +22,7 @@ const AlbumTracks = ({ tracks }) => {
       </Table.Header>
 
       <Table.Body>
-        {tracks.map(track => (
+        {tracks.sort(compare).map(track => (
           <Table.Row key={track._id}>
             <Table.Cell>{track.track_number}</Table.Cell>
             <Table.Cell>
