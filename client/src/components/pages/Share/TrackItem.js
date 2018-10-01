@@ -16,7 +16,7 @@ class TrackItem extends Component {
   };
 
   render() {
-    const { track } = this.props;
+    const { track, isAuthenticated } = this.props;
     const { playing, current } = this.props.player;
 
     let buttonPlayPause = playing ? (
@@ -50,18 +50,23 @@ class TrackItem extends Component {
 
           <Feed.Meta>
             {buttonPlayPause}
-            <Feed.Like onClick={this.handleShareClick.bind(undefined, track._id)}>
-              <Icon name="share" />
-              {track.meta.shares.length} Share
-            </Feed.Like>
-            <Feed.Like onClick={this.handleLikeClick.bind(undefined, track._id)}>
-              <Icon name="like" />
-              {track.meta.likes.length} Likes
-            </Feed.Like>
-            <Feed.Like as={Link} to={`/track/${track._id}`}>
-              <Icon name="comments" />
-              Comments
-            </Feed.Like>
+
+            {isAuthenticated && (
+              <React.Fragment>
+                <Feed.Like onClick={this.handleShareClick.bind(undefined, track._id)}>
+                  <Icon name="share" />
+                  {track.meta.shares.length} Share
+                </Feed.Like>
+                <Feed.Like onClick={this.handleLikeClick.bind(undefined, track._id)}>
+                  <Icon name="like" />
+                  {track.meta.likes.length} Likes
+                </Feed.Like>
+                <Feed.Like as={Link} to={`/track/${track._id}`}>
+                  <Icon name="comments" />
+                  Comments
+                </Feed.Like>
+              </React.Fragment>
+            )}
           </Feed.Meta>
         </Feed.Content>
       </Feed.Event>
