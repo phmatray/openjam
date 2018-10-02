@@ -16,7 +16,7 @@ const TrackItem = ({ track }) => (
     }}
   >
     <Link to={`/track/${track._id}`}>
-      <Cover src={track.coverurl.w400} />
+      <Cover src={track.coverurl.w200} />
     </Link>
     <div style={{ width: '100%' }}>
       <Divider style={{ margin: '0 0 0.6em 0' }} />
