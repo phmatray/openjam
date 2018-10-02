@@ -5,28 +5,41 @@ import { Cover, Artists } from './style';
 import { Divider } from 'semantic-ui-react';
 import LinkArtistNames from '../../../../elements/Links/LinkArtistNames';
 import LinkEntity from '../../../../elements/Links/LinkEntity';
+import moment from 'moment';
 
-const TrackItem = ({ track }) => (
-  <div
-    style={{
-      display: 'flex',
-      width: 'calc(340px + 0.9em)',
-      height: 'calc(55px)',
-      marginRight: '0.9em',
-    }}
-  >
-    <Link to={`/track/${track._id}`}>
-      <Cover src={track.coverurl.w200} />
-    </Link>
-    <div style={{ width: '100%' }}>
-      <Divider style={{ margin: '0 0 0.6em 0' }} />
-      <LinkEntity entity={track} as="table" strong />
-      <Artists>
-        <LinkArtistNames artists={track.artists} as="table" />
-      </Artists>
+const TrackItem = ({ track }) => {
+  const startDate = moment().subtract(21, 'days');
+  const trackDate = moment(track.date);
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        width: 'calc(340px + 0.9em)',
+        height: 'calc(55px)',
+        marginRight: '0.9em',
+      }}
+    >
+      <Link to={`/track/${track._id}`}>
+        {trackDate > startDate ? (
+          <Cover
+            src={track.coverurl.w400}
+            label={{ corner: 'left', icon: 'time', size: 'mini', color: 'teal' }}
+          />
+        ) : (
+          <Cover src={track.coverurl.w400} />
+        )}
+      </Link>
+      <div style={{ width: '100%' }}>
+        <Divider style={{ margin: '0 0 0.6em 0' }} />
+        <LinkEntity entity={track} as="table" strong />
+        <Artists>
+          <LinkArtistNames artists={track.artists} as="table" />
+        </Artists>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 TrackItem.propTypes = {
   track: PropTypes.shape({
