@@ -13,6 +13,13 @@ import Layout from './components/layout/Layout';
 import NotFound from './components/not-found/NotFound';
 import CustomRoutes from './routes/CustomRoutes';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+// Add fontAwesome Brand Icons
+library.add(fab, faGlobe);
+
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth

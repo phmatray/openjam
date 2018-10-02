@@ -32,6 +32,7 @@ class Share extends Component {
 
   renderTracks() {
     const { tracks } = this.props.track;
+    const { isAuthenticated } = this.props.auth;
 
     const trackContent =
       tracks === null ? (
@@ -39,7 +40,7 @@ class Share extends Component {
       ) : (
         <Feed>
           {tracks.map(track => (
-            <TrackItem key={track._id} track={track} />
+            <TrackItem key={track._id} track={track} isAuthenticated={isAuthenticated} />
           ))}
         </Feed>
       );

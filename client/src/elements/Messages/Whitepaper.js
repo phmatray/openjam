@@ -1,7 +1,7 @@
 import React from 'react';
 import { Message, Button } from 'semantic-ui-react';
 
-const WhitepaperLink = () => {
+const Whitepaper = () => {
   return (
     <Message info>
       <Message.Header>Download our whitepaper</Message.Header>
@@ -13,4 +13,4 @@ const WhitepaperLink = () => {
   );
 };
 
-export default WhitepaperLink;
+export default Whitepaper;

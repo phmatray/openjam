@@ -1,7 +1,6 @@
-import '../../index.css';
+import '../../../index.css';
 import 'semantic-ui-css/semantic.min.css';
 import 'rc-slider/assets/index.css';
-import '../../App.css';
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
@@ -19,7 +18,8 @@ const track = {
     jamcoins: [],
     shares: [],
   },
-  artists: ['Pandhora'],
+  type: 'track',
+  artists: [{ name: 'Pandhora', type: 'artist' }],
   date: '2018-09-18T13:44:53.247Z',
   _id: '5ba103e72c0d2b2bb277a6df',
   title: 'Oghab',
@@ -27,7 +27,10 @@ const track = {
   edit: 'Alke Mist Remix',
   audiourl:
     'https://s3.eu-west-3.amazonaws.com/openjamaudio/Pandhora+-+Oghab+(Alke+Mist+Remix)+%5BArt+Vibes+Music%5D.mp3',
-  coverurl: 'http://placekitten.com/200/200',
+  coverurl: {
+    w200:
+      'https://s3.eu-west-3.amazonaws.com/openjamcover/200w/Art+Vibes+Music+-+EP+-+Oghab_200w.jpg',
+  },
   __v: 0,
 };
 
@@ -38,10 +41,4 @@ storiesOf('Tracks', module)
     </Router>
   ))
 
-  .add('track item', () => (
-    <div>
-      <h1>Color variations</h1>
-      <TrackItem track={track} />
-      <TrackItem track={track} color="red" />
-    </div>
-  ));
+  .add('track item', () => <TrackItem track={track} />);
