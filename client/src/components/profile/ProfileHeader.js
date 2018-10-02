@@ -32,33 +32,36 @@ class ProfileGithub extends Component {
               {profile.status} {isEmpty(profile.company) ? null : <span>at {profile.company}</span>}
             </p>
             {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
-            <p>
-              {isEmpty(profile.website) ? null : <Social href={profile.website} icon="globe" />}
 
-              {isEmpty(profile.social && profile.social.soundcloud) ? null : (
-                <Social href={profile.social.soundcloud} icon="soundcloud" />
-              )}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', margin: 'auto 0', padding: '5px' }}>
+                {isEmpty(profile.website) ? null : <Social href={profile.website} />}
 
-              {isEmpty(profile.social && profile.social.twitter) ? null : (
-                <Social href={profile.social.twitter} icon="twitter" />
-              )}
+                {isEmpty(profile.social && profile.social.soundcloud) ? null : (
+                  <Social href={profile.social.soundcloud} />
+                )}
 
-              {isEmpty(profile.social && profile.social.facebook) ? null : (
-                <Social href={profile.social.facebook} icon="facebook" />
-              )}
+                {isEmpty(profile.social && profile.social.twitter) ? null : (
+                  <Social href={profile.social.twitter} />
+                )}
 
-              {isEmpty(profile.social && profile.social.linkedin) ? null : (
-                <Social href={profile.social.linkedin} icon="linkedin" />
-              )}
+                {isEmpty(profile.social && profile.social.facebook) ? null : (
+                  <Social href={profile.social.facebook} />
+                )}
 
-              {isEmpty(profile.social && profile.social.instagram) ? null : (
-                <Social href={profile.social.instagram} icon="instagram" />
-              )}
+                {isEmpty(profile.social && profile.social.linkedin) ? null : (
+                  <Social href={profile.social.linkedin} />
+                )}
 
-              {isEmpty(profile.social && profile.social.youtube) ? null : (
-                <Social href={profile.social.youtube} icon="youtube" />
-              )}
-            </p>
+                {isEmpty(profile.social && profile.social.instagram) ? null : (
+                  <Social href={profile.social.instagram} />
+                )}
+
+                {isEmpty(profile.social && profile.social.youtube) ? null : (
+                  <Social href={profile.social.youtube} />
+                )}
+              </div>
+            </div>
           </Grid.Column>
         </Grid.Row>
       </React.Fragment>
