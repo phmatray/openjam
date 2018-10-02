@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Image } from 'semantic-ui-react';
 
-export const Cover = styled.img`
+export const Cover = styled(Image)`
   width: 50px;
   height: 50px;
   border: 1px solid #ccc;
