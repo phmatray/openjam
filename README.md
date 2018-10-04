@@ -1,12 +1,35 @@
-# OpenJam
+<p align="center">
+  💡<strong>Our <a href="http://bit.ly/OpenJam-WP">whitepaper</a> is now available for download in PDF.</strong>
+</p>
 
-[![Waffle.io - Issues in progress](https://badge.waffle.io/openjam-eu/openjam.png?label=in%20progress&title=In%20Progress)](http://waffle.io/openjam-eu/openjam)
+---
 
-OpenJam is a newtech-powered ecosystem, developped to serve music creation, rights management, remuneration, music artists... and will be tomorrow the best ally of all the actors of the music industry.
+<p align="center">
+  <a href="https://www.openjam.eu/">
+    <img src="https://www.openjam.eu/img/site_logo_2.png" width="318px" alt="OpenJam logo" />
+  </a>
+</p>
+<h3 align="center">Alliance Music, Innovation & Humans</h3>
+<p align="center">
+OpenJam is a newtech-powered ecosystem, developped to serve music creation, rights management, remuneration, music artists... and will be tomorrow the best ally of all the actors of the music industry.</p>
+<br />
+<p align="center">
+  <a href="http://waffle.io/openjam-eu/openjam">
+    <img src="https://badge.waffle.io/openjam-eu/openjam.png?label=in%20progress&title=In%20Progress" alt="Waffle.io - Issues in progress" />
+  </a>
+  <a href="https://github.com/ellerbrock/open-source-badge/">
+    <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source Love" />
+  </a>
+  <a href="https://opensource.org/licenses/GPL-3.0/">
+    <img src="https://badges.frapsoft.com/os/gpl/gpl.svg?v=103" alt="GPL Licence" />
+  </a>
+</p>
+
+---
 
 This repository contains our Minimum Viable Product (MVP). Its purpose is to give an overview of our ecosystem by implementing the basic functionalities.
 
-Read the whitepaper of the project on [GitBook](https://whitepaper.openjam.eu).
+Read the whitepaper of the project on [GitBook](https://whitepaper.openjam.eu) or in [PDF](http://bit.ly/OpenJam-WP).
 
 ## Social
 
@@ -26,13 +49,32 @@ Join us on the following social networks :
 - [**N**ode.js](https://nodejs.org/en/) : JavaScript runtime environment – lets you implement your application back-end in JavaScript
 - [**M**ongoDB](https://www.mongodb.com/) : Document database – used by your back-end application to store its data as JSON (JavaScript Object Notation) documents
 
-## Bugs and feature requests
-
-Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, please open a new issue.
-
 ## Contributing
 
 Please read [CONTRIBUTING.md](/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Support
+
+For more information on the upcoming version, please take a look to our [ROADMAP](https://waffle.io/openjam-eu/openjam).
+
+Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, please open a new issue.
+
+#### Community support
+
+For general help using OpenJam, please send an email at [pm@techmedev.eu](mailto:pm@techmedev.eu). For additional help, you can use one of this channel to ask question:
+
+- [GitHub](https://github.com/openjam-eu/openjam)
+- [Twitter](https://twitter.com/OpenJam_EU)
+- [Facebook](https://www.facebook.com/OpenJamEU/)
+- [LinkedIn](https://www.linkedin.com/company/openjam/).
+
+#### Professional support
+
+[techmedev sàrl](https://techmedev.eu), the company behind OpenJam, is a Luxembourg company created in november 2017.
+
+This structure has already developed, with brands active in the area of communication (FG partnership), artists and various partners, some transmedia approaches. Over the past year, the company has also developed a good relation network in Luxembourg, Belgium and France. Now, the company is focusing on Blockchain technology in the areas of music, media and data flow management.
+
+[Drop us an email](mailto:info@techmedev.eu) to see how we can bring BLOCKCHAIN TECHNOLOGY FOR EVERYONE.
 
 ## Community
 
