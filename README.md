@@ -31,15 +31,6 @@ This repository contains our Minimum Viable Product (MVP). Its purpose is to giv
 
 Read the whitepaper of the project on [GitBook](https://whitepaper.openjam.eu) or in [PDF](http://bit.ly/OpenJam-WP).
 
-## Social
-
-Join us on the following social networks :
-
-- [Twitter](https://twitter.com/OpenJam_EU)
-- [Facebook](https://www.facebook.com/OpenJamEU/)
-- [Instagram](https://www.instagram.com/openjam.eu/)
-- [LinkedIn](https://www.linkedin.com/company/openjam/)
-
 ## Build With
 
 **MERN** is a set of Open Source components that together, provide an end-to-end framework for building dynamic web applications; starting from the top (code running in the browser) to the bottom (database). The stack is made up of:
@@ -83,6 +74,15 @@ Get updates on OpenJam's development and chat with the project maintainers and c
 - Follow [@OpenJam_EU on Twitter](https://twitter.com/OpenJam_EU)
 - Read and subscribe to [The Official OpenJam Website]().
 
+#### Social
+
+Join us on the following social networks :
+
+- [Twitter](https://twitter.com/OpenJam_EU)
+- [Facebook](https://www.facebook.com/OpenJamEU/)
+- [Instagram](https://www.instagram.com/openjam.eu/)
+- [LinkedIn](https://www.linkedin.com/company/openjam/)
+
 ## Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, OpenJam Tip is maintained under [the Semantic Versioning guidelines](https://semver.org/). Sometimes we screw up, but we'll adhere to those rules whenever possible.
@@ -91,10 +91,11 @@ For transparency into our release cycle and in striving to maintain backward com
 
 See the list of [contributors](https://github.com/openjam-eu/openjam-tip/contributors) who participated in this project.
 
-**Philippe Matray**
+#### Mainteners
 
-- <https://www.linkedin.com/in/phmatray/>
-- <https://github.com/phmatray>
+*Philippe Matray*
+  - <https://www.linkedin.com/in/phmatray/>
+  - <https://github.com/phmatray>
 
 ## License
 
