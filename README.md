@@ -89,7 +89,7 @@ For transparency into our release cycle and in striving to maintain backward com
 
 ## Authors
 
-See the list of [contributors](https://github.com/openjam-eu/openjam-tip/contributors) who participated in this project.
+See the list of [contributors](https://github.com/openjam-eu/openjam/contributors) who participated in this project.
 
 #### Mainteners
 
