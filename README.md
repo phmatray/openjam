@@ -1,5 +1,7 @@
 # OpenJam
 
+[![Waffle.io - Issues in progress](https://badge.waffle.io/openjam-eu/openjam.png?label=in%20progress&title=In%20Progress)](http://waffle.io/openjam-eu/openjam)
+
 OpenJam is a newtech-powered ecosystem, developped to serve music creation, rights management, remuneration, music artists... and will be tomorrow the best ally of all the actors of the music industry.
 
 This repository contains our Minimum Viable Product (MVP). Its purpose is to give an overview of our ecosystem by implementing the basic functionalities.
