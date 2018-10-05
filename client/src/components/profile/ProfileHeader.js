@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Image, Button } from 'semantic-ui-react';
+import { Image, Button, GridRow, GridColumn } from 'semantic-ui-react';
 import isEmpty from '../../validation/is-empty';
 import Social from '../../elements/UI/Social';
 import PropTypes from 'prop-types';
@@ -11,8 +11,8 @@ class ProfileGithub extends Component {
 
     return (
       <React.Fragment>
-        <Grid.Row>
-          <Grid.Column
+        <GridRow>
+          <GridColumn
             width={16}
             color="blue"
             style={{ borderRadius: '.28571429rem .28571429rem 0 0' }}
@@ -20,10 +20,10 @@ class ProfileGithub extends Component {
             <Button as={Link} to="/jammers" floated="left">
               Back to Profiles
             </Button>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row textAlign="center">
-          <Grid.Column width={16} color="blue">
+          </GridColumn>
+        </GridRow>
+        <GridRow textAlign="center">
+          <GridColumn width={16} color="blue">
             <Image src={profile.user.avatar} circular centered />
             <h1>
               {profile.user.firstname} {profile.user.lastname}
@@ -62,8 +62,8 @@ class ProfileGithub extends Component {
                 )}
               </div>
             </div>
-          </Grid.Column>
-        </Grid.Row>
+          </GridColumn>
+        </GridRow>
       </React.Fragment>
     );
   }

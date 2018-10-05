@@ -5,7 +5,7 @@ import PostForm from './PostForm';
 import PostFeed from './PostFeed';
 import TrackItem from './TrackItem';
 import Spinner from '../../../elements/UI/Spinner';
-import { Feed, Grid } from 'semantic-ui-react';
+import { Feed, Grid, GridRow, GridColumn } from 'semantic-ui-react';
 import { getPosts } from '../../../redux/modules/post';
 import { fetchTracks } from '../../../redux/modules/track';
 import { playSelected, pause } from '../../../redux/modules/player';
@@ -73,12 +73,12 @@ class Share extends Component {
         {postForm}
 
         <Grid divided padded>
-          <Grid.Row>
-            <Grid.Column mobile={16} tablet={11} computer={11}>
+          <GridRow>
+            <GridColumn mobile={16} tablet={11} computer={11}>
               {this.renderTracks()}
               {postContent}
-            </Grid.Column>
-          </Grid.Row>
+            </GridColumn>
+          </GridRow>
         </Grid>
       </Body>
     );
