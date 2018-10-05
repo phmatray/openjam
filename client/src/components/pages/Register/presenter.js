@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Message, Grid } from 'semantic-ui-react';
+import { Form, Message, Grid, GridColumn } from 'semantic-ui-react';
 import Body from '../../../elements/UI/Body';
 import TextFieldGroup from '../../../elements/Inputs/TextFieldGroup';
 
@@ -37,7 +37,7 @@ class RegisterPresenter extends Component {
     return (
       <Body breadcrumbSegments={['Register']} description="Create your OpenJam account.">
         <Grid style={{ height: '100%' }} verticalAlign="middle">
-          <Grid.Column style={{ maxWidth: 450 }}>
+          <GridColumn style={{ maxWidth: 450 }}>
             <Form error noValidate onSubmit={this.handleSubmit}>
               <TextFieldGroup
                 name="firstname"
@@ -100,7 +100,7 @@ class RegisterPresenter extends Component {
               <br />
               <Link to="/login">Sign In</Link>
             </Message>
-          </Grid.Column>
+          </GridColumn>
         </Grid>
       </Body>
     );

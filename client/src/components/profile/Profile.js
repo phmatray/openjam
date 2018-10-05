@@ -5,7 +5,7 @@ import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
 import Spinner from '../../elements/UI/Spinner';
 import { getProfileByHandle } from '../../redux/modules/profile';
-import { Segment, Grid } from 'semantic-ui-react';
+import { Segment, Grid, GridRow, GridColumn } from 'semantic-ui-react';
 import JoinUs from '../../elements/Messages/JoinUs';
 
 class Profile extends Component {
@@ -35,9 +35,9 @@ class Profile extends Component {
           <Grid style={{ paddingTop: '0em', marginTop: '-1.5rem' }}>
             <ProfileHeader profile={profile} />
 
-            <Grid.Row style={{ paddingBottom: '0' }}>
-              <Grid.Column>{!isAuthenticated && <JoinUs />}</Grid.Column>
-            </Grid.Row>
+            <GridRow style={{ paddingBottom: '0' }}>
+              <GridColumn>{!isAuthenticated && <JoinUs />}</GridColumn>
+            </GridRow>
 
             <ProfileAbout profile={profile} />
           </Grid>

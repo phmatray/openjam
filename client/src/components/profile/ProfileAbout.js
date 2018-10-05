@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Header, Label, Segment } from 'semantic-ui-react';
+import { Header, Label, Segment, GridRow, GridColumn } from 'semantic-ui-react';
 import isEmpty from '../../validation/is-empty';
 import PropTypes from 'prop-types';
 
@@ -15,8 +15,8 @@ class ProfileAbout extends Component {
     ));
 
     return (
-      <Grid.Row>
-        <Grid.Column>
+      <GridRow>
+        <GridColumn>
           <Segment.Group>
             <Segment>
               <Header as="h3">
@@ -36,8 +36,8 @@ class ProfileAbout extends Component {
               {skills}
             </Segment>
           </Segment.Group>
-        </Grid.Column>
-      </Grid.Row>
+        </GridColumn>
+      </GridRow>
     );
   }
 }
