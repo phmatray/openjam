@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu, Container, Image, Dropdown } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../../redux/modules/auth';
+import { logoutUser, getCurrentUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
 import logo from '../../../img/logos/logo_white.svg';
 
 class NavbarDesktop extends Component {
   state = { activeItem: 'home' };
+
+  componentDidMount() {
+    const { getCurrentUser } = this.props;
+    getCurrentUser();
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -177,6 +182,7 @@ class NavbarDesktop extends Component {
 NavbarDesktop.propTypes = {
   height: PropTypes.string.isRequired,
   logoutUser: PropTypes.func.isRequired,
+  getCurrentUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
@@ -187,5 +193,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile },
+  { logoutUser, getCurrentUser, clearCurrentProfile },
 )(NavbarDesktop);

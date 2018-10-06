@@ -1,51 +1,81 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const passport = require('passport');
 const path = require('path');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const session = require('express-session');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const errorHandler = require('errorhandler');
 const http = require('http');
 const enforce = require('express-sslify');
-const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
-const github = require('./routes/api/github');
-const artists = require('./routes/api/artists');
-const albums = require('./routes/api/albums');
-const labels = require('./routes/api/labels');
-const playlists = require('./routes/api/playlists');
-const tracks = require('./routes/api/tracks');
+const passport = require('./passport');
 
-const app = express();
+// Configure mongoose's promise to global promise
+mongoose.promise = global.Promise;
 
-// Body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// DB config
-const db = require('./config/keys').mongoURI;
+// Configure isProduction variable
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Connect to MongoDB
 mongoose
-  .connect(db)
+  .connect(
+    require('./config/keys').mongoURI,
+    { useCreateIndex: true, useNewUrlParser: true },
+  )
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  .catch(err => console.log(`There was an error connecting to the database: ${err}`));
 
-// Passport Middleware
+mongoose.set('debug', true);
+
+// Initialize our app
+const app = express();
+const port = process.env.PORT || 5000;
+
+// Configure our app
+app.use(cors());
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const MongoStore = require('connect-mongo')(session);
+app.use(
+  session({
+    secret: process.env.APP_SECRET || 'this is the default passphrase',
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+
+// Configure passport
 app.use(passport.initialize());
+app.use(passport.session()); // will call the deserializeUser
 
-// Passport Config
-require('./config/passport')(passport);
+if (!isProduction) {
+  app.use(errorHandler());
+}
 
-// Use Routes
-app.use('/api/users', users);
-app.use('/api/profile', profile);
-app.use('/api/posts', posts);
-app.use('/api/github', github);
-app.use('/api/artists', artists);
-app.use('/api/albums', albums);
-app.use('/api/labels', labels);
-app.use('/api/playlists', playlists);
-app.use('/api/tracks', tracks);
+// Models & routes
+app.all('/*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+app.use(require('./routes'));
+
+// Error handlers & middlewares
+if (!isProduction) {
+  app.use((err, req, res) => {
+    res.status(err.status || 500);
+
+    res.json({
+      errors: {
+        message: err.message,
+        error: {},
+      },
+    });
+  });
+}
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -60,7 +90,5 @@ if (process.env.NODE_ENV === 'production') {
   // a load balancer (e.g. Heroku). See further comments below
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
-
-const port = process.env.PORT || 5000;
 
 http.createServer(app).listen(port, () => console.log(`server running on ${port}`));

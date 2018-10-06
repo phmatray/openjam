@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const { ensureLoggedIn } = require('connect-ensure-login');
 
 // Load Input Validation
 const validateTrackInput = require('../../validation/track');
@@ -35,7 +36,7 @@ router.get('/:id', (req, res) => {
 // @route  POST api/tracks/
 // @desc   Create Track
 // @access Private
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', ensureLoggedIn('/login'), (req, res) => {
   const { errors, isValid } = validateTrackInput(req.body);
 
   // Check Validation

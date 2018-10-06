@@ -1,11 +1,10 @@
 import axios from 'axios';
-import setAuthToken from '../../utils/setAuthToken';
-import jwt_decode from 'jwt-decode';
 import { updateErrors } from './error';
 import isEmpty from '../../validation/is-empty';
 
 // Actions
 //
+const LOAD = 'auth/LOAD';
 const UPDATE_USER = 'auth/UPDATE_USER';
 
 // Reducer
@@ -13,15 +12,23 @@ const UPDATE_USER = 'auth/UPDATE_USER';
 const initialState = {
   isAuthenticated: false,
   user: {},
+  loading: false,
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case LOAD:
+      return {
+        ...state,
+        loading: true,
+      };
+
     case UPDATE_USER:
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload,
+        loading: false,
       };
 
     default:
@@ -31,18 +38,45 @@ export default function reducer(state = initialState, action = {}) {
 
 // Action Creators
 //
+export function loadUser() {
+  return { type: LOAD };
+}
+
 export function updateUser(payload) {
   return { type: UPDATE_USER, payload };
 }
 
 // Side effects, only as applicable (thunks)
 //
+// Get current user
+export function getCurrentUser() {
+  return dispatch => {
+    dispatch(loadUser());
+    axios
+      .get('/auth/user')
+      .then(res => dispatch(updateUser(res.data)))
+      .catch(err => dispatch(updateUser({})));
+  };
+}
+
 // Register User
 export function registerUser(userData, history) {
   return dispatch => {
     axios
-      .post('/api/users/register', userData)
-      .then(res => history.push('/login'))
+      .post('/auth/register', userData)
+      .then(res => {
+        console.log(res);
+        if (!res.data.errmsg) {
+          console.log("you're good");
+          // this.setState({
+          //   redirectTo: '/login',
+          // });
+        } else {
+          console.log('duplicate');
+        }
+
+        history.push('/login');
+      })
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
 }
@@ -51,18 +85,11 @@ export function registerUser(userData, history) {
 export function loginUser(userData) {
   return dispatch => {
     axios
-      .post('/api/users/login', userData)
+      .post('/auth/login', userData)
       .then(res => {
-        // Save to localStorage
-        const { token } = res.data;
-        // Set token to ls
-        localStorage.setItem('jwtToken', token);
-        // Set token to Auth header
-        setAuthToken(token);
-        // Decode token to get user data
-        const decoded = jwt_decode(token);
-        // Set current user
-        dispatch(updateUser(decoded));
+        if (res.status === 200) {
+          dispatch(updateUser(res.data));
+        }
       })
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -71,11 +98,16 @@ export function loginUser(userData) {
 // Log user out
 export function logoutUser() {
   return dispatch => {
-    // Remove token from local storage
-    localStorage.removeItem('jwtToken');
-    // Remove auth header for future requests
-    setAuthToken(false);
-    // Set current user to {} which will set isAuthenticated to false
-    dispatch(updateUser({}));
+    axios
+      .post('/auth/logout')
+      .then(res => {
+        console.log(res.data);
+
+        if (res.status === 200) {
+          // Set current user to {} which will set isAuthenticated to false
+          dispatch(updateUser({}));
+        }
+      })
+      .catch(err => dispatch(updateErrors(err.response.data)));
   };
 }

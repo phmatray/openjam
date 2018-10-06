@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const { ensureLoggedIn } = require('connect-ensure-login');
 
 // Load Input Validation
 const validatePostInput = require('../../validation/post');
@@ -35,7 +36,7 @@ router.get('/:id', (req, res) => {
 // @route  POST api/posts
 // @desc   Create Post
 // @access Private
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', ensureLoggedIn('/login'), (req, res) => {
   const { errors, isValid } = validatePostInput(req.body);
 
   // Check Validation
@@ -57,7 +58,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 // @route  DELETE api/posts/:id
 // @desc   Delete Post
 // @access Private
-router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.delete('/:id', ensureLoggedIn('/login'), (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
       // Check for post owner
@@ -74,7 +75,7 @@ router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, re
 // @route  POST api/posts/like/:id
 // @desc   Like Post
 // @access Private
-router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/like/:id', ensureLoggedIn('/login'), (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
       if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
@@ -92,7 +93,7 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
 // @route  POST api/posts/unlike/:id
 // @desc   Unlike Post
 // @access Private
-router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/unlike/:id', ensureLoggedIn('/login'), (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
       if (post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
@@ -114,7 +115,7 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
 // @route  POST api/posts/comment/:id
 // @desc   Add comment to post
 // @access Private
-router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/comment/:id', ensureLoggedIn('/login'), (req, res) => {
   const { errors, isValid } = validatePostInput(req.body);
 
   // Check Validation
@@ -145,7 +146,7 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
 // @access Private
 router.delete(
   '/comment/:id/:comment_id',
-  passport.authenticate('jwt', { session: false }),
+  ensureLoggedIn('/login'),
   (req, res) => {
     Post.findById(req.params.id)
       .then(post => {
