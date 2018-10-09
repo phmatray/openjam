@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import LinkEntity from '../../../../elements/Links/LinkEntity';
 import LinkArtistNames from '../../../../elements/Links/LinkArtistNames';
-import { HeaderCell, CoverCell } from './style';
+import { HeaderCell, Row, Wrapper, CoverCell, Overlay, Icon } from './style';
 
 const PlaylistTracks = ({ tracks }) => {
   return (
@@ -18,14 +18,23 @@ const PlaylistTracks = ({ tracks }) => {
 
       <Table.Body>
         {tracks.map(track => (
-          <Table.Row key={track._id}>
-            <CoverCell>
-              <img
+          <Row key={track._id}>
+            <Wrapper>
+              <CoverCell
                 src={track.coverurl.w200}
                 style={{ width: '3em', height: '3em', borderRadius: '5%' }}
                 alt={track.title}
               />
-            </CoverCell>
+              <Overlay onClick={() => console.log(`${track.title} is playing`)}>
+                <Icon
+                  name="play circle outline"
+                  inverted
+                  color="grey"
+                  size="large"
+                  style={{ marginRight: 0 }}
+                />
+              </Overlay>
+            </Wrapper>
             <Table.Cell>
               <LinkEntity entity={track} as="table" strong={true} />
             </Table.Cell>
@@ -35,7 +44,7 @@ const PlaylistTracks = ({ tracks }) => {
             <Table.Cell>
               <LinkEntity entity={track.album} as="table" />
             </Table.Cell>
-          </Table.Row>
+          </Row>
         ))}
       </Table.Body>
     </Table>
