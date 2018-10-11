@@ -42,7 +42,9 @@ Read the whitepaper of the project on [GitBook](https://whitepaper.openjam.eu) o
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+OpenJam uses the official workflow proposed by Github called github flow. It’s very well documented on their website [guides.github.com/introduction/flow](https://guides.github.com/introduction/flow/), most open source projects follow this workflow with slightly different flavors.
+
+For further informations on our code of conduct and the process for submitting pull requests to us, please read [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ## Support
 
@@ -93,9 +95,10 @@ See the list of [contributors](https://github.com/openjam-eu/openjam/contributor
 
 #### Mainteners
 
-*Philippe Matray*
-  - <https://www.linkedin.com/in/phmatray/>
-  - <https://github.com/phmatray>
+_Philippe Matray_
+
+- <https://www.linkedin.com/in/phmatray/>
+- <https://github.com/phmatray>
 
 ## License
 
