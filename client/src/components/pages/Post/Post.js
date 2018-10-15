@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Segment, Button, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import Spinner from '../../elements/UI/Spinner';
-import { getPost } from '../../redux/modules/post';
-import PostItem from '../pages/Share/PostItem';
+import Spinner from '../../../elements/UI/Spinner';
+import { getPost } from '../../../redux/modules/post';
+import PostItem from '../../PostItem/PostItem';
 import CommentForm from './CommentForm';
 import CommentFeed from './CommentFeed';
 

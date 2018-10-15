@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 // Create Schema
 const ProfileSchema = new Schema({
+  type: {
+    type: String,
+    default: 'profile',
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users',

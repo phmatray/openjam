@@ -9,7 +9,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, 'firstname lastname avatar email', (err, user) => {
+  User.findById(id, 'firstname lastname handle avatar email', (err, user) => {
     done(null, user);
   });
 });

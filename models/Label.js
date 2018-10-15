@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 // Create Schema
 const LabelSchema = new Schema({
+  type: {
+    type: String,
+    default: 'label',
+  },
   name: {
     type: String,
     required: true,

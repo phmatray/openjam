@@ -4,6 +4,10 @@ const { Schema } = mongoose;
 
 // Create Schema
 const UserSchema = new Schema({
+  type: {
+    type: String,
+    default: 'user',
+  },
   firstname: {
     type: String,
     unique: false,
@@ -11,6 +15,10 @@ const UserSchema = new Schema({
   lastname: {
     type: String,
     unique: false,
+  },
+  handle: {
+    type: String,
+    unique: true,
   },
   local: {
     email: { type: String, lowercase: true, unique: true, required: false },

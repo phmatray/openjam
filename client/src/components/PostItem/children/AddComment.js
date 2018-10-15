@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../../elements/Inputs/TextAreaFieldGroup';
-import { addComment } from '../../redux/modules/post';
-import { Form } from 'semantic-ui-react';
+import { addComment } from '../../../redux/modules/post';
+import { AvatarSmall, Button, AddCommentForm } from './styles';
+import Flex from '../../../elements/Flex';
+import TextAreaFieldGroup from '../../../elements/Inputs/TextAreaFieldGroup';
 
-class CommentForm extends Component {
+class AddComment extends Component {
   state = {
     text: '',
     errors: {},
@@ -22,13 +23,13 @@ class CommentForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { user } = this.props.auth;
-    const { postId } = this.props;
+    const { user, postId } = this.props;
 
     const newComment = {
       text: this.state.text,
       firstname: user.firstname,
       lastname: user.lastname,
+      handle: user.handle,
       avatar: user.avatar,
     };
 
@@ -38,44 +39,49 @@ class CommentForm extends Component {
 
   render() {
     const { errors } = this.state;
+    const { user } = this.props;
 
     return (
-      <div>
-        <p>Make a comment...</p>
-        <Form error noValidate onSubmit={this.handleSubmit}>
+      <Flex>
+        <AvatarSmall src={user.avatar} />
+        <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
           <TextAreaFieldGroup
-            placeholder={'Reply to post'}
+            placeholder={'Express yourself'}
             name="text"
             value={this.state.text}
             onChange={this.handleChange}
             error={errors.text}
           />
-          <Form.Button
-            fluid
-            size="large"
+          <Button
+            circular
+            compact
+            icon="send"
             color="teal"
-            content="Submit"
+            content="Send"
             onClick={this.handleSubmit}
           />
-        </Form>
-      </div>
+        </AddCommentForm>
+      </Flex>
     );
   }
 }
 
-CommentForm.propTypes = {
-  addComment: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+AddComment.propTypes = {
   postId: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    handle: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  user: state.auth.user,
   errors: state.errors,
 });
 
 export default connect(
   mapStateToProps,
   { addComment },
-)(CommentForm);
+)(AddComment);

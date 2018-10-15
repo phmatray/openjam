@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 // Create Schema
 const PostSchema = new Schema({
+  type: {
+    type: String,
+    default: 'post-basic',
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users',
@@ -17,6 +21,10 @@ const PostSchema = new Schema({
   lastname: {
     type: String,
   },
+  handle: {
+    type: String,
+    unique: true,
+  },
   avatar: {
     type: String,
   },
@@ -30,6 +38,10 @@ const PostSchema = new Schema({
   ],
   comments: [
     {
+      type: {
+        type: String,
+        default: 'comment',
+      },
       user: {
         type: Schema.Types.ObjectId,
         ref: 'users',
