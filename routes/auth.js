@@ -41,6 +41,7 @@ router.post('/register', (req, res) => {
       d: 'mm', // Default
     });
 
+    // TODO: Add handle
     const newUser = new User({
       firstname: firstname,
       lastname: lastname,
@@ -121,6 +122,7 @@ router.get('/current', ensureLoggedIn('/login'), (req, res) => {
     id: req.user.id,
     firstname: req.user.firstname,
     lastname: req.user.lastname,
+    handle: req.user.handle,
     email: req.user.email,
   });
 });

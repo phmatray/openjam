@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 // Create Schema
 const TrackSchema = new Schema({
+  type: {
+    type: String,
+    default: 'track',
+  },
   title: {
     type: String,
     required: true,

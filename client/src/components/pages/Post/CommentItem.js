@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteComment } from '../../redux/modules/post';
+import { deleteComment } from '../../../redux/modules/post';
 import { Comment, Icon } from 'semantic-ui-react';
 
 class CommentItem extends Component {

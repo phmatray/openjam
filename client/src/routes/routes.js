@@ -2,7 +2,7 @@ import Dashboard from '../components/dashboard/Dashboard';
 import CreateProfile from '../components/create-profile/CreateProfile';
 import EditProfile from '../components/edit-profile/EditProfile';
 import Profile from '../components/profile/Profile';
-import Post from '../components/post/Post';
+import Post from '../components/pages/Post/Post';
 
 import Login from '../components/pages/Login';
 import Register from '../components/pages/Register';

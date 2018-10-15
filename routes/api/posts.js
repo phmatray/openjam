@@ -48,6 +48,7 @@ router.post('/', ensureLoggedIn('/login'), (req, res) => {
     text: req.body.text,
     firstname: req.body.firstname,
     lastname: req.body.lastname,
+    handle: req.body.handle,
     avatar: req.body.avatar,
     user: req.user.id,
   });
@@ -144,47 +145,43 @@ router.post('/comment/:id', ensureLoggedIn('/login'), (req, res) => {
 // @route  DELETE api/posts/comment/:id/:comment_id
 // @desc   Remove comment from post
 // @access Private
-router.delete(
-  '/comment/:id/:comment_id',
-  ensureLoggedIn('/login'),
-  (req, res) => {
-    Post.findById(req.params.id)
-      .then(post => {
-        // Check to see if comment exists
-        if (
-          post.comments.filter(comment => comment._id.toString() === req.params.comment_id)
-            .length === 0
-        ) {
-          return res.status(404).json({ commentnotexists: 'Comment does not exists' });
-        }
+router.delete('/comment/:id/:comment_id', ensureLoggedIn('/login'), (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => {
+      // Check to see if comment exists
+      if (
+        post.comments.filter(comment => comment._id.toString() === req.params.comment_id).length ===
+        0
+      ) {
+        return res.status(404).json({ commentnotexists: 'Comment does not exists' });
+      }
 
-        // Get the remove index
-        const removeIndex = post.comments
-          .map(item => item._id.toString())
-          .indexOf(req.params.comment_id);
+      // Get the remove index
+      const removeIndex = post.comments
+        .map(item => item._id.toString())
+        .indexOf(req.params.comment_id);
 
-        // return a 404 error if the ID doesn't exist
-        if (removeIndex === -1) {
-          return res.status(404).json({
-            error: 'Comment does not exists',
-          });
-        }
+      // return a 404 error if the ID doesn't exist
+      if (removeIndex === -1) {
+        return res.status(404).json({
+          error: 'Comment does not exists',
+        });
+      }
 
-        // Check if it is from the user
-        if (post.comments[removeIndex].user.toString() !== req.user.id) {
-          return res
-            .status(401)
-            .json({ error: "Unauthorized. Can't delete a comment from a different user" });
-        }
+      // Check if it is from the user
+      if (post.comments[removeIndex].user.toString() !== req.user.id) {
+        return res
+          .status(401)
+          .json({ error: "Unauthorized. Can't delete a comment from a different user" });
+      }
 
-        // Splice comment out of array
-        post.comments.splice(removeIndex, 1);
+      // Splice comment out of array
+      post.comments.splice(removeIndex, 1);
 
-        // Save
-        post.save().then(post => res.json(post));
-      })
-      .catch(err => res.status(404).json({ postnotfound: 'No post founded' }));
-  },
-);
+      // Save
+      post.save().then(post => res.json(post));
+    })
+    .catch(err => res.status(404).json({ postnotfound: 'No post founded' }));
+});
 
 module.exports = router;

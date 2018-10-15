@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 // Create Schema
 const AlbumSchema = new Schema({
+  type: {
+    type: String,
+    default: 'album',
+  },
   name: {
     type: String,
     required: true,
