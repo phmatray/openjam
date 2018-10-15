@@ -1,0 +1,30 @@
+{
+  "name": "OpenJam",
+  "description": "OpenJam is a newtech-powered ecosystem, developped to serve music creation, rights management, remuneration, music artists...",
+  "scripts": {},
+  "env": {
+    "GITHUB_CLIENT_ID": {
+      "required": true
+    },
+    "GITHUB_CLIENT_SECRET": {
+      "required": true
+    },
+    "MONGO_URI": {
+      "required": true
+    },
+    "SECRET_OR_KEY": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

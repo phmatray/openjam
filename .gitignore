@@ -1,0 +1,4 @@
+/node_modules
+/config/keys_dev.js
+
+\.DS_Store
