@@ -5,6 +5,7 @@ import { Cover, Artists } from './style';
 import { Divider } from 'semantic-ui-react';
 import LinkArtistNames from '../../../../elements/Links/LinkArtistNames';
 import LinkEntity from '../../../../elements/Links/LinkEntity';
+import Div from '../../../../elements/Div';
 import moment from 'moment';
 
 const TrackItem = ({ track }) => {
@@ -17,19 +18,21 @@ const TrackItem = ({ track }) => {
         display: 'flex',
         width: 'calc(340px + 0.9em)',
         height: 'calc(55px)',
-        marginRight: '0.9em',
+        marginRight: '0.9em ',
       }}
     >
-      <Link to={`/track/${track._id}`}>
-        {trackDate > startDate ? (
-          <Cover
-            src={track.coverurl.w400}
-            label={{ corner: 'left', icon: 'time', size: 'mini', color: 'teal' }}
-          />
-        ) : (
-          <Cover src={track.coverurl.w400} />
-        )}
-      </Link>
+      <Div mr="0.5em">
+        <Link to={`/track/${track._id}`}>
+          {trackDate > startDate ? (
+            <Cover
+              src={track.coverurl.w400}
+              label={{ corner: 'left', icon: 'time', size: 'mini', color: 'teal' }}
+            />
+          ) : (
+            <Cover src={track.coverurl.w400} />
+          )}
+        </Link>
+      </Div>
       <div style={{ width: '100%' }}>
         <Divider style={{ margin: '0 0 0.6em 0' }} />
         <LinkEntity entity={track} as="table" strong />
