@@ -20,7 +20,7 @@ class Share extends Component {
 
   render() {
     const { posts, loading } = this.props.post;
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
     const { activeItem } = this.state;
 
     return (
@@ -46,7 +46,7 @@ class Share extends Component {
             </GridColumn>
             <GridColumn stretched mobile={16} tablet={12} computer={12} style={{ padding: 0 }}>
               {isAuthenticated ? <PostForm /> : <JoinUs />}
-              {posts === null || loading ? <Spinner /> : <Feed posts={posts} user={user} />}
+              {posts === null || loading ? <Spinner /> : <Feed posts={posts} />}
             </GridColumn>
           </GridRow>
         </Grid>

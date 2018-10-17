@@ -4,10 +4,10 @@ import PostBasic from './children/PostBasic';
 import PostAudio from './children/PostAudio';
 import PostError from './children/PostError';
 
-const PostItem = ({ post, user }) => {
+const PostItem = ({ post }) => {
   switch (post.type) {
     case 'post-basic':
-      return <PostBasic post={post} user={user} />;
+      return <PostBasic post={post} />;
 
     case 'post-audio':
       return <PostAudio post={post} />;
@@ -21,7 +21,6 @@ PostItem.propTypes = {
   post: PropTypes.shape({
     type: PropTypes.string.isRequired,
   }).isRequired,
-  user: PropTypes.object.isRequired,
 };
 
 export default PostItem;
