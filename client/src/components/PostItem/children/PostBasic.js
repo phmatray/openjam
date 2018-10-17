@@ -50,12 +50,14 @@ class PostBasic extends Component {
             </SegmentGroup>
           )}
 
-          <LikeButton
-            likes={likesCount}
-            likeAction={() => addLike(post._id)}
-            unlikeAction={() => removeLike(post._id)}
-            active={this.findUserLike(post.likes)}
-          />
+          {isAuthenticated && (
+            <LikeButton
+              likes={likesCount}
+              likeAction={() => addLike(post._id)}
+              unlikeAction={() => removeLike(post._id)}
+              active={this.findUserLike(post.likes)}
+            />
+          )}
           {/* TODO: implement the share button */}
           {/* <ShareButton shares={sharesCount} /> */}
         </Content>
