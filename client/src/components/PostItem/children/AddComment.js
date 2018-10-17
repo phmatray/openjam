@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addComment } from '../../../redux/modules/post';
 import { AvatarSmall, Button, AddCommentForm } from './styles';
 import Flex from '../../../elements/Flex';
+import Div from '../../../elements/Div';
 import TextAreaFieldGroup from '../../../elements/Inputs/TextAreaFieldGroup';
 
 class AddComment extends Component {
@@ -45,21 +46,23 @@ class AddComment extends Component {
       <Flex>
         <AvatarSmall src={user.avatar} />
         <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
-          <TextAreaFieldGroup
-            placeholder={'Express yourself'}
-            name="text"
-            value={this.state.text}
-            onChange={this.handleChange}
-            error={errors.text}
-          />
-          <Button
-            circular
-            compact
-            icon="send"
-            color="teal"
-            content="Send"
-            onClick={this.handleSubmit}
-          />
+          <Div mb="-1em">
+            <TextAreaFieldGroup
+              placeholder={'Express yourself'}
+              name="text"
+              value={this.state.text}
+              onChange={this.handleChange}
+              error={errors.text}
+            />
+            <Button
+              circular
+              compact
+              icon="send"
+              color="teal"
+              content="Send"
+              onClick={this.handleSubmit}
+            />
+          </Div>
         </AddCommentForm>
       </Flex>
     );
