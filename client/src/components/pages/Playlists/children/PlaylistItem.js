@@ -8,7 +8,7 @@ const PlaylistItem = ({ playlist, color }) => {
   return (
     <div
       style={{
-        width: 'calc(340px + 0.9em)',
+        width: 'calc(250px + 0.9em)',
         marginBottom: '1.5em',
         marginRight: '0.9em',
       }}
