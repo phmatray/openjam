@@ -4,14 +4,13 @@ import FeedPresenter from './presenter';
 
 export class Feed extends Component {
   render() {
-    const { posts, user } = this.props;
-    return <FeedPresenter posts={posts} user={user} />;
+    const { posts } = this.props;
+    return <FeedPresenter posts={posts} />;
   }
 }
 
 Feed.propTypes = {
   posts: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired,
 };
 
 export default Feed;

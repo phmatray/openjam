@@ -25,7 +25,7 @@ const TextAreaFieldGroup = ({ name, placeholder, value, error, info, onChange })
         value={value}
         onChange={onChange}
         error={error}
-        style={{ marginBottom: '1em' }}
+        style={{ marginBottom: '1em', minHeight: '45px', height: '45px' }}
       />
       {info && (
         <p style={infoMessageStyle}>

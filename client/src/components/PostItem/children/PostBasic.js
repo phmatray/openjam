@@ -12,8 +12,8 @@ import { deletePost, addLike, removeLike } from '../../../redux/modules/post';
 
 class PostBasic extends Component {
   findUserLike = likes => {
-    const { auth } = this.props;
-    if (likes.filter(like => like.user === auth.user._id).length > 0) {
+    const { user } = this.props;
+    if (likes.filter(like => like.user === user._id).length > 0) {
       return true;
     } else {
       return false;
@@ -27,9 +27,8 @@ class PostBasic extends Component {
     comments.map((comment, idx) => <Comment key={idx} comment={comment} />);
 
   render() {
-    const { post, addLike, removeLike } = this.props;
+    const { post, addLike, removeLike, isAuthenticated } = this.props;
     const { text, comments, avatar, likes } = post;
-    const { user } = this.props.auth;
     const likesCount = likes ? likes.length : 0;
     // const sharesCount = shares ? shares.length : 0;
 
@@ -39,19 +38,26 @@ class PostBasic extends Component {
 
         <Content>
           <p>{text}</p>
-          <SegmentGroup>
-            {comments.length > 0 && <Segment>{this.renderComments(comments)}</Segment>}
-            <Segment>
-              <AddComment user={user} avatar={avatar} postId={post._id} />
-            </Segment>
-          </SegmentGroup>
 
-          <LikeButton
-            likes={likesCount}
-            likeAction={() => addLike(post._id)}
-            unlikeAction={() => removeLike(post._id)}
-            active={this.findUserLike(post.likes)}
-          />
+          {comments.length > 0 && (
+            <SegmentGroup>
+              <Segment>{this.renderComments(comments)}</Segment>
+              {isAuthenticated && (
+                <Segment>
+                  <AddComment avatar={avatar} postId={post._id} />
+                </Segment>
+              )}
+            </SegmentGroup>
+          )}
+
+          {isAuthenticated && (
+            <LikeButton
+              likes={likesCount}
+              likeAction={() => addLike(post._id)}
+              unlikeAction={() => removeLike(post._id)}
+              active={this.findUserLike(post.likes)}
+            />
+          )}
           {/* TODO: implement the share button */}
           {/* <ShareButton shares={sharesCount} /> */}
         </Content>
@@ -69,6 +75,7 @@ PostBasic.propTypes = {
     shares: PropTypes.array,
     comments: PropTypes.array,
   }).isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 PostBasic.defaultProps = {
@@ -77,7 +84,8 @@ PostBasic.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  user: state.auth.user,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(
