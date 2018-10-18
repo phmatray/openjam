@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Avatar, FromNow } from '../children/styles';
 import Span from '../../../elements/Span';
 import Flex from '../../../elements/Flex';
@@ -10,13 +11,15 @@ const Intro = ({ post }) => {
 
   return (
     <Flex alignCenter justifyBetween fluid>
-      <Flex alignCenter>
-        <Avatar src={avatar} alt={fullName} />
-        <Flex column>
-          <strong style={{ fontWeight: 700 }}>{fullName}</strong>
-          <Span color="#666">@{handle}</Span>
+      <Link to={`/profile/${handle}`}>
+        <Flex alignCenter>
+          <Avatar src={avatar} alt={fullName} />
+          <Flex column>
+            <strong style={{ fontWeight: 700 }}>{fullName}</strong>
+            <Span color="#666">@{handle}</Span>
+          </Flex>
         </Flex>
-      </Flex>
+      </Link>
 
       <div>
         <FromNow>{date}</FromNow>

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { AvatarSmall, CommentText, FromNow, CommentContainer } from './styles';
 import Flex from '../../../elements/Flex';
 import Div from '../../../elements/Div';
 
 const Comment = ({ comment }) => {
-  const { avatar, firstname, lastname, text, date } = comment;
+  const { avatar, firstname, lastname, handle, text, date } = comment;
   const fullName = `${firstname} ${lastname}`;
 
   return (
@@ -15,12 +16,14 @@ const Comment = ({ comment }) => {
 
         <div>
           <CommentContainer>
-            <strong>
-              {/* TODO: add handle */}
-              {/* <a href="true"> */}
-              {fullName}
-              {/* </a> */}
-            </strong>
+            <Link to={`/profile/${handle}`}>
+              <strong>
+                {/* TODO: add handle */}
+                {/* <a href="true"> */}
+                {fullName}
+                {/* </a> */}
+              </strong>
+            </Link>
             <CommentText>{text}</CommentText>
           </CommentContainer>
           <Div ml="17px" mt="0">
