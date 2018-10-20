@@ -11,6 +11,9 @@ const TrackSchema = new Schema({
     type: String,
     required: true,
   },
+  edit: {
+    type: String,
+  },
   artists: {
     type: [
       {
@@ -34,9 +37,6 @@ const TrackSchema = new Schema({
     w800: { type: String },
   },
   licenceurl: {
-    type: String,
-  },
-  edit: {
     type: String,
   },
   label: {
@@ -89,6 +89,17 @@ const TrackSchema = new Schema({
       },
     ],
   },
+});
+
+TrackSchema.set('toObject', { virtuals: true });
+TrackSchema.set('toJSON', { virtuals: true });
+
+TrackSchema.virtual('title_full').get(function() {
+  let titleFull = this.title;
+  if (this.edit) {
+    titleFull += ` (${this.edit})`;
+  }
+  return titleFull;
 });
 
 module.exports = Track = mongoose.model('tracks', TrackSchema);
