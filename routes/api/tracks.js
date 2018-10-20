@@ -24,6 +24,29 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ notracksfound: 'No tracks found' }));
 });
 
+// @route  GET api/tracks/random
+// @desc   Get 20 random tracks
+// @access Public
+router.get('/random', async (req, res) => {
+  try {
+    const result = [];
+    const n = await Track.find().count({});
+
+    for (let index = 0; index < 20; index++) {
+      const r = Math.floor(Math.random() * n);
+      const track = await Track.find()
+        .limit(1)
+        .skip(r);
+
+      result.push(track[0]);
+    }
+
+    return res.json(result);
+  } catch (error) {
+    return res.status(404).json({ notracksfound: 'No tracks found' });
+  }
+});
+
 // @route  GET api/tracks/:id
 // @desc   Get track by ID
 // @access Public

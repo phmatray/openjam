@@ -78,6 +78,15 @@ export function fetchTracks() {
   };
 }
 
+// Fetch 20 random tracks
+export function fetchTracksRandom() {
+  return {
+    types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
+    callAPI: () => axios.get('/api/tracks/random'),
+    shouldCallAPI: state => true,
+  };
+}
+
 // Fetch a track by _id
 export function fetchTrack(id) {
   return {
