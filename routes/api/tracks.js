@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 router.get('/random', async (req, res) => {
   try {
     const result = [];
-    const n = await Track.find().count({});
+    const n = await Track.find().estimatedDocumentCount({});
 
     for (let index = 0; index < 20; index++) {
       const r = Math.floor(Math.random() * n);

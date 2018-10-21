@@ -6,18 +6,19 @@ import {
   FlexFill,
   ColumnCover,
   ColumnInfo,
-  ColumnTimeLeft,
+  ColumnTime,
   ColumnControls,
-  ColumnTimeRight,
   Cover,
   PlayerLink,
   TrackName,
   Edit,
   ArtistName,
-  Slider,
   ButtonCollection,
 } from './style';
+import Progress from './children/Progress';
+import Flex from '../../elements/Flex';
 import LinkArtistNames from '../../elements/Links/LinkArtistNames';
+import { fancyTimeFormat } from '../../utils/playerHelpers';
 
 class Player extends Component {
   render() {
@@ -35,7 +36,9 @@ class Player extends Component {
 
     return (
       <PlayerStyled height={height}>
-        {current && (
+        <Flex column>
+          <Progress position={audioInfo.position} duration={audioInfo.duration} />
+
           <FlexFill>
             <ColumnCover>
               <Cover src={current.coverurl.w200} alt="cover" />
@@ -51,9 +54,11 @@ class Player extends Component {
                 <LinkArtistNames artists={current.artists} />
               </ArtistName>
             </ColumnInfo>
-            <ColumnTimeLeft>{audioInfo && audioInfo.seek ? audioInfo.seek : '0:00'}</ColumnTimeLeft>
+            <ColumnTime>
+              {audioInfo && audioInfo.position ? fancyTimeFormat(audioInfo.position) : '0:00'} /{' '}
+              {audioInfo && audioInfo.duration ? fancyTimeFormat(audioInfo.duration) : '0:00'}
+            </ColumnTime>
             <ColumnControls>
-              <Slider min={0} max={100} value={(audioInfo && audioInfo.seekPercentage) || 0} />
               <ButtonCollection>
                 {/* TODO: open current playlist */}
                 <Button icon disabled>
@@ -86,11 +91,8 @@ class Player extends Component {
                 </Button>
               </ButtonCollection>
             </ColumnControls>
-            <ColumnTimeRight>
-              {audioInfo && audioInfo.duration ? audioInfo.duration : '0:00'}
-            </ColumnTimeRight>
           </FlexFill>
-        )}
+        </Flex>
       </PlayerStyled>
     );
   }
@@ -102,6 +104,9 @@ Player.propTypes = {
   previous: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
 
+  status: PropTypes.string.isRequired,
+  playing: PropTypes.bool.isRequired,
+
   current: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     coverurl: PropTypes.shape({
@@ -112,9 +117,9 @@ Player.propTypes = {
   }).isRequired,
 
   audioInfo: PropTypes.shape({
-    seek: PropTypes.string.isRequired,
-    seekPercentage: PropTypes.number.isRequired,
-    duration: PropTypes.string.isRequired,
+    position: PropTypes.number.isRequired,
+    duration: PropTypes.number.isRequired,
+    volume: PropTypes.number.isRequired,
   }).isRequired,
 };
 
