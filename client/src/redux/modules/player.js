@@ -210,7 +210,6 @@ export function updatePosition(position) {
 // Play the selected track
 export function playSelected(playlist) {
   return dispatch => {
-    // dispatch(stop());
     dispatch(updatePlaylist(playlist));
     dispatch(play());
   };

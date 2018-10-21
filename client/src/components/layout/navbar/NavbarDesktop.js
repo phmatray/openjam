@@ -24,7 +24,7 @@ class NavbarDesktop extends Component {
   };
 
   render() {
-    const { auth, height } = this.props;
+    const { auth, playing, height } = this.props;
     const { activeItem } = this.state;
     const { isAuthenticated, user } = auth;
 
@@ -148,14 +148,7 @@ class NavbarDesktop extends Component {
     );
 
     return (
-      <Menu
-        inverted
-        fixed="top"
-        style={{
-          height: height,
-          backgroundColor: 'black',
-        }}
-      >
+      <Menu inverted fixed="top" style={{ height: height, backgroundColor: 'black' }}>
         <Container>
           <Menu.Item
             header
@@ -166,8 +159,22 @@ class NavbarDesktop extends Component {
             onClick={this.handleItemClick}
             color="teal"
           >
-            <img src={logo} style={{ margin: '0.5em 0.5em 0.5em 0' }} alt="logo" />
-            OpenJam
+            <img
+              src={logo}
+              style={
+                playing
+                  ? {
+                      margin: '0.5em 0.5em 0.5em 0',
+                      animationName: 'spin',
+                      animationDuration: '5000ms',
+                      animationIterationCount: 'infinite',
+                      animationTimingFunction: 'linear',
+                    }
+                  : { margin: '0.5em 0.5em 0.5em 0' }
+              }
+              alt="logo"
+            />
+            <strong style={{ fontFamily: 'Comfortaa' }}>OpenJam</strong>
           </Menu.Item>
 
           {leftLinks}
@@ -185,10 +192,12 @@ NavbarDesktop.propTypes = {
   getCurrentUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  playing: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  playing: state.player.playing,
 });
 
 export default connect(

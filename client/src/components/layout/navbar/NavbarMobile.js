@@ -13,7 +13,7 @@ class NavbarMobile extends Component {
   };
 
   render() {
-    const { auth, toggleSidebar, height } = this.props;
+    const { auth, playing, toggleSidebar, height } = this.props;
     const { activeItem } = this.state;
     const { isAuthenticated, user } = auth;
 
@@ -49,7 +49,21 @@ class NavbarMobile extends Component {
           color="teal"
           style={{ width: '11em' }}
         >
-          <img src={logo} style={{ margin: '0.5em 0.5em 0.5em 0' }} alt="logo" />
+          <img
+            src={logo}
+            style={
+              playing
+                ? {
+                    margin: '0.5em 0.5em 0.5em 0',
+                    animationName: 'spin',
+                    animationDuration: '5000ms',
+                    animationIterationCount: 'infinite',
+                    animationTimingFunction: 'linear',
+                  }
+                : { margin: '0.5em 0.5em 0.5em 0' }
+            }
+            alt="logo"
+          />
           OpenJam
         </Menu.Item>
 
@@ -68,10 +82,12 @@ NavbarMobile.propTypes = {
   toggleSidebar: PropTypes.func.isRequired,
   height: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
+  playing: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  playing: state.player.playing,
 });
 
 export default connect(mapStateToProps)(NavbarMobile);
