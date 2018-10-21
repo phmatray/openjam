@@ -42,10 +42,7 @@ class PlayerContainer extends Component {
             onLoading={({ bytesLoaded, bytesTotal }) => {
               console.log(`${(bytesLoaded / bytesTotal) * 100}% loaded`);
             }}
-            onLoad={a => console.log('baba')}
             onPlaying={this.setAudioInfo}
-            onPause={() => console.log('onPause')}
-            onStop={() => console.log('onStop')}
             onFinishedPlaying={next}
           />
           <Player {...this.props} />
