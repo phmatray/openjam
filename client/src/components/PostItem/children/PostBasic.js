@@ -39,14 +39,16 @@ class PostBasic extends Component {
         <Content>
           <p>{text}</p>
 
-          <SegmentGroup>
-            {comments.length > 0 && <Segment>{this.renderComments(comments)}</Segment>}
-            {isAuthenticated && (
-              <Segment>
-                <AddComment avatar={avatar} postId={post._id} />
-              </Segment>
-            )}
-          </SegmentGroup>
+          {(comments.length > 0 || isAuthenticated) && (
+            <SegmentGroup>
+              {comments.length > 0 && <Segment>{this.renderComments(comments)}</Segment>}
+              {isAuthenticated && (
+                <Segment>
+                  <AddComment avatar={avatar} postId={post._id} />
+                </Segment>
+              )}
+            </SegmentGroup>
+          )}
 
           {isAuthenticated && (
             <LikeButton
