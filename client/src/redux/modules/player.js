@@ -20,6 +20,7 @@ const initialState = {
   playlist: [],
   playlistId: 'default',
   current: null,
+  currentId: 'default',
   playing: false,
   loading: true,
   volume: 0.6,
@@ -64,6 +65,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         current: state.playlist[getPreviousIndex(state.playlist.length, state.current.index)],
+        currentId: state.playlist[getPreviousIndex(state.playlist.length, state.current.index)]._id,
         audioInfo: {
           position: initialState.audioInfo.position,
           duration: initialState.audioInfo.duration,
@@ -74,6 +76,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         current: state.playlist[getNextIndex(state.playlist.length, state.current.index)],
+        currentId: state.playlist[getNextIndex(state.playlist.length, state.current.index)]._id,
         audioInfo: {
           position: initialState.audioInfo.position,
           duration: initialState.audioInfo.duration,
@@ -105,6 +108,7 @@ export default function reducer(state = initialState, action = {}) {
             }),
             playlistId: action.playlistId,
             current: { ...action.payload[0], index: 0 },
+            currentId: action.payload[0]._id,
             audioInfo: {
               position: initialState.audioInfo.position,
               duration: initialState.audioInfo.duration,
@@ -118,6 +122,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         current: action.payload,
+        currentId: action.payload._id,
       };
 
     case UPDATE_AUDIO_INFO:

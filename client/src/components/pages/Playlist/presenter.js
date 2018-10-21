@@ -6,7 +6,7 @@ import PlaylistTracks from './children/PlaylistTracks';
 import PlaylistCover from '../../../elements/UI/PlaylistCover';
 import Body from '../../../elements/UI/Body';
 
-const PlaylistPresenter = ({ playlist, playlistId, playing, playSelected, pause }) => (
+const PlaylistPresenter = ({ playlist, playlistId, currentId, playing, playSelected, pause }) => (
   <Body breadcrumbSegments={[<Link to="/playlists">Playlists</Link>, playlist.name]}>
     <Grid>
       <GridRow>
@@ -20,7 +20,7 @@ const PlaylistPresenter = ({ playlist, playlistId, playing, playSelected, pause 
           )}
         </GridColumn>
         <GridColumn mobile={16} tablet={10} computer={11}>
-          <PlaylistTracks tracks={playlist.tracks} />
+          <PlaylistTracks tracks={playlist.tracks} currentId={currentId} playing={playing} />
         </GridColumn>
       </GridRow>
     </Grid>

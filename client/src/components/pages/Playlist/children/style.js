@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Table, Icon as SemanticIcon } from 'semantic-ui-react';
+import { TableRow, TableCell, TableHeaderCell, Icon as SemanticIcon } from 'semantic-ui-react';
 
-export const HeaderCell = styled(Table.HeaderCell)`
+export const HeaderCell = styled(TableHeaderCell)`
   text-transform: uppercase !important;
   color: #666 !important;
   font-weight: 400 !important;
@@ -16,8 +16,8 @@ export const CoverCell = styled('img')`
 
 export const Overlay = styled('div')`
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 3em;
+  height: 3em;
   background-color: #0006;
   opacity: 0;
   transition: 0.2s ease;
@@ -26,16 +26,21 @@ export const Overlay = styled('div')`
   align-items: center;
 `;
 
-export const Wrapper = styled(Table.Cell)`
+export const Wrapper = styled(TableCell)`
   position: relative;
   display: flex;
-  padding: 0.2em 0 !important;
+  padding: 0 !important;
+  margin: 0.2em 0;
   width: 3em;
   height: 3em;
   border-radius: 5%;
 `;
 
-export const Row = styled(Table.Row)`
+export const Row = styled(TableRow)`
+  ${Wrapper} ${Overlay} {
+    opacity: ${props => (props.active ? 1 : 0)};
+  }
+
   &:hover ${Wrapper} ${Overlay} {
     opacity: 1;
   }
