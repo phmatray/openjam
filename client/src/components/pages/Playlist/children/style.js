@@ -8,13 +8,13 @@ export const HeaderCell = styled(TableHeaderCell)`
   padding-bottom: 0.3em !important;
 `;
 
-export const CoverCell = styled('img')`
+export const Cover = styled.img`
   display: block;
   width: 100%;
   height: auto;
 `;
 
-export const Overlay = styled('div')`
+export const Overlay = styled.div`
   position: absolute;
   width: 3em;
   height: 3em;
@@ -26,7 +26,7 @@ export const Overlay = styled('div')`
   align-items: center;
 `;
 
-export const Wrapper = styled(TableCell)`
+export const Wrapper = styled.div`
   position: relative;
   display: flex;
   padding: 0 !important;
@@ -34,6 +34,7 @@ export const Wrapper = styled(TableCell)`
   width: 3em;
   height: 3em;
   border-radius: 5%;
+  overflow: hidden;
 `;
 
 export const Row = styled(TableRow)`

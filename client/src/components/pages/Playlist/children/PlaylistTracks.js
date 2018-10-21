@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import LinkEntity from '../../../../elements/Links/LinkEntity';
 import LinkArtistNames from '../../../../elements/Links/LinkArtistNames';
-import { HeaderCell, Row, Wrapper, CoverCell, Overlay, Icon } from './style';
+import { HeaderCell, Row, Wrapper, Cover, Overlay, Icon } from './style';
 
 const PlaylistTracks = ({ tracks, currentId, playing }) => {
   return (
@@ -19,22 +19,24 @@ const PlaylistTracks = ({ tracks, currentId, playing }) => {
       <Table.Body>
         {tracks.map(track => (
           <Row key={track._id} active={track._id === currentId}>
-            <Wrapper>
-              <CoverCell
-                src={track.coverurl.w200}
-                style={{ width: '3em', height: '3em', borderRadius: '5%' }}
-                alt={track.title}
-              />
-              <Overlay onClick={() => console.log(`${track.title} is playing`)}>
-                <Icon
-                  name={`${!playing ? 'play' : 'pause'} circle outline`}
-                  inverted
-                  color="grey"
-                  size="large"
-                  style={{ marginRight: 0 }}
+            <Table.Cell style={{ padding: 0 }}>
+              <Wrapper>
+                <Cover
+                  src={track.coverurl.w200}
+                  style={{ width: '3em', height: '3em', borderRadius: '5%' }}
+                  alt={track.title}
                 />
-              </Overlay>
-            </Wrapper>
+                <Overlay onClick={() => console.log(`${track.title} is playing`)}>
+                  <Icon
+                    name={`${!playing ? 'play' : 'pause'} circle outline`}
+                    inverted
+                    color="grey"
+                    size="large"
+                    style={{ marginRight: 0 }}
+                  />
+                </Overlay>
+              </Wrapper>
+            </Table.Cell>
             <Table.Cell style={{ paddingLeft: 0 }}>
               <LinkEntity entity={track} as="table" strong={true} />
             </Table.Cell>
