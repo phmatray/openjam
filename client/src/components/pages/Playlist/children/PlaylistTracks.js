@@ -5,7 +5,7 @@ import LinkEntity from '../../../../elements/Links/LinkEntity';
 import LinkArtistNames from '../../../../elements/Links/LinkArtistNames';
 import { HeaderCell, Row, Wrapper, CoverCell, Overlay, Icon } from './style';
 
-const PlaylistTracks = ({ tracks }) => {
+const PlaylistTracks = ({ tracks, currentId, playing }) => {
   return (
     <Table basic="very">
       <Table.Header>
@@ -18,7 +18,7 @@ const PlaylistTracks = ({ tracks }) => {
 
       <Table.Body>
         {tracks.map(track => (
-          <Row key={track._id}>
+          <Row key={track._id} active={track._id === currentId}>
             <Wrapper>
               <CoverCell
                 src={track.coverurl.w200}
@@ -27,7 +27,7 @@ const PlaylistTracks = ({ tracks }) => {
               />
               <Overlay onClick={() => console.log(`${track.title} is playing`)}>
                 <Icon
-                  name="play circle outline"
+                  name={`${!playing ? 'play' : 'pause'} circle outline`}
                   inverted
                   color="grey"
                   size="large"
@@ -35,7 +35,7 @@ const PlaylistTracks = ({ tracks }) => {
                 />
               </Overlay>
             </Wrapper>
-            <Table.Cell>
+            <Table.Cell style={{ paddingLeft: 0 }}>
               <LinkEntity entity={track} as="table" strong={true} />
             </Table.Cell>
             <Table.Cell>
@@ -59,6 +59,8 @@ PlaylistTracks.propTypes = {
       artists: PropTypes.array.isRequired,
     }).isRequired,
   ).isRequired,
+  currentId: PropTypes.string.isRequired,
+  playing: PropTypes.bool.isRequired,
 };
 
 export default PlaylistTracks;

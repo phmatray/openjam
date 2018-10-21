@@ -40,17 +40,23 @@ class Playlist extends Component {
 Playlist.propTypes = {
   fetchPlaylist: PropTypes.func.isRequired,
   playSelected: PropTypes.func.isRequired,
+
   pause: PropTypes.func.isRequired,
   playlist: PropTypes.object,
   loading: PropTypes.bool,
+
   playing: PropTypes.bool,
+  playlistId: PropTypes.string,
+  currentId: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   playlist: state.playlist.playlist,
   loading: state.playlist.loading,
+
   playing: state.player.playing,
   playlistId: state.player.playlistId,
+  currentId: state.player.currentId,
 });
 
 export default connect(
