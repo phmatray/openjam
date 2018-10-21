@@ -5,7 +5,7 @@ import rootReducer from './rootReducer';
 
 const initialState = {};
 
-const middlewares = [thunk, slimAsync];
+const middlewares = [slimAsync, thunk];
 const enhancers = [];
 
 const isDevelopment = process.env.NODE_ENV === 'development';

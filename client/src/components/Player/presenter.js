@@ -119,7 +119,6 @@ Player.propTypes = {
   audioInfo: PropTypes.shape({
     position: PropTypes.number.isRequired,
     duration: PropTypes.number.isRequired,
-    volume: PropTypes.number.isRequired,
   }).isRequired,
 };
 

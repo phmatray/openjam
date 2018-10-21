@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlaylist } from '../../../redux/modules/playlist';
+import { playSelected, pause } from '../../../redux/modules/player';
 import Spinner from '../../../elements/UI/Spinner';
 import PlaylistPresenter from './presenter';
 
@@ -26,27 +27,33 @@ class Playlist extends Component {
   }
 
   render() {
-    const { playlist, loading } = this.props.playlist;
+    const { playlist, loading } = this.props;
 
     return playlist === null || playlist === undefined || loading ? (
       <Spinner />
     ) : (
-      <PlaylistPresenter playlist={playlist} />
+      <PlaylistPresenter {...this.props} />
     );
   }
 }
 
 Playlist.propTypes = {
   fetchPlaylist: PropTypes.func.isRequired,
+  playSelected: PropTypes.func.isRequired,
+  pause: PropTypes.func.isRequired,
   playlist: PropTypes.object,
   loading: PropTypes.bool,
+  playing: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
-  playlist: state.playlist,
+  playlist: state.playlist.playlist,
+  loading: state.playlist.loading,
+  playing: state.player.playing,
+  playlistId: state.player.playlistId,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchPlaylist },
+  { fetchPlaylist, playSelected, pause },
 )(Playlist);
