@@ -1,33 +1,54 @@
 import React from 'react';
-import { Image, Grid, GridColumn } from 'semantic-ui-react';
-import JoinUs from '../../../elements/Messages/JoinUs';
-import FollowUs from '../../../elements/Messages/FollowUs';
-import Whitepaper from '../../../elements/Messages/Whitepaper';
-import Body from '../../../elements/UI/Body';
-import cover from '../../../img/backgrounds/cover-social.jpg';
+import { Grid, Divider } from 'semantic-ui-react';
+import { LoginScreen, BgWrap, GridContent, H1, H3, Ul, Li, Features } from './styles';
+import Logo from './children/Logo';
+import ButtonRegister from './children/ButtonRegister';
+import ButtonLogin from './children/ButtonLogin';
+import Div from '../../../elements/Div';
 
-const LandingPresenter = () => {
-  return (
-    <Body
-      breadcrumbSegments={['So much more than a music streaming service...']}
-      description="OpenJam is the first open-source community music streaming platform."
-    >
-      <Grid>
-        <GridColumn width={16}>
-          <Image src={cover} alt="landing page cover" />
-        </GridColumn>
-        <GridColumn mobile={16} tablet={8} computer={8}>
-          <JoinUs />
-        </GridColumn>
-        <GridColumn mobile={16} tablet={8} computer={8}>
-          <FollowUs />
-        </GridColumn>
-        <GridColumn mobile={16} tablet={8} computer={8}>
-          <Whitepaper />
-        </GridColumn>
-      </Grid>
-    </Body>
-  );
-};
+const LandingPresenter = () => (
+  <LoginScreen id="login-screen">
+    <BgWrap id="bg-wrap">
+      <GridContent>
+        <Grid.Column width={10} only="tablet computer">
+          <Features>
+            <H1>Like and Tip your favorite artists</H1>
+            <H3>
+              {/* Découvrez la nouvelle plateforme orientée Remix et Electronic Music avant tout le monde. */}
+              Discover the new platform oriented Remix and Electronic Music before anyone else.
+            </H3>
+            <Ul>
+              <Li>
+                {/* Soutenez les artistes et la musique que vous aimez */}
+                Support the artists and music you love
+              </Li>
+              <Li>
+                {/* Adoptez la rémunération au chapeau en version digitale */}
+                Embrace hat-based remuneration in its digital version
+              </Li>
+            </Ul>
+          </Features>
+        </Grid.Column>
+        <Grid.Column style={{ maxWidth: '320px' }}>
+          <div className="step-inner">
+            <Div mb="3em">
+              <Logo />
+            </Div>
+            {/* S'inscrire */}
+            <ButtonRegister />
+            <Div mt="3em" mb="3em">
+              <Divider horizontal inverted>
+                {/* Vous avez déjà un compte ? */}
+                Already have an account?
+              </Divider>
+            </Div>
+            {/* Se connecter */}
+            <ButtonLogin />
+          </div>
+        </Grid.Column>
+      </GridContent>
+    </BgWrap>
+  </LoginScreen>
+);
 
 export default LandingPresenter;
