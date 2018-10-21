@@ -16,13 +16,13 @@ export const getNextIndex = (playlistLength, currentIndex) => {
   return index;
 };
 
-export const fancyTimeFormat = time => {
-  time = Math.round(time);
+export const fancyTimeFormat = ms => {
+  ms = Math.round(ms / 1000);
 
   // Hours, minutes and seconds
-  var hrs = ~~(time / 3600);
-  var mins = ~~((time % 3600) / 60);
-  var secs = time % 60;
+  var hrs = ~~(ms / 3600);
+  var mins = ~~((ms % 3600) / 60);
+  var secs = ms % 60;
 
   // Output like "1:01" or "4:03:59" or "123:03:59"
   var ret = '';

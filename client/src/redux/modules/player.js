@@ -4,6 +4,7 @@ import { getPreviousIndex, getNextIndex } from '../../utils/playerHelpers';
 //
 const PLAY = 'player/PLAY';
 const PAUSE = 'player/PAUSE';
+const STOP = 'player/STOP';
 const PREVIOUS = 'player/PREVIOUS';
 const NEXT = 'player/NEXT';
 const SKIP_TO = 'player/SKIP_TO';
@@ -11,6 +12,7 @@ const VOLUME = 'player/VOLUME';
 const UPDATE_PLAYLIST = 'player/UPDATE_PLAYLIST';
 const UPDATE_CURRENT = 'player/UPDATE_CURRENT';
 const UPDATE_AUDIO_INFO = 'player/UPDATE_AUDIO_INFO';
+const UPDATE_POSITION = 'player/UPDATE_POSITION';
 
 // Reducer
 //
@@ -23,11 +25,11 @@ const initialState = {
   progress: 0,
   seek: 0,
   audioInfo: {
-    seek: '00:00',
-    duration: '00:00',
-    seekPercentage: 0,
-    volume: 0,
+    position: 0,
+    duration: 0,
+    volume: 1,
   },
+  status: 'PAUSED',
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -36,12 +38,25 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         playing: true,
+        status: 'PLAYING',
       };
 
     case PAUSE:
       return {
         ...state,
         playing: false,
+        status: 'PAUSED',
+      };
+
+    case STOP:
+      return {
+        ...state,
+        playing: false,
+        status: 'STOPPED',
+        audioInfo: {
+          position: initialState.audioInfo.position,
+          duration: initialState.audioInfo.duration,
+        },
       };
 
     case PREVIOUS:
@@ -49,6 +64,11 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         current: state.playlist[getPreviousIndex(state.playlist.length, state.current.index)],
         playing: true,
+        status: 'PLAYING',
+        audioInfo: {
+          position: initialState.audioInfo.position,
+          duration: initialState.audioInfo.duration,
+        },
       };
 
     case NEXT:
@@ -56,6 +76,11 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         current: state.playlist[getNextIndex(state.playlist.length, state.current.index)],
         playing: true,
+        status: 'PLAYING',
+        audioInfo: {
+          position: initialState.audioInfo.position,
+          duration: initialState.audioInfo.duration,
+        },
       };
 
     case SKIP_TO:
@@ -68,7 +93,10 @@ export default function reducer(state = initialState, action = {}) {
     case VOLUME:
       return {
         ...state,
-        volume: action.payload,
+        audioInfo: {
+          ...state.audioInfo,
+          volume: action.payload,
+        },
       };
 
     case UPDATE_PLAYLIST:
@@ -92,6 +120,15 @@ export default function reducer(state = initialState, action = {}) {
         audioInfo: action.payload,
       };
 
+    case UPDATE_POSITION:
+      return {
+        ...state,
+        audioInfo: {
+          ...state.audioInfo,
+          position: action.payload,
+        },
+      };
+
     default:
       return state;
   }
@@ -105,6 +142,10 @@ export const play = () => ({
 
 export const pause = () => ({
   type: PAUSE,
+});
+
+export const stop = () => ({
+  type: STOP,
 });
 
 export const previous = () => ({
@@ -138,6 +179,11 @@ export const updateCurrent = current => ({
 export const updateAudioInfo = audioInfo => ({
   type: UPDATE_AUDIO_INFO,
   payload: audioInfo,
+});
+
+export const updatePosition = position => ({
+  type: UPDATE_POSITION,
+  payload: position,
 });
 
 // Side effects, only as applicable (thunks)

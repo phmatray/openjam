@@ -1,12 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import slimAsync from './middlewares/slim-async/slimAsync';
-import audio from './middlewares/audio/audio';
 import rootReducer from './rootReducer';
 
 const initialState = {};
 
-const middlewares = [thunk, slimAsync, audio];
+const middlewares = [thunk, slimAsync];
 const enhancers = [];
 
 const isDevelopment = process.env.NODE_ENV === 'development';
