@@ -9,7 +9,7 @@ const PREVIOUS = 'player/PREVIOUS';
 const NEXT = 'player/NEXT';
 const SKIP_TO = 'player/SKIP_TO';
 const VOLUME = 'player/VOLUME';
-const UPDATE_PLAYLIST = 'player/UPDATE_PLAYLIST';
+const UPDATE_CURRENT_PLAYLIST = 'player/UPDATE_CURRENT_PLAYLIST';
 const UPDATE_CURRENT = 'player/UPDATE_CURRENT';
 const UPDATE_AUDIO_INFO = 'player/UPDATE_AUDIO_INFO';
 const UPDATE_POSITION = 'player/UPDATE_POSITION';
@@ -18,7 +18,9 @@ const UPDATE_POSITION = 'player/UPDATE_POSITION';
 //
 const initialState = {
   playlist: [],
+  playlistId: 'default',
   current: null,
+  currentId: 'default',
   playing: false,
   loading: true,
   volume: 0.6,
@@ -63,8 +65,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         current: state.playlist[getPreviousIndex(state.playlist.length, state.current.index)],
-        playing: true,
-        status: 'PLAYING',
+        currentId: state.playlist[getPreviousIndex(state.playlist.length, state.current.index)]._id,
         audioInfo: {
           position: initialState.audioInfo.position,
           duration: initialState.audioInfo.duration,
@@ -75,8 +76,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         current: state.playlist[getNextIndex(state.playlist.length, state.current.index)],
-        playing: true,
-        status: 'PLAYING',
+        currentId: state.playlist[getNextIndex(state.playlist.length, state.current.index)]._id,
         audioInfo: {
           position: initialState.audioInfo.position,
           duration: initialState.audioInfo.duration,
@@ -99,19 +99,30 @@ export default function reducer(state = initialState, action = {}) {
         },
       };
 
-    case UPDATE_PLAYLIST:
-      return {
-        ...state,
-        playlist: action.payload.map((track, index) => {
-          return { ...track, index };
-        }),
-        current: { ...action.payload[0], index: 0 },
-      };
+    case UPDATE_CURRENT_PLAYLIST:
+      return state.playlistId !== action.playlistId || state.playlist.length === 0
+        ? {
+            ...state,
+            playlist: action.payload.map((track, index) => {
+              return { ...track, index };
+            }),
+            playlistId: action.playlistId,
+            current: { ...action.payload[0], index: 0 },
+            currentId: action.payload[0]._id,
+            audioInfo: {
+              position: initialState.audioInfo.position,
+              duration: initialState.audioInfo.duration,
+            },
+          }
+        : {
+            ...state,
+          };
 
     case UPDATE_CURRENT:
       return {
         ...state,
         current: action.payload,
+        currentId: action.payload._id,
       };
 
     case UPDATE_AUDIO_INFO:
@@ -136,73 +147,70 @@ export default function reducer(state = initialState, action = {}) {
 
 // Action Creators
 //
-export const play = () => ({
-  type: PLAY,
-});
+export function play() {
+  return { type: PLAY };
+}
 
-export const pause = () => ({
-  type: PAUSE,
-});
+export function pause() {
+  return { type: PAUSE };
+}
 
-export const stop = () => ({
-  type: STOP,
-});
+export function stop() {
+  return { type: STOP };
+}
 
-export const previous = () => ({
-  type: PREVIOUS,
-});
+export function previous() {
+  return { type: PREVIOUS };
+}
 
-export const next = () => ({
-  type: NEXT,
-});
+export function next() {
+  return { type: NEXT };
+}
 
-export const skipTo = index => ({
-  type: SKIP_TO,
-  payload: index,
-});
+export function skipTo(index) {
+  return { type: SKIP_TO, payload: index };
+}
 
-export const volume = volume => ({
-  type: VOLUME,
-  payload: volume,
-});
+export function volume(volume) {
+  return { type: VOLUME, payload: volume };
+}
 
-export const updatePlaylist = playlist => ({
-  type: UPDATE_PLAYLIST,
-  payload: playlist,
-});
+export function updatePlaylist(playlist) {
+  let payload;
+  let playlistId;
+  if (playlist.type && playlist.type === 'playlist') {
+    payload = playlist.tracks;
+    playlistId = playlist._id;
+  } else {
+    payload = playlist;
+    playlistId = initialState.playlistId;
+  }
 
-export const updateCurrent = current => ({
-  type: UPDATE_CURRENT,
-  payload: current,
-});
+  return {
+    type: UPDATE_CURRENT_PLAYLIST,
+    payload: payload,
+    playlistId: playlistId,
+  };
+}
 
-export const updateAudioInfo = audioInfo => ({
-  type: UPDATE_AUDIO_INFO,
-  payload: audioInfo,
-});
+export function updateCurrent(current) {
+  return { type: UPDATE_CURRENT, payload: current };
+}
 
-export const updatePosition = position => ({
-  type: UPDATE_POSITION,
-  payload: position,
-});
+export function updateAudioInfo(audioInfo) {
+  return { type: UPDATE_AUDIO_INFO, payload: audioInfo };
+}
+
+export function updatePosition(position) {
+  return { type: UPDATE_POSITION, payload: position };
+}
 
 // Side effects, only as applicable (thunks)
 //
-// // Select playlist
-// export function selectPlaylist(playlist) {
-//   return dispatch => {
-//     dispatch(updatePlaylist(playlist));
-//     if (playlist && playlist.length > 0) {
-//       const current = playlist[0];
-//       dispatch(updateCurrent(current));
-//     }
-//   };
-// }
-
 // Play the selected track
-export function playSelected(track) {
+export function playSelected(playlist) {
   return dispatch => {
-    dispatch(updateCurrent(track));
+    dispatch(updatePlaylist(playlist));
     dispatch(play());
   };
 }

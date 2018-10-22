@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PlaylistCover = ({ tracks }) => {
+const PlaylistCover = ({ tracks, radius }) => {
   return (
     <div
       style={{
         display: 'flex',
         flexWrap: 'wrap',
-        borderRadius: '3%',
+        borderRadius: radius,
         overflow: 'hidden',
         border: '1px solid #ccc',
       }}
@@ -44,6 +44,11 @@ PlaylistCover.propTypes = {
       }).isRequired,
     }).isRequired,
   ).isRequired,
+  radius: PropTypes.string,
+};
+
+PlaylistCover.defaultProps = {
+  radius: '3%',
 };
 
 export default PlaylistCover;
