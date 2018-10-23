@@ -2,23 +2,23 @@ import Dashboard from '../components/dashboard/Dashboard';
 import CreateProfile from '../components/create-profile/CreateProfile';
 import EditProfile from '../components/edit-profile/EditProfile';
 import Profile from '../components/profile/Profile';
-import Post from '../components/pages/Post/Post';
 
-import Login from '../components/pages/Login';
-import Register from '../components/pages/Register';
-import Landing from '../components/pages/Landing';
-import Share from '../components/pages/Share';
-import Jammers from '../components/pages/Jammers';
-import Playlist from '../components/pages/Playlist';
-import Playlists from '../components/pages/Playlists';
-import Track from '../components/pages/Track';
-import Tracks from '../components/pages/Tracks';
-import Artist from '../components/pages/Artist';
-import Artists from '../components/pages/Artists';
-import Albums from '../components/pages/Albums';
-import Album from '../components/pages/Album';
-import Labels from '../components/pages/Labels';
-import Label from '../components/pages/Label';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
+import Landing from '../pages/Landing';
+import Share from '../pages/Share';
+import Jammers from '../pages/Jammers';
+import Playlist from '../pages/Playlist';
+import Playlists from '../pages/Playlists';
+import Track from '../pages/Track';
+import Tracks from '../pages/Tracks';
+import Artist from '../pages/Artist';
+import Artists from '../pages/Artists';
+import Albums from '../pages/Albums';
+import Album from '../pages/Album';
+import Labels from '../pages/Labels';
+import Label from '../pages/Label';
+import Post from '../pages/Post/Post';
 
 const routes = [
   {
