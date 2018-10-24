@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
 import { playSelected, pause } from '../../redux/modules/player';
 import LinkEntity from '../../elements/Links/LinkEntity';
+import LinkPlay from './children/LinkPlay';
 import LinkArtistNames from '../../elements/Links/LinkArtistNames';
 import CoverToggle from './children/CoverToggle';
 import { HeaderCell, Row } from './styles';
@@ -48,7 +49,12 @@ const PlaylistTracks = ({
               />
             </Table.Cell>
             <Table.Cell style={{ paddingLeft: 0 }}>
-              <LinkEntity entity={track} as="table" strong={true} />
+              <LinkPlay
+                entity={track}
+                as="table"
+                strong={true}
+                handleClick={() => playSelected(playlist, track)}
+              />
             </Table.Cell>
             <Table.Cell>
               <LinkArtistNames artists={track.artists} as="table" />
