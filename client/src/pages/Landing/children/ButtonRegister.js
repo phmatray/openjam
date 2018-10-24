@@ -8,7 +8,7 @@ const ButtonRegister = () => (
     to="/register"
     color="teal"
     size="massive"
-    fluid="fluid"
+    fluid
     content="Register"
     style={{ fontFamily: 'Ubuntu' }}
   />

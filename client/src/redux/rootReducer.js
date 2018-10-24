@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import layout from './modules/layout';
 import auth from './modules/auth';
 import errors from './modules/error';
 import profile from './modules/profile';
@@ -13,6 +14,7 @@ import player from './modules/player';
 import playlist from './modules/playlist';
 
 const reducers = {
+  layout,
   auth,
   errors,
   profile,
