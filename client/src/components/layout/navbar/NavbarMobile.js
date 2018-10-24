@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu, Icon, Image } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 import logo from '../../../img/logos/logo_white.svg';
 
 class NavbarMobile extends Component {
@@ -13,9 +12,8 @@ class NavbarMobile extends Component {
   };
 
   render() {
-    const { auth, playing, toggleSidebar, height } = this.props;
+    const { height, playing, toggleSidebar, isAuthenticated, user } = this.props;
     const { activeItem } = this.state;
-    const { isAuthenticated, user } = auth;
 
     const authLinks = (
       <React.Fragment>
@@ -38,7 +36,7 @@ class NavbarMobile extends Component {
     );
 
     return (
-      <Menu inverted fixed="top" style={{ height: height, backgroundColor: 'black' }}>
+      <Menu inverted fixed="top" style={{ height: `${height}px`, backgroundColor: 'black' }}>
         <Menu.Item
           header
           as={Link}
@@ -80,14 +78,10 @@ class NavbarMobile extends Component {
 
 NavbarMobile.propTypes = {
   toggleSidebar: PropTypes.func.isRequired,
-  height: PropTypes.string.isRequired,
-  auth: PropTypes.object.isRequired,
+  height: PropTypes.number.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
   playing: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  playing: state.player.playing,
-});
-
-export default connect(mapStateToProps)(NavbarMobile);
+export default NavbarMobile;

@@ -327,7 +327,9 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentProfile },
-)(withRouter(EditProfile));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { createProfile, getCurrentProfile },
+  )(EditProfile),
+);

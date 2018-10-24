@@ -9,6 +9,10 @@
   }
 }
 
+html {
+  background-color: black;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;

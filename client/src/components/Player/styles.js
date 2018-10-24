@@ -5,6 +5,7 @@ export const PlayerStyled = styled.div`
   height: ${props => (props.height ? props.height : '8em')};
   background-color: black;
   margin: 0;
+  width: 100%;
 `;
 
 export const FlexFill = styled.div`
