@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  updatePlaylist,
+  loadCollection,
   play,
   pause,
   previous,
@@ -15,11 +15,11 @@ import Sound from 'react-sound';
 
 class PlayerContainer extends Component {
   componentDidMount() {
-    const { fetchTracksRandom, updatePlaylist } = this.props;
+    const { fetchTracksRandom, loadCollection } = this.props;
 
     fetchTracksRandom().then(() => {
       const { tracks } = this.props;
-      updatePlaylist(tracks);
+      loadCollection(tracks);
     });
   }
 
@@ -39,9 +39,6 @@ class PlayerContainer extends Component {
             playStatus={status}
             position={audioInfo.position}
             loop={false}
-            onLoading={({ bytesLoaded, bytesTotal }) => {
-              console.log(`${(bytesLoaded / bytesTotal) * 100}% loaded`);
-            }}
             onPlaying={this.setAudioInfo}
             onFinishedPlaying={next}
           />
@@ -54,7 +51,7 @@ class PlayerContainer extends Component {
 
 PlayerContainer.propTypes = {
   fetchTracksRandom: PropTypes.func.isRequired,
-  updatePlaylist: PropTypes.func.isRequired,
+  loadCollection: PropTypes.func.isRequired,
   updateAudioInfo: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
   current: PropTypes.shape({
@@ -83,5 +80,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchTracksRandom, updatePlaylist, updateAudioInfo, play, pause, previous, next },
+  { fetchTracksRandom, loadCollection, updateAudioInfo, play, pause, previous, next },
 )(PlayerContainer);
