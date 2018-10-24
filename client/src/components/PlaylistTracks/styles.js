@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TableRow, TableCell, TableHeaderCell, Icon as SemanticIcon } from 'semantic-ui-react';
+import { TableRow, TableHeaderCell, Icon as SemanticIcon } from 'semantic-ui-react';
 
 export const HeaderCell = styled(TableHeaderCell)`
   text-transform: uppercase !important;
@@ -24,6 +24,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Wrapper = styled.div`

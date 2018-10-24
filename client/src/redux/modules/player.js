@@ -7,31 +7,27 @@ const PAUSE = 'player/PAUSE';
 const STOP = 'player/STOP';
 const PREVIOUS = 'player/PREVIOUS';
 const NEXT = 'player/NEXT';
-const SKIP_TO = 'player/SKIP_TO';
-const VOLUME = 'player/VOLUME';
-const UPDATE_CURRENT_PLAYLIST = 'player/UPDATE_CURRENT_PLAYLIST';
-const UPDATE_CURRENT = 'player/UPDATE_CURRENT';
+
+const LOAD_COLLECTION = 'player/LOAD_COLLECTION';
+
 const UPDATE_AUDIO_INFO = 'player/UPDATE_AUDIO_INFO';
 const UPDATE_POSITION = 'player/UPDATE_POSITION';
+const UPDATE_VOLUME = 'player/UPDATE_VOLUME';
 
 // Reducer
 //
 const initialState = {
-  playlist: [],
-  playlistId: 'default',
-  current: null,
-  currentId: 'default',
   playing: false,
-  loading: true,
-  volume: 0.6,
-  progress: 0,
-  seek: 0,
+  status: 'STOPPED',
+  collection: null,
+  collectionId: null,
+  current: null,
+  currentId: null,
   audioInfo: {
     position: 0,
     duration: 0,
     volume: 1,
   },
-  status: 'PAUSED',
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -64,8 +60,11 @@ export default function reducer(state = initialState, action = {}) {
     case PREVIOUS:
       return {
         ...state,
-        current: state.playlist[getPreviousIndex(state.playlist.length, state.current.index)],
-        currentId: state.playlist[getPreviousIndex(state.playlist.length, state.current.index)]._id,
+        current:
+          state.collection.tracks[
+            getPreviousIndex(state.collection.tracks.length, state.current.index)
+          ],
+        currentId: getNextIndex(state.collection.tracks.length, state.current.index)._id,
         audioInfo: {
           position: initialState.audioInfo.position,
           duration: initialState.audioInfo.duration,
@@ -75,54 +74,28 @@ export default function reducer(state = initialState, action = {}) {
     case NEXT:
       return {
         ...state,
-        current: state.playlist[getNextIndex(state.playlist.length, state.current.index)],
-        currentId: state.playlist[getNextIndex(state.playlist.length, state.current.index)]._id,
+        current:
+          state.collection.tracks[
+            getNextIndex(state.collection.tracks.length, state.current.index)
+          ],
+        currentId: getNextIndex(state.collection.tracks.length, state.current.index)._id,
         audioInfo: {
           position: initialState.audioInfo.position,
           duration: initialState.audioInfo.duration,
         },
       };
 
-    case SKIP_TO:
+    case LOAD_COLLECTION:
       return {
         ...state,
-        index: state.payload,
-        playing: true,
-      };
-
-    case VOLUME:
-      return {
-        ...state,
+        collection: action.payload.collection,
+        collectionId: action.payload.collection._id,
+        current: action.payload.current,
+        currentId: action.payload.current._id,
         audioInfo: {
-          ...state.audioInfo,
-          volume: action.payload,
+          position: initialState.audioInfo.position,
+          duration: initialState.audioInfo.duration,
         },
-      };
-
-    case UPDATE_CURRENT_PLAYLIST:
-      return state.playlistId !== action.playlistId || state.playlist.length === 0
-        ? {
-            ...state,
-            playlist: action.payload.map((track, index) => {
-              return { ...track, index };
-            }),
-            playlistId: action.playlistId,
-            current: { ...action.payload[0], index: 0 },
-            currentId: action.payload[0]._id,
-            audioInfo: {
-              position: initialState.audioInfo.position,
-              duration: initialState.audioInfo.duration,
-            },
-          }
-        : {
-            ...state,
-          };
-
-    case UPDATE_CURRENT:
-      return {
-        ...state,
-        current: action.payload,
-        currentId: action.payload._id,
       };
 
     case UPDATE_AUDIO_INFO:
@@ -137,6 +110,15 @@ export default function reducer(state = initialState, action = {}) {
         audioInfo: {
           ...state.audioInfo,
           position: action.payload,
+        },
+      };
+
+    case UPDATE_VOLUME:
+      return {
+        ...state,
+        audioInfo: {
+          ...state.audioInfo,
+          volume: action.payload,
         },
       };
 
@@ -167,34 +149,25 @@ export function next() {
   return { type: NEXT };
 }
 
-export function skipTo(index) {
-  return { type: SKIP_TO, payload: index };
-}
-
 export function volume(volume) {
-  return { type: VOLUME, payload: volume };
+  return { type: UPDATE_VOLUME, payload: volume };
 }
 
-export function updatePlaylist(playlist) {
-  let payload;
-  let playlistId;
-  if (playlist.type && playlist.type === 'playlist') {
-    payload = playlist.tracks;
-    playlistId = playlist._id;
-  } else {
-    payload = playlist;
-    playlistId = initialState.playlistId;
+export function loadCollection(collection, index = 0) {
+  if (collection.length) {
+    collection = { type: 'default', tracks: collection };
   }
 
   return {
-    type: UPDATE_CURRENT_PLAYLIST,
-    payload: payload,
-    playlistId: playlistId,
+    type: LOAD_COLLECTION,
+    payload: {
+      collection: {
+        ...collection,
+        tracks: collection.tracks.map((track, i) => ({ ...track, index: i })),
+      },
+      current: { ...collection.tracks[index], index },
+    },
   };
-}
-
-export function updateCurrent(current) {
-  return { type: UPDATE_CURRENT, payload: current };
 }
 
 export function updateAudioInfo(audioInfo) {
@@ -207,10 +180,27 @@ export function updatePosition(position) {
 
 // Side effects, only as applicable (thunks)
 //
-// Play the selected track
-export function playSelected(playlist) {
-  return dispatch => {
-    dispatch(updatePlaylist(playlist));
+// Play the selected collection (playlist, album...)
+// (A collection is an object containing the "tracks" property)
+export function playSelected(collection, track = null) {
+  return (dispatch, getState) => {
+    if (collection === null || collection === undefined || collection.tracks.length === 0) {
+      throw new Error('collection cannot be null, undefined or empty');
+    }
+
+    const { collectionId, currentId } = getState().player;
+    const sameCollection = collection._id === collectionId;
+
+    if (track === null) {
+      dispatch(loadCollection(collection, 0));
+    } else {
+      const sameTrack = sameCollection && track._id === currentId;
+      if (!sameTrack) {
+        const index = collection.tracks.findIndex(element => element._id === track._id);
+        dispatch(loadCollection(collection, index));
+      }
+    }
+
     dispatch(play());
   };
 }

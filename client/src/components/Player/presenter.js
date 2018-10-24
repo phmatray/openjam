@@ -14,7 +14,7 @@ import {
   Edit,
   ArtistName,
   ButtonCollection,
-} from './style';
+} from './styles';
 import Progress from './children/Progress';
 import Flex from '../../elements/Flex';
 import LinkArtistNames from '../../elements/Links/LinkArtistNames';
@@ -41,7 +41,7 @@ class Player extends Component {
 
           <FlexFill>
             <ColumnCover>
-              <Cover src={current.coverurl.w200} alt="cover" />
+              {current !== null && <Cover src={current.coverurl.w200} alt="cover" />}
             </ColumnCover>
             <ColumnInfo>
               <PlayerLink to={`/track/${current._id}`}>
