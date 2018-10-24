@@ -148,7 +148,7 @@ class NavbarDesktop extends Component {
     );
 
     return (
-      <Menu inverted fixed="top" style={{ height: height, backgroundColor: 'black' }}>
+      <Menu inverted fixed="top" style={{ height: `${height}px`, backgroundColor: 'black' }}>
         <Container>
           <Menu.Item
             header
@@ -187,7 +187,7 @@ class NavbarDesktop extends Component {
 }
 
 NavbarDesktop.propTypes = {
-  height: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
   logoutUser: PropTypes.func.isRequired,
   getCurrentUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,

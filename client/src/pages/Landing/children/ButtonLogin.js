@@ -7,7 +7,7 @@ const ButtonLogin = () => (
     as={Link}
     to="/login"
     size="massive"
-    fluid="fluid"
+    fluid
     content="Sign in"
     style={{ fontFamily: 'Ubuntu' }}
   />
