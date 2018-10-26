@@ -20,7 +20,7 @@ class LayoutPresenter extends Component {
       toggleSidebar,
     } = this.props;
     const topbarHeight = 56;
-    const playerHeight = 112;
+    const playerHeight = 90;
     const containerHeight = `calc(100vh - ${topbarHeight}px - ${playerHeight}px)`;
 
     return (
