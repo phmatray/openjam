@@ -75,7 +75,7 @@ export function getCurrentProfile() {
   return dispatch => {
     dispatch(loadProfiles());
     axios
-      .get('/api/profile')
+      .get('https://api.openjam.eu/api/profile')
       .then(res => dispatch(updateProfile(res.data)))
       .catch(err => dispatch(updateProfile({})));
   };
@@ -86,7 +86,7 @@ export function getProfileByHandle(handle) {
   return dispatch => {
     dispatch(loadProfiles());
     axios
-      .get(`/api/profile/handle/${handle}`)
+      .get(`https://api.openjam.eu/api/profile/handle/${handle}`)
       .then(res => dispatch(updateProfile(res.data)))
       .catch(err => dispatch(updateProfile(null)));
   };
@@ -96,7 +96,7 @@ export function getProfileByHandle(handle) {
 export function createProfile(profileData, history) {
   return dispatch => {
     axios
-      .post('/api/profile', profileData)
+      .post('https://api.openjam.eu/api/profile', profileData)
       .then(res => history.push('/dashboard'))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -106,7 +106,7 @@ export function createProfile(profileData, history) {
 export function addExperience(expData, history) {
   return dispatch => {
     axios
-      .post('/api/profile/experience', expData)
+      .post('https://api.openjam.eu/api/profile/experience', expData)
       .then(res => history.push('/dashboard'))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -116,7 +116,7 @@ export function addExperience(expData, history) {
 export function addEducation(eduData, history) {
   return dispatch => {
     axios
-      .post('/api/profile/education', eduData)
+      .post('https://api.openjam.eu/api/profile/education', eduData)
       .then(res => history.push('/dashboard'))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -126,7 +126,7 @@ export function addEducation(eduData, history) {
 export function deleteExperience(id) {
   return dispatch => {
     axios
-      .delete(`/api/profile/experience/${id}`)
+      .delete(`https://api.openjam.eu/api/profile/experience/${id}`)
       .then(res => dispatch(updateProfile(res.data)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -136,7 +136,7 @@ export function deleteExperience(id) {
 export function deleteEducation(id) {
   return dispatch => {
     axios
-      .delete(`/api/profile/education/${id}`)
+      .delete(`https://api.openjam.eu/api/profile/education/${id}`)
       .then(res => dispatch(updateProfile(res.data)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -147,7 +147,7 @@ export function getProfiles() {
   return dispatch => {
     dispatch(loadProfiles());
     axios
-      .get('/api/profile/all')
+      .get('https://api.openjam.eu/api/profile/all')
       .then(res => dispatch(updateProfiles(res.data)))
       .catch(err => dispatch(updateProfiles(null)));
   };
@@ -158,7 +158,7 @@ export function deleteAccount() {
   return dispatch => {
     if (window.confirm('Are you sure? This can NOT be undone!')) {
       axios
-        .delete('/api/profile')
+        .delete('https://api.openjam.eu/api/profile')
         .then(res => dispatch(logoutUser()))
         .catch(err => dispatch(updateErrors(err.response.data)));
     }

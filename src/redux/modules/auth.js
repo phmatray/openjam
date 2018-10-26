@@ -53,7 +53,7 @@ export function getCurrentUser() {
   return dispatch => {
     dispatch(loadUser());
     axios
-      .get('/auth/user')
+      .get('https://api.openjam.eu/auth/user')
       .then(res => dispatch(updateUser(res.data)))
       .catch(err => dispatch(updateUser({})));
   };
@@ -63,7 +63,7 @@ export function getCurrentUser() {
 export function registerUser(userData, history) {
   return dispatch => {
     axios
-      .post('/auth/register', userData)
+      .post('https://api.openjam.eu/auth/register', userData)
       .then(res => {
         console.log(res);
         if (!res.data.errmsg) {
@@ -85,7 +85,7 @@ export function registerUser(userData, history) {
 export function loginUser(userData) {
   return dispatch => {
     axios
-      .post('/auth/login', userData)
+      .post('https://api.openjam.eu/auth/login', userData)
       .then(res => {
         if (res.status === 200) {
           dispatch(updateUser(res.data));
@@ -99,7 +99,7 @@ export function loginUser(userData) {
 export function logoutUser() {
   return dispatch => {
     axios
-      .post('/auth/logout')
+      .post('https://api.openjam.eu/auth/logout')
       .then(res => {
         console.log(res.data);
 

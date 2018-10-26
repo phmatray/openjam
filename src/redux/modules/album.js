@@ -73,7 +73,7 @@ export default function reducer(state = initialState, action = {}) {
 export function fetchAlbums() {
   return {
     types: [FETCH_ALBUMS_PENDING, FETCH_ALBUMS_SUCCESS, FETCH_ALBUMS_ERROR],
-    callAPI: () => axios.get('/api/albums'),
+    callAPI: () => axios.get('https://api.openjam.eu/api/albums'),
     shouldCallAPI: state => true,
   };
 }
@@ -82,7 +82,7 @@ export function fetchAlbums() {
 export function fetchAlbum(id) {
   return {
     types: [FETCH_ALBUM_PENDING, FETCH_ALBUM_SUCCESS, FETCH_ALBUM_ERROR],
-    callAPI: () => axios.get(`/api/albums/${id}`),
+    callAPI: () => axios.get(`https://api.openjam.eu/api/albums/${id}`),
     shouldCallAPI: state => true,
   };
 }

@@ -64,7 +64,7 @@ export function fetchRepos(username) {
     dispatch(fetchReposPending());
 
     axios
-      .get(`/api/github/repos/${username}`)
+      .get(`https://api.openjam.eu/api/github/repos/${username}`)
       .then(res => dispatch(fetchReposSuccess(res.data)))
       .catch(err => dispatch(fetchReposError(err)));
   };
