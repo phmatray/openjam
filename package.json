@@ -30,7 +30,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.82.5",
+    "semantic-ui-react": "^0.83.0",
     "styled-components": "^4.0.2"
   },
   "lint-staged": {
@@ -48,7 +48,6 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook -s public"
   },
-  "proxy": "https://openjam-api.herokuapp.com",
   "devDependencies": {
     "@storybook/react": "^3.4.11",
     "@storybook/addon-actions": "^3.4.11",

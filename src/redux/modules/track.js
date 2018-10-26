@@ -73,7 +73,7 @@ export default function reducer(state = initialState, action = {}) {
 export function fetchTracks() {
   return {
     types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-    callAPI: () => axios.get('/api/tracks'),
+    callAPI: () => axios.get('https://api.openjam.eu/api/tracks'),
     shouldCallAPI: state => true,
   };
 }
@@ -82,7 +82,7 @@ export function fetchTracks() {
 export function fetchTracksRandom() {
   return {
     types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-    callAPI: () => axios.get('/api/tracks/random'),
+    callAPI: () => axios.get('https://api.openjam.eu/api/tracks/random'),
     shouldCallAPI: state => true,
   };
 }
@@ -91,7 +91,7 @@ export function fetchTracksRandom() {
 export function fetchTrack(id) {
   return {
     types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
-    callAPI: () => axios.get(`/api/tracks/${id}`),
+    callAPI: () => axios.get(`https://api.openjam.eu/api/tracks/${id}`),
     shouldCallAPI: state => true,
   };
 }

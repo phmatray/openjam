@@ -73,7 +73,7 @@ export default function reducer(state = initialState, action = {}) {
 export function fetchPlaylists() {
   return {
     types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
-    callAPI: () => axios.get('/api/playlists'),
+    callAPI: () => axios.get('https://api.openjam.eu/api/playlists'),
     shouldCallAPI: state => true,
   };
 }
@@ -82,7 +82,7 @@ export function fetchPlaylists() {
 export function fetchPlaylist(id) {
   return {
     types: [FETCH_PLAYLIST_PENDING, FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_ERROR],
-    callAPI: () => axios.get(`/api/playlists/${id}`),
+    callAPI: () => axios.get(`https://api.openjam.eu/api/playlists/${id}`),
     shouldCallAPI: state => true,
   };
 }
