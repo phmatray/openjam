@@ -51,6 +51,7 @@ class PlayerContainer extends Component {
 
 PlayerContainer.propTypes = {
   fetchTracksRandom: PropTypes.func.isRequired,
+
   loadCollection: PropTypes.func.isRequired,
   updateAudioInfo: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
@@ -70,6 +71,14 @@ PlayerContainer.defaultProps = {
 
 const mapStateToProps = state => ({
   tracks: state.track.tracks,
+
+  fetchTracksRandom: PropTypes.func.isRequired,
+  loadCollection: PropTypes.func.isRequired,
+  updateAudioInfo: PropTypes.func.isRequired,
+  play: PropTypes.func.isRequired,
+  pause: PropTypes.func.isRequired,
+  previous: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired,
 
   playlist: state.player.playlist,
   playing: state.player.playing,

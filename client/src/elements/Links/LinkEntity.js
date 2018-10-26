@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { TableLink } from './style';
+import { TableLink, InvertedLink, Alternate, AlternateEdit } from './style';
 
-const LinkEntity = ({ entity, as, strong }) => {
+const LinkEntity = ({ entity, as, strong, alternate }) => {
   // check entity
   if (entity === undefined || entity === null) {
     return <span />;
@@ -14,13 +14,23 @@ const LinkEntity = ({ entity, as, strong }) => {
 
   // get content
   let content;
-  if (entity.title) {
-    content = entity.title;
-    if (entity.edit) {
-      content += ` (${entity.edit})`;
-    }
+  // set alternate if needed
+  if (alternate) {
+    content = (
+      <Alternate>
+        {entity.title ? entity.title : entity.name}
+        {entity.title && entity.edit && <AlternateEdit>{` (${entity.edit})`}</AlternateEdit>}
+      </Alternate>
+    );
   } else {
-    content = entity.name;
+    if (entity.title) {
+      content = entity.title;
+      if (entity.edit) {
+        content += ` (${entity.edit})`;
+      }
+    } else {
+      content = entity.name;
+    }
   }
 
   // set strong if needed
@@ -32,6 +42,9 @@ const LinkEntity = ({ entity, as, strong }) => {
   switch (as) {
     case 'table':
       return <TableLink to={href}>{content}</TableLink>;
+
+    case 'inverted':
+      return <InvertedLink to={href}>{content}</InvertedLink>;
 
     case 'link':
     default:
@@ -47,13 +60,15 @@ LinkEntity.propTypes = {
     title: PropTypes.string,
     edit: PropTypes.string,
   }).isRequired,
-  as: PropTypes.oneOf(['link', 'table']),
+  as: PropTypes.oneOf(['link', 'table', 'inverted']),
   strong: PropTypes.bool,
+  alternate: PropTypes.bool,
 };
 
 LinkEntity.defaultProps = {
   as: 'link',
   strong: false,
+  alternate: false,
 };
 
 export default LinkEntity;

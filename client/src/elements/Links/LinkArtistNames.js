@@ -14,7 +14,7 @@ LinkArtistNames.propTypes = {
       _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  as: PropTypes.oneOf(['link', 'table']),
+  as: PropTypes.oneOf(['link', 'table', 'inverted']),
 };
 
 LinkEntity.defaultProps = {
