@@ -32,7 +32,7 @@ export const Bottom = styled.div`
   font-size: 1rem;
   position: relative;
   z-index: 10;
-  height: 112px;
+  height: 90px;
 `;
 
 export const Section = styled.div`

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const PlayerStyled = styled.div`
-  height: ${props => (props.height ? props.height : '8em')};
+  height: ${props => (props.height ? `${props.height}px` : '8em')};
   background-color: black;
   margin: 0;
   width: 100%;
@@ -10,24 +9,17 @@ export const PlayerStyled = styled.div`
 
 export const FlexFill = styled.div`
   width: 100%;
-  height: calc(100%-20px);
+  height: 100%;
   display: flex;
   justify-content: flex-start;
   padding: 0;
 `;
 
 export const ColumnCover = styled.div`
-  width: 6.5em;
-  height: 6.5em;
+  min-width: 90px;
+  width: 90px;
+  height: 90px;
   padding: 0;
-`;
-
-export const ColumnInfo = styled.div`
-  width: 16em;
-  margin-left: 0.5em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 `;
 
 export const ColumnTime = styled.div`
@@ -37,51 +29,16 @@ export const ColumnTime = styled.div`
   text-align: right;
 `;
 
-export const ColumnControls = styled.div`
-  width: 30em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 export const Cover = styled.img`
-  width: 6em;
-  height: 6em;
-  border: 0.1em solid white;
-  margin: 0.2em;
-`;
-
-export const PlayerLink = styled(Link)`
-  color: #fff;
-  transition: color 100ms ease-in-out;
-
-  &:hover {
-    color: #00b5ad;
-  }
-`;
-
-export const TrackName = styled.p`
-  margin-top: 1em !important;
-  margin-bottom: 0em;
-  font-family: Comfortaa, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-`;
-
-export const Edit = styled.p`
-  margin-top: 0.2em !important;
-  font-family: Comfortaa, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-size: 0.8em;
-  font-style: italic;
-  font-weight: 400;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 `;
 
 export const ArtistName = styled.p`
-  margin-top: 1em !important;
+  margin-top: 0.5em !important;
+  font-size: 0.95rem;
   font-family: Ubuntu, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #ddd;
-`;
-
-export const ButtonCollection = styled.div`
-  margin-top: 1em;
+  color: #ccc;
 `;
