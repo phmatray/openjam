@@ -4,7 +4,6 @@ sudo: false
 language: node_js
 # 3. These are the various versions of node.js we want to test against
 node_js:
-  - 'iojs'
   - '10'
 # 4. We'd like to cache our node_modules dir, because it won't change very often
 cache:
