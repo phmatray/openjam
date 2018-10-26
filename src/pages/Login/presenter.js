@@ -45,10 +45,10 @@ class LoginPresenter extends Component {
             <GridColumn textAlign="left" mobile={16} tablet={16} computer={16}>
               <Header as="h3">Login with social provider</Header>
               <Button.Group basic vertical fluid>
-                <Button as="a" size="large" href="http://localhost:5000/auth/facebook">
+                <Button as="a" size="large" href="https://openjam-api.herokuapp.com/auth/facebook">
                   <Icon name="facebook" /> Sign in with Facebook
                 </Button>
-                <Button as="a" size="large" href="http://localhost:5000/auth/github">
+                <Button as="a" size="large" href="https://openjam-api.herokuapp.com/auth/github">
                   <Icon name="github" /> Sign in with GitHub
                 </Button>
               </Button.Group>
