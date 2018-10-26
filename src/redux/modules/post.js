@@ -105,7 +105,7 @@ export function addPost(postData) {
   return dispatch => {
     dispatch(clearErrors());
     axios
-      .post('/api/posts', postData)
+      .post('https://api.openjam.eu/api/posts', postData)
       .then(res => dispatch(createPost(res.data)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -116,7 +116,7 @@ export function getPosts() {
   return dispatch => {
     dispatch(loadPosts());
     axios
-      .get('/api/posts')
+      .get('https://api.openjam.eu/api/posts')
       .then(res => dispatch(updatePosts(res.data)))
       .catch(err => dispatch(updatePosts(null)));
   };
@@ -127,7 +127,7 @@ export function getPost(id) {
   return dispatch => {
     dispatch(loadPosts());
     axios
-      .get(`/api/posts/${id}`)
+      .get(`https://api.openjam.eu/api/posts/${id}`)
       .then(res => dispatch(updatePost(res.data)))
       .catch(err => dispatch(updatePost(null)));
   };
@@ -137,7 +137,7 @@ export function getPost(id) {
 export function deletePost(id) {
   return dispatch => {
     axios
-      .delete(`/api/posts/${id}`)
+      .delete(`https://api.openjam.eu/api/posts/${id}`)
       .then(res => dispatch(removePost(id)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -147,7 +147,7 @@ export function deletePost(id) {
 export function addLike(id) {
   return dispatch => {
     axios
-      .post(`/api/posts/like/${id}`)
+      .post(`https://api.openjam.eu/api/posts/like/${id}`)
       .then(res => dispatch(updatePostLike(res.data)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -157,7 +157,7 @@ export function addLike(id) {
 export function removeLike(id) {
   return dispatch => {
     axios
-      .post(`/api/posts/unlike/${id}`)
+      .post(`https://api.openjam.eu/api/posts/unlike/${id}`)
       .then(res => dispatch(updatePostLike(res.data)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -168,7 +168,7 @@ export function addComment(postId, commentData) {
   return dispatch => {
     dispatch(clearErrors());
     axios
-      .post(`/api/posts/comment/${postId}`, commentData)
+      .post(`https://api.openjam.eu/api/posts/comment/${postId}`, commentData)
       .then(res => dispatch(updatePost(res.data)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
@@ -178,7 +178,7 @@ export function addComment(postId, commentData) {
 export function deleteComment(postId, commentId) {
   return dispatch => {
     axios
-      .delete(`/api/posts/comment/${postId}/${commentId}`)
+      .delete(`https://api.openjam.eu/api/posts/comment/${postId}/${commentId}`)
       .then(res => dispatch(updatePost(res.data)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
