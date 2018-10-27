@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { updateUser, logoutUser } from './redux/modules/auth';
@@ -10,8 +10,7 @@ import store from './redux/store';
 import HttpsRedirect from 'react-https-redirect';
 
 import Layout from './components/layout/Layout';
-import NotFound from './components/not-found/NotFound';
-import CustomRoutes from './routes/CustomRoutes';
+import Routes from './routes/Routes';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
@@ -47,10 +46,7 @@ const App = () => (
       <Router>
         <div className="App" style={{ height: '100vh' }}>
           <Layout>
-            <Switch>
-              <CustomRoutes />
-              <Route component={NotFound} />
-            </Switch>
+            <Routes />
           </Layout>
         </div>
       </Router>
