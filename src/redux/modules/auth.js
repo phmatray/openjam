@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { updateErrors } from './error';
-import isEmpty from '../../validation/is-empty';
+import isEmpty from '../../utils/validation/is-empty';
 
 // Actions
 //

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Label, Segment, GridRow, GridColumn } from 'semantic-ui-react';
-import isEmpty from '../../validation/is-empty';
+import isEmpty from '../../utils/validation/is-empty';
 import PropTypes from 'prop-types';
 
 class ProfileAbout extends Component {

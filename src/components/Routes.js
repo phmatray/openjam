@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import AuthenticatedRoute from './AuthenticatedRoute';
-import Loading from './Loading';
+import AuthenticatedRoute from './routes/AuthenticatedRoute';
+import Loading from './routes/Loading';
 
 const AsyncLogin = Loadable({
   loader: () => import('../pages/Login'),
@@ -124,7 +124,7 @@ const AsyncNotFound = Loadable({
   timeout: 10000,
 });
 
-export default ({ childProps }) => (
+const Routes = ({ childProps }) => (
   <Switch>
     <Route path="/" exact component={AsyncLanding} props={childProps} />
     <Route path="/login" exact component={AsyncLogin} props={childProps} />
@@ -160,3 +160,5 @@ export default ({ childProps }) => (
     <Route component={AsyncNotFound} />
   </Switch>
 );
+
+export default Routes;

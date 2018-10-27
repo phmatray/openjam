@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Input from '../components/Input';
 import { createProfile, getCurrentProfile } from '../redux/modules/profile';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
-import isEmpty from '../validation/is-empty';
+import isEmpty from '../utils/validation/is-empty';
 
 class EditProfile extends Component {
   state = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Button, GridRow, GridColumn } from 'semantic-ui-react';
-import isEmpty from '../../validation/is-empty';
+import isEmpty from '../../utils/validation/is-empty';
 import Social from '../../components/Social';
 import PropTypes from 'prop-types';
 
