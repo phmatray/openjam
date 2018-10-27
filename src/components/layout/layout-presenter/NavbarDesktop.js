@@ -5,7 +5,7 @@ import { Menu, Container, Image, Dropdown } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { logoutUser, getCurrentUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
-import logo from '../../../img/logos/logo_white.svg';
+import logo from '../../../images/logos/logo_white.svg';
 
 class NavbarDesktop extends Component {
   state = { activeItem: 'home' };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu, Icon, Image } from 'semantic-ui-react';
-import logo from '../../../img/logos/logo_white.svg';
+import logo from '../../../images/logos/logo_white.svg';
 
 class NavbarMobile extends Component {
   state = { activeItem: 'home' };
