@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
-import LinkEntity from '../../../elements/Links/LinkEntity';
-import LinkArtistNames from '../../../elements/Links/LinkArtistNames';
+import LinkEntity from '../../../components/LinkEntity';
+import LinkArtistNames from '../../../components/LinkArtistNames';
 import { HeaderCell } from './styles';
 
 const AlbumTracks = ({ tracks }) => {

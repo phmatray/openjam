@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlaylists } from '../redux/modules/playlist';
-import Spinner from '../elements/UI/Spinner';
+import Spinner from '../components/Spinner';
 import PlaylistsPresenter from './playlists/PlaylistsPresenter';
 
 class Playlists extends Component {

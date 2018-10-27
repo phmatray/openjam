@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../../elements/Inputs/TextAreaFieldGroup';
 import { addPost } from '../../redux/modules/post';
 import { Form } from 'semantic-ui-react';
-import Div from '../../elements/Div';
+import Div from '../../components/Div';
+import Input from '../../components/Input';
 
 class PostForm extends Component {
   state = {
@@ -45,7 +45,8 @@ class PostForm extends Component {
       <div>
         <Div mb="1em">
           <Form error noValidate onSubmit={this.handleSubmit}>
-            <TextAreaFieldGroup
+            <Input
+              as="text-area-field"
               placeholder={`Speak your mind, ${user.firstname}`}
               name="text"
               value={this.state.text}

@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'semantic-ui-react';
 import Jammer from './jammers-presenter/Jammer';
-import Body from '../../elements/UI/Body';
-import JoinUs from '../../elements/Messages/JoinUs';
+import Body from '../../components/Body';
+import Message from '../../components/Message';
 
 const JammersPresenter = ({ jammers, isAuthenticated }) => (
   <Body
     breadcrumbSegments={['Jammers']}
     description="Browse and connect with listeners and musicians."
   >
-    {!isAuthenticated && <JoinUs />}
+    {!isAuthenticated && <Message />}
 
     {jammers !== null && (
       <Card.Group itemsPerRow={4} stackable>

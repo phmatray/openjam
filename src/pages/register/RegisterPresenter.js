@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Message, Grid, GridColumn } from 'semantic-ui-react';
-import Body from '../../elements/UI/Body';
-import TextFieldGroup from '../../elements/Inputs/TextFieldGroup';
+import Body from '../../components/Body';
+import Input from '../../components/Input';
 
 class RegisterPresenter extends Component {
   state = {
@@ -39,7 +39,8 @@ class RegisterPresenter extends Component {
         <Grid style={{ height: '100%' }} verticalAlign="middle">
           <GridColumn style={{ maxWidth: 450 }}>
             <Form error noValidate onSubmit={this.handleSubmit}>
-              <TextFieldGroup
+              <Input
+              as='text-field'
                 name="firstname"
                 label="First name"
                 placeholder="First name"
@@ -49,7 +50,8 @@ class RegisterPresenter extends Component {
                 error={errors.firstname}
               />
 
-              <TextFieldGroup
+              <Input
+              as='text-field'
                 name="lastname"
                 label="Last name"
                 placeholder="Last name"
@@ -59,7 +61,8 @@ class RegisterPresenter extends Component {
                 error={errors.lastname}
               />
 
-              <TextFieldGroup
+              <Input
+              as='text-field'
                 type="email"
                 name="email"
                 label="Email Address"
@@ -71,7 +74,8 @@ class RegisterPresenter extends Component {
                 info="This app uses Gravatar so if you want a profile image, use a Gravatar email"
               />
 
-              <TextFieldGroup
+              <Input
+              as='text-field'
                 type="password"
                 name="password"
                 label="Password"
@@ -82,7 +86,8 @@ class RegisterPresenter extends Component {
                 error={errors.password}
               />
 
-              <TextFieldGroup
+              <Input
+              as='text-field'
                 type="password"
                 name="password2"
                 label="Confirm Password"

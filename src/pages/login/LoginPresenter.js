@@ -11,8 +11,8 @@ import {
   Divider,
   Header,
 } from 'semantic-ui-react';
-import Body from '../../elements/UI/Body';
-import TextFieldGroup from '../../elements/Inputs/TextFieldGroup';
+import Body from '../../components/Body';
+import Input from '../../components/Input';
 
 class LoginPresenter extends Component {
   state = {
@@ -38,8 +38,7 @@ class LoginPresenter extends Component {
     const { email, password } = this.state;
     const { errors } = this.props;
 
-    return (
-      <Body breadcrumbSegments={['Log In']} description="Sign in to your OpenJam account.">
+    return <Body breadcrumbSegments={['Log In']} description="Sign in to your OpenJam account.">
         <Grid verticalAlign="middle" divided="vertically" style={{ maxWidth: '450px' }}>
           <GridRow>
             <GridColumn textAlign="left" mobile={16} tablet={16} computer={16}>
@@ -55,27 +54,9 @@ class LoginPresenter extends Component {
               <Divider horizontal>OR</Divider>
               <Header as="h3">Login with email</Header>
               <Form error noValidate onSubmit={this.handleSubmit}>
-                <TextFieldGroup
-                  type="email"
-                  name="email"
-                  label="Email Address"
-                  placeholder="Email Address"
-                  icon="mail"
-                  value={email}
-                  onChange={this.handleChange}
-                  error={errors.email}
-                />
+                <Input as="text-field" type="email" name="email" label="Email Address" placeholder="Email Address" icon="mail" value={email} onChange={this.handleChange} error={errors.email} />
 
-                <TextFieldGroup
-                  type="password"
-                  name="password"
-                  label="Password"
-                  placeholder="Password"
-                  icon="lock"
-                  value={password}
-                  onChange={this.handleChange}
-                  error={errors.password}
-                />
+                <Input as="text-field" type="password" name="password" label="Password" placeholder="Password" icon="lock" value={password} onChange={this.handleChange} error={errors.password} />
 
                 <Form.Button fluid size="large" color="teal" content="Submit" />
               </Form>
@@ -87,8 +68,7 @@ class LoginPresenter extends Component {
             </GridColumn>
           </GridRow>
         </Grid>
-      </Body>
-    );
+      </Body>;
   }
 }
 

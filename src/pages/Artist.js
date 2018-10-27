@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArtist } from '../redux/modules/artist';
-import Spinner from '../elements/UI/Spinner';
+import Spinner from '../components/Spinner';
 import ArtistPresenter from './artist/ArtistPresenter';
 
 class Artist extends Component {

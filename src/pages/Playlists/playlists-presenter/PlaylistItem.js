@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Title, Description } from './styles';
-import PlaylistCover from '../../../elements/UI/PlaylistCover';
+import PlaylistCover from '../../../components/PlaylistCover';
 
 const PlaylistItem = ({ playlist, color }) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import Flex from '../../../elements/Flex';
-import Span from '../../../elements/Span';
+import Flex from '../../../components/Flex';
+import Span from '../../../components/Span';
 import logoWhite from '../../../img/logos/logo_white.svg';
 
 function Logo() {
