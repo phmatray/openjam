@@ -48,6 +48,7 @@
     "build": "react-scripts build",
     "analyze": "source-map-explorer build/static/js/main.*",
     "test": "react-scripts test --env=jsdom",
+    "test:debug": "react-scripts --inspect-brk test --runInBand",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook -s public"
