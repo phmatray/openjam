@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlaylist } from '../redux/modules/playlist';
 import { playSelected, pause } from '../redux/modules/player';
-import Spinner from '../elements/UI/Spinner';
+import Spinner from '../components/Spinner';
 import PlaylistPresenter from './playlist/PlaylistPresenter';
 
 class Playlist extends Component {

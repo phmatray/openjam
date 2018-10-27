@@ -4,7 +4,7 @@ import { LoginScreen, BgWrap, GridContent, H1, H3, Ul, Li, Features } from './st
 import Logo from './landing-presenter/Logo';
 import ButtonRegister from './landing-presenter/ButtonRegister';
 import ButtonLogin from './landing-presenter/ButtonLogin';
-import Div from '../../elements/Div';
+import Div from '../../components/Div';
 
 const LandingPresenter = () => (
   <LoginScreen id="login-screen">

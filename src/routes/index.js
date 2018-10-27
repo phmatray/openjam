@@ -35,7 +35,7 @@ const AsyncJammers = Loadable({
 });
 
 const AsyncProfile = Loadable({
-  loader: () => import('../components/profile/Profile'),
+  loader: () => import('../pages/Profile'),
   loading: Loading,
   timeout: 10000,
 });
@@ -101,25 +101,25 @@ const AsyncLabel = Loadable({
 });
 
 const AsyncDashboard = Loadable({
-  loader: () => import('../components/dashboard/Dashboard'),
+  loader: () => import('../pages/Dashboard'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncCreateProfile = Loadable({
-  loader: () => import('../components/create-profile/CreateProfile'),
+  loader: () => import('../pages/CreateProfile'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncEditProfile = Loadable({
-  loader: () => import('../components/edit-profile/EditProfile'),
+  loader: () => import('../pages/EditProfile'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncNotFound = Loadable({
-  loader: () => import('../components/not-found/NotFound'),
+  loader: () => import('../pages/NotFound'),
   loading: Loading,
   timeout: 10000,
 });

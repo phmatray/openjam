@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Header, Image } from 'semantic-ui-react';
-import Body from '../../elements/UI/Body';
-import LinkEntity from '../../elements/Links/LinkEntity';
-import LinkArtistNames from '../../elements/Links/LinkArtistNames';
+import Body from '../../components/Body';
+import LinkEntity from '../../components/LinkEntity';
+import LinkArtistNames from '../../components/LinkArtistNames';
 
 const TrackPresenter = ({ track }) => (
   <Body breadcrumbSegments={[<Link to="/tracks">Tracks</Link>, track.title]}>

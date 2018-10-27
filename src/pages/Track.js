@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTrack } from '../redux/modules/track';
-import Spinner from '../elements/UI/Spinner';
+import Spinner from '../components/Spinner';
 import TrackPresenter from './track/TrackPresenter';
 
 class Track extends Component {

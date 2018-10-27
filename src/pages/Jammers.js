@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getProfiles } from '../redux/modules/profile';
-import Spinner from '../elements/UI/Spinner';
+import Spinner from '../components/Spinner';
 import JammersPresenter from './jammers/JammersPresenter';
 
 class Jammers extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLabel } from '../redux/modules/label';
-import Spinner from '../elements/UI/Spinner';
+import Spinner from '../components/Spinner';
 import LabelPresenter from './label/LabelPresenter';
 
 class Label extends Component {

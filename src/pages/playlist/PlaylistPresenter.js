@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Grid, GridRow, GridColumn, Button } from 'semantic-ui-react';
 import PlaylistTracks from '../../components/PlaylistTracks';
-import PlaylistCover from '../../elements/UI/PlaylistCover';
-import Body from '../../elements/UI/Body';
+import PlaylistCover from '../../components/PlaylistCover';
+import Body from '../../components/Body';
 
 const PlaylistPresenter = ({ playlist, collection, playing, playSelected, pause }) => (
   <Body breadcrumbSegments={[<Link to="/playlists">Playlists</Link>, playlist.name]}>

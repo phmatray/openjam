@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlbum } from '../redux/modules/album';
-import Spinner from '../elements/UI/Spinner';
+import Spinner from '../components/Spinner';
 import AlbumPresenter from './album/AlbumPresenter';
 
 class Album extends Component {

@@ -5,9 +5,9 @@ import { Grid, GridRow, GridColumn, Menu } from 'semantic-ui-react';
 import PostForm from './share/PostForm';
 import { getPosts } from '../redux/modules/post';
 import Feed from '../components/Feed';
-import Spinner from '../elements/UI/Spinner';
-import JoinUs from '../elements/Messages/JoinUs';
-import Body from '../elements/UI/Body';
+import Spinner from '../components/Spinner';
+import Message from '../components/Message';
+import Body from '../components/Body';
 
 class Share extends Component {
   state = { activeItem: 'newsfeed' };
@@ -45,7 +45,7 @@ class Share extends Component {
               </Menu>
             </GridColumn>
             <GridColumn stretched mobile={16} tablet={12} computer={12} style={{ padding: 0 }}>
-              {isAuthenticated ? <PostForm /> : <JoinUs />}
+              {isAuthenticated ? <PostForm /> : <Message />}
               {posts === null || loading ? <Spinner /> : <Feed posts={posts} />}
             </GridColumn>
           </GridRow>

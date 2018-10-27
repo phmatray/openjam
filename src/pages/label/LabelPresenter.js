@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Body from '../../elements/UI/Body';
+import Body from '../../components/Body';
 
 const LabelPresenter = ({ label }) => (
   <Body breadcrumbSegments={[<Link to="/labels">Labels</Link>, label.name]} />

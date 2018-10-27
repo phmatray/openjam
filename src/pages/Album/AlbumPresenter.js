@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { Grid, GridRow, GridColumn } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import AlbumTracks from './album-presenter/AlbumTracks';
-import AlbumCover from '../../elements/UI/AlbumCover';
-import Body from '../../elements/UI/Body';
+import AlbumCover from '../../components/AlbumCover';
+import Body from '../../components/Body';
 
 const getAlbumName = album => {
   let albumName = '';
