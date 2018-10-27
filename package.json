@@ -31,6 +31,7 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
+    "source-map-explorer": "^1.6.0",
     "styled-components": "^4.0.2"
   },
   "lint-staged": {
@@ -43,6 +44,7 @@
     "dev": "HTTPS=true npm start",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "analyze": "source-map-explorer build/static/js/main.*",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9001 -c .storybook",
