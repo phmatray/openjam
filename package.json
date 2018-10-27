@@ -5,6 +5,7 @@
     "node": "10.9.0"
   },
   "private": true,
+  "homepage": "https://beta.openjam.eu",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.6",
     "@fortawesome/free-brands-svg-icons": "^5.4.1",
