@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Cover, Artists } from './style';
+import { Cover, Artists } from './styles';
 import { Divider } from 'semantic-ui-react';
 import LinkArtistNames from '../../../elements/Links/LinkArtistNames';
 import LinkEntity from '../../../elements/Links/LinkEntity';
