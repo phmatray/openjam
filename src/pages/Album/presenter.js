@@ -7,19 +7,30 @@ import AlbumTracks from './children/AlbumTracks';
 import AlbumCover from '../../elements/UI/AlbumCover';
 import Body from '../../elements/UI/Body';
 
+const getAlbumName = album => {
+  let albumName = '';
+  if (album && album.name) {
+    if (album.album_type === 'EP') {
+      albumName = `${album.name} - EP`;
+    } else {
+      albumName = album.name;
+    }
+  }
+
+  return albumName;
+};
+
+const getDescription = album => (
+  <span>
+    Release date: <Moment format="LL">{album.release_date}</Moment>
+  </span>
+);
+
 const AlbumPresenter = ({ album }) => {
-  const albumName = album.album_type === 'EP' ? `${album.name} - EP` : album.name;
-
-  const description = (
-    <span>
-      Release date: <Moment format="LL">{album.release_date}</Moment>
-    </span>
-  );
-
   return (
     <Body
-      breadcrumbSegments={[<Link to="/albums">Albums</Link>, albumName]}
-      description={description}
+      breadcrumbSegments={[<Link to="/albums">Albums</Link>, getAlbumName(album)]}
+      description={getDescription(album)}
     >
       <Grid>
         <GridRow>
