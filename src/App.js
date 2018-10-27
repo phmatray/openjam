@@ -10,7 +10,7 @@ import store from './redux/store';
 import HttpsRedirect from 'react-https-redirect';
 
 import Layout from './components/layout/Layout';
-import Routes from './routes/Routes';
+import Routes from './routes';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
