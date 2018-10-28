@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../../elements/Inputs/TextAreaFieldGroup';
+import TextAreaFieldGroup from '../../components/Inputs/TextAreaFieldGroup';
 import { addComment } from '../../redux/modules/post';
 import { Form } from 'semantic-ui-react';
 

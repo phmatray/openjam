@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Album from './presenter';
+import AlbumPresenter from './AlbumPresenter';
 
 const album = {
   _id: '5ba65b4af01f4b08931993d5',
@@ -85,7 +85,7 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <Router>
-      <Album album={album} />
+      <AlbumPresenter album={album} />
     </Router>,
     div,
   );
