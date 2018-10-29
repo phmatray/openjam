@@ -1,4 +1,4 @@
-import '../../index.css';
+import '../../../index.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
@@ -7,8 +7,8 @@ import { action } from '@storybook/addon-actions';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
 
-import ProfileCardDefault from './children/ProfileCardDefault';
-import ProfileCardMobile from './children/ProfileCardMobile';
+import ProfileCardDefault from './ProfileCardDefault';
+import ProfileCardMobile from './ProfileCardMobile';
 
 const profile = {
   skills: ['Guitar', 'Bass', 'Synthetizer'],

@@ -1,4 +1,4 @@
-import '../../index.css';
+import '../../../index.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import TrackItem from './children/TrackItem';
+import TrackItem from './TrackItem';
 
 const track = {
   meta: {

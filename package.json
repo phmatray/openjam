@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "engines": {
     "node": "10.9.0"
   },
@@ -15,7 +15,7 @@
     "axios": "^0.18.0",
     "husky": "^1.1.2",
     "jwt-decode": "^2.2.0",
-    "lint-staged": "^7.3.0",
+    "lint-staged": "^8.0.0",
     "moment": "^2.22.2",
     "prettier": "^1.14.3",
     "prop-types": "^15.6.2",
@@ -54,10 +54,10 @@
     "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
-    "@storybook/react": "^3.4.11",
-    "@storybook/addon-actions": "^3.4.11",
-    "@storybook/addon-links": "^3.4.11",
-    "@storybook/addons": "^3.4.11"
+    "@storybook/react": "^4.0.0",
+    "@storybook/addon-actions": "^4.0.0",
+    "@storybook/addon-links": "^4.0.0",
+    "@storybook/addons": "^4.0.0"
   },
   "husky": {
     "hooks": {
