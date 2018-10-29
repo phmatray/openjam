@@ -8,9 +8,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Icon from './Icon';
 import Social from './Social';
-import JoinUs from './Messages/JoinUs';
-import FollowUs from './Messages/FollowUs';
-import Whitepaper from './Messages/Whitepaper';
+import JoinUs from './message/JoinUs';
+import FollowUs from './message/FollowUs';
+import Whitepaper from './message/Whitepaper';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
