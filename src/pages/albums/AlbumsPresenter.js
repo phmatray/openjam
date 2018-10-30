@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AlbumItem from './albums-presenter/AlbumItem';
+import Album from '../../components/model/Album';
 import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
@@ -10,7 +10,7 @@ const AlbumsPresenter = ({ albums }) => (
     <H2 header="What's new" />
     <Flex wrap justifyStart>
       {albums.map(album => (
-        <AlbumItem key={album._id} album={album} />
+        <Album key={album._id} album={album} />
       ))}
     </Flex>
   </Body>
