@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import is from '../utils/ifStyled';
+import Div from './Div';
 
-const Flex = styled.div`
+const Flex = styled(Div)`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

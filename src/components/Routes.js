@@ -22,6 +22,12 @@ const AsyncLanding = Loadable({
   timeout: 10000,
 });
 
+const AsyncDiscover = Loadable({
+  loader: () => import('../pages/Discover'),
+  loading: Loading,
+  timeout: 10000,
+});
+
 const AsyncShare = Loadable({
   loader: () => import('../pages/Share'),
   loading: Loading,
@@ -129,6 +135,7 @@ const Routes = ({ childProps }) => (
     <Route path="/" exact component={AsyncLanding} props={childProps} />
     <Route path="/login" exact component={AsyncLogin} props={childProps} />
     <Route path="/register" exact component={AsyncRegister} props={childProps} />
+    <Route path="/discover" exact component={AsyncDiscover} props={childProps} />
     <Route path="/share" exact component={AsyncShare} props={childProps} />
     <Route path="/jammers" exact component={AsyncJammers} props={childProps} />
     <Route path="/profile/:handle" exact component={AsyncProfile} props={childProps} />

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Title, Description } from './styles';
-import PlaylistCover from '../../../components/PlaylistCover';
+import Title from './playlist/Title';
+import Description from './playlist/Description';
+import PlaylistCover from '../PlaylistCover';
 
-const PlaylistItem = ({ playlist, color }) => {
+const Playlist = ({ playlist, color }) => {
   return (
     <div
       style={{
@@ -23,15 +24,15 @@ const PlaylistItem = ({ playlist, color }) => {
   );
 };
 
-PlaylistItem.propTypes = {
+Playlist.propTypes = {
   playlist: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
   color: PropTypes.string,
 };
 
-PlaylistItem.defaultProps = {
+Playlist.defaultProps = {
   color: 'teal',
 };
 
-export default PlaylistItem;
+export default Playlist;

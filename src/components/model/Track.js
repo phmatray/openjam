@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Cover from './track-item/Cover';
-import Artists from './track-item/Artists';
-import { Divider } from 'semantic-ui-react';
-import LinkArtistNames from '../../../components/LinkArtistNames';
-import LinkEntity from '../../../components/LinkEntity';
-import Div from '../../../components/Div';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { Divider } from 'semantic-ui-react';
+
+import Cover from './track/Cover';
+import Artists from './track/Artists';
+import LinkArtistNames from '../LinkArtistNames';
+import LinkEntity from '../LinkEntity';
+import Div from '../Div';
 
 const TrackItem = ({ track }) => {
   const startDate = moment().subtract(21, 'days');

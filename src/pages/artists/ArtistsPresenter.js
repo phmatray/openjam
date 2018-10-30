@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ArtistItem from './artists-presenter/ArtistItem';
+
+import Artist from '../../components/model/Artist';
 import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
@@ -10,7 +11,7 @@ const ArtistsPresenter = ({ artists }) => (
     <H2 header="What's new" />
     <Flex wrap justifyStart>
       {artists.map(artist => (
-        <ArtistItem key={artist._id} artist={artist} />
+        <Artist key={artist._id} artist={artist} />
       ))}
     </Flex>
   </Body>

@@ -26,67 +26,15 @@ class NavbarSide extends Component {
       <React.Fragment>
         <Menu.Item
           as={Link}
-          to="/playlists"
-          name="playlists"
-          active={activeItem === 'playlists'}
+          to="/discover"
+          name="discover"
+          active={activeItem === 'discover'}
           onClick={this.handleItemClick && hideSidebar}
           style={{ textAlign: 'left' }}
         >
           <span>
             <Icon name="music" size="big" style={{ margin: '0.75em' }} />
-            Playlists
-          </span>
-        </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/tracks"
-          name="tracks"
-          active={activeItem === 'tracks'}
-          onClick={this.handleItemClick && hideSidebar}
-          style={{ textAlign: 'left' }}
-        >
-          <span>
-            <Icon name="music" size="big" style={{ margin: '0.75em' }} />
-            Tracks
-          </span>
-        </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/albums"
-          name="albums"
-          active={activeItem === 'albums'}
-          onClick={this.handleItemClick && hideSidebar}
-          style={{ textAlign: 'left' }}
-        >
-          <span>
-            <Icon name="music" size="big" style={{ margin: '0.75em' }} />
-            Albums
-          </span>
-        </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/artists"
-          name="artists"
-          active={activeItem === 'artists'}
-          onClick={this.handleItemClick && hideSidebar}
-          style={{ textAlign: 'left' }}
-        >
-          <span>
-            <Icon name="music" size="big" style={{ margin: '0.75em' }} />
-            Artists
-          </span>
-        </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/labels"
-          name="labels"
-          active={activeItem === 'labels'}
-          onClick={this.handleItemClick && hideSidebar}
-          style={{ textAlign: 'left' }}
-        >
-          <span>
-            <Icon name="music" size="big" style={{ margin: '0.75em' }} />
-            Labels
+            Discover
           </span>
         </Menu.Item>
         <Menu.Item

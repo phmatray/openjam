@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Menu, Container, Image, Dropdown } from 'semantic-ui-react';
+import { Menu, Container, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { logoutUser, getCurrentUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
@@ -30,56 +30,14 @@ class NavbarDesktop extends Component {
 
     const leftLinks = (
       <React.Fragment>
-        <Menu.Item>
-          <Dropdown item text="Discover">
-            <Dropdown.Menu>
-              <Dropdown.Item
-                as={Link}
-                to="/playlists"
-                name="playlists"
-                active={activeItem === 'playlists'}
-                onClick={this.handleItemClick}
-              >
-                Playlists
-              </Dropdown.Item>
-              <Dropdown.Item
-                as={Link}
-                to="/tracks"
-                name="tracks"
-                active={activeItem === 'tracks'}
-                onClick={this.handleItemClick}
-              >
-                Tracks
-              </Dropdown.Item>
-              <Dropdown.Item
-                as={Link}
-                to="/albums"
-                name="albums"
-                active={activeItem === 'albums'}
-                onClick={this.handleItemClick}
-              >
-                Albums
-              </Dropdown.Item>
-              <Dropdown.Item
-                as={Link}
-                to="/artists"
-                name="artists"
-                active={activeItem === 'artists'}
-                onClick={this.handleItemClick}
-              >
-                Artists
-              </Dropdown.Item>
-              <Dropdown.Item
-                as={Link}
-                to="/labels"
-                name="labels"
-                active={activeItem === 'labels'}
-                onClick={this.handleItemClick}
-              >
-                Labels
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+        <Menu.Item
+          as={Link}
+          to="/discover"
+          name="discover"
+          active={activeItem === 'discover'}
+          onClick={this.handleItemClick}
+        >
+          Discover
         </Menu.Item>
         <Menu.Item
           as={Link}

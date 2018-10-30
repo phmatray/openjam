@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LabelItem from './labels-presenter/LabelItem';
+import Label from '../../components/model/Label';
 import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
@@ -10,7 +10,7 @@ const LabelItems = ({ labels }) => (
     <H2 header="What's new" />
     <Flex wrap justifyStart>
       {labels.map(label => (
-        <LabelItem key={label._id} label={label} />
+        <Label key={label._id} label={label} />
       ))}
     </Flex>
   </Body>

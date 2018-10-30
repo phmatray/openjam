@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Cover from './album-item/Cover';
-import Title from './album-item/Title';
-import Label from './album-item/Label';
-import LinkEntity from '../../../components/LinkEntity';
+import Cover from './album/Cover';
+import Title from './album/Title';
+import Label from './album/Label';
+import LinkEntity from '../LinkEntity';
 
 const AlbumItem = ({ album }) => {
   return (
