@@ -1,6 +1,6 @@
 import React from 'react';
 import HttpsRedirect from 'react-https-redirect';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
@@ -25,7 +25,7 @@ if (localStorage.jwtToken) {
   // Set auth token header auth
   setAuthToken(localStorage.jwtToken);
   // Decode token and get user info and exp
-  const decoded = jwt_decode(localStorage.jwtToken);
+  const decoded = jwtDecode(localStorage.jwtToken);
   // Set user and isAuthenticated
   store.dispatch(updateUser(decoded));
 

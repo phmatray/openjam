@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import isEmpty from '../../../utils/validation/is-empty';
 import { Card, Image, Label } from 'semantic-ui-react';
+import isEmpty from '../../../utils/validation/is-empty';
 
 const ProfileCardMobile = ({ profile }) => (
   <React.Fragment>
@@ -10,7 +10,7 @@ const ProfileCardMobile = ({ profile }) => (
       <Image floated="left" size="mini" src={profile.user.avatar} />
       <Card.Header>
         <Link to={`/jammer/${profile.handle}`}>
-          {profile.user.firstname} {profile.user.lastname}
+          {`${profile.user.firstname} ${profile.user.lastname}`}
         </Link>
       </Card.Header>
       <Card.Meta>{isEmpty(profile.location) ? null : <span>{profile.location}</span>}</Card.Meta>

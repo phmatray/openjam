@@ -10,17 +10,17 @@ class Label extends Component {
     labelId: null,
   };
 
-  componentWillReceiveProps(newProps) {
-    var params = newProps.match.params;
-
-    if (params.id !== this.state.labelId)
-      this.setState({ labelId: params.id }, () => this.props.fetchLabel(this.state.labelId));
-  }
-
   componentDidMount() {
     this.setState({ labelId: this.props.match.params.id }, () =>
       this.props.fetchLabel(this.state.labelId),
     );
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { params } = newProps.match;
+
+    if (params.id !== this.state.labelId)
+      this.setState({ labelId: params.id }, () => this.props.fetchLabel(this.state.labelId));
   }
 
   render() {

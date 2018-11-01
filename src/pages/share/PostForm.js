@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPost } from '../../redux/modules/post';
 import { Form } from 'semantic-ui-react';
+import { addPost } from '../../redux/modules/post';
 import Div from '../../components/Div';
 import Input from '../../components/Input';
 

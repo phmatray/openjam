@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import is from '../utils/ifStyled';
+import { is } from '../utils/ifStyled';
 import Div from './Div';
 
 const Flex = styled(Div)`

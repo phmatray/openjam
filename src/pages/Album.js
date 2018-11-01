@@ -10,17 +10,17 @@ class Album extends Component {
     albumId: null,
   };
 
-  componentWillReceiveProps(newProps) {
-    var params = newProps.match.params;
-
-    if (params.id !== this.state.albumId)
-      this.setState({ albumId: params.id }, () => this.props.fetchAlbum(this.state.albumId));
-  }
-
   componentDidMount() {
     this.setState({ albumId: this.props.match.params.id }, () =>
       this.props.fetchAlbum(this.state.albumId),
     );
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { params } = newProps.match;
+
+    if (params.id !== this.state.albumId)
+      this.setState({ albumId: params.id }, () => this.props.fetchAlbum(this.state.albumId));
   }
 
   render() {

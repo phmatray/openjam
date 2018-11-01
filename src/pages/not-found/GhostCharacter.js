@@ -131,27 +131,25 @@ const HandRight = styled(Hand)`
   right: 10%;
 `;
 
-const GhostCharacter = () => {
-  return (
-    <Container>
-      <GhostCopy>
-        <One />
-        <Two />
-        <Three />
-        <Four />
-      </GhostCopy>
-      <Ghost>
-        <Face>
-          <EyeLeft />
-          <EyeRight />
-          <Mouth />
-        </Face>
-        <HandLeft />
-        <HandRight />
-      </Ghost>
-      <Shadow />
-    </Container>
-  );
-};
+const GhostCharacter = () => (
+  <Container>
+    <GhostCopy>
+      <One />
+      <Two />
+      <Three />
+      <Four />
+    </GhostCopy>
+    <Ghost>
+      <Face>
+        <EyeLeft />
+        <EyeRight />
+        <Mouth />
+      </Face>
+      <HandLeft />
+      <HandRight />
+    </Ghost>
+    <Shadow />
+  </Container>
+);
 
 export default GhostCharacter;

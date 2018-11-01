@@ -3,11 +3,9 @@ import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
 
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import TrackItem from './TrackItem';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Track from '../Track';
 
 const track = {
   meta: {
@@ -40,4 +38,4 @@ storiesOf('Tracks', module)
     </Router>
   ))
 
-  .add('track item', () => <TrackItem track={track} />);
+  .add('track item', () => <Track track={track} />);

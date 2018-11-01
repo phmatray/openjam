@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Sound from 'react-sound';
 import {
   loadCollection,
   play,
@@ -11,7 +12,6 @@ import {
 } from '../redux/modules/player';
 import { fetchTracksRandom } from '../redux/modules/track';
 import PlayerPresenter from './player/PlayerPresenter';
-import Sound from 'react-sound';
 
 class Player extends Component {
   componentDidMount() {

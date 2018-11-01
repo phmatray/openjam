@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LinkEntity from './LinkEntity';
 
-const LinkArtistNames = ({ artists, as }) => {
-  return artists
+const LinkArtistNames = ({ artists, as }) =>
+  artists
     .map(artist => <LinkEntity key={artist._id} entity={artist} as={as} />)
     .reduce((prev, curr) => [prev, ' & ', curr]);
-};
 
 LinkArtistNames.propTypes = {
   artists: PropTypes.arrayOf(

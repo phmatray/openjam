@@ -16,7 +16,7 @@ const Intro = ({ post }) => {
           <Avatar src={avatar} alt={fullName} />
           <Flex column>
             <strong style={{ fontWeight: 700 }}>{fullName}</strong>
-            <Span color="#666">@{handle}</Span>
+            <Span color="#666">{`@${handle}`}</Span>
           </Flex>
         </Flex>
       </Link>

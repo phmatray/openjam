@@ -14,11 +14,11 @@ import Body from '../components/Body';
 class Share extends Component {
   state = { activeItem: 'newsfeed' };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
   componentDidMount() {
     this.props.getPosts();
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
     const { t } = this.props;
@@ -33,7 +33,7 @@ class Share extends Component {
             <GridColumn mobile={16} tablet={4} computer={4} style={{ paddingLeft: 0 }}>
               <Menu fluid vertical tabular>
                 <Menu.Item
-                  name={'newsfeed'}
+                  name="newsfeed"
                   active={activeItem === 'newsfeed'}
                   onClick={this.handleItemClick}
                   content={t('pages.share.newsfeed')}

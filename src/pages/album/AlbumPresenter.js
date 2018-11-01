@@ -24,7 +24,8 @@ const getAlbumName = album => {
 
 const getDescription = album => (
   <span>
-    Release date: <Moment format="LL">{album.release_date}</Moment>
+    Release date:&nbsp;
+    <Moment format="LL">{album.release_date}</Moment>
   </span>
 );
 

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 import Input from '../components/Input';
 import { createProfile, getCurrentProfile } from '../redux/modules/profile';
-import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 import isEmpty from '../utils/validation/is-empty';
 
 class EditProfile extends Component {
@@ -36,7 +36,7 @@ class EditProfile extends Component {
     }
 
     if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
+      const { profile } = nextProps.profile;
 
       // Bring skills array back to CSV
       const skillsCSV = profile.skills.join(',');
@@ -208,7 +208,8 @@ class EditProfile extends Component {
         </Button>
 
         <Form error noValidate onSubmit={this.handleSubmit}>
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="address card"
             placeholder="Profile handle"
             name="handle"
@@ -220,7 +221,8 @@ class EditProfile extends Component {
             required
           />
 
-          <Input as="select-list"
+          <Input
+            as="select-list"
             icon="microphone"
             placeholder="* Status"
             name="status"
@@ -233,7 +235,8 @@ class EditProfile extends Component {
             options={options}
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="world"
             placeholder="Website"
             name="website"
@@ -243,7 +246,8 @@ class EditProfile extends Component {
             info="Could be your own website or one of your band."
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="location arrow"
             placeholder="Location"
             name="location"
@@ -253,7 +257,8 @@ class EditProfile extends Component {
             info="City or city &amp; state suggested (eg. BOSTON, MA)"
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="music"
             placeholder="Skills"
             name="skills"
@@ -264,7 +269,8 @@ class EditProfile extends Component {
             required
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="github"
             placeholder="GitHub username"
             name="githubusername"
@@ -274,7 +280,8 @@ class EditProfile extends Component {
             info="If you are a developer and you want a GitHub link, include your username"
           />
 
-          <Input as="text-area-field"
+          <Input
+            as="text-area-field"
             placeholder="Short bio"
             name="bio"
             value={bio}

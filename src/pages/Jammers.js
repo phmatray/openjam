@@ -13,29 +13,29 @@ class Jammers extends Component {
   }
 
   render() {
-    const { t } = this.props;
-    const { profiles, loading } = this.props.profile;
-    const { isAuthenticated } = this.props.auth;
+    const { profiles, loading, isAuthenticated, t } = this.props;
 
-    return profiles === null || loading ? (
-      <Spinner />
-    ) : profiles.length > 0 ? (
-      <JammersPresenter jammers={profiles} isAuthenticated={isAuthenticated} />
-    ) : (
-      <h4>{t('pages.jammers.no-profiles')}</h4>
-    );
+    if (profiles === null || loading) {
+      return <Spinner />;
+    }
+    if (profiles.length === 0) {
+      return <h4>{t('pages.jammers.no-profiles')}</h4>;
+    }
+    return <JammersPresenter jammers={profiles} isAuthenticated={isAuthenticated} />;
   }
 }
 
 Jammers.propTypes = {
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  profiles: PropTypes.any.isRequired,
+  loading: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth,
+  profiles: state.profile.profiles,
+  loading: state.profile.loading,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(

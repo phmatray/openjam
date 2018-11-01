@@ -1,4 +1,4 @@
-export const getRandomColor = () => {
+const getRandomColor = () => {
   const colors = [
     { name: 'red', hex: '#B03060' },
     { name: 'orange', hex: '#FE9A76' },
@@ -15,8 +15,10 @@ export const getRandomColor = () => {
     { name: 'black', hex: '#000000' },
   ];
 
-  const length = colors.length;
+  const { length } = colors;
   const randomIndex = Math.floor(Math.random() * length);
 
   return colors[randomIndex].hex;
 };
+
+export default getRandomColor;

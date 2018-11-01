@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
-import * as serviceWorker from './serviceWorker';
 
 import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
-import common_en from './translations/en/common.json';
-import common_fr from './translations/fr/common.json';
+import * as serviceWorker from './serviceWorker';
+import commonEN from './translations/en/common.json';
+import commonFR from './translations/fr/common.json';
 
 import App from './App';
 
@@ -17,10 +17,10 @@ i18next.init({
   lng: 'fr', // language to use
   resources: {
     en: {
-      common: common_en, // 'common' is our custom namespace
+      common: commonEN, // 'common' is our custom namespace
     },
     fr: {
-      common: common_fr,
+      common: commonFR,
     },
   },
 });

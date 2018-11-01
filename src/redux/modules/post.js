@@ -49,9 +49,8 @@ export default function reducer(state = initialState, action = {}) {
               ...post,
               ...action.payload,
             };
-          } else {
-            return post;
           }
+          return post;
         }),
       };
 
@@ -118,7 +117,7 @@ export function getPosts() {
     axios
       .get('https://api.openjam.eu/api/posts')
       .then(res => dispatch(updatePosts(res.data)))
-      .catch(err => dispatch(updatePosts(null)));
+      .catch(() => dispatch(updatePosts(null)));
   };
 }
 
@@ -129,7 +128,7 @@ export function getPost(id) {
     axios
       .get(`https://api.openjam.eu/api/posts/${id}`)
       .then(res => dispatch(updatePost(res.data)))
-      .catch(err => dispatch(updatePost(null)));
+      .catch(() => dispatch(updatePost(null)));
   };
 }
 
@@ -138,7 +137,7 @@ export function deletePost(id) {
   return dispatch => {
     axios
       .delete(`https://api.openjam.eu/api/posts/${id}`)
-      .then(res => dispatch(removePost(id)))
+      .then(() => dispatch(removePost(id)))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
 }

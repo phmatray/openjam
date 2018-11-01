@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+
 import axios from 'axios';
 import { updateErrors } from './error';
 import { logoutUser } from './auth';
@@ -77,7 +79,7 @@ export function getCurrentProfile() {
     axios
       .get('https://api.openjam.eu/api/profile')
       .then(res => dispatch(updateProfile(res.data)))
-      .catch(err => dispatch(updateProfile({})));
+      .catch(() => dispatch(updateProfile({})));
   };
 }
 
@@ -88,7 +90,7 @@ export function getProfileByHandle(handle) {
     axios
       .get(`https://api.openjam.eu/api/profile/handle/${handle}`)
       .then(res => dispatch(updateProfile(res.data)))
-      .catch(err => dispatch(updateProfile(null)));
+      .catch(() => dispatch(updateProfile(null)));
   };
 }
 
@@ -97,7 +99,7 @@ export function createProfile(profileData, history) {
   return dispatch => {
     axios
       .post('https://api.openjam.eu/api/profile', profileData)
-      .then(res => history.push('/dashboard'))
+      .then(() => history.push('/dashboard'))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
 }
@@ -107,7 +109,7 @@ export function addExperience(expData, history) {
   return dispatch => {
     axios
       .post('https://api.openjam.eu/api/profile/experience', expData)
-      .then(res => history.push('/dashboard'))
+      .then(() => history.push('/dashboard'))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
 }
@@ -117,7 +119,7 @@ export function addEducation(eduData, history) {
   return dispatch => {
     axios
       .post('https://api.openjam.eu/api/profile/education', eduData)
-      .then(res => history.push('/dashboard'))
+      .then(() => history.push('/dashboard'))
       .catch(err => dispatch(updateErrors(err.response.data)));
   };
 }
@@ -149,7 +151,7 @@ export function getProfiles() {
     axios
       .get('https://api.openjam.eu/api/profile/all')
       .then(res => dispatch(updateProfiles(res.data)))
-      .catch(err => dispatch(updateProfiles(null)));
+      .catch(() => dispatch(updateProfiles(null)));
   };
 }
 
@@ -159,7 +161,7 @@ export function deleteAccount() {
     if (window.confirm('Are you sure? This can NOT be undone!')) {
       axios
         .delete('https://api.openjam.eu/api/profile')
-        .then(res => dispatch(logoutUser()))
+        .then(() => dispatch(logoutUser()))
         .catch(err => dispatch(updateErrors(err.response.data)));
     }
   };

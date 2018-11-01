@@ -8,7 +8,7 @@ import PlaylistTracks from '../../components/PlaylistTracks';
 import PlaylistCover from '../../components/PlaylistCover';
 import Body from '../../components/Body';
 
-const PlaylistPresenter = ({ playlist, collection, playing, playSelected, pause, t }) => (
+const PlaylistPresenter = ({ playlist, playSelected, t }) => (
   <Body
     breadcrumbSegments={[<Link to="/playlists">{t('pages.playlists.header')}</Link>, playlist.name]}
   >
@@ -29,11 +29,9 @@ const PlaylistPresenter = ({ playlist, collection, playing, playSelected, pause,
 
 PlaylistPresenter.propTypes = {
   playSelected: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
   playlist: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
-  playing: PropTypes.bool.isRequired,
 };
 
 export default withNamespaces('common')(PlaylistPresenter);

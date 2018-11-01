@@ -9,13 +9,11 @@ const HeaderStyled = styled(Header).attrs({
   margin-top: 1.5em !important;
 `;
 
-const PageHeader = () => {
-  return (
-    <HeaderStyled icon>
-      <Icon name="users" circular />
-      <Header.Content>Share on OpenJam</Header.Content>
-    </HeaderStyled>
-  );
-};
+const PageHeader = () => (
+  <HeaderStyled icon>
+    <Icon name="users" circular />
+    <Header.Content>Share on OpenJam</Header.Content>
+  </HeaderStyled>
+);
 
 export default PageHeader;

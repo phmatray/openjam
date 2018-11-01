@@ -13,13 +13,13 @@ class Labels extends Component {
   render() {
     const { labels, loading } = this.props;
 
-    return labels === null || loading ? (
-      <Spinner />
-    ) : labels.length > 0 ? (
-      <LabelsPresenter labels={labels} />
-    ) : (
-      <h4>No labels found...</h4>
-    );
+    if (labels === null || loading) {
+      return <Spinner />;
+    }
+    if (labels.length === 0) {
+      return <h4>No labels found...</h4>;
+    }
+    return <LabelsPresenter labels={labels} />;
   }
 }
 

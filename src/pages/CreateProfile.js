@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 import Input from '../components/Input';
 import { createProfile } from '../redux/modules/profile';
 import generateHandle from '../utils/generateHandle';
-import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 
 class CreateProfile extends Component {
   state = {
@@ -27,13 +27,11 @@ class CreateProfile extends Component {
   };
 
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      const firstname = this.props.auth.user.firstname;
-      const lastname = this.props.auth.user.lastname;
-
+    const { isAuthenticated, user } = this.props;
+    if (isAuthenticated) {
+      const { firstname, lastname } = user;
       const handle = generateHandle(firstname, lastname);
-
-      this.setState({ handle: handle });
+      this.setState({ handle });
     }
   }
 
@@ -48,23 +46,40 @@ class CreateProfile extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    const {
+      handle,
+      status,
+      website,
+      location,
+      skills,
+      githubusername,
+      bio,
+      soundcloud,
+      twitter,
+      facebook,
+      linkedin,
+      youtube,
+      instagram,
+    } = this.state;
+
     const profileData = {
-      handle: this.state.handle,
-      status: this.state.status,
-      website: this.state.website,
-      location: this.state.location,
-      skills: this.state.skills,
-      githubusername: this.state.githubusername,
-      bio: this.state.bio,
-      soundcloud: this.state.soundcloud,
-      twitter: this.state.twitter,
-      facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
-      youtube: this.state.youtube,
-      instagram: this.state.instagram,
+      handle,
+      status,
+      website,
+      location,
+      skills,
+      githubusername,
+      bio,
+      soundcloud,
+      twitter,
+      facebook,
+      linkedin,
+      youtube,
+      instagram,
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    const { createProfile, history } = this.props;
+    createProfile(profileData, history);
   };
 
   render() {
@@ -171,10 +186,11 @@ class CreateProfile extends Component {
     return (
       <Segment basic>
         <Header as="h1">Create Your Profile</Header>
-        <p>Let's get some information to make your profile awesome.</p>
+        <p>Let&apos;s get some information to make your profile awesome.</p>
 
         <Form error noValidate onSubmit={this.handleSubmit}>
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="address card"
             placeholder="Profile handle"
             name="handle"
@@ -186,7 +202,8 @@ class CreateProfile extends Component {
             required
           />
 
-          <Input as="select-list"
+          <Input
+            as="select-list"
             icon="microphone"
             placeholder="* Status"
             name="status"
@@ -199,7 +216,8 @@ class CreateProfile extends Component {
             options={options}
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="world"
             placeholder="Website"
             name="website"
@@ -209,7 +227,8 @@ class CreateProfile extends Component {
             info="Could be your own website or one of your band."
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="location arrow"
             placeholder="Location"
             name="location"
@@ -219,7 +238,8 @@ class CreateProfile extends Component {
             info="City or city &amp; state suggested (eg. BOSTON, MA)"
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="music"
             placeholder="Skills"
             name="skills"
@@ -230,7 +250,8 @@ class CreateProfile extends Component {
             required
           />
 
-          <Input as="text-field"
+          <Input
+            as="text-field"
             icon="github"
             placeholder="GitHub username"
             name="githubusername"
@@ -240,7 +261,8 @@ class CreateProfile extends Component {
             info="If you are a developer and you want a GitHub link, include your username"
           />
 
-<Input as="text-area-field"
+          <Input
+            as="text-area-field"
             placeholder="Short bio"
             name="bio"
             value={bio}
@@ -280,14 +302,14 @@ class CreateProfile extends Component {
 
 CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  profile: state.profile,
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
   errors: state.errors,
 });
 

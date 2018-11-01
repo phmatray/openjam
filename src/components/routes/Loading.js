@@ -1,24 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
 const Loading = ({ error, retry, timedOut, pastDelay }) => {
   if (error) {
     return (
       <div>
-        Error! <Button onClick={retry}>Retry</Button>
+        Error!
+        <br />
+        <Button onClick={retry}>Retry</Button>
       </div>
     );
-  } else if (timedOut) {
+  }
+  if (timedOut) {
     return (
       <div>
-        Taking a long time... <Button onClick={retry}>Retry</Button>
+        Taking a long time...
+        <br />
+        <Button onClick={retry}>Retry</Button>
       </div>
     );
-  } else if (pastDelay) {
-    return <div>Loading...</div>;
-  } else {
-    return null;
   }
+  if (pastDelay) {
+    return <div>Loading...</div>;
+  }
+  return null;
+};
+
+Loading.propTypes = {
+  error: PropTypes.any.isRequired,
+  retry: PropTypes.func.isRequired,
+  timedOut: PropTypes.any.isRequired,
+  pastDelay: PropTypes.any.isRequired,
 };
 
 export default Loading;

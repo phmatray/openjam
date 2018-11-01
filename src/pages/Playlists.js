@@ -13,13 +13,13 @@ class Playlists extends Component {
   render() {
     const { playlists, loading } = this.props;
 
-    return playlists === null || loading ? (
-      <Spinner />
-    ) : playlists.length > 0 ? (
-      <PlaylistsPresenter playlists={playlists} />
-    ) : (
-      <h4>No playlists found...</h4>
-    );
+    if (playlists === null || loading) {
+      return <Spinner />;
+    }
+    if (playlists.length === 0) {
+      return <h4>No playlists found...</h4>;
+    }
+    return <PlaylistsPresenter playlists={playlists} />;
   }
 }
 

@@ -10,17 +10,17 @@ class Track extends Component {
     trackId: null,
   };
 
-  componentWillReceiveProps(newProps) {
-    var params = newProps.match.params;
-
-    if (params.id !== this.state.trackId)
-      this.setState({ trackId: params.id }, () => this.props.fetchTrack(this.state.trackId));
-  }
-
   componentDidMount() {
     this.setState({ trackId: this.props.match.params.id }, () =>
       this.props.fetchTrack(this.state.trackId),
     );
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { params } = newProps.match;
+
+    if (params.id !== this.state.trackId)
+      this.setState({ trackId: params.id }, () => this.props.fetchTrack(this.state.trackId));
   }
 
   render() {

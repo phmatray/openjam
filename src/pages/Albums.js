@@ -13,13 +13,13 @@ class Albums extends Component {
   render() {
     const { albums, loading } = this.props;
 
-    return albums === null || loading ? (
-      <Spinner />
-    ) : albums.length > 0 ? (
-      <AlbumsPresenter albums={albums} />
-    ) : (
-      <h4>No albums found...</h4>
-    );
+    if (albums === null || loading) {
+      return <Spinner />;
+    }
+    if (albums.length === 0) {
+      return <h4>No albums found...</h4>;
+    }
+    return <AlbumsPresenter albums={albums} />;
   }
 }
 

@@ -19,7 +19,7 @@ class TrackItem extends Component {
     const { track, isAuthenticated } = this.props;
     const { playing, current } = this.props.player;
 
-    let buttonPlayPause = playing ? (
+    const buttonPlayPause = playing ? (
       <Feed.Like onClick={() => this.props.pause()}>
         <Icon name="pause" />
         Pause
@@ -43,8 +43,10 @@ class TrackItem extends Component {
           <Feed.Summary>
             <span>
               Discover&nbsp;
-              <Link to={`/track/${track._id}`}>{track.title}</Link>,<br />
-              the newest track from {track.artist}.
+              <Link to={`/track/${track._id}`}>{track.title}</Link>
+              {','}
+              <br />
+              {`the newest track from ${track.artist}.`}
             </span>
           </Feed.Summary>
 
@@ -55,11 +57,11 @@ class TrackItem extends Component {
               <React.Fragment>
                 <Feed.Like onClick={this.handleShareClick.bind(undefined, track._id)}>
                   <Icon name="share" />
-                  {track.meta.shares.length} Share
+                  {`${track.meta.shares.length} Share`}
                 </Feed.Like>
                 <Feed.Like onClick={this.handleLikeClick.bind(undefined, track._id)}>
                   <Icon name="like" />
-                  {track.meta.likes.length} Likes
+                  {`${track.meta.likes.length} Likes`}
                 </Feed.Like>
                 <Feed.Like as={Link} to={`/track/${track._id}`}>
                   <Icon name="comments" />

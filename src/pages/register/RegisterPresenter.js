@@ -22,11 +22,11 @@ class RegisterPresenter extends Component {
     const { registerUser } = this.props;
 
     const newUser = {
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      password: password,
-      password2: password2,
+      firstname,
+      lastname,
+      email,
+      password,
+      password2,
     };
 
     registerUser(newUser, this.props.history);
@@ -37,12 +37,15 @@ class RegisterPresenter extends Component {
     const { errors, t } = this.props;
 
     return (
-      <Body breadcrumbSegments={[t('pages.register.header')]} description={t('pages.register.subheader')}>
+      <Body
+        breadcrumbSegments={[t('pages.register.header')]}
+        description={t('pages.register.subheader')}
+      >
         <Grid style={{ height: '100%' }} verticalAlign="middle">
           <GridColumn style={{ maxWidth: 450 }}>
             <Form error noValidate onSubmit={this.handleSubmit}>
               <Input
-              as='text-field'
+                as="text-field"
                 name="firstname"
                 label={t('pages.register.input-firstname')}
                 placeholder={t('pages.register.input-firstname')}
@@ -53,7 +56,7 @@ class RegisterPresenter extends Component {
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 name="lastname"
                 label={t('pages.register.input-lastname')}
                 placeholder={t('pages.register.input-lastname')}
@@ -64,7 +67,7 @@ class RegisterPresenter extends Component {
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 type="email"
                 name="email"
                 label={t('pages.register.input-email')}
@@ -77,7 +80,7 @@ class RegisterPresenter extends Component {
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 type="password"
                 name="password"
                 label={t('pages.register.input-password')}
@@ -89,7 +92,7 @@ class RegisterPresenter extends Component {
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 type="password"
                 name="password2"
                 label={t('pages.register.input-password2')}
@@ -100,7 +103,12 @@ class RegisterPresenter extends Component {
                 error={errors.password2}
               />
 
-              <Form.Button fluid size="large" color="teal" content={t('pages.register.action-submit')} />
+              <Form.Button
+                fluid
+                size="large"
+                color="teal"
+                content={t('pages.register.action-submit')}
+              />
             </Form>
             <Message style={{ textAlign: 'center' }}>
               {t('pages.register.already')}

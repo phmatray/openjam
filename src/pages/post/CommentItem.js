@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteComment } from '../../redux/modules/post';
 import { Comment, Icon } from 'semantic-ui-react';
+import { deleteComment } from '../../redux/modules/post';
 
 class CommentItem extends Component {
-  handleDeleteClick = (postId, commentId, e) => {
+  handleDeleteClick = (postId, commentId) => {
     this.props.deleteComment(postId, commentId);
   };
 
@@ -16,9 +16,7 @@ class CommentItem extends Component {
       <Comment>
         <Comment.Avatar src={comment.avatar} />
         <Comment.Content>
-          <Comment.Author as="a">
-            {comment.firstname} {comment.lastname}
-          </Comment.Author>
+          <Comment.Author as="a">{`${comment.firstname} ${comment.lastname}`}</Comment.Author>
           <Comment.Metadata>
             <div>Today at 5:42PM</div>
           </Comment.Metadata>

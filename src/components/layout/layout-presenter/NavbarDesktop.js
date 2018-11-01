@@ -115,7 +115,7 @@ class NavbarDesktop extends Component {
             as={Link}
             to="/"
             name="share"
-            active={true}
+            active
             onClick={this.handleItemClick}
             color="teal"
           >
