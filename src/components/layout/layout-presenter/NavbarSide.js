@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Sidebar, Menu, Icon, Divider } from 'semantic-ui-react';
@@ -18,7 +19,7 @@ class NavbarSide extends Component {
   };
 
   render() {
-    const { auth, hideSidebar, visible } = this.props;
+    const { auth, hideSidebar, visible, t } = this.props;
     const { activeItem } = this.state;
     const { isAuthenticated } = auth;
 
@@ -34,7 +35,7 @@ class NavbarSide extends Component {
         >
           <span>
             <Icon name="music" size="big" style={{ margin: '0.75em' }} />
-            Discover
+            {t('components.navbar.discover')}
           </span>
         </Menu.Item>
         <Menu.Item
@@ -47,7 +48,7 @@ class NavbarSide extends Component {
         >
           <span>
             <Icon name="globe" size="big" style={{ margin: '0.75em' }} />
-            Share
+            {t('components.navbar.share')}
           </span>
         </Menu.Item>
         <Menu.Item
@@ -60,7 +61,7 @@ class NavbarSide extends Component {
         >
           <span>
             <Icon name="users" size="big" style={{ margin: '0.75em' }} />
-            Jammers
+            {t('components.navbar.jammers')}
           </span>
         </Menu.Item>
       </React.Fragment>
@@ -78,7 +79,7 @@ class NavbarSide extends Component {
         >
           <span>
             <Icon name="sign-in" size="big" style={{ margin: '0.75em' }} />
-            Log In
+            {t('components.navbar.sign-in')}
           </span>
         </Menu.Item>
         <Menu.Item
@@ -91,7 +92,7 @@ class NavbarSide extends Component {
         >
           <span>
             <Icon name="signup" size="big" style={{ margin: '0.75em' }} />
-            Register
+            {t('components.navbar.register')}
           </span>
         </Menu.Item>
       </React.Fragment>
@@ -102,7 +103,7 @@ class NavbarSide extends Component {
         <Menu.Item onClick={this.handleLogoutClick} style={{ textAlign: 'left' }}>
           <span>
             <Icon name="sign-out" size="big" style={{ margin: '0.75em' }} />
-            Log Out
+            {t('components.navbar.logout')}
           </span>
         </Menu.Item>
       </React.Fragment>
@@ -121,11 +122,11 @@ class NavbarSide extends Component {
         style={{ backgroundColor: 'black', maxHeight: '100%', width: 'calc(100% - 11em)' }}
       >
         <Divider horizontal inverted>
-          Browse
+          {t('components.navbar.browse')}
         </Divider>
         {leftLinks}
         <Divider horizontal inverted>
-          Acount
+          {t('components.navbar.account')}
         </Divider>
         {isAuthenticated ? authLinks : guestLinks}
       </Sidebar>
@@ -148,4 +149,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logoutUser, clearCurrentProfile },
-)(NavbarSide);
+)(withNamespaces('common')(NavbarSide));

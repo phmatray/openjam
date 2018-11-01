@@ -1,13 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
 import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
 import Playlist from '../../components/model/Playlist';
 
-const PlaylistsPresenter = ({ playlists }) => (
-  <Body breadcrumbSegments={['Playlists']} description="Pick some music by playlist.">
-    <H2 header="What's new" />
+const PlaylistsPresenter = ({ playlists, t }) => (
+  <Body
+    breadcrumbSegments={[
+      <Link to="/discover">{t('pages.discover.header')}</Link>,
+      t('pages.playlists.header'),
+    ]}
+    description={t('pages.playlists.subheader')}
+  >
+    <H2 header={t('pages.playlists.new')} />
     <Flex wrap justifyStart>
       {playlists.map(playlist => (
         <Playlist key={playlist._id} playlist={playlist} />
@@ -24,4 +33,4 @@ PlaylistsPresenter.propTypes = {
   ).isRequired,
 };
 
-export default PlaylistsPresenter;
+export default withNamespaces('common')(PlaylistsPresenter);

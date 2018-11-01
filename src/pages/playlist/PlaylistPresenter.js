@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Grid, GridRow, GridColumn, Button } from 'semantic-ui-react';
+
 import PlaylistTracks from '../../components/PlaylistTracks';
 import PlaylistCover from '../../components/PlaylistCover';
 import Body from '../../components/Body';
 
-const PlaylistPresenter = ({ playlist, collection, playing, playSelected, pause }) => (
-  <Body breadcrumbSegments={[<Link to="/playlists">Playlists</Link>, playlist.name]}>
+const PlaylistPresenter = ({ playlist, collection, playing, playSelected, pause, t }) => (
+  <Body
+    breadcrumbSegments={[<Link to="/playlists">{t('pages.playlists.header')}</Link>, playlist.name]}
+  >
     <Grid>
       <GridRow>
         <GridColumn mobile={16} tablet={6} computer={5}>
@@ -32,4 +36,4 @@ PlaylistPresenter.propTypes = {
   playing: PropTypes.bool.isRequired,
 };
 
-export default PlaylistPresenter;
+export default withNamespaces('common')(PlaylistPresenter);

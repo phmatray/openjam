@@ -40,8 +40,8 @@ const AsyncJammers = Loadable({
   timeout: 10000,
 });
 
-const AsyncProfile = Loadable({
-  loader: () => import('../pages/Profile'),
+const AsyncJammer = Loadable({
+  loader: () => import('../pages/Jammer'),
   loading: Loading,
   timeout: 10000,
 });
@@ -138,7 +138,7 @@ const Routes = ({ childProps }) => (
     <Route path="/discover" exact component={AsyncDiscover} props={childProps} />
     <Route path="/share" exact component={AsyncShare} props={childProps} />
     <Route path="/jammers" exact component={AsyncJammers} props={childProps} />
-    <Route path="/profile/:handle" exact component={AsyncProfile} props={childProps} />
+    <Route path="/jammer/:handle" exact component={AsyncJammer} props={childProps} />
     <Route path="/playlists" exact component={AsyncPlaylists} props={childProps} />
     <Route path="/playlist/:id" exact component={AsyncPlaylist} props={childProps} />
     <Route path="/tracks" exact component={AsyncTracks} props={childProps} />

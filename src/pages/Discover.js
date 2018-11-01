@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import Section from './discover/Section';
@@ -22,20 +23,32 @@ export class Discover extends Component {
   }
 
   render() {
-    const { playlists, tracks, artists, albums, labels } = this.props;
+    const { playlists, tracks, artists, albums, labels, t } = this.props;
 
     return (
       <Body
-        breadcrumbSegments={['Discover']}
-        description="Choose from a selection of playlists, albums, artists, tracks or labels."
+        breadcrumbSegments={[t('pages.discover.header')]}
+        description={t('pages.discover.subheader')}
       >
         {playlists !== null && (
-          <Section title="Playlists" items={playlists.slice(0, 10)} to="/playlists" />
+          <Section
+            title={t('pages.discover.playlists')}
+            items={playlists.slice(0, 10)}
+            to="/playlists"
+          />
         )}
-        {artists !== null && <Section title="Artists" items={artists.slice(0, 9)} to="/artists" />}
-        {tracks !== null && <Section title="Tracks" items={tracks.slice(0, 21)} to="/tracks" />}
-        {albums !== null && <Section title="Albums" items={albums.slice(0, 20)} to="/albums" />}
-        {labels !== null && <Section title="Labels" items={labels.slice(0, 20)} to="/labels" />}
+        {artists !== null && (
+          <Section title={t('pages.discover.artists')} items={artists.slice(0, 9)} to="/artists" />
+        )}
+        {tracks !== null && (
+          <Section title={t('pages.discover.tracks')} items={tracks.slice(0, 21)} to="/tracks" />
+        )}
+        {albums !== null && (
+          <Section title={t('pages.discover.albums')} items={albums.slice(0, 20)} to="/albums" />
+        )}
+        {labels !== null && (
+          <Section title={t('pages.discover.labels')} items={labels.slice(0, 20)} to="/labels" />
+        )}
       </Body>
     );
   }
@@ -58,4 +71,4 @@ export default connect(
     fetchAlbums,
     fetchLabels,
   },
-)(Discover);
+)(withNamespaces('common')(Discover));

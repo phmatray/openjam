@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import { Button, Icon, Responsive } from 'semantic-ui-react';
+
 import { PlayerStyled, FlexFill, ColumnCover, ColumnTime, Cover, ArtistName } from './styles';
 import Progress from './player-presenter/Progress';
 import Flex from '../../components/Flex';
@@ -11,7 +13,7 @@ import { fancyTimeFormat } from '../../utils/playerHelpers';
 
 class PlayerPresenter extends Component {
   render() {
-    const { height, play, pause, playing, current, audioInfo } = this.props;
+    const { height, play, pause, playing, current, audioInfo, t } = this.props;
 
     return (
       <PlayerStyled height={height}>
@@ -65,7 +67,7 @@ class PlayerPresenter extends Component {
                     {current.title} <Edit>{current.edit && `(${current.edit})`}</Edit>
                   </TrackName> */}
                   <ArtistName>
-                    <i>by</i>
+                    <i>{t('components.player.by')}</i>
                     &nbsp;&nbsp;
                     <LinkArtistNames artists={current.artists} as="inverted" />
                   </ArtistName>
@@ -109,4 +111,4 @@ PlayerPresenter.propTypes = {
   }).isRequired,
 };
 
-export default PlayerPresenter;
+export default withNamespaces('common')(PlayerPresenter);

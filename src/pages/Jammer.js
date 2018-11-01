@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ProfileHeader from './profile/ProfileHeader';
-import ProfileAbout from './profile/ProfileAbout';
+import ProfileHeader from './jammer/ProfileHeader';
+import ProfileAbout from './jammer/ProfileAbout';
 import Spinner from '../components/Spinner';
 import { getProfileByHandle } from '../redux/modules/profile';
-import { Segment, Grid, GridRow, GridColumn } from 'semantic-ui-react';
+import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
 import Message from '../components/Message';
 
 class Profile extends Component {
@@ -31,17 +31,19 @@ class Profile extends Component {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <React.Fragment>
-          <Grid style={{ paddingTop: '0em', marginTop: '-1.5rem' }}>
-            <ProfileHeader profile={profile} />
+        <Container>
+          <React.Fragment>
+            <Grid style={{ paddingTop: '0em', marginTop: '-1.5rem' }}>
+              <ProfileHeader profile={profile} />
 
-            <GridRow style={{ paddingBottom: '0' }}>
-              <GridColumn>{!isAuthenticated && <Message />}</GridColumn>
-            </GridRow>
+              <GridRow style={{ paddingBottom: '0' }}>
+                <GridColumn>{!isAuthenticated && <Message />}</GridColumn>
+              </GridRow>
 
-            <ProfileAbout profile={profile} />
-          </Grid>
-        </React.Fragment>
+              <ProfileAbout profile={profile} />
+            </Grid>
+          </React.Fragment>
+        </Container>
       );
     }
 

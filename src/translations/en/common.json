@@ -1,0 +1,122 @@
+{
+  "app": "OpenJam",
+  "components": {
+    "message": {
+      "join-us": {
+        "header": "Join us now",
+        "subheader": "Sign up to share your songs with your community.",
+        "register": "Register",
+        "sign-in": "Sign in"
+      }
+    },
+    "navbar": {
+      "discover": "Discover",
+      "share": "Share",
+      "jammers": "Jammers",
+      "register": "Register",
+      "sign-in": "Sign in",
+      "logout": "Logout",
+      "browse": "Browse",
+      "account": "Account"
+    },
+    "player": {
+      "by": "par"
+    },
+    "playlist-tracks": {
+      "track": "Track",
+      "artist": "Artist",
+      "album": "Album"
+    }
+  },
+  "pages": {
+    "albums": {
+      "header": "Albums",
+      "subheader": "Pick some music by album.",
+      "new": "What's new"
+    },
+    "artists": {
+      "header": "Artists",
+      "subheader": "Pick some music by artist.",
+      "new": "What's new"
+    },
+    "discover": {
+      "header": "Discover",
+      "subheader": "Choose from a selection of playlists, albums, artists, tracks or labels.",
+      "playlists": "Playlists",
+      "artists": "Artists",
+      "tracks": "Tracks",
+      "albums": "Albums",
+      "labels": "Labels",
+      "show-all": "Show all"
+    },
+    "jammers": {
+      "header": "Jammers",
+      "subheader": "Connect with listeners and musicians.",
+      "no-profiles": "No profiles found..."
+    },
+    "label": {
+      "labels": "Labels"
+    },
+    "labels": {
+      "header": "Labels",
+      "subheader": "Pick some music by label.",
+      "new": "What's new"
+    },
+    "landing": {
+      "title": "OpenJam",
+      "header": "Like and Tip* your favorite artists",
+      "subheader": "Discover the new platform oriented Remix and Electronic Music before anyone else.",
+      "bullet1": "Support the artists and music you love",
+      "bullet2": "* Embrace hat-based remuneration in its digital version",
+      "already": "Already have an account?",
+      "register": "Register",
+      "sign-in": "Sign in"
+    },
+    "not-found": {
+      "header": "Page not found (404)",
+      "subheader": "Boo, looks like a ghost stole this page!"
+    },
+    "playlists": {
+      "header": "Playlists",
+      "subheader": "Pick some music by playlist.",
+      "new": "What's new"
+    },
+    "share": {
+      "header": "Share",
+      "subheader": "Your latest musical favorites are on OpenJam.",
+      "newsfeed": "Newsfeed"
+    },
+    "login": {
+      "header": "Sign in",
+      "subheader": "Sign in to your OpenJam account.",
+      "header-social": "Login with social provider",
+      "action-facebook": "Sign in with Facebook",
+      "action-github": "Sign in with GitHub",
+      "or": "or",
+      "header-email": "Login with email",
+      "input-email": "Email address",
+      "input-password": "Password",
+      "action-submit": "Submit",
+      "no-account": "Don't have an account?",
+      "sign-up-now": "Sign-up now"
+    },
+    "register": {
+      "header": "Register",
+      "subheader": "Create your OpenJam account.",
+      "input-firstname": "First name",
+      "input-lastname": "Last name",
+      "input-email": "Email address",
+      "input-password": "Password",
+      "input-password2": "Confirm password",
+      "action-submit": "Submit",
+      "already": "Already an account?",
+      "sign-in": "Sign in",
+      "gravatar": "This app uses Gravatar so if you want a profile image, use a Gravatar email."
+    },
+    "tracks": {
+      "header": "Tracks",
+      "subheader": "Pick some music by track.",
+      "new": "What's new"
+    }
+  }
+}

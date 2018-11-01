@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+
+import JammersPresenter from './jammers/JammersPresenter';
 import { getProfiles } from '../redux/modules/profile';
 import Spinner from '../components/Spinner';
-import JammersPresenter from './jammers/JammersPresenter';
 
 class Jammers extends Component {
   componentDidMount() {
@@ -11,6 +13,7 @@ class Jammers extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const { profiles, loading } = this.props.profile;
     const { isAuthenticated } = this.props.auth;
 
@@ -19,7 +22,7 @@ class Jammers extends Component {
     ) : profiles.length > 0 ? (
       <JammersPresenter jammers={profiles} isAuthenticated={isAuthenticated} />
     ) : (
-      <h4>No profiles found...</h4>
+      <h4>{t('pages.jammers.no-profiles')}</h4>
     );
   }
 }
@@ -38,4 +41,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProfiles },
-)(Jammers);
+)(withNamespaces('common')(Jammers));

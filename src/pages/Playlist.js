@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import PlaylistPresenter from './playlist/PlaylistPresenter';
 import { fetchPlaylist } from '../redux/modules/playlist';
 import { playSelected, pause } from '../redux/modules/player';
 import Spinner from '../components/Spinner';
-import PlaylistPresenter from './playlist/PlaylistPresenter';
 
 class Playlist extends Component {
   state = {

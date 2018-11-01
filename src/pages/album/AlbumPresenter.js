@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Grid, GridRow, GridColumn } from 'semantic-ui-react';
-import Moment from 'react-moment';
+
 import AlbumTracks from './album-presenter/AlbumTracks';
 import AlbumCover from '../../components/AlbumCover';
 import Body from '../../components/Body';
@@ -26,25 +28,23 @@ const getDescription = album => (
   </span>
 );
 
-const AlbumPresenter = ({ album }) => {
-  return (
-    <Body
-      breadcrumbSegments={[<Link to="/albums">Albums</Link>, getAlbumName(album)]}
-      description={getDescription(album)}
-    >
-      <Grid>
-        <GridRow>
-          <GridColumn mobile={16} tablet={6} computer={5}>
-            <AlbumCover album={album} />
-          </GridColumn>
-          <GridColumn mobile={16} tablet={10} computer={11}>
-            <AlbumTracks tracks={album.tracks} />
-          </GridColumn>
-        </GridRow>
-      </Grid>
-    </Body>
-  );
-};
+const AlbumPresenter = ({ album, t }) => (
+  <Body
+    breadcrumbSegments={[<Link to="/albums">{t('pages.albums.header')}</Link>, getAlbumName(album)]}
+    description={getDescription(album)}
+  >
+    <Grid>
+      <GridRow>
+        <GridColumn mobile={16} tablet={6} computer={5}>
+          <AlbumCover album={album} />
+        </GridColumn>
+        <GridColumn mobile={16} tablet={10} computer={11}>
+          <AlbumTracks tracks={album.tracks} />
+        </GridColumn>
+      </GridRow>
+    </Grid>
+  </Body>
+);
 
 AlbumPresenter.propTypes = {
   album: PropTypes.shape({
@@ -59,4 +59,4 @@ AlbumPresenter.propTypes = {
   }).isRequired,
 };
 
-export default AlbumPresenter;
+export default withNamespaces('common')(AlbumPresenter);
