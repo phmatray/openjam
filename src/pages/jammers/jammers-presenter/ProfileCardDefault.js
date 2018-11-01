@@ -6,12 +6,12 @@ import { Card, Image, Label } from 'semantic-ui-react';
 
 const ProfileCardDefault = ({ profile }) => (
   <React.Fragment>
-    <Link to={`/profile/${profile.handle}`}>
+    <Link to={`/jammer/${profile.handle}`}>
       <Image src={profile.user.avatar} size="medium" />
     </Link>
     <Card.Content>
       <Card.Header>
-        <Link to={`/profile/${profile.handle}`}>
+        <Link to={`/jammer/${profile.handle}`}>
           {profile.user.firstname} {profile.user.lastname}
         </Link>
       </Card.Header>

@@ -9,7 +9,7 @@ const ProfileCardMobile = ({ profile }) => (
     <Card.Content>
       <Image floated="left" size="mini" src={profile.user.avatar} />
       <Card.Header>
-        <Link to={`/profile/${profile.handle}`}>
+        <Link to={`/jammer/${profile.handle}`}>
           {profile.user.firstname} {profile.user.lastname}
         </Link>
       </Card.Header>

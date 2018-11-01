@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu, Icon, Image } from 'semantic-ui-react';
@@ -12,7 +13,7 @@ class NavbarMobile extends Component {
   };
 
   render() {
-    const { height, playing, toggleSidebar, isAuthenticated, user } = this.props;
+    const { height, playing, toggleSidebar, isAuthenticated, user, t } = this.props;
     const { activeItem } = this.state;
 
     const authLinks = (
@@ -62,7 +63,7 @@ class NavbarMobile extends Component {
             }
             alt="logo"
           />
-          OpenJam
+          {t('app')}
         </Menu.Item>
 
         <Menu.Menu position="right">
@@ -84,4 +85,4 @@ NavbarMobile.propTypes = {
   playing: PropTypes.bool.isRequired,
 };
 
-export default NavbarMobile;
+export default withNamespaces('common')(NavbarMobile);

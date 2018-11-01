@@ -31,7 +31,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p>
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.firstname}</Link>
+              Welcome <Link to={`/jammer/${profile.handle}`}>{user.firstname}</Link>
             </p>
 
             <ProfileActions />
@@ -59,6 +59,7 @@ class Dashboard extends Component {
     }
 
     return (
+
       <Segment basic>
         <Header as="h1">
           Dashboard

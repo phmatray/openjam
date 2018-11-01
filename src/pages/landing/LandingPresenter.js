@@ -1,4 +1,5 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 import { Grid, Divider, Container } from 'semantic-ui-react';
 import { LoginScreen, BgWrap, GridContent, H1, H3, Ul, Li, Features } from './styles';
 import Logo from './landing-presenter/Logo';
@@ -6,27 +7,18 @@ import ButtonRegister from './landing-presenter/ButtonRegister';
 import ButtonLogin from './landing-presenter/ButtonLogin';
 import Div from '../../components/Div';
 
-const LandingPresenter = () => (
+const LandingPresenter = ({ t }) => (
   <LoginScreen id="login-screen">
     <BgWrap id="bg-wrap">
       <Container>
         <GridContent>
           <Grid.Column width={10} only="tablet computer">
             <Features>
-              <H1>Like and Tip your favorite artists</H1>
-              <H3>
-                {/* Découvrez la nouvelle plateforme orientée Remix et Electronic Music avant tout le monde. */}
-                Discover the new platform oriented Remix and Electronic Music before anyone else.
-              </H3>
+              <H1>{t('pages.landing.header')}</H1>
+              <H3>{t('pages.landing.subheader')}</H3>
               <Ul>
-                <Li>
-                  {/* Soutenez les artistes et la musique que vous aimez */}
-                  Support the artists and music you love
-                </Li>
-                <Li>
-                  {/* Adoptez la rémunération au chapeau en version digitale */}
-                  Embrace hat-based remuneration in its digital version
-                </Li>
+                <Li>{t('pages.landing.bullet1')}</Li>
+                <Li>{t('pages.landing.bullet2')}</Li>
               </Ul>
             </Features>
           </Grid.Column>
@@ -39,8 +31,7 @@ const LandingPresenter = () => (
               <ButtonRegister />
               <Div mt="3em" mb="3em">
                 <Divider horizontal inverted>
-                  {/* Vous avez déjà un compte ? */}
-                  Already have an account?
+                  {t('pages.landing.already')}
                 </Divider>
               </Div>
               {/* Se connecter */}
@@ -53,4 +44,4 @@ const LandingPresenter = () => (
   </LoginScreen>
 );
 
-export default LandingPresenter;
+export default withNamespaces('common')(LandingPresenter);
