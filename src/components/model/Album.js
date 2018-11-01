@@ -6,24 +6,20 @@ import Title from './album/Title';
 import Label from './album/Label';
 import LinkEntity from '../LinkEntity';
 
-const AlbumItem = ({ album }) => {
-  return (
-    <div style={{ width: '170px', marginBottom: '1.5em', marginRight: '0.9em' }}>
-      <Link to={`/album/${album._id}`}>
-        <Cover src={album.images[1].href} />
-      </Link>
-      <br />
+const AlbumItem = ({ album }) => (
+  <div style={{ width: '170px', marginBottom: '1.5em', marginRight: '0.9em' }}>
+    <Link to={`/album/${album._id}`}>
+      <Cover src={album.images[1].href} />
+    </Link>
+    <br />
 
-      <Title style={{ width: '170px' }}>
-        {album.name} - {album.album_type}
-      </Title>
+    <Title style={{ width: '170px' }}>{`${album.name} - ${album.album_type}`}</Title>
 
-      <Label>
-        <LinkEntity entity={album.label} as="table" />
-      </Label>
-    </div>
-  );
-};
+    <Label>
+      <LinkEntity entity={album.label} as="table" />
+    </Label>
+  </div>
+);
 
 AlbumItem.propTypes = {
   album: PropTypes.shape({

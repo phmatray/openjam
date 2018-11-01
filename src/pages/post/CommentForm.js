@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../../components/Inputs/TextAreaFieldGroup';
-import { addComment } from '../../redux/modules/post';
 import { Form } from 'semantic-ui-react';
+import TextAreaFieldGroup from '../../components/input/TextAreaFieldGroup';
+import { addComment } from '../../redux/modules/post';
 
 class CommentForm extends Component {
   state = {
@@ -44,7 +44,7 @@ class CommentForm extends Component {
         <p>Make a comment...</p>
         <Form error noValidate onSubmit={this.handleSubmit}>
           <TextAreaFieldGroup
-            placeholder={'Reply to post'}
+            placeholder="Reply to post"
             name="text"
             value={this.state.text}
             onChange={this.handleChange}

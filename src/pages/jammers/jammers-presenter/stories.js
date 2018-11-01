@@ -3,8 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
 
 import ProfileCardDefault from './ProfileCardDefault';

@@ -56,7 +56,7 @@ const PlaylistTracks = ({
               <LinkPlay
                 entity={track}
                 as="table"
-                strong={true}
+                strong
                 handleClick={() => playSelected(playlist, track)}
               />
             </Table.Cell>

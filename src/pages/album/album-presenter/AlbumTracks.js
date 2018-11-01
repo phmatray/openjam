@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import LinkEntity from '../../../components/LinkEntity';
 import LinkArtistNames from '../../../components/LinkArtistNames';
-import { HeaderCell } from './styles';
+import HeaderCell from './album-tracks/HeaderCell';
 
 const AlbumTracks = ({ tracks }) => {
   const compare = (a, b) => {
@@ -26,7 +26,7 @@ const AlbumTracks = ({ tracks }) => {
           <Table.Row key={track._id}>
             <Table.Cell>{track.track_number}</Table.Cell>
             <Table.Cell>
-              <LinkEntity entity={track} as="table" strong={true} />
+              <LinkEntity entity={track} as="table" strong />
             </Table.Cell>
             <Table.Cell>
               <LinkArtistNames artists={track.artists} as="table" />

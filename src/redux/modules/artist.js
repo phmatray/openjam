@@ -74,7 +74,7 @@ export function fetchArtists() {
   return {
     types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
     callAPI: () => axios.get('https://api.openjam.eu/api/artists'),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }
 
@@ -83,6 +83,6 @@ export function fetchArtist(id) {
   return {
     types: [FETCH_ARTIST_PENDING, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR],
     callAPI: () => axios.get(`https://api.openjam.eu/api/artists/${id}`),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }

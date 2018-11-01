@@ -74,7 +74,7 @@ export function fetchLabels() {
   return {
     types: [FETCH_LABELS_PENDING, FETCH_LABELS_SUCCESS, FETCH_LABELS_ERROR],
     callAPI: () => axios.get('https://api.openjam.eu/api/labels'),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }
 
@@ -83,6 +83,6 @@ export function fetchLabel(id) {
   return {
     types: [FETCH_LABEL_PENDING, FETCH_LABEL_SUCCESS, FETCH_LABEL_ERROR],
     callAPI: () => axios.get(`https://api.openjam.eu/api/labels/${id}`),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }

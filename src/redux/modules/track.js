@@ -74,7 +74,7 @@ export function fetchTracks() {
   return {
     types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
     callAPI: () => axios.get('https://api.openjam.eu/api/tracks'),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }
 
@@ -83,7 +83,7 @@ export function fetchTracksRandom() {
   return {
     types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
     callAPI: () => axios.get('https://api.openjam.eu/api/tracks/random'),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }
 
@@ -92,6 +92,6 @@ export function fetchTrack(id) {
   return {
     types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
     callAPI: () => axios.get(`https://api.openjam.eu/api/tracks/${id}`),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }

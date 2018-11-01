@@ -55,7 +55,7 @@ export function getCurrentUser() {
     axios
       .get('https://api.openjam.eu/auth/user')
       .then(res => dispatch(updateUser(res.data)))
-      .catch(err => dispatch(updateUser({})));
+      .catch(() => dispatch(updateUser({})));
   };
 }
 

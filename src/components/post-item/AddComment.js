@@ -5,7 +5,7 @@ import { addComment } from '../../redux/modules/post';
 import { AvatarSmall, Button, AddCommentForm } from './styles';
 import Flex from '../Flex';
 import Div from '../Div';
-import Input from '../Input'
+import Input from '../Input';
 
 class AddComment extends Component {
   state = {
@@ -48,8 +48,8 @@ class AddComment extends Component {
         <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
           <Div mb="-1em">
             <Input
-            as="text-area-field"
-              placeholder={'Express yourself'}
+              as="text-area-field"
+              placeholder="Express yourself"
               name="text"
               value={this.state.text}
               onChange={this.handleChange}

@@ -13,13 +13,13 @@ class Artists extends Component {
   render() {
     const { artists, loading } = this.props;
 
-    return artists === null || loading ? (
-      <Spinner />
-    ) : artists.length > 0 ? (
-      <ArtistsPresenter artists={artists} />
-    ) : (
-      <h4>No artists found...</h4>
-    );
+    if (artists === null || loading) {
+      return <Spinner />;
+    }
+    if (artists.length === 0) {
+      return <h4>No artists found...</h4>;
+    }
+    return <ArtistsPresenter artists={artists} />;
   }
 }
 

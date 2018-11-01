@@ -74,7 +74,7 @@ export function fetchAlbums() {
   return {
     types: [FETCH_ALBUMS_PENDING, FETCH_ALBUMS_SUCCESS, FETCH_ALBUMS_ERROR],
     callAPI: () => axios.get('https://api.openjam.eu/api/albums'),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }
 
@@ -83,6 +83,6 @@ export function fetchAlbum(id) {
   return {
     types: [FETCH_ALBUM_PENDING, FETCH_ALBUM_SUCCESS, FETCH_ALBUM_ERROR],
     callAPI: () => axios.get(`https://api.openjam.eu/api/albums/${id}`),
-    shouldCallAPI: state => true,
+    shouldCallAPI: () => true,
   };
 }

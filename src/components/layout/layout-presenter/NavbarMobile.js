@@ -43,7 +43,7 @@ class NavbarMobile extends Component {
           as={Link}
           to="/"
           name="share"
-          active={true}
+          active
           onClick={this.handleItemClick}
           color="teal"
           style={{ width: '11em' }}

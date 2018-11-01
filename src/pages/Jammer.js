@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
 import ProfileHeader from './jammer/ProfileHeader';
 import ProfileAbout from './jammer/ProfileAbout';
 import Spinner from '../components/Spinner';
 import { getProfileByHandle } from '../redux/modules/profile';
-import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
 import Message from '../components/Message';
 
 class Profile extends Component {

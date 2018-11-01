@@ -10,7 +10,8 @@ class ShareButton extends Component {
       <Button basic compact animated size="mini" onClick={this.handleClick}>
         <Button.Content hidden>Share</Button.Content>
         <Button.Content visible>
-          <Icon name="share" /> {shares}
+          <Icon name="share" />
+          {` ${shares}`}
         </Button.Content>
       </Button>
     );

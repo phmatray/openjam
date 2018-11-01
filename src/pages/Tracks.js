@@ -13,13 +13,13 @@ class Tracks extends Component {
   render() {
     const { tracks, loading } = this.props;
 
-    return tracks === null || loading ? (
-      <Spinner />
-    ) : tracks.length > 0 ? (
-      <TracksPresenter tracks={tracks} />
-    ) : (
-      <h4>No tracks found...</h4>
-    );
+    if (tracks === null || loading) {
+      return <Spinner />;
+    }
+    if (tracks.length === 0) {
+      return <h4>No tracks found...</h4>;
+    }
+    return <TracksPresenter tracks={tracks} />;
   }
 }
 

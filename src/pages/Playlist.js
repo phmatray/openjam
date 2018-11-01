@@ -12,19 +12,19 @@ class Playlist extends Component {
     playlistId: null,
   };
 
+  componentDidMount() {
+    this.setState({ playlistId: this.props.match.params.id }, () =>
+      this.props.fetchPlaylist(this.state.playlistId),
+    );
+  }
+
   componentWillReceiveProps(newProps) {
-    var params = newProps.match.params;
+    const { params } = newProps.match;
 
     if (params.id !== this.state.playlistId)
       this.setState({ playlistId: params.id }, () =>
         this.props.fetchPlaylist(this.state.playlistId),
       );
-  }
-
-  componentDidMount() {
-    this.setState({ playlistId: this.props.match.params.id }, () =>
-      this.props.fetchPlaylist(this.state.playlistId),
-    );
   }
 
   render() {

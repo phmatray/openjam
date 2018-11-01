@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { getPreviousIndex, getNextIndex } from '../../utils/playerHelpers';
 
 // Actions

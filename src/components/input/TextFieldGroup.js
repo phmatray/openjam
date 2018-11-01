@@ -43,7 +43,7 @@ const TextFieldGroup = ({
           name={name}
           value={value}
           onChange={onChange}
-          disabled={disabled ? true : false}
+          disabled={!!disabled}
           error={error && true}
         />
       </Form.Field>
@@ -65,7 +65,7 @@ const TextFieldGroup = ({
 };
 
 TextFieldGroup.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,

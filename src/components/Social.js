@@ -11,7 +11,6 @@ const Social = ({ href }) => (
 
 Social.propTypes = {
   href: PropTypes.string.isRequired,
-  icon: PropTypes.string,
 };
 
 export default Social;

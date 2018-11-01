@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { showSidebar, hideSidebar, toggleSidebar } from '../redux/modules/layout';
 import LayoutPresenter from './layout/LayoutPresenter';
 
-class Layout extends Component {
-  render() {
-    return <LayoutPresenter {...this.props} />;
-  }
-}
+const Layout = props => <LayoutPresenter {...props} />;
 
 Layout.propTypes = {
   sidebarVisible: PropTypes.bool.isRequired,
