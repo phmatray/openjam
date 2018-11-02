@@ -30,6 +30,9 @@ OpenJam is a newtech-powered ecosystem, developped to serve music creation, righ
   <a href='https://coveralls.io/github/openjam-eu/openjam'>
     <img src='https://coveralls.io/repos/github/openjam-eu/openjam/badge.svg' alt='Coverage Status' />
   </a>
+  <a href="https://codeclimate.com/github/openjam-eu/openjam/maintainability">
+    <img src="https://api.codeclimate.com/v1/badges/3181f066d68e4765c36f/maintainability" alt="Code Climate" />
+  </a>
 </p>
 
 <br />
