@@ -1,11 +1,11 @@
-# 1. We don't need to use `sudo`, and can instead use containers for faster builds
-sudo: false
-# 2. This is a node.js JS project
 language: node_js
-# 3. These are the various versions of node.js we want to test against
 node_js:
   - '10'
-# 4. We'd like to cache our node_modules dir, because it won't change very often
 cache:
   directories:
-    - 'node_modules'
+    - node_modules
+script:
+  - npm test -- --coverage
+  - npm run build
+after_script:
+  - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN npm run coveralls
