@@ -23,6 +23,13 @@ OpenJam is a newtech-powered ecosystem, developped to serve music creation, righ
   <a href="https://opensource.org/licenses/GPL-3.0/">
     <img src="https://badges.frapsoft.com/os/gpl/gpl.svg?v=103" alt="GPL Licence" />
   </a>
+  <br />
+  <a href="https://travis-ci.org/openjam-eu/openjam">
+    <img src="https://travis-ci.org/openjam-eu/openjam.svg?branch=master" alt="Build Status">
+  </a>
+  <a href='https://coveralls.io/github/openjam-eu/openjam'>
+    <img src='https://coveralls.io/repos/github/openjam-eu/openjam/badge.svg' alt='Coverage Status' />
+  </a>
 </p>
 
 <br />
@@ -38,7 +45,7 @@ OpenJam is a newtech-powered ecosystem, developped to serve music creation, righ
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 Read the whitepaper of the project on [GitBook](https://whitepaper.openjam.eu) or in [PDF](http://bit.ly/OpenJam-WP).
 

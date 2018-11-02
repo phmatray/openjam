@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AlbumPresenter from './AlbumPresenter';
+import AppWrapper from '../../AppWrapper';
 
 const album = {
   _id: '5ba65b4af01f4b08931993d5',
@@ -84,9 +85,11 @@ const album = {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <Router>
-      <AlbumPresenter album={album} />
-    </Router>,
+    <AppWrapper>
+      <Router>
+        <AlbumPresenter album={album} />
+      </Router>
+    </AppWrapper>,
     div,
   );
   ReactDOM.unmountComponentAtNode(div);
