@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu, Container, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+
 import { logoutUser, getCurrentUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
 import logo from '../../../images/logos/logo_white.svg';
@@ -24,7 +26,7 @@ class NavbarDesktop extends Component {
   };
 
   render() {
-    const { auth, playing, height } = this.props;
+    const { auth, playing, height, t } = this.props;
     const { activeItem } = this.state;
     const { isAuthenticated, user } = auth;
 
@@ -37,7 +39,7 @@ class NavbarDesktop extends Component {
           active={activeItem === 'discover'}
           onClick={this.handleItemClick}
         >
-          Discover
+          {t('components.navbar.discover')}
         </Menu.Item>
         <Menu.Item
           as={Link}
@@ -46,7 +48,7 @@ class NavbarDesktop extends Component {
           active={activeItem === 'share'}
           onClick={this.handleItemClick}
         >
-          Share
+          {t('components.navbar.share')}
         </Menu.Item>
         <Menu.Item
           as={Link}
@@ -55,7 +57,7 @@ class NavbarDesktop extends Component {
           active={activeItem === 'jammers'}
           onClick={this.handleItemClick}
         >
-          Jammers
+          {t('components.navbar.jammers')}
         </Menu.Item>
       </React.Fragment>
     );
@@ -69,7 +71,7 @@ class NavbarDesktop extends Component {
           active={activeItem === 'login'}
           onClick={this.handleItemClick}
         >
-          Login
+          {t('components.navbar.sign-in')}
         </Menu.Item>
         <Menu.Item
           as={Link}
@@ -78,7 +80,7 @@ class NavbarDesktop extends Component {
           active={activeItem === 'register'}
           onClick={this.handleItemClick}
         >
-          Register
+          {t('components.navbar.register')}
         </Menu.Item>
       </React.Fragment>
     );
@@ -101,7 +103,7 @@ class NavbarDesktop extends Component {
           />
           <span style={{ marginLeft: '0.5em' }}>{user.firstname}</span>
         </Menu.Item>
-        <Menu.Item onClick={this.handleLogoutClick}>Logout</Menu.Item>
+        <Menu.Item onClick={this.handleLogoutClick}>{t('components.navbar.logout')}</Menu.Item>
       </React.Fragment>
     );
 
@@ -113,7 +115,7 @@ class NavbarDesktop extends Component {
             as={Link}
             to="/"
             name="share"
-            active={true}
+            active
             onClick={this.handleItemClick}
             color="teal"
           >
@@ -132,7 +134,7 @@ class NavbarDesktop extends Component {
               }
               alt="logo"
             />
-            <strong style={{ fontFamily: 'Comfortaa' }}>OpenJam</strong>
+            <strong style={{ fontFamily: 'Comfortaa' }}>{t('app')}</strong>
           </Menu.Item>
 
           {leftLinks}
@@ -161,4 +163,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logoutUser, getCurrentUser, clearCurrentProfile },
-)(NavbarDesktop);
+)(withNamespaces('common')(NavbarDesktop));

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Form, Message, Grid, GridColumn } from 'semantic-ui-react';
+
 import Body from '../../components/Body';
 import Input from '../../components/Input';
 
@@ -20,11 +22,11 @@ class RegisterPresenter extends Component {
     const { registerUser } = this.props;
 
     const newUser = {
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      password: password,
-      password2: password2,
+      firstname,
+      lastname,
+      email,
+      password,
+      password2,
     };
 
     registerUser(newUser, this.props.history);
@@ -32,18 +34,21 @@ class RegisterPresenter extends Component {
 
   render() {
     const { firstname, lastname, email, password, password2 } = this.state;
-    const { errors } = this.props;
+    const { errors, t } = this.props;
 
     return (
-      <Body breadcrumbSegments={['Register']} description="Create your OpenJam account.">
+      <Body
+        breadcrumbSegments={[t('pages.register.header')]}
+        description={t('pages.register.subheader')}
+      >
         <Grid style={{ height: '100%' }} verticalAlign="middle">
           <GridColumn style={{ maxWidth: 450 }}>
             <Form error noValidate onSubmit={this.handleSubmit}>
               <Input
-              as='text-field'
+                as="text-field"
                 name="firstname"
-                label="First name"
-                placeholder="First name"
+                label={t('pages.register.input-firstname')}
+                placeholder={t('pages.register.input-firstname')}
                 icon="user"
                 value={firstname}
                 onChange={this.handleChange}
@@ -51,10 +56,10 @@ class RegisterPresenter extends Component {
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 name="lastname"
-                label="Last name"
-                placeholder="Last name"
+                label={t('pages.register.input-lastname')}
+                placeholder={t('pages.register.input-lastname')}
                 icon="user"
                 value={lastname}
                 onChange={this.handleChange}
@@ -62,24 +67,24 @@ class RegisterPresenter extends Component {
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 type="email"
                 name="email"
-                label="Email Address"
-                placeholder="Email Address"
+                label={t('pages.register.input-email')}
+                placeholder={t('pages.register.input-email')}
                 icon="mail"
                 value={email}
                 onChange={this.handleChange}
                 error={errors.email}
-                info="This app uses Gravatar so if you want a profile image, use a Gravatar email"
+                info={t('pages.register.gravatar')}
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 type="password"
                 name="password"
-                label="Password"
-                placeholder="Password"
+                label={t('pages.register.input-password')}
+                placeholder={t('pages.register.input-password')}
                 icon="lock"
                 value={password}
                 onChange={this.handleChange}
@@ -87,23 +92,28 @@ class RegisterPresenter extends Component {
               />
 
               <Input
-              as='text-field'
+                as="text-field"
                 type="password"
                 name="password2"
-                label="Confirm Password"
-                placeholder="Confirm Password"
+                label={t('pages.register.input-password2')}
+                placeholder={t('pages.register.input-password2')}
                 icon="lock"
                 value={password2}
                 onChange={this.handleChange}
                 error={errors.password2}
               />
 
-              <Form.Button fluid size="large" color="teal" content="Submit" />
+              <Form.Button
+                fluid
+                size="large"
+                color="teal"
+                content={t('pages.register.action-submit')}
+              />
             </Form>
             <Message style={{ textAlign: 'center' }}>
-              Already an account?
+              {t('pages.register.already')}
               <br />
-              <Link to="/login">Sign In</Link>
+              <Link to="/login">{t('pages.register.sign-in')}</Link>
             </Message>
           </GridColumn>
         </Grid>
@@ -112,4 +122,4 @@ class RegisterPresenter extends Component {
   }
 }
 
-export default RegisterPresenter;
+export default withNamespaces('common')(RegisterPresenter);

@@ -29,7 +29,6 @@ const TitleBreadcrumb = ({ breadcrumbSegments }) => {
 
 TitleBreadcrumb.propTypes = {
   breadcrumbSegments: PropTypes.arrayOf(PropTypes.any).isRequired,
-  description: PropTypes.string,
 };
 
 export default TitleBreadcrumb;

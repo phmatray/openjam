@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Grid, GridRow, GridColumn, Menu } from 'semantic-ui-react';
+
 import PostForm from './share/PostForm';
 import { getPosts } from '../redux/modules/post';
 import Feed from '../components/Feed';
@@ -12,22 +14,20 @@ import Body from '../components/Body';
 class Share extends Component {
   state = { activeItem: 'newsfeed' };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
   componentDidMount() {
     this.props.getPosts();
   }
 
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
   render() {
+    const { t } = this.props;
     const { posts, loading } = this.props.post;
     const { isAuthenticated } = this.props.auth;
     const { activeItem } = this.state;
 
     return (
-      <Body
-        breadcrumbSegments={['Share']}
-        description="Your latest musical favorites are on OpenJam."
-      >
+      <Body breadcrumbSegments={[t('pages.share.header')]} description={t('pages.share.subheader')}>
         <Grid padded>
           <GridRow>
             <GridColumn mobile={16} tablet={4} computer={4} style={{ paddingLeft: 0 }}>
@@ -36,6 +36,7 @@ class Share extends Component {
                   name="newsfeed"
                   active={activeItem === 'newsfeed'}
                   onClick={this.handleItemClick}
+                  content={t('pages.share.newsfeed')}
                 />
                 {/* <Menu.Item
                   name="marketplace"
@@ -69,4 +70,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getPosts },
-)(Share);
+)(withNamespaces('common')(Share));

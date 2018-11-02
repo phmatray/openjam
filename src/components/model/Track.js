@@ -61,8 +61,4 @@ TrackItem.propTypes = {
   }).isRequired,
 };
 
-TrackItem.defaultProps = {
-  color: 'teal',
-};
-
 export default TrackItem;

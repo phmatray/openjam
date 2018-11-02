@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button, Divider } from 'semantic-ui-react';
 
@@ -10,30 +11,24 @@ import Div from '../../components/Div';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
 
-class Section extends Component {
-  render() {
-    const { title, items, to } = this.props;
-
-    return (
-      <Flex column fluid>
-        <Flex row fluid alignCenter justifyBetween mb="1em">
-          <H2 header={title} />
-          <Button as={Link} to={to} basic color="teal">
-            Show all
-          </Button>
-        </Flex>
-        <Content>
-          <SubContent>
-            <ModelCollection models={items} />
-          </SubContent>
-        </Content>
-        <Div mt="2em">
-          <Divider />
-        </Div>
-      </Flex>
-    );
-  }
-}
+const Section = ({ title, items, to, t }) => (
+  <Flex column fluid>
+    <Flex row fluid alignCenter justifyBetween mb="1em">
+      <H2 header={title} />
+      <Button as={Link} to={to} basic color="teal">
+        {t('pages.discover.show-all')}
+      </Button>
+    </Flex>
+    <Content>
+      <SubContent>
+        <ModelCollection models={items} />
+      </SubContent>
+    </Content>
+    <Div mt="2em">
+      <Divider />
+    </Div>
+  </Flex>
+);
 
 Section.propTypes = {
   title: PropTypes.string.isRequired,
@@ -41,4 +36,4 @@ Section.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-export default Section;
+export default withNamespaces('common')(Section);

@@ -1,17 +1,18 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 
-const ButtonRegister = () => (
+const ButtonRegister = ({ t }) => (
   <Button
     as={Link}
     to="/register"
     color="teal"
     size="massive"
     fluid
-    content="Register"
     style={{ fontFamily: 'Ubuntu' }}
+    content={t('pages.landing.register')}
   />
 );
 
-export default ButtonRegister;
+export default withNamespaces('common')(ButtonRegister);

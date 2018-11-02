@@ -3,17 +3,15 @@ import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import Icon from './Icon';
 import Social from './Social';
 import JoinUs from './message/JoinUs';
 import FollowUs from './message/FollowUs';
 import Whitepaper from './message/Whitepaper';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 
 // Add fontAwesome Brand Icons
 library.add(fab);

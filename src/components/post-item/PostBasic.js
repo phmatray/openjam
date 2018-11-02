@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LikeButton from './LikeButton';
 import { Segment, SegmentGroup } from 'semantic-ui-react';
+import LikeButton from './LikeButton';
 import AddComment from './AddComment';
 import { SegmentPostBasic } from '../SegmentPost';
 import Intro from './Intro';
@@ -13,18 +13,14 @@ import { deletePost, addLike, removeLike } from '../../redux/modules/post';
 class PostBasic extends Component {
   findUserLike = likes => {
     const { user } = this.props;
-    if (likes.filter(like => like.user === user._id).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return likes.filter(like => like.user === user._id).length > 0;
   };
 
   renderComments = comments =>
     comments !== undefined &&
     comments !== null &&
     comments.length > 0 &&
-    comments.map((comment, idx) => <Comment key={idx} comment={comment} />);
+    comments.map(comment => <Comment key={comment._id} comment={comment} />);
 
   render() {
     const { post, addLike, removeLike, isAuthenticated } = this.props;
@@ -74,13 +70,16 @@ PostBasic.propTypes = {
     likes: PropTypes.array,
     shares: PropTypes.array,
     comments: PropTypes.array,
-  }).isRequired,
+  }),
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
 PostBasic.defaultProps = {
-  comments: [],
-  showActions: true,
+  post: {
+    likes: [],
+    shares: [],
+    comments: [],
+  },
 };
 
 const mapStateToProps = state => ({

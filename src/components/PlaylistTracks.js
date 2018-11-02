@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
-import { playSelected, pause } from '../redux/modules/player';
+
 import LinkEntity from './LinkEntity';
 import LinkPlay from './playlist-tracks/LinkPlay';
 import LinkArtistNames from './LinkArtistNames';
 import CoverToggle from './playlist-tracks/CoverToggle';
 import HeaderCell from './playlist-tracks/HeaderCell';
 import Row from './playlist-tracks/Row';
+import { playSelected, pause } from '../redux/modules/player';
 
 const PlaylistTracks = ({
   playSelected,
@@ -17,6 +19,7 @@ const PlaylistTracks = ({
   playerPlaying,
   playerCollection,
   playerTrack,
+  t,
 }) => {
   const isActive = trackId =>
     playerCollection !== null &&
@@ -28,9 +31,9 @@ const PlaylistTracks = ({
     <Table basic="very">
       <Table.Header>
         <Table.Row>
-          <HeaderCell colSpan="2">Track</HeaderCell>
-          <HeaderCell>Artist</HeaderCell>
-          <HeaderCell>Album</HeaderCell>
+          <HeaderCell colSpan="2">{t('components.playlist-tracks.track')}</HeaderCell>
+          <HeaderCell>{t('components.playlist-tracks.artist')}</HeaderCell>
+          <HeaderCell>{t('components.playlist-tracks.album')}</HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -53,7 +56,7 @@ const PlaylistTracks = ({
               <LinkPlay
                 entity={track}
                 as="table"
-                strong={true}
+                strong
                 handleClick={() => playSelected(playlist, track)}
               />
             </Table.Cell>
@@ -101,4 +104,4 @@ const mapStateToProps = ({ player }) => {
 export default connect(
   mapStateToProps,
   { playSelected, pause },
-)(PlaylistTracks);
+)(withNamespaces('common')(PlaylistTracks));

@@ -1,18 +1,19 @@
 import React from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import { withNamespaces } from 'react-i18next';
+
 import GhostCharacter from './not-found/GhostCharacter';
+import Body from '../components/Body';
+import Div from '../components/Div';
 
-const NotFound = () => {
-  return (
-    <Segment basic>
-      <Header as="h1">
-        Page not found (404)
-        <Header.Subheader>Boo, looks like a ghost stole this page!</Header.Subheader>
-      </Header>
-
+const NotFound = ({ t }) => (
+  <Body
+    breadcrumbSegments={[t('pages.not-found.header')]}
+    description={t('pages.not-found.subheader')}
+  >
+    <Div mt="3em">
       <GhostCharacter />
-    </Segment>
-  );
-};
+    </Div>
+  </Body>
+);
 
-export default NotFound;
+export default withNamespaces('common')(NotFound);

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Segment, Header, Button, Icon } from 'semantic-ui-react';
 import { getCurrentProfile, deleteAccount } from '../redux/modules/profile';
 
-import { Segment, Header, Button, Icon } from 'semantic-ui-react';
 import Spinner from '../components/Spinner';
 import ProfileActions from './dashboard/ProfileActions';
 
@@ -13,7 +13,7 @@ class Dashboard extends Component {
     this.props.getCurrentProfile();
   }
 
-  onDeleteClick = e => {
+  onDeleteClick = () => {
     this.props.deleteAccount();
   };
 
@@ -25,37 +25,39 @@ class Dashboard extends Component {
 
     if (profile === null || loading) {
       dashboardContent = <Spinner />;
-    } else {
+    } else if (Object.keys(profile).length > 0) {
       // Check if logged in user has profile data
-      if (Object.keys(profile).length > 0) {
-        dashboardContent = (
-          <div>
-            <p>
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.firstname}</Link>
-            </p>
+      dashboardContent = (
+        <div>
+          <p>
+            {'Welcome '}
+            <Link to={`/jammer/${profile.handle}`}>{user.firstname}</Link>
+          </p>
 
-            <ProfileActions />
+          <ProfileActions />
 
-            <div style={{ marginBottom: '3em' }} />
-            <Button color="red" onClick={this.onDeleteClick}>
-              <Icon name="user delete" />
-              Delete my Account
-            </Button>
-          </div>
-        );
-      } else {
-        // User is logged in but has no profile
-        dashboardContent = (
-          <div>
-            <p>Welcome {user.firstname}</p>
-            <p>You have not yet setup a profile, please add some info</p>
+          <div style={{ marginBottom: '3em' }} />
+          <Button color="red" onClick={this.onDeleteClick}>
+            <Icon name="user delete" />
+            Delete my Account
+          </Button>
+        </div>
+      );
+    } else {
+      // User is logged in but has no profile
+      dashboardContent = (
+        <div>
+          <p>
+            Welcome
+            {user.firstname}
+          </p>
+          <p>You have not yet setup a profile, please add some info</p>
 
-            <Button as={Link} primary to="/create-profile">
-              Create Profile
-            </Button>
-          </div>
-        );
-      }
+          <Button as={Link} primary to="/create-profile">
+            Create Profile
+          </Button>
+        </div>
+      );
     }
 
     return (

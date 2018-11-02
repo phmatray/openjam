@@ -5,8 +5,8 @@ import PostItem from '../PostItem';
 
 const FeedPresenter = ({ posts }) => (
   <FeedStyled>
-    {posts.map((item, idx) => (
-      <PostItem key={idx} post={item} />
+    {posts.map(item => (
+      <PostItem key={item._id} post={item} />
     ))}
   </FeedStyled>
 );

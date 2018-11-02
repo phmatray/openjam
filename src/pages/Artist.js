@@ -10,17 +10,17 @@ class Artist extends Component {
     artistId: null,
   };
 
-  componentWillReceiveProps(newProps) {
-    var params = newProps.match.params;
-
-    if (params.id !== this.state.artistId)
-      this.setState({ artistId: params.id }, () => this.props.fetchArtist(this.state.artistId));
-  }
-
   componentDidMount() {
     this.setState({ artistId: this.props.match.params.id }, () =>
       this.props.fetchArtist(this.state.artistId),
     );
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { params } = newProps.match;
+
+    if (params.id !== this.state.artistId)
+      this.setState({ artistId: params.id }, () => this.props.fetchArtist(this.state.artistId));
   }
 
   render() {

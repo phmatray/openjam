@@ -5,7 +5,7 @@ import { Segment, Button, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Spinner from '../components/Spinner';
 import { getPost } from '../redux/modules/post';
-import PostItem from '../components/PostItem/PostItem';
+import PostItem from '../components/PostItem';
 import CommentForm from './post/CommentForm';
 import CommentFeed from './post/CommentFeed';
 

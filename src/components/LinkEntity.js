@@ -25,15 +25,13 @@ const LinkEntity = ({ entity, as, strong, alternate }) => {
         {entity.title && entity.edit && <AlternateEdit>{` (${entity.edit})`}</AlternateEdit>}
       </Alternate>
     );
-  } else {
-    if (entity.title) {
-      content = entity.title;
-      if (entity.edit) {
-        content += ` (${entity.edit})`;
-      }
-    } else {
-      content = entity.name;
+  } else if (entity.title) {
+    content = entity.title;
+    if (entity.edit) {
+      content += ` (${entity.edit})`;
     }
+  } else {
+    content = entity.name;
   }
 
   // set strong if needed

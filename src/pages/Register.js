@@ -1,9 +1,11 @@
+/* eslint-disable react/no-unused-state */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { registerUser } from '../redux/modules/auth';
 import RegisterPresenter from './register/RegisterPresenter';
-import { withRouter } from 'react-router-dom';
 
 class Register extends Component {
   componentDidMount() {

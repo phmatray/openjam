@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import isEmpty from '../../../utils/validation/is-empty';
 import { Card, Image, Label } from 'semantic-ui-react';
+import isEmpty from '../../../utils/validation/is-empty';
 
 const ProfileCardDefault = ({ profile }) => (
   <React.Fragment>
-    <Link to={`/profile/${profile.handle}`}>
+    <Link to={`/jammer/${profile.handle}`}>
       <Image src={profile.user.avatar} size="medium" />
     </Link>
     <Card.Content>
       <Card.Header>
-        <Link to={`/profile/${profile.handle}`}>
-          {profile.user.firstname} {profile.user.lastname}
+        <Link to={`/jammer/${profile.handle}`}>
+          {`${profile.user.firstname} ${profile.user.lastname}`}
         </Link>
       </Card.Header>
       <Card.Meta>{isEmpty(profile.location) ? null : <span>{profile.location}</span>}</Card.Meta>
