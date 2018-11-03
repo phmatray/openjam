@@ -42,7 +42,7 @@ class NavbarMobile extends Component {
           header
           as={Link}
           to="/"
-          name="share"
+          name="landing"
           active
           onClick={this.handleItemClick}
           color="teal"

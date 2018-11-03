@@ -11,7 +11,7 @@ import Playlist from '../../components/model/Playlist';
 const PlaylistsPresenter = ({ playlists, t }) => (
   <Body
     breadcrumbSegments={[
-      <Link to="/discover">{t('pages.discover.header')}</Link>,
+      <Link to="/explore">{t('pages.explore.header')}</Link>,
       t('pages.playlists.header'),
     ]}
     description={t('pages.playlists.subheader')}

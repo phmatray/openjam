@@ -10,7 +10,7 @@
       }
     },
     "navbar": {
-      "discover": "Découvrez",
+      "explore": "Explorez",
       "share": "Partagez",
       "jammers": "Jammers",
       "register": "S'inscrire",
@@ -39,8 +39,8 @@
       "subheader": "Choisissez de la musique par artiste.",
       "new": "Nouveautés"
     },
-    "discover": {
-      "header": "Découvrez",
+    "explore": {
+      "header": "Explorez",
       "subheader": "Choisissez parmi une sélection de playlists, albums, artistes, pistes ou labels.",
       "playlists": "Playlists",
       "artists": "Artistes",

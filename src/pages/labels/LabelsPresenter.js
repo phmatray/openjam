@@ -11,7 +11,7 @@ import H2 from '../../components/H2';
 const LabelItems = ({ labels, t }) => (
   <Body
     breadcrumbSegments={[
-      <Link to="/discover">{t('pages.discover.header')}</Link>,
+      <Link to="/explore">{t('pages.explore.header')}</Link>,
       t('pages.labels.header'),
     ]}
     description={t('pages.labels.subheader')}
