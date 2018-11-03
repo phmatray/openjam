@@ -8,9 +8,11 @@ const Content = styled.div`
   justify-content: center;
   position: relative;
   z-index: 2;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s linear;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.51);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 `;
 

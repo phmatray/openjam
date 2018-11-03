@@ -27,15 +27,15 @@ class NavbarSide extends Component {
       <React.Fragment>
         <Menu.Item
           as={Link}
-          to="/discover"
-          name="discover"
-          active={activeItem === 'discover'}
+          to="/explore"
+          name="explore"
+          active={activeItem === 'explore'}
           onClick={this.handleItemClick && hideSidebar}
           style={{ textAlign: 'left' }}
         >
           <span>
             <Icon name="music" size="big" style={{ margin: '0.75em' }} />
-            {t('components.navbar.discover')}
+            {t('components.navbar.explore')}
           </span>
         </Menu.Item>
         <Menu.Item

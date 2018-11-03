@@ -10,7 +10,7 @@
       }
     },
     "navbar": {
-      "discover": "Discover",
+      "explore": "Explore",
       "share": "Share",
       "jammers": "Jammers",
       "register": "Register",
@@ -39,8 +39,8 @@
       "subheader": "Pick some music by artist.",
       "new": "What's new"
     },
-    "discover": {
-      "header": "Discover",
+    "explore": {
+      "header": "Explore",
       "subheader": "Choose from a selection of playlists, albums, artists, tracks or labels.",
       "playlists": "Playlists",
       "artists": "Artists",
@@ -65,7 +65,7 @@
     "landing": {
       "title": "OpenJam",
       "header": "Like and Tip* your favorite artists",
-      "subheader": "Discover the new platform oriented Remix and Electronic Music before anyone else.",
+      "subheader": "Explore the new platform oriented Remix and Electronic Music before anyone else.",
       "bullet1": "Support the artists and music you love",
       "bullet2": "* Embrace hat-based remuneration in its digital version",
       "already": "Already have an account?",

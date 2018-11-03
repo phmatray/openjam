@@ -11,7 +11,7 @@ import H2 from '../../components/H2';
 const ArtistsPresenter = ({ artists, t }) => (
   <Body
     breadcrumbSegments={[
-      <Link to="/discover">{t('pages.discover.header')}</Link>,
+      <Link to="/explore">{t('pages.explore.header')}</Link>,
       t('pages.artists.header'),
     ]}
     description={t('pages.artists.subheader')}

@@ -42,7 +42,7 @@ class TrackItem extends Component {
           </Feed.Date>
           <Feed.Summary>
             <span>
-              Discover&nbsp;
+              Explore&nbsp;
               <Link to={`/track/${track._id}`}>{track.title}</Link>
               {','}
               <br />

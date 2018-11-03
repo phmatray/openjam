@@ -34,12 +34,12 @@ class NavbarDesktop extends Component {
       <React.Fragment>
         <Menu.Item
           as={Link}
-          to="/discover"
-          name="discover"
-          active={activeItem === 'discover'}
+          to="/explore"
+          name="explore"
+          active={activeItem === 'explore'}
           onClick={this.handleItemClick}
         >
-          {t('components.navbar.discover')}
+          {t('components.navbar.explore')}
         </Menu.Item>
         <Menu.Item
           as={Link}
@@ -114,7 +114,7 @@ class NavbarDesktop extends Component {
             header
             as={Link}
             to="/"
-            name="share"
+            name="landing"
             active
             onClick={this.handleItemClick}
             color="teal"
