@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import Section from './discover/Section';
+import Section from './explore/Section';
 import Body from '../components/Body';
 
 import { fetchPlaylists } from '../redux/modules/playlist';
@@ -11,7 +11,7 @@ import { fetchArtists } from '../redux/modules/artist';
 import { fetchAlbums } from '../redux/modules/album';
 import { fetchLabels } from '../redux/modules/label';
 
-export class Discover extends Component {
+export class Explore extends Component {
   componentDidMount() {
     const { fetchPlaylists, fetchTracks, fetchArtists, fetchAlbums, fetchLabels } = this.props;
 
@@ -27,27 +27,48 @@ export class Discover extends Component {
 
     return (
       <Body
-        breadcrumbSegments={[t('pages.discover.header')]}
-        description={t('pages.discover.subheader')}
+        breadcrumbSegments={[t('pages.explore.header')]}
+        description={t('pages.explore.subheader')}
       >
         {playlists !== null && (
           <Section
-            title={t('pages.discover.playlists')}
-            items={playlists.slice(0, 10)}
+            title={t('pages.explore.playlists')}
+            items={playlists.slice(0, 8)}
             to="/playlists"
+            maxHeight={512}
           />
         )}
         {artists !== null && (
-          <Section title={t('pages.discover.artists')} items={artists.slice(0, 9)} to="/artists" />
+          <Section
+            title={t('pages.explore.artists')}
+            items={artists.slice(0, 16)}
+            to="/artists"
+            maxHeight={512}
+          />
         )}
         {tracks !== null && (
-          <Section title={t('pages.discover.tracks')} items={tracks.slice(0, 21)} to="/tracks" />
+          <Section
+            title={t('pages.explore.tracks')}
+            items={tracks.slice(0, 32)}
+            to="/tracks"
+            maxHeight={256}
+          />
         )}
         {albums !== null && (
-          <Section title={t('pages.discover.albums')} items={albums.slice(0, 20)} to="/albums" />
+          <Section
+            title={t('pages.explore.albums')}
+            items={albums.slice(0, 16)}
+            to="/albums"
+            maxHeight={512}
+          />
         )}
         {labels !== null && (
-          <Section title={t('pages.discover.labels')} items={labels.slice(0, 20)} to="/labels" />
+          <Section
+            title={t('pages.explore.labels')}
+            items={labels.slice(0, 16)}
+            to="/labels"
+            maxHeight={512}
+          />
         )}
       </Body>
     );
@@ -71,4 +92,4 @@ export default connect(
     fetchAlbums,
     fetchLabels,
   },
-)(withNamespaces('common')(Discover));
+)(withNamespaces('common')(Explore));

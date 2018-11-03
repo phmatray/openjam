@@ -22,8 +22,8 @@ const AsyncLanding = Loadable({
   timeout: 10000,
 });
 
-const AsyncDiscover = Loadable({
-  loader: () => import('../pages/Discover'),
+const AsyncExplore = Loadable({
+  loader: () => import('../pages/Explore'),
   loading: Loading,
   timeout: 10000,
 });
@@ -135,7 +135,7 @@ const Routes = ({ childProps }) => (
     <Route path="/" exact component={AsyncLanding} props={childProps} />
     <Route path="/login" exact component={AsyncLogin} props={childProps} />
     <Route path="/register" exact component={AsyncRegister} props={childProps} />
-    <Route path="/discover" exact component={AsyncDiscover} props={childProps} />
+    <Route path="/explore" exact component={AsyncExplore} props={childProps} />
     <Route path="/share" exact component={AsyncShare} props={childProps} />
     <Route path="/jammers" exact component={AsyncJammers} props={childProps} />
     <Route path="/jammer/:handle" exact component={AsyncJammer} props={childProps} />
