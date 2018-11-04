@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { updateErrors, clearErrors } from './error';
+import { apiBase } from '../constants';
 
 // Actions
 //
@@ -18,7 +19,7 @@ const initialState = {
   loading: false,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD:
       return {
@@ -69,116 +70,85 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Action Creators
 //
-export function loadPosts() {
-  return { type: LOAD };
-}
-
-export function updatePosts(payload) {
-  return { type: UPDATE_POSTS, payload };
-}
-
-export function updatePost(payload) {
-  return { type: UPDATE_POST, payload };
-}
-
-export function createPost(payload) {
-  return { type: CREATE_POST, payload };
-}
-
-export function removePost(payload) {
-  return { type: REMOVE_POST, payload };
-}
-
-export function updatePostLike(payload) {
-  return { type: UPDATE_POST_LIKE, payload };
-}
+export const loadPosts = () => ({ type: LOAD });
+export const updatePosts = payload => ({ type: UPDATE_POSTS, payload });
+export const updatePost = payload => ({ type: UPDATE_POST, payload });
+export const createPost = payload => ({ type: CREATE_POST, payload });
+export const removePost = payload => ({ type: REMOVE_POST, payload });
+export const updatePostLike = payload => ({ type: UPDATE_POST_LIKE, payload });
 
 // Side effects, only as applicable (thunks)
 //
 // Add Post
-export function addPost(postData) {
-  return dispatch => {
-    dispatch(clearErrors());
-    axios
-      .post('https://api.openjam.eu/api/posts', postData)
-      .then(res => dispatch(createPost(res.data)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const addPost = postData => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`${apiBase}/api/posts`, postData)
+    .then(res => dispatch(createPost(res.data)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Get Posts
-export function getPosts() {
-  return dispatch => {
-    dispatch(loadPosts());
-    axios
-      .get('https://api.openjam.eu/api/posts')
-      .then(res => dispatch(updatePosts(res.data)))
-      .catch(() => dispatch(updatePosts(null)));
-  };
-}
+export const getPosts = () => dispatch => {
+  dispatch(loadPosts());
+  axios
+    .get(`${apiBase}/api/posts`)
+    .then(res => dispatch(updatePosts(res.data)))
+    .catch(() => dispatch(updatePosts(null)));
+};
 
 // Get Post
-export function getPost(id) {
-  return dispatch => {
-    dispatch(loadPosts());
-    axios
-      .get(`https://api.openjam.eu/api/posts/${id}`)
-      .then(res => dispatch(updatePost(res.data)))
-      .catch(() => dispatch(updatePost(null)));
-  };
-}
+export const getPost = id => dispatch => {
+  dispatch(loadPosts());
+  axios
+    .get(`${apiBase}/api/posts/${id}`)
+    .then(res => dispatch(updatePost(res.data)))
+    .catch(() => dispatch(updatePost(null)));
+};
 
 // Delete Post
-export function deletePost(id) {
-  return dispatch => {
-    axios
-      .delete(`https://api.openjam.eu/api/posts/${id}`)
-      .then(() => dispatch(removePost(id)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const deletePost = id => dispatch => {
+  axios
+    .delete(`${apiBase}/api/posts/${id}`)
+    .then(() => dispatch(removePost(id)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Add Like
-export function addLike(id) {
-  return dispatch => {
-    axios
-      .post(`https://api.openjam.eu/api/posts/like/${id}`)
-      .then(res => dispatch(updatePostLike(res.data)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const addLike = id => dispatch => {
+  axios
+    .post(`${apiBase}/api/posts/like/${id}`)
+    .then(res => dispatch(updatePostLike(res.data)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Remove Like
-export function removeLike(id) {
-  return dispatch => {
-    axios
-      .post(`https://api.openjam.eu/api/posts/unlike/${id}`)
-      .then(res => dispatch(updatePostLike(res.data)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const removeLike = id => dispatch => {
+  axios
+    .post(`${apiBase}/api/posts/unlike/${id}`)
+    .then(res => dispatch(updatePostLike(res.data)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Add Comment
-export function addComment(postId, commentData) {
-  return dispatch => {
-    dispatch(clearErrors());
-    axios
-      .post(`https://api.openjam.eu/api/posts/comment/${postId}`, commentData)
-      .then(res => dispatch(updatePost(res.data)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const addComment = (postId, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`${apiBase}/api/posts/comment/${postId}`, commentData)
+    .then(res => dispatch(updatePost(res.data)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Delete Comment
-export function deleteComment(postId, commentId) {
-  return dispatch => {
-    axios
-      .delete(`https://api.openjam.eu/api/posts/comment/${postId}/${commentId}`)
-      .then(res => dispatch(updatePost(res.data)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const deleteComment = (postId, commentId) => dispatch => {
+  axios
+    .delete(`${apiBase}/api/posts/comment/${postId}/${commentId}`)
+    .then(res => dispatch(updatePost(res.data)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};

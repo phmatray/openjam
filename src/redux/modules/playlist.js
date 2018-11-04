@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiBase } from '../constants';
 
 // Actions
 //
@@ -18,7 +19,7 @@ const initialState = {
   error: null,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_PLAYLISTS_PENDING:
       return {
@@ -65,24 +66,22 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Side effects, only as applicable (thunks)
 //
 // Fetch all playlists
-export function fetchPlaylists() {
-  return {
-    types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
-    callAPI: () => axios.get('https://api.openjam.eu/api/playlists'),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchPlaylists = () => ({
+  types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/playlists`),
+  shouldCallAPI: () => true,
+});
 
 // Fetch a playlist by _id
-export function fetchPlaylist(id) {
-  return {
-    types: [FETCH_PLAYLIST_PENDING, FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_ERROR],
-    callAPI: () => axios.get(`https://api.openjam.eu/api/playlists/${id}`),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchPlaylist = id => ({
+  types: [FETCH_PLAYLIST_PENDING, FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/playlists/${id}`),
+  shouldCallAPI: () => true,
+});

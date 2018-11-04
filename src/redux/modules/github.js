@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiBase } from '../constants';
 
 // Actions
 //
@@ -14,7 +15,7 @@ const initialState = {
   error: null,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_REPOS_ERROR:
       return {
@@ -40,32 +41,24 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Action Creators
 //
-export function fetchReposError(error) {
-  return { type: FETCH_REPOS_ERROR, payload: error };
-}
-
-export function fetchReposPending() {
-  return { type: FETCH_REPOS_PENDING };
-}
-
-export function fetchReposSuccess(response) {
-  return { type: FETCH_REPOS_SUCCESS, payload: response };
-}
+export const fetchReposError = error => ({ type: FETCH_REPOS_ERROR, payload: error });
+export const fetchReposPending = () => ({ type: FETCH_REPOS_PENDING });
+export const fetchReposSuccess = response => ({ type: FETCH_REPOS_SUCCESS, payload: response });
 
 // Side effects, only as applicable (thunks)
 //
 // Fetch last 5 repos of a user
-export function fetchRepos(username) {
-  return dispatch => {
-    dispatch(fetchReposPending());
+export const fetchRepos = username => dispatch => {
+  dispatch(fetchReposPending());
 
-    axios
-      .get(`https://api.openjam.eu/api/github/repos/${username}`)
-      .then(res => dispatch(fetchReposSuccess(res.data)))
-      .catch(err => dispatch(fetchReposError(err)));
-  };
-}
+  axios
+    .get(`${apiBase}/api/github/repos/${username}`)
+    .then(res => dispatch(fetchReposSuccess(res.data)))
+    .catch(err => dispatch(fetchReposError(err)));
+};
