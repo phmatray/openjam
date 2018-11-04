@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiBase } from '../constants';
 
 // Actions
 //
@@ -18,7 +19,7 @@ const initialState = {
   error: null,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_TRACKS_PENDING:
       return {
@@ -65,33 +66,29 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Side effects, only as applicable (thunks)
 //
 // Fetch all tracks
-export function fetchTracks() {
-  return {
-    types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-    callAPI: () => axios.get('https://api.openjam.eu/api/tracks'),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchTracks = () => ({
+  types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/tracks`),
+  shouldCallAPI: () => true,
+});
 
 // Fetch 20 random tracks
-export function fetchTracksRandom() {
-  return {
-    types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-    callAPI: () => axios.get('https://api.openjam.eu/api/tracks/random'),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchTracksRandom = () => ({
+  types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/tracks/random`),
+  shouldCallAPI: () => true,
+});
 
 // Fetch a track by _id
-export function fetchTrack(id) {
-  return {
-    types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
-    callAPI: () => axios.get(`https://api.openjam.eu/api/tracks/${id}`),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchTrack = id => ({
+  types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/tracks/${id}`),
+  shouldCallAPI: () => true,
+});

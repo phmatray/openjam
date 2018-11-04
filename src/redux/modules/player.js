@@ -10,11 +10,11 @@ const STOP = 'player/STOP';
 const PREVIOUS = 'player/PREVIOUS';
 const NEXT = 'player/NEXT';
 
-const LOAD_COLLECTION = 'player/LOAD_COLLECTION';
-
 const UPDATE_AUDIO_INFO = 'player/UPDATE_AUDIO_INFO';
 const UPDATE_POSITION = 'player/UPDATE_POSITION';
 const UPDATE_VOLUME = 'player/UPDATE_VOLUME';
+
+const LOAD_COLLECTION = 'player/LOAD_COLLECTION';
 
 // Reducer
 //
@@ -32,21 +32,13 @@ const initialState = {
   },
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case PLAY:
-      return {
-        ...state,
-        playing: true,
-        status: 'PLAYING',
-      };
+      return { ...state, playing: true, status: 'PLAYING' };
 
     case PAUSE:
-      return {
-        ...state,
-        playing: false,
-        status: 'PAUSED',
-      };
+      return { ...state, playing: false, status: 'PAUSED' };
 
     case STOP:
       return {
@@ -87,6 +79,15 @@ export default function reducer(state = initialState, action = {}) {
         },
       };
 
+    case UPDATE_AUDIO_INFO:
+      return { ...state, audioInfo: action.payload };
+
+    case UPDATE_POSITION:
+      return { ...state, audioInfo: { ...state.audioInfo, position: action.payload } };
+
+    case UPDATE_VOLUME:
+      return { ...state, audioInfo: { ...state.audioInfo, volume: action.payload } };
+
     case LOAD_COLLECTION:
       return {
         ...state,
@@ -100,62 +101,25 @@ export default function reducer(state = initialState, action = {}) {
         },
       };
 
-    case UPDATE_AUDIO_INFO:
-      return {
-        ...state,
-        audioInfo: action.payload,
-      };
-
-    case UPDATE_POSITION:
-      return {
-        ...state,
-        audioInfo: {
-          ...state.audioInfo,
-          position: action.payload,
-        },
-      };
-
-    case UPDATE_VOLUME:
-      return {
-        ...state,
-        audioInfo: {
-          ...state.audioInfo,
-          volume: action.payload,
-        },
-      };
-
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Action Creators
 //
-export function play() {
-  return { type: PLAY };
-}
+export const play = () => ({ type: PLAY });
+export const pause = () => ({ type: PAUSE });
+export const stop = () => ({ type: STOP });
+export const previous = () => ({ type: PREVIOUS });
+export const next = () => ({ type: NEXT });
+export const volume = volume => ({ type: UPDATE_VOLUME, payload: volume });
+export const updateAudioInfo = audioInfo => ({ type: UPDATE_AUDIO_INFO, payload: audioInfo });
+export const updatePosition = position => ({ type: UPDATE_POSITION, payload: position });
 
-export function pause() {
-  return { type: PAUSE };
-}
-
-export function stop() {
-  return { type: STOP };
-}
-
-export function previous() {
-  return { type: PREVIOUS };
-}
-
-export function next() {
-  return { type: NEXT };
-}
-
-export function volume(volume) {
-  return { type: UPDATE_VOLUME, payload: volume };
-}
-
-export function loadCollection(collection, index = 0) {
+export const loadCollection = (collection, index = 0) => {
   if (collection.length) {
     collection = { type: 'default', tracks: collection };
   }
@@ -170,39 +134,43 @@ export function loadCollection(collection, index = 0) {
       current: { ...collection.tracks[index], index },
     },
   };
-}
-
-export function updateAudioInfo(audioInfo) {
-  return { type: UPDATE_AUDIO_INFO, payload: audioInfo };
-}
-
-export function updatePosition(position) {
-  return { type: UPDATE_POSITION, payload: position };
-}
+};
 
 // Side effects, only as applicable (thunks)
 //
 // Play the selected collection (playlist, album...)
 // (A collection is an object containing the "tracks" property)
-export function playSelected(collection, track = null) {
-  return (dispatch, getState) => {
-    if (collection === null || collection === undefined || collection.tracks.length === 0) {
-      throw new Error('collection cannot be null, undefined or empty');
-    }
+export const playSelected = (collection, track = null) => (dispatch, getState) => {
+  if (collection === null || collection === undefined || collection.tracks.length === 0) {
+    throw new Error('collection cannot be null, undefined or empty');
+  }
 
-    const { collectionId, currentId } = getState().player;
+  const { collectionId, currentId } = getState().player;
+  const sameCollection = collection._id === collectionId;
+
+  if (track === null) {
+    dispatch(loadCollection(collection, 0));
+  } else {
+    const sameTrack = sameCollection && track._id === currentId;
+    if (!sameTrack) {
+      const index = collection.tracks.findIndex(element => element._id === track._id);
+      dispatch(loadCollection(collection, index));
+    }
+  }
+
+  dispatch(play());
+};
+
+export const playTrack = (track = null) => (dispatch, getState) => {
+  if (track !== null) {
+    const collection = { tracks: [track], _id: track._id };
+
+    const { collectionId } = getState().player;
     const sameCollection = collection._id === collectionId;
 
-    if (track === null) {
+    if (!sameCollection) {
       dispatch(loadCollection(collection, 0));
-    } else {
-      const sameTrack = sameCollection && track._id === currentId;
-      if (!sameTrack) {
-        const index = collection.tracks.findIndex(element => element._id === track._id);
-        dispatch(loadCollection(collection, index));
-      }
     }
-
     dispatch(play());
-  };
-}
+  }
+};

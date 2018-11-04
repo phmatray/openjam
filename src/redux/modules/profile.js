@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { updateErrors } from './error';
 import { logoutUser } from './auth';
+import { apiBase } from '../constants';
 
 // Actions
 //
@@ -19,7 +20,7 @@ const initialState = {
   loading: false,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD:
       return {
@@ -50,119 +51,92 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Action Creators
 //
-export function loadProfiles() {
-  return { type: LOAD };
-}
-
-export function updateProfiles(payload) {
-  return { type: UPDATE_PROFILES, payload };
-}
-
-export function updateProfile(payload) {
-  return { type: UPDATE_PROFILE, payload };
-}
-
-export function clearCurrentProfile() {
-  return { type: CLEAR_CURRENT_PROFILE };
-}
+export const loadProfiles = () => ({ type: LOAD });
+export const updateProfiles = payload => ({ type: UPDATE_PROFILES, payload });
+export const updateProfile = payload => ({ type: UPDATE_PROFILE, payload });
+export const clearCurrentProfile = () => ({ type: CLEAR_CURRENT_PROFILE });
 
 // Side effects, only as applicable (thunks)
 //
 // Get current profile
-export function getCurrentProfile() {
-  return dispatch => {
-    dispatch(loadProfiles());
-    axios
-      .get('https://api.openjam.eu/api/profile')
-      .then(res => dispatch(updateProfile(res.data)))
-      .catch(() => dispatch(updateProfile({})));
-  };
-}
+export const getCurrentProfile = () => dispatch => {
+  dispatch(loadProfiles());
+  axios
+    .get(`${apiBase}/api/profile`)
+    .then(res => dispatch(updateProfile(res.data)))
+    .catch(() => dispatch(updateProfile({})));
+};
 
 // Get profile by handle
-export function getProfileByHandle(handle) {
-  return dispatch => {
-    dispatch(loadProfiles());
-    axios
-      .get(`https://api.openjam.eu/api/profile/handle/${handle}`)
-      .then(res => dispatch(updateProfile(res.data)))
-      .catch(() => dispatch(updateProfile(null)));
-  };
-}
+export const getProfileByHandle = handle => dispatch => {
+  dispatch(loadProfiles());
+  axios
+    .get(`${apiBase}/api/profile/handle/${handle}`)
+    .then(res => dispatch(updateProfile(res.data)))
+    .catch(() => dispatch(updateProfile(null)));
+};
 
 // Create profile
-export function createProfile(profileData, history) {
-  return dispatch => {
-    axios
-      .post('https://api.openjam.eu/api/profile', profileData)
-      .then(() => history.push('/dashboard'))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const createProfile = (profileData, history) => dispatch => {
+  axios
+    .post(`${apiBase}/api/profile`, profileData)
+    .then(() => history.push('/dashboard'))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Add experience
-export function addExperience(expData, history) {
-  return dispatch => {
-    axios
-      .post('https://api.openjam.eu/api/profile/experience', expData)
-      .then(() => history.push('/dashboard'))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const addExperience = (expData, history) => dispatch => {
+  axios
+    .post(`${apiBase}/api/profile/experience`, expData)
+    .then(() => history.push('/dashboard'))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Add education
-export function addEducation(eduData, history) {
-  return dispatch => {
-    axios
-      .post('https://api.openjam.eu/api/profile/education', eduData)
-      .then(() => history.push('/dashboard'))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const addEducation = (eduData, history) => dispatch => {
+  axios
+    .post(`${apiBase}/api/profile/education`, eduData)
+    .then(() => history.push('/dashboard'))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Delete experience
-export function deleteExperience(id) {
-  return dispatch => {
-    axios
-      .delete(`https://api.openjam.eu/api/profile/experience/${id}`)
-      .then(res => dispatch(updateProfile(res.data)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const deleteExperience = id => dispatch => {
+  axios
+    .delete(`${apiBase}/api/profile/experience/${id}`)
+    .then(res => dispatch(updateProfile(res.data)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Delete education
-export function deleteEducation(id) {
-  return dispatch => {
-    axios
-      .delete(`https://api.openjam.eu/api/profile/education/${id}`)
-      .then(res => dispatch(updateProfile(res.data)))
-      .catch(err => dispatch(updateErrors(err.response.data)));
-  };
-}
+export const deleteEducation = id => dispatch => {
+  axios
+    .delete(`${apiBase}/api/profile/education/${id}`)
+    .then(res => dispatch(updateProfile(res.data)))
+    .catch(err => dispatch(updateErrors(err.response.data)));
+};
 
 // Get all profiles
-export function getProfiles() {
-  return dispatch => {
-    dispatch(loadProfiles());
-    axios
-      .get('https://api.openjam.eu/api/profile/all')
-      .then(res => dispatch(updateProfiles(res.data)))
-      .catch(() => dispatch(updateProfiles(null)));
-  };
-}
+export const getProfiles = () => dispatch => {
+  dispatch(loadProfiles());
+  axios
+    .get(`${apiBase}/api/profile/all`)
+    .then(res => dispatch(updateProfiles(res.data)))
+    .catch(() => dispatch(updateProfiles(null)));
+};
 
 // Delete account & profile
-export function deleteAccount() {
-  return dispatch => {
-    if (window.confirm('Are you sure? This can NOT be undone!')) {
-      axios
-        .delete('https://api.openjam.eu/api/profile')
-        .then(() => dispatch(logoutUser()))
-        .catch(err => dispatch(updateErrors(err.response.data)));
-    }
-  };
-}
+export const deleteAccount = () => dispatch => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    axios
+      .delete(`${apiBase}/api/profile`)
+      .then(() => dispatch(logoutUser()))
+      .catch(err => dispatch(updateErrors(err.response.data)));
+  }
+};
