@@ -1,0 +1,24 @@
+/* TEAM */
+  Project Manager: Philippe Matray
+  Contact: pm [at] techmedev.eu
+  LinkedIn: https://www.linkedin.com/in/phmatray/
+  Twitter: @phmatray
+  Location: Liège, Belgium
+
+  Business & Network Manager: David Schmitz
+  Contact: ds [at] techmedev.eu
+  LinkedIn: https://www.linkedin.com/in/davschmitz/
+  Location: Visé, Belgium
+
+  Operational & Financial Manager: Amélie Jonet
+  Contact: aj [at] techmedev.eu
+  LinkedIn: https://www.linkedin.com/in/amélie-jonet-390262160/
+  Location: Visé, Belgium
+
+  Marketing & Artists Manager: Stanislas Poindrelle
+  Contact: sp [at] techmedev.eu
+  LinkedIn: https://www.linkedin.com/in/stanislas-poindrelle-474748a3/
+  Location: Lyon, France
+
+/* THANKS */
+  Web Development Intern (sept 2018): Lionel Dabée
