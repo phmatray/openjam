@@ -1,40 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Divider } from 'semantic-ui-react';
 
-import Cover from './track/Cover';
-import Artists from './track/Artists';
 import LinkArtistNames from '../LinkArtistNames';
 import LinkEntity from '../LinkEntity';
 import Div from '../Div';
+import { playTrack, pause } from '../../redux/modules/player';
 
-const TrackItem = ({ track }) => {
-  const startDate = moment().subtract(21, 'days');
-  const trackDate = moment(track.date);
+import ContentBlock from './track/ContentBlock';
+import CoverToggle from './track/CoverToggle';
+import { Artists } from './track/Atoms';
+
+const TrackItem = ({ track, playTrack, pause, playerPlaying, playerCollectionId }) => {
+  const isNew = () => {
+    const startDate = moment().subtract(21, 'days');
+    const trackDate = moment(track.date);
+    const isNew = trackDate > startDate;
+    return isNew;
+  };
+
+  const isActive = track._id === playerCollectionId;
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        width: '100%',
-        maxWidth: 'calc(340px + 0.9em)',
-        height: 'calc(55px)',
-        marginRight: '0.9em ',
-      }}
-    >
+    <ContentBlock active={isActive}>
       <Div mr="0.5em">
-        <Link to={`/track/${track._id}`}>
-          {trackDate > startDate ? (
-            <Cover
-              src={track.coverurl.w400}
-              label={{ corner: 'left', icon: 'time', size: 'mini', color: 'teal' }}
-            />
-          ) : (
-            <Cover src={track.coverurl.w400} />
-          )}
-        </Link>
+        <CoverToggle
+          track={track}
+          isActive={isActive}
+          isNew={isNew()}
+          playTrack={playTrack}
+          pause={pause}
+          playerPlaying={playerPlaying}
+        />
       </Div>
       <div style={{ width: '100%' }}>
         <Divider style={{ margin: '0 0 0.6em 0' }} />
@@ -43,7 +42,7 @@ const TrackItem = ({ track }) => {
           <LinkArtistNames artists={track.artists} as="table" />
         </Artists>
       </div>
-    </div>
+    </ContentBlock>
   );
 };
 
@@ -62,4 +61,17 @@ TrackItem.propTypes = {
   }).isRequired,
 };
 
-export default TrackItem;
+const mapStateToProps = ({ player }) => {
+  const { playing, collectionId, current } = player;
+
+  return {
+    playerPlaying: playing,
+    playerCollectionId: collectionId,
+    playerTrack: current,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { playTrack, pause },
+)(TrackItem);
