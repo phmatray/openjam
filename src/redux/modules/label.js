@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -75,13 +74,13 @@ export default reducer;
 // Fetch all labels
 export const fetchLabels = () => ({
   types: [FETCH_LABELS_PENDING, FETCH_LABELS_SUCCESS, FETCH_LABELS_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/labels`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/labels`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a label by _id
 export const fetchLabel = id => ({
   types: [FETCH_LABEL_PENDING, FETCH_LABEL_SUCCESS, FETCH_LABEL_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/labels/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/labels/${id}`),
   shouldCallAPI: () => true,
 });

@@ -1,9 +1,9 @@
 /* eslint-disable no-alert */
 
 import axios from 'axios';
+
 import { updateErrors } from './error';
 import { logoutUser } from './auth';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -68,7 +68,7 @@ export const clearCurrentProfile = () => ({ type: CLEAR_CURRENT_PROFILE });
 export const getCurrentProfile = () => dispatch => {
   dispatch(loadProfiles());
   axios
-    .get(`${apiBase}/api/profile`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/profile`)
     .then(res => dispatch(updateProfile(res.data)))
     .catch(() => dispatch(updateProfile({})));
 };
@@ -77,7 +77,7 @@ export const getCurrentProfile = () => dispatch => {
 export const getProfileByHandle = handle => dispatch => {
   dispatch(loadProfiles());
   axios
-    .get(`${apiBase}/api/profile/handle/${handle}`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/profile/handle/${handle}`)
     .then(res => dispatch(updateProfile(res.data)))
     .catch(() => dispatch(updateProfile(null)));
 };
@@ -85,7 +85,7 @@ export const getProfileByHandle = handle => dispatch => {
 // Create profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
-    .post(`${apiBase}/api/profile`, profileData)
+    .post(`${process.env.REACT_APP_ENDPOINT}/profile`, profileData)
     .then(() => history.push('/dashboard'))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -93,7 +93,7 @@ export const createProfile = (profileData, history) => dispatch => {
 // Add experience
 export const addExperience = (expData, history) => dispatch => {
   axios
-    .post(`${apiBase}/api/profile/experience`, expData)
+    .post(`${process.env.REACT_APP_ENDPOINT}/profile/experience`, expData)
     .then(() => history.push('/dashboard'))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -101,7 +101,7 @@ export const addExperience = (expData, history) => dispatch => {
 // Add education
 export const addEducation = (eduData, history) => dispatch => {
   axios
-    .post(`${apiBase}/api/profile/education`, eduData)
+    .post(`${process.env.REACT_APP_ENDPOINT}/profile/education`, eduData)
     .then(() => history.push('/dashboard'))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -109,7 +109,7 @@ export const addEducation = (eduData, history) => dispatch => {
 // Delete experience
 export const deleteExperience = id => dispatch => {
   axios
-    .delete(`${apiBase}/api/profile/experience/${id}`)
+    .delete(`${process.env.REACT_APP_ENDPOINT}/profile/experience/${id}`)
     .then(res => dispatch(updateProfile(res.data)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -117,7 +117,7 @@ export const deleteExperience = id => dispatch => {
 // Delete education
 export const deleteEducation = id => dispatch => {
   axios
-    .delete(`${apiBase}/api/profile/education/${id}`)
+    .delete(`${process.env.REACT_APP_ENDPOINT}/profile/education/${id}`)
     .then(res => dispatch(updateProfile(res.data)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -126,7 +126,7 @@ export const deleteEducation = id => dispatch => {
 export const getProfiles = () => dispatch => {
   dispatch(loadProfiles());
   axios
-    .get(`${apiBase}/api/profile/all`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/profile/all`)
     .then(res => dispatch(updateProfiles(res.data)))
     .catch(() => dispatch(updateProfiles(null)));
 };
@@ -135,7 +135,7 @@ export const getProfiles = () => dispatch => {
 export const deleteAccount = () => dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     axios
-      .delete(`${apiBase}/api/profile`)
+      .delete(`${process.env.REACT_APP_ENDPOINT}/profile`)
       .then(() => dispatch(logoutUser()))
       .catch(err => dispatch(updateErrors(err.response.data)));
   }
