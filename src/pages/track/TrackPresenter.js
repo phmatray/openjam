@@ -1,25 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Header, Image } from 'semantic-ui-react';
+import { Container, Grid, Divider } from 'semantic-ui-react';
 
-import Body from '../../components/Body';
-import LinkEntity from '../../components/LinkEntity';
-import LinkArtistNames from '../../components/LinkArtistNames';
+import Hero from './track-presenter/Hero';
+import AlbumCover from '../../components/AlbumCover';
+import Tabs from './track-presenter/Tabs';
+import MoreTracks from './track-presenter/MoreTracks';
 
 const TrackPresenter = ({ track }) => (
-  <Body breadcrumbSegments={[<Link to="/tracks">Tracks</Link>, track.title]}>
-    <Header as="h2">
-      <LinkArtistNames artists={track.artists} />
-    </Header>
-    <Header as="h3">
-      <LinkEntity entity={track.album} />
-    </Header>
-    <p>{`Explicit: ${track.explicit ? 'true' : 'false'}`}</p>
-    <p>{`Disc number: ${track.disc_number}`}</p>
-    <p>{`Track number: ${track.track_number}`}</p>
-    <Image src={track.coverurl.w400} alt={track.title} />
-  </Body>
+  <React.Fragment>
+    <Hero track={track} />
+    {/* TODO: Enable ActionsMenu */}
+    {/* <ActionsMenu track={track} /> */}
+    <Divider style={{ marginTop: 0 }} />
+    <Container>
+      <Grid divided stackable reversed="mobile">
+        <Grid.Column mobile={8} tablet={6} computer={5}>
+          <Grid columns={2} doubling>
+            <Grid.Column width={16} only="tablet computer">
+              <AlbumCover album={track.album} maxWidth={256} />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <MoreTracks artist={track.artists[0]} />
+            </Grid.Column>
+          </Grid>
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={10} computer={11}>
+          <Tabs track={track} />
+        </Grid.Column>
+      </Grid>
+    </Container>
+  </React.Fragment>
 );
 
 TrackPresenter.propTypes = {

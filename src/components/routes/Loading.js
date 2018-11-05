@@ -28,7 +28,7 @@ const Loading = ({ error, retry, timedOut, pastDelay }) => {
 };
 
 Loading.propTypes = {
-  error: PropTypes.any.isRequired,
+  error: PropTypes.any,
   retry: PropTypes.func.isRequired,
   timedOut: PropTypes.any.isRequired,
   pastDelay: PropTypes.any.isRequired,
