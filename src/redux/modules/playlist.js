@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -75,13 +74,13 @@ export default reducer;
 // Fetch all playlists
 export const fetchPlaylists = () => ({
   types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/playlists`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/playlists`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a playlist by _id
 export const fetchPlaylist = id => ({
   types: [FETCH_PLAYLIST_PENDING, FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/playlists/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/playlists/${id}`),
   shouldCallAPI: () => true,
 });

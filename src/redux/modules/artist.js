@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -75,13 +74,13 @@ export default reducer;
 // Fetch all artists
 export const fetchArtists = () => ({
   types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/artists`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artists`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a artist by _id
 export const fetchArtist = id => ({
   types: [FETCH_ARTIST_PENDING, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/artists/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artists/${id}`),
   shouldCallAPI: () => true,
 });

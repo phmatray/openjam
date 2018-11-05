@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -58,7 +57,7 @@ export const fetchRepos = username => dispatch => {
   dispatch(fetchReposPending());
 
   axios
-    .get(`${apiBase}/api/github/repos/${username}`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/github/repos/${username}`)
     .then(res => dispatch(fetchReposSuccess(res.data)))
     .catch(err => dispatch(fetchReposError(err)));
 };

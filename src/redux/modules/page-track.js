@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -63,17 +62,12 @@ export default reducer;
 // Fetch a track by _id
 export const fetchTrack = id => ({
   types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/tracks/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/${id}`),
   shouldCallAPI: () => true,
 });
 
-export const fetchTracksByArtistId = (artistId, limit = 3) => {
-  console.warn(artistId);
-  console.warn(limit);
-  console.warn(apiBase);
-  return {
-    types: [BY_ARTIST_PENDING, BY_ARTIST_SUCCESS, BY_ARTIST_ERROR],
-    callAPI: () => axios.get(`${apiBase}/api/tracks/artist/${artistId}/${limit}`),
-    shouldCallAPI: () => true,
-  };
-};
+export const fetchTracksByArtistId = (artistId, limit = 3) => ({
+  types: [BY_ARTIST_PENDING, BY_ARTIST_SUCCESS, BY_ARTIST_ERROR],
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/artist/${artistId}/${limit}`),
+  shouldCallAPI: () => true,
+});

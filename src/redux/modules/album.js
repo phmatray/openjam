@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -75,13 +74,13 @@ export default reducer;
 // Fetch all albums
 export const fetchAlbums = () => ({
   types: [FETCH_ALBUMS_PENDING, FETCH_ALBUMS_SUCCESS, FETCH_ALBUMS_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/albums`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/albums`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a album by _id
 export const fetchAlbum = id => ({
   types: [FETCH_ALBUM_PENDING, FETCH_ALBUM_SUCCESS, FETCH_ALBUM_ERROR],
-  callAPI: () => axios.get(`${apiBase}/api/albums/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/albums/${id}`),
   shouldCallAPI: () => true,
 });
