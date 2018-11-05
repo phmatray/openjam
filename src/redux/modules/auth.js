@@ -1,6 +1,6 @@
 import axios from 'axios';
+
 import { updateErrors } from './error';
-import { apiBase } from '../constants';
 import isEmpty from '../../utils/validation/is-empty';
 
 // Actions
@@ -50,7 +50,7 @@ export const updateUser = payload => ({ type: UPDATE_USER, payload });
 export const getCurrentUser = () => dispatch => {
   dispatch(loadUser());
   axios
-    .get(`${apiBase}/auth/user`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/auth/user`)
     .then(res => dispatch(updateUser(res.data)))
     .catch(() => dispatch(updateUser({})));
 };
@@ -58,7 +58,7 @@ export const getCurrentUser = () => dispatch => {
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post(`${apiBase}/auth/register`, userData)
+    .post(`${process.env.REACT_APP_ENDPOINT}/auth/register`, userData)
     .then(res => {
       console.log(res);
       if (!res.data.errmsg) {
@@ -78,7 +78,7 @@ export const registerUser = (userData, history) => dispatch => {
 // Login - Get User Token
 export const loginUser = userData => dispatch => {
   axios
-    .post(`${apiBase}/auth/login`, userData)
+    .post(`${process.env.REACT_APP_ENDPOINT}/auth/login`, userData)
     .then(res => {
       if (res.status === 200) {
         dispatch(updateUser(res.data));
@@ -90,7 +90,7 @@ export const loginUser = userData => dispatch => {
 // Log user out
 export const logoutUser = () => dispatch => {
   axios
-    .post(`${apiBase}/auth/logout`)
+    .post(`${process.env.REACT_APP_ENDPOINT}/auth/logout`)
     .then(res => {
       console.log(res.data);
 

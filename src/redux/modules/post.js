@@ -1,6 +1,6 @@
 import axios from 'axios';
+
 import { updateErrors, clearErrors } from './error';
-import { apiBase } from '../constants';
 
 // Actions
 //
@@ -89,7 +89,7 @@ export const updatePostLike = payload => ({ type: UPDATE_POST_LIKE, payload });
 export const addPost = postData => dispatch => {
   dispatch(clearErrors());
   axios
-    .post(`${apiBase}/api/posts`, postData)
+    .post(`${process.env.REACT_APP_ENDPOINT}/posts`, postData)
     .then(res => dispatch(createPost(res.data)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -98,7 +98,7 @@ export const addPost = postData => dispatch => {
 export const getPosts = () => dispatch => {
   dispatch(loadPosts());
   axios
-    .get(`${apiBase}/api/posts`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/posts`)
     .then(res => dispatch(updatePosts(res.data)))
     .catch(() => dispatch(updatePosts(null)));
 };
@@ -107,7 +107,7 @@ export const getPosts = () => dispatch => {
 export const getPost = id => dispatch => {
   dispatch(loadPosts());
   axios
-    .get(`${apiBase}/api/posts/${id}`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/posts/${id}`)
     .then(res => dispatch(updatePost(res.data)))
     .catch(() => dispatch(updatePost(null)));
 };
@@ -115,7 +115,7 @@ export const getPost = id => dispatch => {
 // Delete Post
 export const deletePost = id => dispatch => {
   axios
-    .delete(`${apiBase}/api/posts/${id}`)
+    .delete(`${process.env.REACT_APP_ENDPOINT}/posts/${id}`)
     .then(() => dispatch(removePost(id)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -123,7 +123,7 @@ export const deletePost = id => dispatch => {
 // Add Like
 export const addLike = id => dispatch => {
   axios
-    .post(`${apiBase}/api/posts/like/${id}`)
+    .post(`${process.env.REACT_APP_ENDPOINT}/posts/like/${id}`)
     .then(res => dispatch(updatePostLike(res.data)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -131,7 +131,7 @@ export const addLike = id => dispatch => {
 // Remove Like
 export const removeLike = id => dispatch => {
   axios
-    .post(`${apiBase}/api/posts/unlike/${id}`)
+    .post(`${process.env.REACT_APP_ENDPOINT}/posts/unlike/${id}`)
     .then(res => dispatch(updatePostLike(res.data)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -140,7 +140,7 @@ export const removeLike = id => dispatch => {
 export const addComment = (postId, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
-    .post(`${apiBase}/api/posts/comment/${postId}`, commentData)
+    .post(`${process.env.REACT_APP_ENDPOINT}/posts/comment/${postId}`, commentData)
     .then(res => dispatch(updatePost(res.data)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
@@ -148,7 +148,7 @@ export const addComment = (postId, commentData) => dispatch => {
 // Delete Comment
 export const deleteComment = (postId, commentId) => dispatch => {
   axios
-    .delete(`${apiBase}/api/posts/comment/${postId}/${commentId}`)
+    .delete(`${process.env.REACT_APP_ENDPOINT}/posts/comment/${postId}/${commentId}`)
     .then(res => dispatch(updatePost(res.data)))
     .catch(err => dispatch(updateErrors(err.response.data)));
 };
