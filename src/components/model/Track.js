@@ -18,7 +18,8 @@ const TrackItem = ({ track }) => {
     <div
       style={{
         display: 'flex',
-        width: 'calc(340px + 0.9em)',
+        width: '100%',
+        maxWidth: 'calc(340px + 0.9em)',
         height: 'calc(55px)',
         marginRight: '0.9em ',
       }}
