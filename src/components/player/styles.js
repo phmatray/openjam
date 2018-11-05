@@ -19,7 +19,7 @@ export const ColumnCover = styled.div`
   min-width: 90px;
   width: 90px;
   height: 90px;
-  padding: 0;
+  padding: 1px 0;
 `;
 
 export const ColumnTime = styled.div`

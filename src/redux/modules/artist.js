@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiBase } from '../constants';
 
 // Actions
 //
@@ -18,7 +19,7 @@ const initialState = {
   error: null,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_ARTISTS_PENDING:
       return {
@@ -65,24 +66,22 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Side effects, only as applicable (thunks)
 //
 // Fetch all artists
-export function fetchArtists() {
-  return {
-    types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
-    callAPI: () => axios.get('https://api.openjam.eu/api/artists'),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchArtists = () => ({
+  types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/artists`),
+  shouldCallAPI: () => true,
+});
 
 // Fetch a artist by _id
-export function fetchArtist(id) {
-  return {
-    types: [FETCH_ARTIST_PENDING, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR],
-    callAPI: () => axios.get(`https://api.openjam.eu/api/artists/${id}`),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchArtist = id => ({
+  types: [FETCH_ARTIST_PENDING, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/artists/${id}`),
+  shouldCallAPI: () => true,
+});

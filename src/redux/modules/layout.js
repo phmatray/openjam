@@ -14,7 +14,7 @@ const initialState = {
   sidebarVisible: false,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SHOW_PENDING:
       return { ...state, pendingVisible: true };
@@ -30,26 +30,14 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Action Creators
 //
-export function showPending() {
-  return { type: SHOW_PENDING };
-}
-
-export function hidePending() {
-  return { type: HIDE_PENDING };
-}
-
-export function showSidebar() {
-  return { type: SHOW_SIDEBAR };
-}
-
-export function hideSidebar() {
-  return { type: HIDE_SIDEBAR };
-}
-
-export function toggleSidebar() {
-  return { type: TOGGLE_SIDEBAR };
-}
+export const showPending = () => ({ type: SHOW_PENDING });
+export const hidePending = () => ({ type: HIDE_PENDING });
+export const showSidebar = () => ({ type: SHOW_SIDEBAR });
+export const hideSidebar = () => ({ type: HIDE_SIDEBAR });
+export const toggleSidebar = () => ({ type: TOGGLE_SIDEBAR });

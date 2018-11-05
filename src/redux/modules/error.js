@@ -7,7 +7,7 @@ const CLEAR = 'error/CLEAR';
 //
 const initialState = {};
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case UPDATE:
       return action.payload;
@@ -18,14 +18,11 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Action Creators
 //
-export function updateErrors(payload) {
-  return { type: UPDATE, payload };
-}
-
-export function clearErrors() {
-  return { type: CLEAR };
-}
+export const updateErrors = payload => ({ type: UPDATE, payload });
+export const clearErrors = () => ({ type: CLEAR });

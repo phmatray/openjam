@@ -1,18 +1,18 @@
 import React from 'react';
 import { withNamespaces } from 'react-i18next';
 
-import GhostCharacter from './not-found/GhostCharacter';
+import KawaiiAnimation from './not-found/KawaiiAnimation';
 import Body from '../components/Body';
-import Div from '../components/Div';
+import Flex from '../components/Flex';
 
 const NotFound = ({ t }) => (
   <Body
     breadcrumbSegments={[t('pages.not-found.header')]}
     description={t('pages.not-found.subheader')}
   >
-    <Div mt="3em">
-      <GhostCharacter />
-    </Div>
+    <Flex fluid center mt="3em">
+      <KawaiiAnimation />
+    </Flex>
   </Body>
 );
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiBase } from '../constants';
 
 // Actions
 //
@@ -18,7 +19,7 @@ const initialState = {
   error: null,
 };
 
-export default function reducer(state = initialState, action = {}) {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_LABELS_PENDING:
       return {
@@ -65,24 +66,22 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
 
 // Side effects, only as applicable (thunks)
 //
 // Fetch all labels
-export function fetchLabels() {
-  return {
-    types: [FETCH_LABELS_PENDING, FETCH_LABELS_SUCCESS, FETCH_LABELS_ERROR],
-    callAPI: () => axios.get('https://api.openjam.eu/api/labels'),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchLabels = () => ({
+  types: [FETCH_LABELS_PENDING, FETCH_LABELS_SUCCESS, FETCH_LABELS_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/labels`),
+  shouldCallAPI: () => true,
+});
 
 // Fetch a label by _id
-export function fetchLabel(id) {
-  return {
-    types: [FETCH_LABEL_PENDING, FETCH_LABEL_SUCCESS, FETCH_LABEL_ERROR],
-    callAPI: () => axios.get(`https://api.openjam.eu/api/labels/${id}`),
-    shouldCallAPI: () => true,
-  };
-}
+export const fetchLabel = id => ({
+  types: [FETCH_LABEL_PENDING, FETCH_LABEL_SUCCESS, FETCH_LABEL_ERROR],
+  callAPI: () => axios.get(`${apiBase}/api/labels/${id}`),
+  shouldCallAPI: () => true,
+});
