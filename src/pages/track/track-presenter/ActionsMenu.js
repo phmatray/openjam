@@ -5,21 +5,21 @@ import { Container, Menu, Icon, Button } from 'semantic-ui-react';
 const ActionsMenu = ({ track }) => (
   <Container style={{ height: '48px' }}>
     <Menu secondary>
-      <Menu.Item>
+      {/* <Menu.Item>
         <Icon name="play" />
         {` ${track.meta.played.length}`}
       </Menu.Item>
       <Menu.Item>
         <Icon name="heart" />
         {` ${track.meta.likes.length}`}
-      </Menu.Item>
+      </Menu.Item> */}
+
       {track.meta.downloadable && (
         <Menu.Item>
           <Icon name="arrow down" />
           {` ${track.meta.downloads.length}`}
         </Menu.Item>
       )}
-
       <Menu.Item position="right" fitted="horizontally">
         <Button>Repost</Button>
       </Menu.Item>

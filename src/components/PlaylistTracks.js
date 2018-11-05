@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
 
 import LinkEntity from './LinkEntity';
-import LinkPlay from './playlist-tracks/LinkPlay';
 import LinkArtistNames from './LinkArtistNames';
+import LinkPlay from './playlist-tracks/LinkPlay';
 import CoverToggle from './playlist-tracks/CoverToggle';
-import HeaderCell from './playlist-tracks/HeaderCell';
 import Row from './playlist-tracks/Row';
+import { HeaderCell } from './playlist-tracks/Atoms';
 import { playSelected, pause } from '../redux/modules/player';
 
 const PlaylistTracks = ({
