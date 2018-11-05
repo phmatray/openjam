@@ -12,7 +12,11 @@
 <h3 align="center"><strong>Alliance Music, Innovation & Humans</strong></h3>
 <p align="center">
 OpenJam is a newtech-powered ecosystem, developped to serve music creation, rights management, remuneration, music artists... and will be tomorrow the best ally of all the actors of the music industry.</p>
-<br />
+<p align="center">
+  <a href="https://twitter.com/intent/tweet?text=Like%20and%20Tip%20your%20favorite%20artists%20on%20%23OpenJam&url=https://beta.openjam.eu&via=OpenJam_EU&hashtags=music,player,streaming,opensource,electro">
+    <img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet">
+  </a>
+</p>
 <p align="center">
   <a href="http://waffle.io/openjam-eu/openjam">
     <img src="https://badge.waffle.io/openjam-eu/openjam.png?label=in%20progress&title=In%20Progress" alt="Waffle.io - Issues in progress" />
@@ -32,6 +36,9 @@ OpenJam is a newtech-powered ecosystem, developped to serve music creation, righ
   </a>
   <a href="https://codeclimate.com/github/openjam-eu/openjam/maintainability">
     <img src="https://api.codeclimate.com/v1/badges/3181f066d68e4765c36f/maintainability" alt="Code Climate" />
+  </a>
+  <a href="https://github.com/prettier/prettier">
+    <img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="styled with prettier">
   </a>
 </p>
 
