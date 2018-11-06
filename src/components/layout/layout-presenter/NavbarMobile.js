@@ -63,7 +63,7 @@ class NavbarMobile extends Component {
             }
             alt="logo"
           />
-          {t('app')}
+          <strong style={{ fontFamily: 'Comfortaa' }}>{t('app')}</strong>
         </Menu.Item>
 
         <Menu.Menu position="right">

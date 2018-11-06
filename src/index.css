@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:300,400,700|Ubuntu:300,400,700');
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -37,23 +35,4 @@ code {
     margin-left: 0em !important;
     margin-right: 0em !important;
   }
-}
-
-.ui.header,
-.ui.segment {
-  font-family: Ubuntu, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: 300;
-}
-
-.ui.menu,
-.ui.button {
-  font-family: Comfortaa, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-}
-
-.ui.form .field > label {
-  font-weight: 300;
-}
-
-.ui.basic.segment {
-  padding: 0.5em;
 }
