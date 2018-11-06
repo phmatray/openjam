@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TableLink from './link-entity/TableLink';
-import InvertedLink from './link-entity/InvertedLink';
-import Alternate from './link-entity/Alternate';
-import AlternateEdit from './link-entity/AlternateEdit';
+import { TableLink, InvertedLink, Alternate, AlternateEdit } from './link-entity/Atoms';
 
 const LinkEntity = ({ entity, as, strong, alternate }) => {
   // check entity

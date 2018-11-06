@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import PlaylistPresenter from './playlist/PlaylistPresenter';
-import { fetchPlaylist } from '../redux/modules/playlist';
-import { playSelected, pause } from '../redux/modules/player';
 import Spinner from '../components/Spinner';
+import { fetchPlaylist } from '../redux/modules/playlist';
+
+import PlaylistPresenter from './playlist/PlaylistPresenter';
 
 class Playlist extends Component {
   state = {
@@ -40,8 +40,6 @@ class Playlist extends Component {
 
 Playlist.propTypes = {
   fetchPlaylist: PropTypes.func.isRequired,
-  playSelected: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
 
   playlist: PropTypes.object,
   loading: PropTypes.bool,
@@ -62,5 +60,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchPlaylist, playSelected, pause },
+  { fetchPlaylist },
 )(Playlist);

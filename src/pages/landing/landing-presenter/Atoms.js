@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
-import loginBackground from '../../images/backgrounds/login-background.jpg';
+import loginBackground from '../../../images/backgrounds/login-background.jpg';
 
 export const LoginScreen = styled.div`
   display: table;

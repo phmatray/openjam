@@ -17,7 +17,7 @@ const ArtistsPresenter = ({ artists, t }) => (
     description={t('pages.artists.subheader')}
   >
     <H2 header={t('pages.artists.new')} />
-    <Flex wrap justifyStart>
+    <Flex wrapBreak justifyStart>
       {artists.map(artist => (
         <Artist key={artist._id} artist={artist} />
       ))}

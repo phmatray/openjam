@@ -17,7 +17,7 @@ const TracksPresenter = ({ tracks, t }) => (
     description={t('pages.tracks.subheader')}
   >
     <H2 header={t('pages.tracks.new')} />
-    <Flex wrap justifyStart>
+    <Flex wrapBreak justifyStart>
       {tracks.map(track => (
         <Track key={track._id} track={track} />
       ))}

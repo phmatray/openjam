@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Grid, GridRow, GridColumn } from 'semantic-ui-react';
+import { Container, Grid, Divider } from 'semantic-ui-react';
 
-import AlbumTracks from './album-presenter/AlbumTracks';
+import Hero from '../../components/Hero';
 import AlbumCover from '../../components/AlbumCover';
 import Body from '../../components/Body';
+
+import AlbumTracks from './album-presenter/AlbumTracks';
 
 const getAlbumName = album => {
   let albumName = '';
@@ -30,21 +32,32 @@ const getDescription = album => (
 );
 
 const AlbumPresenter = ({ album, t }) => (
-  <Body
-    breadcrumbSegments={[<Link to="/albums">{t('pages.albums.header')}</Link>, getAlbumName(album)]}
-    description={getDescription(album)}
-  >
-    <Grid>
-      <GridRow>
-        <GridColumn mobile={16} tablet={6} computer={5}>
-          <AlbumCover album={album} />
-        </GridColumn>
-        <GridColumn mobile={16} tablet={10} computer={11}>
-          <AlbumTracks tracks={album.tracks} />
-        </GridColumn>
-      </GridRow>
-    </Grid>
-  </Body>
+  <React.Fragment>
+    <Hero entity={album} />
+    <Divider style={{ marginTop: 0 }} />
+    <Container>
+      <Grid divided stackable reversed="mobile">
+        <Grid.Column mobile={8} tablet={6} computer={5}>
+          <Grid columns={2} doubling>
+            <Grid.Column width={16} only="tablet computer">
+              <AlbumCover album={album} maxWidth={256} />
+            </Grid.Column>
+          </Grid>
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={10} computer={11}>
+          <Body
+            breadcrumbSegments={[
+              <Link to="/albums">{t('pages.albums.header')}</Link>,
+              getAlbumName(album),
+            ]}
+            description={getDescription(album)}
+          >
+            <AlbumTracks tracks={album.tracks} />
+          </Body>
+        </Grid.Column>
+      </Grid>
+    </Container>
+  </React.Fragment>
 );
 
 AlbumPresenter.propTypes = {

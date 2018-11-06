@@ -17,7 +17,7 @@ const AlbumsPresenter = ({ albums, t }) => (
     description={t('pages.albums.subheader')}
   >
     <H2 header={t('pages.albums.new')} />
-    <Flex wrap justifyStart>
+    <Flex wrapBreak justifyStart>
       {albums.map(album => (
         <Album key={album._id} album={album} />
       ))}

@@ -30,12 +30,12 @@ export class Explore extends Component {
         breadcrumbSegments={[t('pages.explore.header')]}
         description={t('pages.explore.subheader')}
       >
-        {playlists !== null && (
+        {tracks !== null && (
           <Section
-            title={t('pages.explore.playlists')}
-            items={playlists.slice(0, 8)}
-            to="/playlists"
-            maxHeight={512}
+            title={t('pages.explore.tracks')}
+            items={tracks.slice(0, 32)}
+            to="/tracks"
+            maxHeight={256}
           />
         )}
         {artists !== null && (
@@ -46,12 +46,12 @@ export class Explore extends Component {
             maxHeight={512}
           />
         )}
-        {tracks !== null && (
+        {playlists !== null && (
           <Section
-            title={t('pages.explore.tracks')}
-            items={tracks.slice(0, 32)}
-            to="/tracks"
-            maxHeight={256}
+            title={t('pages.explore.playlists')}
+            items={playlists.slice(0, 8)}
+            to="/playlists"
+            maxHeight={512}
           />
         )}
         {albums !== null && (

@@ -34,7 +34,7 @@ const Flex = styled(Div)`
     flex-wrap: nowrap; /* default */
   `};
 
-  ${is('wrap')`
+  ${is('wrapBreak')`
     flex-wrap: wrap;
   `};
 
@@ -126,7 +126,7 @@ Flex.propTypes = {
   column: PropTypes.bool,
   columnReverse: PropTypes.bool,
   nowrap: PropTypes.bool,
-  wrap: PropTypes.bool,
+  wrapBreak: PropTypes.bool,
   wrapReverse: PropTypes.bool,
   justifyStart: PropTypes.bool,
   justifyEnd: PropTypes.bool,
@@ -144,7 +144,6 @@ Flex.propTypes = {
   alignCenter: PropTypes.bool,
   alignBaseline: PropTypes.bool,
   alignStretch: PropTypes.bool,
-  full: PropTypes.bool,
   center: PropTypes.bool,
 };
 

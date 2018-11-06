@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Grid, Divider } from 'semantic-ui-react';
 
-import Hero from './track-presenter/Hero';
+import Hero from '../../components/Hero';
 import AlbumCover from '../../components/AlbumCover';
+
 import Tabs from './track-presenter/Tabs';
 import MoreTracks from './track-presenter/MoreTracks';
 
 const TrackPresenter = ({ track }) => (
   <React.Fragment>
-    <Hero track={track} />
+    <Hero entity={track} />
     {/* TODO: Enable ActionsMenu */}
     {/* <ActionsMenu track={track} /> */}
     <Divider style={{ marginTop: 0 }} />
