@@ -17,7 +17,7 @@ const LabelItems = ({ labels, t }) => (
     description={t('pages.labels.subheader')}
   >
     <H2 header={t('pages.labels.new')} />
-    <Flex wrap justifyStart>
+    <Flex wrapBreak justifyStart>
       {labels.map(label => (
         <Label key={label._id} label={label} />
       ))}

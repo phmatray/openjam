@@ -13,7 +13,7 @@ const AlbumTracks = ({ tracks }) => {
   };
 
   return (
-    <Table basic="very">
+    <Table basic="very" unstackable>
       <Table.Header>
         <Table.Row>
           <HeaderCell colSpan="2">Title</HeaderCell>
