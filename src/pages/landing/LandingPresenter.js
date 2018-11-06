@@ -1,11 +1,22 @@
 import React from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Grid, Divider, Container } from 'semantic-ui-react';
-import { LoginScreen, BgWrap, GridContent, H1, H3, Ul, Li, Features } from './styles';
+
+import Div from '../../components/Div';
+
 import Logo from './landing-presenter/Logo';
 import ButtonRegister from './landing-presenter/ButtonRegister';
 import ButtonLogin from './landing-presenter/ButtonLogin';
-import Div from '../../components/Div';
+import {
+  LoginScreen,
+  BgWrap,
+  GridContent,
+  H1,
+  H3,
+  Ul,
+  Li,
+  Features,
+} from './landing-presenter/Atoms';
 
 const LandingPresenter = ({ t }) => (
   <LoginScreen id="login-screen">

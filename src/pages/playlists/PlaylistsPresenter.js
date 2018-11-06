@@ -17,7 +17,7 @@ const PlaylistsPresenter = ({ playlists, t }) => (
     description={t('pages.playlists.subheader')}
   >
     <H2 header={t('pages.playlists.new')} />
-    <Flex wrap justifyStart>
+    <Flex wrapBreak justifyStart>
       {playlists.map(playlist => (
         <Playlist key={playlist._id} playlist={playlist} />
       ))}

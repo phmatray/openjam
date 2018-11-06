@@ -28,7 +28,7 @@ const PlaylistTracks = ({
     playerTrack._id === trackId;
 
   return (
-    <Table basic="very">
+    <Table basic="very" unstackable>
       <Table.Header>
         <Table.Row>
           <HeaderCell colSpan="2">{t('components.playlist-tracks.track')}</HeaderCell>

@@ -28,7 +28,7 @@ const Section = ({ title, items, to, maxHeight, t }) => (
       </Button>
     </Flex>
     <Scrollable>
-      <Flex column wrap contentStart style={{ maxHeight }}>
+      <Flex column wrapBreak contentStart style={{ maxHeight }}>
         <ModelCollection models={items} />
       </Flex>
     </Scrollable>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Segment, Divider, Header, Container } from 'semantic-ui-react';
+
 import TitleBreadcrumb from './TitleBreadcrumb';
 
 const Body = ({ breadcrumbSegments, description, children }) => (
