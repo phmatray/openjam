@@ -4,13 +4,13 @@ import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import * as serviceWorker from './serviceWorker';
-import AppWrapper from './AppWrapper';
-import App from './App';
+import I18nWrapper from './components/I18nWrapper';
+import App from './components/App';
 
 ReactDOM.render(
-  <AppWrapper>
+  <I18nWrapper>
     <App />
-  </AppWrapper>,
+  </I18nWrapper>,
   document.getElementById('root'),
 );
 

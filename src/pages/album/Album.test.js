@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+
 import AlbumPresenter from './AlbumPresenter';
-import AppWrapper from '../../AppWrapper';
+
+import store from '../../redux/store';
+import I18nWrapper from '../../components/I18nWrapper';
+import ThemeWrapper from '../../components/app/ThemeWrapper';
 
 const album = {
   _id: '5ba65b4af01f4b08931993d5',
@@ -85,12 +90,18 @@ const album = {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <AppWrapper>
+    <I18nWrapper>
+      <Router>
+        <Provider store={store}>
+          <ThemeWrapper>
+            <AlbumPresenter album={album} />
+          </ThemeWrapper>
+        </Provider>
+      </Router>
       <Router>
         <span>Fix this</span>
-        {/* <AlbumPresenter album={album} /> */}
       </Router>
-    </AppWrapper>,
+    </I18nWrapper>,
     div,
   );
   ReactDOM.unmountComponentAtNode(div);

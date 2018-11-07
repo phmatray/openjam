@@ -6,7 +6,7 @@ const HoverSpan = styled.span`
   cursor: pointer;
 
   &:hover {
-    color: #00b5ad;
+    color: ${props => props.theme.primary};
   }
 `;
 

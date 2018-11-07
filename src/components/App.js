@@ -9,13 +9,15 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-import store from './redux/store';
-import { updateUser, logoutUser } from './redux/modules/auth';
-import { clearCurrentProfile } from './redux/modules/profile';
-import setAuthToken from './utils/setAuthToken';
+import Layout from './Layout';
+import Routes from './Routes';
+import ThemeWrapper from './app/ThemeWrapper';
 
-import Layout from './components/Layout';
-import Routes from './components/Routes';
+import store from '../redux/store';
+import { updateUser, logoutUser } from '../redux/modules/auth';
+import { clearCurrentProfile } from '../redux/modules/profile';
+import setAuthToken from '../utils/setAuthToken';
+import { GlobalStyle } from '../theme/GlobalStyle';
 
 // Add fontAwesome Brand Icons
 library.add(fab, faGlobe);
@@ -45,11 +47,12 @@ const App = () => (
   <HttpsRedirect>
     <Router>
       <Provider store={store}>
-        <div className="App" style={{ height: '100vh' }}>
-          <Layout>
+        <ThemeWrapper>
+          <Layout style={{ height: '100vh' }}>
             <Routes />
+            <GlobalStyle />
           </Layout>
-        </div>
+        </ThemeWrapper>
       </Provider>
     </Router>
   </HttpsRedirect>
