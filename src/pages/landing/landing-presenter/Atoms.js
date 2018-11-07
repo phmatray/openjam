@@ -55,7 +55,7 @@ export const Features = styled.div`
 
 export const H1 = styled.h1`
   font-family: 'Ubuntu';
-  color: #00b5ad;
+  color: ${props => props.theme.primary};
   font-size: 52px;
   font-weight: 700;
   line-height: 56px;
