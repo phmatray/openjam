@@ -2,8 +2,8 @@ import React from 'react';
 import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 
-import commonEN from './translations/en/common.json';
-import commonFR from './translations/fr/common.json';
+import commonEN from '../translations/en/common.json';
+import commonFR from '../translations/fr/common.json';
 
 // Init i18next
 i18next.init({
@@ -19,6 +19,6 @@ i18next.init({
   },
 });
 
-const AppWrapper = ({ children }) => <I18nextProvider i18n={i18next}>{children}</I18nextProvider>;
+const I18nWrapper = ({ children }) => <I18nextProvider i18n={i18next}>{children}</I18nextProvider>;
 
-export default AppWrapper;
+export default I18nWrapper;

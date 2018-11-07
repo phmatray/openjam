@@ -13,6 +13,6 @@ export const ProgressStyled = styled.div`
 export const ProgressInner = styled.div`
   width: ${props => (props.value ? `${props.value}%` : 0)};
   height: 100%;
-  background-color: #00b5ad;
+  background-color: ${props => props.theme.primary};
   transition: width 0.2s ease-in;
 `;

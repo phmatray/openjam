@@ -6,7 +6,7 @@ const Card = styled.div`
   max-width: 350px;
   align-items: center;
   justify-content: center;
-  background-color: #008080;
+  background-color: ${props => props.theme.primary};
   background-image: url(${props => props.imagesrc});
   background-repeat: no-repeat;
   background: cover;
