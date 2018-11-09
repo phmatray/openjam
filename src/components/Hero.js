@@ -11,42 +11,47 @@ import LinkEntity from './LinkEntity';
 import LinkArtistNames from './LinkArtistNames';
 import Div from './Div';
 
-const getFirstTrack = entity => {
+const extractData = entity => {
   switch (entity.type) {
     case 'track':
-      return entity;
+      return { artists: entity.artists, coverurl: entity.coverurl.w800 };
 
     case 'album':
     case 'playlist':
-      return entity.tracks[0];
+      return { artists: entity.tracks[0].artists, coverurl: entity.tracks[0].coverurl.w800 };
+
+    case 'artist':
+      return { coverurl: entity.images[1].url };
 
     default:
       return null;
   }
 };
 
-const Hero = ({ entity }) => {
-  const firstTrack = getFirstTrack(entity);
+const Hero = ({ entity, children }) => {
+  const data = extractData(entity);
 
   return (
-    <HeroContainer fluid src={firstTrack.coverurl.w800}>
+    <HeroContainer fluid src={data.coverurl}>
       <Overlay>
         <ContainerFullHeight>
-          <Flex fluid row alignCenter>
-            <Div mr="16px">
-              <PlayPause entity={entity} />
-            </Div>
-            <Flex fluid column justifyCenter>
-              <Header as="h1" inverted>
-                <LinkEntity entity={entity} as="inverted" alternate />
-              </Header>
-              {entity.type === 'track' && (
-                <Header as="h2" inverted style={{ marginTop: 0 }}>
-                  <LinkArtistNames artists={firstTrack.artists} as="inverted" />
+          {children || (
+            <Flex fluid row alignCenter>
+              <Div mr="16px">
+                <PlayPause entity={entity} />
+              </Div>
+              <Flex fluid column justifyCenter>
+                <Header as="h1" inverted>
+                  <LinkEntity entity={entity} as="inverted" alternate />
                 </Header>
-              )}
+                {entity.type === 'track' && (
+                  <Header as="h2" inverted style={{ marginTop: 0 }}>
+                    <LinkArtistNames artists={data.artists} as="inverted" />
+                  </Header>
+                )}
+              </Flex>
             </Flex>
-          </Flex>
+          )}
         </ContainerFullHeight>
       </Overlay>
     </HeroContainer>

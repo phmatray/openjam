@@ -68,6 +68,7 @@ export class Explore extends Component {
             items={labels.slice(0, 16)}
             to="/labels"
             maxHeight={512}
+            showDivider={false}
           />
         )}
       </Body>
