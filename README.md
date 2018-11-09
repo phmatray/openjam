@@ -31,14 +31,18 @@ OpenJam is a newtech-powered ecosystem, developped to serve music creation, righ
   <a href="https://travis-ci.org/openjam-eu/openjam">
     <img src="https://travis-ci.org/openjam-eu/openjam.svg?branch=master" alt="Build Status">
   </a>
+  <a href="https://github.com/prettier/prettier">
+    <img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="styled with prettier">
+  </a>
+  <a href="https://github.com/openjam-eu/openjam/releases">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg" alt="Automated Release Notes by gren">
+  </a>
+  <br />
   <a href='https://coveralls.io/github/openjam-eu/openjam'>
     <img src='https://coveralls.io/repos/github/openjam-eu/openjam/badge.svg' alt='Coverage Status' />
   </a>
   <a href="https://codeclimate.com/github/openjam-eu/openjam/maintainability">
     <img src="https://api.codeclimate.com/v1/badges/3181f066d68e4765c36f/maintainability" alt="Code Climate" />
-  </a>
-  <a href="https://github.com/prettier/prettier">
-    <img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="styled with prettier">
   </a>
 </p>
 
