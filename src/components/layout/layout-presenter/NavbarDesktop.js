@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Menu, Container, Image } from 'semantic-ui-react';
+import { Menu, Container, Image, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+
+import LanguageDropdown from './LanguageDropdown';
 
 import { logoutUser, getCurrentUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
@@ -50,37 +52,16 @@ class NavbarDesktop extends Component {
         >
           {t('components.navbar.share')}
         </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/jammers"
-          name="jammers"
-          active={activeItem === 'jammers'}
-          onClick={this.handleItemClick}
-        >
-          {t('components.navbar.jammers')}
-        </Menu.Item>
+        {/* <Menu.Item>
+          <Input className="icon" icon="search" placeholder="Search..." inverted />
+        </Menu.Item> */}
       </React.Fragment>
     );
 
     const guestLinks = (
       <React.Fragment>
-        <Menu.Item
-          as={Link}
-          to="/login"
-          name="login"
-          active={activeItem === 'login'}
-          onClick={this.handleItemClick}
-        >
-          {t('components.navbar.sign-in')}
-        </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/register"
-          name="register"
-          active={activeItem === 'register'}
-          onClick={this.handleItemClick}
-        >
-          {t('components.navbar.register')}
+        <Menu.Item as={Link} to="/" name="landing" onClick={this.handleItemClick}>
+          <Button color="teal">{t('components.navbar.sign-in')}</Button>
         </Menu.Item>
       </React.Fragment>
     );
@@ -139,7 +120,10 @@ class NavbarDesktop extends Component {
 
           {leftLinks}
 
-          <Menu.Menu position="right">{isAuthenticated ? authLinks : guestLinks}</Menu.Menu>
+          <Menu.Menu position="right">
+            <LanguageDropdown />
+            {isAuthenticated ? authLinks : guestLinks}
+          </Menu.Menu>
         </Container>
       </Menu>
     );
