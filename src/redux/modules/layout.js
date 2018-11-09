@@ -1,5 +1,6 @@
 // Actions
 //
+const UPDATE_LANGUAGE = 'layout/UPDATE_LANGUAGE';
 const UPDATE_THEME = 'layout/UPDATE_THEME';
 const SHOW_PENDING = 'layout/SHOW_PENDING';
 const HIDE_PENDING = 'layout/HIDE_PENDING';
@@ -10,6 +11,7 @@ const TOGGLE_SIDEBAR = 'layout/TOGGLE_SIDEBAR';
 // Reducer
 //
 const initialState = {
+  language: process.env.REACT_APP_LANGUAGE || 'en',
   theme: process.env.REACT_APP_THEME || 'openjam',
   playerVisible: true,
   pendingVisible: false,
@@ -18,6 +20,8 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case UPDATE_LANGUAGE:
+      return { ...state, language: action.payload };
     case UPDATE_THEME:
       return { ...state, theme: action.payload };
     case SHOW_PENDING:
@@ -40,6 +44,7 @@ export default reducer;
 
 // Action Creators
 //
+export const updateLanguage = language => ({ type: UPDATE_LANGUAGE, payload: language });
 export const updateTheme = theme => ({ type: UPDATE_THEME, payload: theme });
 export const showPending = () => ({ type: SHOW_PENDING });
 export const hidePending = () => ({ type: HIDE_PENDING });

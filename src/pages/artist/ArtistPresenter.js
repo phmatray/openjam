@@ -1,10 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Body from '../../components/Body';
+import { Container, Grid, Image, Header, Divider } from 'semantic-ui-react';
 
-const ArtistPresenter = ({ artist }) => (
-  <Body breadcrumbSegments={[<Link to="/artists">Artists</Link>, artist.name]} />
+import Hero from '../../components/Hero';
+import Flex from '../../components/Flex';
+import Div from '../../components/Div';
+
+import artist from './sample-data.json';
+import ActionsMenu from './artist-presenter/ActionsMenu';
+import Tabs from './artist-presenter/Tabs';
+import Aside from './artist-presenter/Aside';
+
+const ArtistPresenter = () => (
+  <div>
+    <Hero entity={artist}>
+      <Flex fluid row alignCenter>
+        <Div mr="16px">
+          <Image circular size="small" src={artist.images[0].url} />
+        </Div>
+        <div style={{ color: 'white' }}>
+          <Header as="h1" inverted>
+            {artist.name}
+          </Header>
+
+          {`from ${artist.information.origin}`}
+          <br />
+        </div>
+      </Flex>
+    </Hero>
+
+    <ActionsMenu artist={artist} />
+    <Divider style={{ marginTop: 0 }} />
+
+    <Container>
+      <Grid divided stackable reversed="mobile">
+        <Grid.Column mobile={16} tablet={10} computer={11}>
+          <Tabs artist={artist} />
+        </Grid.Column>
+        <Grid.Column mobile={8} tablet={6} computer={5}>
+          <Aside artist={artist} />
+        </Grid.Column>
+      </Grid>
+    </Container>
+  </div>
 );
 
 ArtistPresenter.propTypes = {

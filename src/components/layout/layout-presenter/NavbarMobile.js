@@ -3,6 +3,9 @@ import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Menu, Icon, Image } from 'semantic-ui-react';
+
+import LanguageDropdown from './LanguageDropdown';
+
 import logo from '../../../images/logos/logo_white.svg';
 
 class NavbarMobile extends Component {
@@ -65,6 +68,7 @@ class NavbarMobile extends Component {
           />
           {t('app')}
         </Menu.Item>
+        <LanguageDropdown />
 
         <Menu.Menu position="right">
           {isAuthenticated && authLinks}
