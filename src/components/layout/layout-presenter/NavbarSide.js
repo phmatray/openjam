@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Sidebar, Menu, Icon, Divider } from 'semantic-ui-react';
+import { Sidebar, Menu, Icon, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
@@ -51,49 +51,15 @@ class NavbarSide extends Component {
             {t('components.navbar.share')}
           </span>
         </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/jammers"
-          name="jammers"
-          active={activeItem === 'jammers'}
-          onClick={this.handleItemClick && hideSidebar}
-          style={{ textAlign: 'left' }}
-        >
-          <span>
-            <Icon name="users" size="big" style={{ margin: '0.75em' }} />
-            {t('components.navbar.jammers')}
-          </span>
-        </Menu.Item>
       </React.Fragment>
     );
 
     const guestLinks = (
       <React.Fragment>
-        <Menu.Item
-          as={Link}
-          to="/login"
-          name="login"
-          active={activeItem === 'login'}
-          onClick={this.handleItemClick && hideSidebar}
-          style={{ textAlign: 'left' }}
-        >
-          <span>
-            <Icon name="sign-in" size="big" style={{ margin: '0.75em' }} />
+        <Menu.Item as={Link} to="/" name="landing" onClick={this.handleItemClick && hideSidebar}>
+          <Button fluid size="big" color="teal">
             {t('components.navbar.sign-in')}
-          </span>
-        </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to="/register"
-          name="register"
-          active={activeItem === 'register'}
-          onClick={this.handleItemClick && hideSidebar}
-          style={{ textAlign: 'left' }}
-        >
-          <span>
-            <Icon name="signup" size="big" style={{ margin: '0.75em' }} />
-            {t('components.navbar.register')}
-          </span>
+          </Button>
         </Menu.Item>
       </React.Fragment>
     );

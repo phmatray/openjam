@@ -8,7 +8,7 @@ import commonFR from '../translations/fr/common.json';
 // Init i18next
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
-  lng: 'en', // language to use
+  lng: process.env.REACT_APP_LANGUAGE || 'en', // language to use
   resources: {
     en: {
       common: commonEN, // 'common' is our custom namespace
