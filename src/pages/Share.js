@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Grid, GridRow, GridColumn, Menu } from 'semantic-ui-react';
+import { Grid, GridRow, GridColumn, Menu, Header, Container, Divider } from 'semantic-ui-react';
 
-import PostForm from './share/PostForm';
-import { getPosts } from '../redux/modules/post';
+import Flex from '../components/Flex';
+import Hero from '../components/Hero';
 import Feed from '../components/Feed';
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
-import Body from '../components/Body';
+import { getPosts } from '../redux/modules/post';
+import background from '../images/backgrounds/container-1867697_1920.jpg';
+
+import PostForm from './share/PostForm';
 
 class Share extends Component {
   state = { activeItem: 'newsfeed' };
@@ -27,31 +30,48 @@ class Share extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Body breadcrumbSegments={[t('pages.share.header')]} description={t('pages.share.subheader')}>
-        <Grid padded>
-          <GridRow>
-            <GridColumn mobile={16} tablet={4} computer={4} style={{ paddingLeft: 0 }}>
-              <Menu fluid vertical tabular>
-                <Menu.Item
-                  name="newsfeed"
-                  active={activeItem === 'newsfeed'}
-                  onClick={this.handleItemClick}
-                  content={t('pages.share.newsfeed')}
-                />
-                {/* <Menu.Item
+      <React.Fragment>
+        <Hero src={background}>
+          <Flex fluid row alignCenter>
+            <div style={{ color: 'white', maxWidth: '400px' }}>
+              <Header as="h1" inverted>
+                {t('pages.share.header')}
+              </Header>
+              <Header as="h3" inverted>
+                {t('pages.share.subheader')}
+              </Header>
+              <br />
+            </div>
+          </Flex>
+        </Hero>
+        <Divider style={{ marginTop: 0 }} />
+
+        <Container>
+          <Grid padded>
+            <GridRow>
+              <GridColumn mobile={16} tablet={4} computer={4} style={{ paddingLeft: 0 }}>
+                <Menu fluid vertical tabular>
+                  <Menu.Item
+                    name="newsfeed"
+                    active={activeItem === 'newsfeed'}
+                    onClick={this.handleItemClick}
+                    content={t('pages.share.newsfeed')}
+                  />
+                  {/* <Menu.Item
                   name="marketplace"
                   active={activeItem === 'marketplace'}
                   onClick={this.handleItemClick}
                 /> */}
-              </Menu>
-            </GridColumn>
-            <GridColumn stretched mobile={16} tablet={12} computer={12} style={{ padding: 0 }}>
-              {isAuthenticated ? <PostForm /> : <Message />}
-              {posts === null || loading ? <Spinner /> : <Feed posts={posts} />}
-            </GridColumn>
-          </GridRow>
-        </Grid>
-      </Body>
+                </Menu>
+              </GridColumn>
+              <GridColumn stretched mobile={16} tablet={12} computer={12} style={{ padding: 0 }}>
+                {isAuthenticated ? <PostForm /> : <Message />}
+                {posts === null || loading ? <Spinner /> : <Feed posts={posts} />}
+              </GridColumn>
+            </GridRow>
+          </Grid>
+        </Container>
+      </React.Fragment>
     );
   }
 }

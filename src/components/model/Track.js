@@ -11,7 +11,7 @@ import { playTrack, pause } from '../../redux/modules/player';
 
 import ContentBlock from './track/ContentBlock';
 import CoverToggle from './track/CoverToggle';
-import { Artists } from './track/Atoms';
+import { Details, Artists } from './track/Atoms';
 
 const TrackItem = ({ track, playTrack, pause, playerPlaying, playerCollectionId }) => {
   const isNew = () => {
@@ -35,13 +35,13 @@ const TrackItem = ({ track, playTrack, pause, playerPlaying, playerCollectionId 
           playerPlaying={playerPlaying}
         />
       </Div>
-      <div style={{ width: '100%' }}>
+      <Details>
         <Divider style={{ margin: '0 0 0.6em 0' }} />
         <LinkEntity entity={track} as="table" strong />
         <Artists>
           <LinkArtistNames artists={track.artists} as="table" />
         </Artists>
-      </div>
+      </Details>
     </ContentBlock>
   );
 };
