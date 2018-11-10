@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { Image } from 'semantic-ui-react';
 
+export const Details = styled.div`
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 export const Artists = styled.p`
   color: #666;
   font-family: Ubuntu;
