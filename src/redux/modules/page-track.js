@@ -2,12 +2,12 @@ import axios from 'axios';
 
 // Actions
 //
-const FETCH_TRACK_PENDING = 'explore/FETCH_TRACK_PENDING';
-const FETCH_TRACK_SUCCESS = 'explore/FETCH_TRACK_SUCCESS';
-const FETCH_TRACK_ERROR = 'explore/FETCH_TRACK_ERROR';
-const BY_ARTIST_PENDING = 'explore/BY_ARTIST_PENDING';
-const BY_ARTIST_SUCCESS = 'explore/BY_ARTIST_SUCCESS';
-const BY_ARTIST_ERROR = 'explore/BY_ARTIST_ERROR';
+const FETCH_TRACK_PENDING = 'page-track/FETCH_TRACK_PENDING';
+const FETCH_TRACK_SUCCESS = 'page-track/FETCH_TRACK_SUCCESS';
+const FETCH_TRACK_ERROR = 'page-track/FETCH_TRACK_ERROR';
+const BY_ARTIST_PENDING = 'page-track/BY_ARTIST_PENDING';
+const BY_ARTIST_SUCCESS = 'page-track/BY_ARTIST_SUCCESS';
+const BY_ARTIST_ERROR = 'page-track/BY_ARTIST_ERROR';
 
 // Reducer
 //

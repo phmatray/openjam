@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Header, Container, Divider } from 'semantic-ui-react';
 
 import Flex from '../components/Flex';
 import Hero from '../components/Hero';
+import { fetchOriginalTracks, fetchRemixTracks, fetchArtists } from '../redux/modules/page-explore';
 import background from '../images/backgrounds/piano-2601498_1920.jpg';
-import Section from './explore/Section';
 
-import { fetchPlaylists } from '../redux/modules/playlist';
-import { fetchTracks } from '../redux/modules/track';
-import { fetchArtists } from '../redux/modules/artist';
-import { fetchAlbums } from '../redux/modules/album';
-import { fetchLabels } from '../redux/modules/label';
+import Section from './explore/Section';
 
 export class Explore extends Component {
   componentDidMount() {
-    const { fetchPlaylists, fetchTracks, fetchArtists, fetchAlbums, fetchLabels } = this.props;
+    const { fetchOriginalTracks, fetchRemixTracks, fetchArtists } = this.props;
 
-    fetchPlaylists();
-    fetchTracks();
+    fetchOriginalTracks();
+    fetchRemixTracks();
     fetchArtists();
-    fetchAlbums();
-    fetchLabels();
   }
 
   render() {
-    const { playlists, tracks, artists, albums, labels, t } = this.props;
+    const { originalTracks, remixTracks, artists, t } = this.props;
 
     return (
       <React.Fragment>
@@ -46,42 +41,27 @@ export class Explore extends Component {
         <Divider style={{ marginTop: 0, marginBottom: 32 }} />
 
         <Container>
-          <Section
-            title={t('pages.explore.tracks')}
-            items={tracks.slice(0, 32)}
-            to="/tracks"
-            maxHeight={256}
-          />
+          {originalTracks !== null && (
+            <Section
+              title={t('pages.explore.original-titles')}
+              items={originalTracks}
+              to="/tracks"
+              maxHeight={256}
+            />
+          )}
+          {remixTracks !== null && (
+            <Section
+              title={t('pages.explore.remix-titles')}
+              items={remixTracks.slice(0, 32)}
+              to="/tracks"
+              maxHeight={256}
+            />
           )}
           {artists !== null && (
             <Section
               title={t('pages.explore.artists')}
               items={artists.slice(0, 16)}
               to="/artists"
-              maxHeight={512}
-            />
-          )}
-          {playlists !== null && (
-            <Section
-              title={t('pages.explore.playlists')}
-              items={playlists.slice(0, 8)}
-              to="/playlists"
-              maxHeight={512}
-            />
-          )}
-          {albums !== null && (
-            <Section
-              title={t('pages.explore.albums')}
-              items={albums.slice(0, 16)}
-              to="/albums"
-              maxHeight={512}
-            />
-          )}
-          {labels !== null && (
-            <Section
-              title={t('pages.explore.labels')}
-              items={labels.slice(0, 16)}
-              to="/labels"
               maxHeight={512}
               showDivider={false}
             />
@@ -92,21 +72,35 @@ export class Explore extends Component {
   }
 }
 
+Explore.propTypes = {
+  fetchOriginalTracks: PropTypes.func.isRequired,
+  fetchRemixTracks: PropTypes.func.isRequired,
+  fetchArtists: PropTypes.func.isRequired,
+  originalTracks: PropTypes.array,
+  remixTracks: PropTypes.array,
+  artists: PropTypes.array,
+};
+
+Explore.defaultProps = {
+  originalTracks: [],
+  remixTracks: [],
+  artists: [],
+};
+
 const mapStateToProps = state => ({
-  playlists: state.playlist.playlists,
-  tracks: state.track.tracks,
-  artists: state.artist.artists,
-  albums: state.album.albums,
-  labels: state.label.labels,
+  originalTracks: state.pageExplore.originalTracks,
+  originalTracksLoading: state.pageExplore.originalTracksLoading,
+  remixTracks: state.pageExplore.remixTracks,
+  remixTracksLoading: state.pageExplore.remixTracksLoading,
+  artists: state.pageExplore.artists,
+  artistsLoading: state.pageExplore.artistsLoading,
 });
 
 export default connect(
   mapStateToProps,
   {
-    fetchPlaylists,
-    fetchTracks,
+    fetchOriginalTracks,
+    fetchRemixTracks,
     fetchArtists,
-    fetchAlbums,
-    fetchLabels,
   },
 )(withNamespaces('common')(Explore));
