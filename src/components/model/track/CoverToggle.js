@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Wrapper, Cover, Overlay, Icon } from './cover-toggle/Atoms';
 
-const CoverToggle = ({ playTrack, pause, playlist, track, isActive, isNew, playerPlaying }) => {
+const CoverToggle = ({ playTrack, pause, track, isActive, isNew, playerPlaying }) => {
   const showPause = playerPlaying && isActive;
 
   return (
@@ -29,7 +29,6 @@ const CoverToggle = ({ playTrack, pause, playlist, track, isActive, isNew, playe
 CoverToggle.propTypes = {
   playTrack: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
-  playlist: PropTypes.object.isRequired,
   track: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
