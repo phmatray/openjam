@@ -12,8 +12,8 @@ import Tabs from './artist-presenter/Tabs';
 import Aside from './artist-presenter/Aside';
 
 const ArtistPresenter = () => (
-  <div>
-    <Hero entity={artist}>
+  <React.Fragment>
+    <Hero src={artist.images[1].url}>
       <Flex fluid row alignCenter>
         <Div mr="16px">
           <Image circular size="small" src={artist.images[0].url} />
@@ -42,7 +42,7 @@ const ArtistPresenter = () => (
         </Grid.Column>
       </Grid>
     </Container>
-  </div>
+  </React.Fragment>
 );
 
 ArtistPresenter.propTypes = {

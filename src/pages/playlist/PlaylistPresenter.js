@@ -2,17 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Container, Grid, Divider } from 'semantic-ui-react';
+import { Container, Grid, Divider, Header } from 'semantic-ui-react';
 
+import Div from '../../components/Div';
+import Flex from '../../components/Flex';
 import Hero from '../../components/Hero';
+import PlayPause from '../../components/PlayPause';
 import PlaylistTracks from '../../components/PlaylistTracks';
 import PlaylistCover from '../../components/PlaylistCover';
 import Body from '../../components/Body';
+import LinkEntity from '../../components/LinkEntity';
 
 const PlaylistPresenter = ({ playlist, t }) => (
   <React.Fragment>
-    <Hero entity={playlist} />
+    <Hero src={playlist.tracks[0].coverurl.w800}>
+      <Flex fluid row alignCenter>
+        <Div mr="16px">
+          <PlayPause entity={playlist} />
+        </Div>
+        <Flex fluid column justifyCenter>
+          <Header as="h1" inverted>
+            <LinkEntity entity={playlist} as="inverted" alternate />
+          </Header>
+        </Flex>
+      </Flex>
+    </Hero>
     <Divider style={{ marginTop: 0 }} />
+
     <Container>
       <Grid divided stackable reversed="mobile">
         <Grid.Column mobile={8} tablet={6} computer={5}>
