@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Button, Divider, Header } from 'semantic-ui-react';
 
 import ModelCollection from './section/ModelCollection';
+import Div from '../../components/Div';
 import Flex from '../../components/Flex';
 
 const Scrollable = styled.div`
@@ -21,7 +22,9 @@ const Scrollable = styled.div`
 const Section = ({ title, items, to, maxHeight, showDivider, t }) => (
   <Flex column fluid>
     <Flex row fluid alignCenter justifyBetween mb="1em">
-      <Header as="h2">{title}</Header>
+      <Header as="h2" style={{ margin: '8px 0' }}>
+        {title}
+      </Header>
       {to && (
         <Button as={Link} to={to} basic color="teal">
           {t('pages.explore.show-all')}
@@ -33,7 +36,12 @@ const Section = ({ title, items, to, maxHeight, showDivider, t }) => (
         <ModelCollection models={items} />
       </Flex>
     </Scrollable>
-    {showDivider && <Divider />}
+    <Div mb="16px" />
+    {showDivider && (
+      <Div mb="16px">
+        <Divider />
+      </Div>
+    )}
   </Flex>
 );
 
