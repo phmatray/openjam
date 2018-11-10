@@ -41,12 +41,16 @@
     },
     "explore": {
       "header": "Explore",
-      "subheader": "Choose from a selection of playlists, albums, artists, tracks or labels.",
+      "subheader": "Choose from a selection of stems, remix, original artists and remixer artists.",
       "playlists": "Playlists",
       "artists": "Artists",
       "tracks": "Tracks",
       "albums": "Albums",
       "labels": "Labels",
+      "original-titles": "Original titles (stems)",
+      "original-artists": "Original artists (stems)",
+      "remix-titles": "Remix titles",
+      "remix-artists": "Remix artists",
       "show-all": "Show all"
     },
     "jammers": {

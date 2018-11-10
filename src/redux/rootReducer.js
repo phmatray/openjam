@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import layout from './modules/layout';
 import auth from './modules/auth';
 import errors from './modules/error';
+import pageExplore from './modules/page-explore';
 import pageTrack from './modules/page-track';
 import profile from './modules/profile';
 import post from './modules/post';
@@ -18,6 +19,7 @@ const reducers = {
   layout,
   auth,
   errors,
+  pageExplore,
   pageTrack,
   profile,
   post,
