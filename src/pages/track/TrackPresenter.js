@@ -1,16 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Grid, Divider } from 'semantic-ui-react';
+import { Container, Grid, Divider, Header } from 'semantic-ui-react';
 
+import Div from '../../components/Div';
+import Flex from '../../components/Flex';
 import Hero from '../../components/Hero';
+import PlayPause from '../../components/PlayPause';
 import AlbumCover from '../../components/AlbumCover';
+import LinkEntity from '../../components/LinkEntity';
+import LinkArtistNames from '../../components/LinkArtistNames';
 
 import Tabs from './track-presenter/Tabs';
 import MoreTracks from './track-presenter/MoreTracks';
 
 const TrackPresenter = ({ track }) => (
   <React.Fragment>
-    <Hero entity={track} />
+    <Hero src={track.coverurl.w800}>
+      <Flex fluid row alignCenter>
+        <Div mr="16px">
+          <PlayPause entity={track} />
+        </Div>
+        <Flex fluid column justifyCenter>
+          <Header as="h1" inverted>
+            <LinkEntity entity={track} as="inverted" alternate />
+          </Header>
+          <Header as="h2" inverted style={{ marginTop: 0 }}>
+            <LinkArtistNames artists={track.artists} as="inverted" />
+          </Header>
+        </Flex>
+      </Flex>
+    </Hero>
     {/* TODO: Enable ActionsMenu */}
     {/* <ActionsMenu track={track} /> */}
     <Divider style={{ marginTop: 0 }} />
@@ -42,7 +61,7 @@ TrackPresenter.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
     coverurl: PropTypes.shape({
-      w400: PropTypes.string.isRequired,
+      w800: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };
