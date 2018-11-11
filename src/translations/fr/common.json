@@ -80,6 +80,14 @@
       "header": "Page non trouvée (404)",
       "subheader": "Boo, on dirait qu'un fantôme a volé cette page !"
     },
+    "original-tracks": {
+      "header": "Titres originaux (stems)",
+      "subheader": "Un stem est un groupe de sources audio mélangées ensemble, généralement par une seule personne."
+    },
+    "remix-tracks": {
+      "header": "Remixes originaux",
+      "subheader": "En musique, un remix est une reconceptualisation musicale d'une œuvre déjà composée."
+    },
     "playlists": {
       "header": "Playlists",
       "subheader": "Choisissez de la musique par playlist.",

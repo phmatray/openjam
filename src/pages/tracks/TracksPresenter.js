@@ -1,28 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Header, Container, Divider } from 'semantic-ui-react';
 
-import Track from '../../components/model/Track';
-import Body from '../../components/Body';
 import Flex from '../../components/Flex';
-import H2 from '../../components/H2';
+import Hero from '../../components/Hero';
+import Section from '../../components/Section';
 
-const TracksPresenter = ({ tracks, t }) => (
-  <Body
-    breadcrumbSegments={[
-      <Link to="/explore">{t('pages.explore.header')}</Link>,
-      t('pages.tracks.header'),
-    ]}
-    description={t('pages.tracks.subheader')}
-  >
-    <H2 header={t('pages.tracks.new')} />
-    <Flex wrapBreak justifyStart>
-      {tracks.map(track => (
-        <Track key={track._id} track={track} />
-      ))}
-    </Flex>
-  </Body>
+const TracksPresenter = ({ tracks, header, subheader, background }) => (
+  <React.Fragment>
+    <Hero src={background}>
+      <Flex fluid row alignCenter>
+        <div style={{ color: 'white', maxWidth: '400px' }}>
+          <Header as="h1" inverted>
+            {header}
+          </Header>
+          <Header as="h3" inverted>
+            {subheader}
+          </Header>
+          <br />
+        </div>
+      </Flex>
+    </Hero>
+    <Divider style={{ marginTop: 0, marginBottom: 32 }} />
+
+    <Container>
+      <Section items={tracks} scrollable={false} showDivider={false} />
+    </Container>
+  </React.Fragment>
 );
 
 TracksPresenter.propTypes = {
@@ -31,6 +35,15 @@ TracksPresenter.propTypes = {
       _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
+  header: PropTypes.string,
+  subheader: PropTypes.string,
+  background: PropTypes.string,
 };
 
-export default withNamespaces('common')(TracksPresenter);
+TracksPresenter.defaultProps = {
+  header: null,
+  subheader: null,
+  background: null,
+};
+
+export default TracksPresenter;

@@ -4,8 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
 import { Header, Tab, Card, Label } from 'semantic-ui-react';
 
+import Section from '../../../components/Section';
 import { fetchTracks } from '../../../redux/modules/track';
-import Section from '../../explore/Section';
 
 class Tabs extends Component {
   componentDidMount() {
