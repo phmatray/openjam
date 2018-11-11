@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withNamespaces } from 'react-i18next';
+
 import { fetchTracks } from '../redux/modules/track';
 import Spinner from '../components/Spinner';
+import background from '../images/backgrounds/vinyl-2592068_1920.jpg';
+
 import TracksPresenter from './tracks/TracksPresenter';
 
 class Tracks extends Component {
@@ -11,7 +15,7 @@ class Tracks extends Component {
   }
 
   render() {
-    const { tracks, loading } = this.props;
+    const { tracks, loading, t } = this.props;
 
     if (tracks === null || loading) {
       return <Spinner />;
@@ -19,7 +23,15 @@ class Tracks extends Component {
     if (tracks.length === 0) {
       return <h4>No tracks found...</h4>;
     }
-    return <TracksPresenter tracks={tracks} />;
+
+    return (
+      <TracksPresenter
+        tracks={tracks}
+        header={t('pages.tracks.header')}
+        subheader={t('pages.tracks.subheader')}
+        background={background}
+      />
+    );
   }
 }
 
@@ -37,4 +49,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { fetchTracks },
-)(Tracks);
+)(withNamespaces('common')(Tracks));

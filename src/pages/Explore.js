@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
-import { Header, Container, Divider } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
-import Flex from '../components/Flex';
-import Hero from '../components/Hero';
+import HeroSimple from '../components/HeroSimple';
+import Section from '../components/Section';
 import { fetchOriginalTracks, fetchRemixTracks, fetchArtists } from '../redux/modules/page-explore';
 import background from '../images/backgrounds/piano-2601498_1920.jpg';
-
-import Section from './explore/Section';
 
 export class Explore extends Component {
   componentDidMount() {
@@ -25,27 +23,18 @@ export class Explore extends Component {
 
     return (
       <React.Fragment>
-        <Hero src={background}>
-          <Flex fluid row alignCenter>
-            <div style={{ color: 'white', maxWidth: '400px' }}>
-              <Header as="h1" inverted>
-                {t('pages.explore.header')}
-              </Header>
-              <Header as="h3" inverted>
-                {t('pages.explore.subheader')}
-              </Header>
-              <br />
-            </div>
-          </Flex>
-        </Hero>
-        <Divider style={{ marginTop: 0, marginBottom: 32 }} />
+        <HeroSimple
+          background={background}
+          header={t('pages.explore.header')}
+          subheader={t('pages.explore.subheader')}
+        />
 
         <Container>
           {originalTracks !== null && (
             <Section
               title={t('pages.explore.original-titles')}
               items={originalTracks}
-              to="/tracks"
+              to="/tracks/originals"
               maxHeight={256}
             />
           )}
@@ -53,7 +42,7 @@ export class Explore extends Component {
             <Section
               title={t('pages.explore.remix-titles')}
               items={remixTracks.slice(0, 32)}
-              to="/tracks"
+              to="/tracks/remixes"
               maxHeight={256}
             />
           )}

@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { Button, Divider, Header } from 'semantic-ui-react';
 
 import ModelCollection from './section/ModelCollection';
-import Div from '../../components/Div';
-import Flex from '../../components/Flex';
+import Div from './Div';
+import Flex from './Flex';
 
 const Scrollable = styled.div`
   overflow-x: scroll;
@@ -19,43 +19,58 @@ const Scrollable = styled.div`
   }
 `;
 
-const Section = ({ title, items, to, maxHeight, showDivider, t }) => (
-  <Flex column fluid>
+const Section = ({ title, items, to, maxHeight, showDivider, scrollable, t }) => (
+  <div>
     <Flex row fluid alignCenter justifyBetween mb="1em">
-      <Header as="h2" style={{ margin: '8px 0' }}>
-        {title}
-      </Header>
+      {title && (
+        <Header as="h2" style={{ margin: '8px 0' }}>
+          {title}
+        </Header>
+      )}
       {to && (
         <Button as={Link} to={to} basic color="teal">
           {t('pages.explore.show-all')}
         </Button>
       )}
     </Flex>
-    <Scrollable>
-      <Flex column wrapBreak contentStart style={{ maxHeight }}>
+
+    {scrollable ? (
+      <Scrollable>
+        <Flex column wrapBreak contentStart style={{ maxHeight }}>
+          <ModelCollection models={items} />
+        </Flex>
+      </Scrollable>
+    ) : (
+      <Flex wrapBreak justifyStart>
         <ModelCollection models={items} />
       </Flex>
-    </Scrollable>
-    <Div mb="16px" />
+    )}
+
+    <Div mb="32px" />
+
     {showDivider && (
-      <Div mb="16px">
+      <Div mb="32px">
         <Divider />
       </Div>
     )}
-  </Flex>
+  </div>
 );
 
 Section.propTypes = {
-  title: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
-  to: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  to: PropTypes.string,
   maxHeight: PropTypes.number,
   showDivider: PropTypes.bool,
+  scrollable: PropTypes.bool,
 };
 
 Section.defaultProps = {
+  title: null,
+  to: null,
   maxHeight: 256,
   showDivider: true,
+  scrollable: true,
 };
 
 export default withNamespaces('common')(Section);

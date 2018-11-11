@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Grid, GridRow, GridColumn, Menu, Header, Container, Divider } from 'semantic-ui-react';
+import { Grid, GridRow, GridColumn, Menu, Container } from 'semantic-ui-react';
 
-import Flex from '../components/Flex';
-import Hero from '../components/Hero';
+import HeroSimple from '../components/HeroSimple';
 import Feed from '../components/Feed';
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
@@ -31,20 +30,11 @@ class Share extends Component {
 
     return (
       <React.Fragment>
-        <Hero src={background}>
-          <Flex fluid row alignCenter>
-            <div style={{ color: 'white', maxWidth: '400px' }}>
-              <Header as="h1" inverted>
-                {t('pages.share.header')}
-              </Header>
-              <Header as="h3" inverted>
-                {t('pages.share.subheader')}
-              </Header>
-              <br />
-            </div>
-          </Flex>
-        </Hero>
-        <Divider style={{ marginTop: 0 }} />
+        <HeroSimple
+          background={background}
+          header={t('pages.share.header')}
+          subheader={t('pages.share.subheader')}
+        />
 
         <Container>
           <Grid padded>
