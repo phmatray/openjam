@@ -1,6 +1,6 @@
 {
   "name": "openjam",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "engines": {
     "node": "10.9.0"
   },
@@ -24,12 +24,12 @@
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-https-redirect": "^1.0.11",
-    "react-i18next": "^8.3.6",
+    "react-i18next": "^8.3.7",
     "react-kawaii": "^0.6.0",
     "react-loadable": "^5.5.0",
     "react-markdown": "^4.0.3",
     "react-moment": "^0.8.3",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.1",
     "react-sound": "^1.2.0",
@@ -73,12 +73,12 @@
     "eslint": "5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-babel": "^8.0.1",
-    "eslint-config-prettier": "^3.1.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.15.1"
+    "prettier": "^1.15.2"
   },
   "husky": {
     "hooks": {
