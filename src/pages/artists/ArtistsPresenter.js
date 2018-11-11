@@ -1,28 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
 
-import Artist from '../../components/model/Artist';
-import Body from '../../components/Body';
-import Flex from '../../components/Flex';
-import H2 from '../../components/H2';
+import HeroSimple from '../../components/HeroSimple';
+import background from '../../images/backgrounds/people-2562222_1920.jpg';
+import Section from '../../components/Section';
 
 const ArtistsPresenter = ({ artists, t }) => (
-  <Body
-    breadcrumbSegments={[
-      <Link to="/explore">{t('pages.explore.header')}</Link>,
-      t('pages.artists.header'),
-    ]}
-    description={t('pages.artists.subheader')}
-  >
-    <H2 header={t('pages.artists.new')} />
-    <Flex wrapBreak justifyStart>
-      {artists.map(artist => (
-        <Artist key={artist._id} artist={artist} />
-      ))}
-    </Flex>
-  </Body>
+  <React.Fragment>
+    <HeroSimple
+      background={background}
+      header={t('pages.artists.header')}
+      subheader={t('pages.artists.subheader')}
+    />
+
+    <Container>
+      <Section items={artists} scrollable={false} showDivider={false} />
+    </Container>
+  </React.Fragment>
 );
 
 ArtistsPresenter.propTypes = {

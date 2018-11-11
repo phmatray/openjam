@@ -64,6 +64,18 @@ const AsyncTracks = Loadable({
   timeout: 10000,
 });
 
+const AsyncOriginalTracks = Loadable({
+  loader: () => import('../pages/OriginalTracks'),
+  loading: Loading,
+  timeout: 10000,
+});
+
+const AsyncRemixTracks = Loadable({
+  loader: () => import('../pages/RemixTracks'),
+  loading: Loading,
+  timeout: 10000,
+});
+
 const AsyncTrack = Loadable({
   loader: () => import('../pages/Track'),
   loading: Loading,
@@ -142,6 +154,8 @@ const Routes = ({ childProps }) => (
     <Route path="/playlists" exact component={AsyncPlaylists} props={childProps} />
     <Route path="/playlist/:id" exact component={AsyncPlaylist} props={childProps} />
     <Route path="/tracks" exact component={AsyncTracks} props={childProps} />
+    <Route path="/tracks/originals" exact component={AsyncOriginalTracks} props={childProps} />
+    <Route path="/tracks/remixes" exact component={AsyncRemixTracks} props={childProps} />
     <Route path="/track/:id" exact component={AsyncTrack} props={childProps} />
     <Route path="/artists" exact component={AsyncArtists} props={childProps} />
     <Route path="/artist/:id" exact component={AsyncArtist} props={childProps} />

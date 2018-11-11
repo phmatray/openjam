@@ -37,7 +37,7 @@ const getDescription = album => (
 
 const AlbumPresenter = ({ album, t }) => (
   <React.Fragment>
-    <Hero entity={album}>
+    <Hero src={album.tracks[0].coverurl.w800}>
       <Flex fluid row alignCenter>
         <Div mr="16px">
           <PlayPause entity={album} />
