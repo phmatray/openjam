@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sound from 'react-sound';
+
 import {
+  fetchTracksRandom,
   loadCollection,
   play,
   pause,
@@ -10,7 +12,7 @@ import {
   next,
   updateAudioInfo,
 } from '../redux/modules/player';
-import { fetchTracksRandom } from '../redux/modules/track';
+
 import PlayerPresenter from './player/PlayerPresenter';
 
 class Player extends Component {
@@ -66,10 +68,11 @@ Player.propTypes = {
 
 Player.defaultProps = {
   current: null,
+  audioInfo: null,
 };
 
 const mapStateToProps = state => ({
-  tracks: state.track.tracks,
+  tracks: state.player.tracks,
   playlist: state.player.playlist,
   playing: state.player.playing,
   current: state.player.current,

@@ -42,11 +42,18 @@ Playlist.propTypes = {
   fetchPlaylist: PropTypes.func.isRequired,
 
   playlist: PropTypes.object,
-  loading: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
 
   playing: PropTypes.bool,
   playlistId: PropTypes.string,
   currentId: PropTypes.string,
+};
+
+Playlist.defaultProps = {
+  playlist: null,
+  playing: false,
+  playlistId: null,
+  currentId: null,
 };
 
 const mapStateToProps = state => ({

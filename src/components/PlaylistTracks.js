@@ -86,10 +86,12 @@ PlaylistTracks.propTypes = {
 
   playSelected: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
-  playerPlaying: PropTypes.bool,
-  playerCollection: PropTypes.object,
-  playerTrack: PropTypes.object,
+  playerPlaying: PropTypes.bool.isRequired,
+  playerCollection: PropTypes.object.isRequired,
+  playerTrack: PropTypes.object.isRequired,
 };
+
+PlaylistTracks.defaultProps = {};
 
 const mapStateToProps = ({ player }) => {
   const { playing, collection, current } = player;

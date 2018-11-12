@@ -23,30 +23,16 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case UPDATE_PROFILES:
-      return {
-        ...state,
-        profiles: action.payload,
-        loading: false,
-      };
+      return { ...state, profiles: action.payload, loading: false };
 
     case UPDATE_PROFILE:
-      return {
-        ...state,
-        profile: action.payload,
-        loading: false,
-      };
+      return { ...state, profile: action.payload, loading: false };
 
     case CLEAR_CURRENT_PROFILE:
-      return {
-        ...state,
-        profile: null,
-      };
+      return { ...state, profile: null };
 
     default:
       return state;

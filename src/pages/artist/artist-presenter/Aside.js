@@ -15,7 +15,9 @@ const Aside = ({ artist }) => (
     <Header as="h3">Genres</Header>
     <div>
       {artist.genres.map(_ => (
-        <Label style={{ margin: '0px 4px 4px auto' }}>{_}</Label>
+        <Label key={_} style={{ margin: '0px 4px 4px auto' }}>
+          {_}
+        </Label>
       ))}
     </div>
     <br />
@@ -24,7 +26,7 @@ const Aside = ({ artist }) => (
     <div>
       <Social href={artist.information.website} />
       {artist.socials.map(_ => (
-        <Social href={_} />
+        <Social key={_} href={_} />
       ))}
     </div>
     <br />
@@ -36,7 +38,7 @@ const Aside = ({ artist }) => (
     <Header as="h3">Label</Header>
     <div>
       {artist.information.labels.map(_ => (
-        <Label tag style={{ margin: '0px 8px 4px 8px' }}>
+        <Label key={_} tag style={{ margin: '0px 8px 4px 8px' }}>
           {_}
         </Label>
       ))}
@@ -51,8 +53,8 @@ Aside.propTypes = {
       website: PropTypes.string,
       years: PropTypes.arrayOf(
         PropTypes.shape({
-          from: PropTypes.number,
-          to: PropTypes.number,
+          from: PropTypes.string,
+          to: PropTypes.string,
         }),
       ),
       labels: PropTypes.array,

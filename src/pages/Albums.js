@@ -29,6 +29,10 @@ Albums.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
+Albums.defaultProps = {
+  albums: null,
+};
+
 const mapStateToProps = state => ({
   albums: state.album.albums,
   loading: state.album.loading,

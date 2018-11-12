@@ -17,25 +17,13 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_REPOS_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        repos: null,
-        loading: false,
-      };
+      return { ...state, error: action.payload, repos: null, loading: false };
 
     case FETCH_REPOS_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_REPOS_SUCCESS:
-      return {
-        ...state,
-        repos: action.payload,
-        loading: false,
-      };
+      return { ...state, repos: action.payload, loading: false };
 
     default:
       return state;

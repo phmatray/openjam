@@ -48,6 +48,12 @@ InputGroup.propTypes = {
 };
 
 InputGroup.defaultProps = {
+  placeholder: null,
+  icon: null,
+  error: null,
+};
+
+InputGroup.defaultProps = {
   type: 'text',
 };
 

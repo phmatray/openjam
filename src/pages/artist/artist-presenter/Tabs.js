@@ -21,7 +21,7 @@ class Tabs extends Component {
 
   render() {
     const { artist, tracks, loading } = this.props;
-    const { description } = artist.information;
+    const { description, members } = artist.information;
     const hasDescription = description.length > 0;
 
     const titlesPane = {
@@ -42,22 +42,26 @@ class Tabs extends Component {
         <Tab.Pane attached color="teal">
           <Header as="h2">Description</Header>
           <div>
-            {hasDescription &&
-              artist.information.description.map(_ => <ReactMarkdown source={_} />)}
+            {hasDescription ? (
+              description.map(_ => <ReactMarkdown key={_} source={_} />)
+            ) : (
+              <span>There is no description for this artist</span>
+            )}
           </div>
           <br />
-          <ReactMarkdown source={description || 'There is no description for this artist'} />
 
           <Header as="h2">Members</Header>
           <Card.Group itemsPerRow={2} doubling>
-            {artist.information.members.map(_ => (
-              <Card color="teal">
+            {members.map(_ => (
+              <Card key={_.name} color="teal">
                 <Card.Content>
                   <Card.Header>{_.name}</Card.Header>
                   <Card.Meta>{this.getYears(_.years)}</Card.Meta>
                   <Card.Description>
                     {_.roles.map(role => (
-                      <Label style={{ margin: '0px 4px 4px 0' }}>{role}</Label>
+                      <Label key={role} style={{ margin: '0px 4px 4px 0' }}>
+                        {role}
+                      </Label>
                     ))}
                   </Card.Description>
                 </Card.Content>

@@ -1,36 +1,5 @@
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
-import loginBackground from '../../../images/backgrounds/login-background.jpg';
-
-export const LoginScreen = styled.div`
-  display: table;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 9000;
-`;
-
-export const BgWrap = styled.div`
-  background: #000;
-  background-image: ${`url(${loginBackground})`};
-  background-position: 50%;
-  background-size: cover;
-  display: table-cell;
-  vertical-align: middle;
-
-  &:before {
-    background-color: rgba(0, 0, 0, 0.7);
-    bottom: 0;
-    content: '';
-    display: block;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-`;
 
 export const GridContent = styled(Grid).attrs({
   textAlign: 'center',

@@ -1,9 +1,14 @@
 /* eslint-disable no-param-reassign */
 
+import axios from 'axios';
 import { getPreviousIndex, getNextIndex } from '../../utils/playerHelpers';
 
 // Actions
 //
+const FETCH_TRACKS_PENDING = 'player/FETCH_TRACKS_PENDING';
+const FETCH_TRACKS_SUCCESS = 'player/FETCH_TRACKS_SUCCESS';
+const FETCH_TRACKS_ERROR = 'player/FETCH_TRACKS_ERROR';
+
 const PLAY = 'player/PLAY';
 const PAUSE = 'player/PAUSE';
 const STOP = 'player/STOP';
@@ -19,6 +24,10 @@ const LOAD_COLLECTION = 'player/LOAD_COLLECTION';
 // Reducer
 //
 const initialState = {
+  tracks: null, // array
+  tracksLoading: false, // bool
+  tracksError: null,
+
   playing: false,
   status: 'STOPPED',
   collection: null,
@@ -34,6 +43,15 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case FETCH_TRACKS_PENDING:
+      return { ...state, tracksLoading: true };
+
+    case FETCH_TRACKS_SUCCESS:
+      return { ...state, tracks: action.payload, tracksLoading: false };
+
+    case FETCH_TRACKS_ERROR:
+      return { ...state, tracksError: action.payload, tracks: null, tracksLoading: false };
+
     case PLAY:
       return { ...state, playing: true, status: 'PLAYING' };
 
@@ -174,3 +192,10 @@ export const playTrack = (track = null) => (dispatch, getState) => {
     dispatch(play());
   }
 };
+
+// Fetch 20 random tracks
+export const fetchTracksRandom = () => ({
+  types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/random`),
+  shouldCallAPI: () => true,
+});

@@ -11,7 +11,11 @@ import TracksPresenter from './tracks/TracksPresenter';
 
 class RemixTracks extends Component {
   componentDidMount() {
-    this.props.fetchRemixTracks();
+    const { remixTracks } = this.props;
+
+    if (remixTracks === null) {
+      this.props.fetchRemixTracks();
+    }
   }
 
   render() {
@@ -39,6 +43,10 @@ RemixTracks.propTypes = {
   fetchRemixTracks: PropTypes.func.isRequired,
   remixTracks: PropTypes.array,
   remixTracksLoading: PropTypes.bool.isRequired,
+};
+
+RemixTracks.defaultProps = {
+  remixTracks: null,
 };
 
 const mapStateToProps = state => ({

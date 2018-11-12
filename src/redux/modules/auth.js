@@ -19,10 +19,7 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case UPDATE_USER:
       return {
@@ -80,11 +77,15 @@ export const loginUser = userData => dispatch => {
   axios
     .post(`${process.env.REACT_APP_ENDPOINT}/auth/login`, userData)
     .then(res => {
+      console.log(res);
       if (res.status === 200) {
         dispatch(updateUser(res.data));
       }
     })
-    .catch(err => dispatch(updateErrors(err.response.data)));
+    .catch(err => {
+      console.warn(err.response.data);
+      dispatch(updateErrors(err.response.data));
+    });
 };
 
 // Log user out

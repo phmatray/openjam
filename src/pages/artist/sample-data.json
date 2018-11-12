@@ -37,9 +37,18 @@
       "Pink Floyd were inducted into the American [Rock and Roll Hall of Fame](https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame 'Rock and Roll Hall of Fame') in 1996 and the [UK Music Hall of Fame](https://en.wikipedia.org/wiki/UK_Music_Hall_of_Fame 'UK Music Hall of Fame') in 2005. By 2013, they had sold more than 250 million records worldwide."
     ],
     "years": [
-      { "from": "1965", "to": "1995" },
-      { "from": "2005", "to": "2005" },
-      { "from": "2012", "to": "2014" }
+      {
+        "from": "1965",
+        "to": "1995"
+      },
+      {
+        "from": "2005",
+        "to": "2005"
+      },
+      {
+        "from": "2012",
+        "to": "2014"
+      }
     ],
     "labels": [
       "EMI Columbia",

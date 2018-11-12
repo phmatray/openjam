@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.8 (11/11/2018)
+- [**production**] Generate changelog with gren [#91](https://github.com/openjam-eu/openjam/pull/91)
+- [**production**] Page explore [#92](https://github.com/openjam-eu/openjam/pull/92)
+
+---
+
 ## v0.2.7 (09/11/2018)
 - [**production**] Added logic to manage themes [#89](https://github.com/openjam-eu/openjam/pull/89)
 - [**production**] Language selector and artist page [#90](https://github.com/openjam-eu/openjam/pull/90)

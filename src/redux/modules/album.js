@@ -21,46 +21,22 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_ALBUMS_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_ALBUMS_SUCCESS:
-      return {
-        ...state,
-        albums: action.payload,
-        loading: false,
-      };
+      return { ...state, albums: action.payload, loading: false };
 
     case FETCH_ALBUMS_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        albums: null,
-        loading: false,
-      };
+      return { ...state, error: action.payload, albums: null, loading: false };
 
     case FETCH_ALBUM_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_ALBUM_SUCCESS:
-      return {
-        ...state,
-        album: action.payload,
-        loading: false,
-      };
+      return { ...state, album: action.payload, loading: false };
 
     case FETCH_ALBUM_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        album: initialState.album,
-        loading: false,
-      };
+      return { ...state, error: action.payload, album: initialState.album, loading: false };
 
     default:
       return state;

@@ -40,6 +40,11 @@ Label.propTypes = {
   loading: PropTypes.bool,
 };
 
+Label.defaultProps = {
+  label: null,
+  loading: false,
+};
+
 const mapStateToProps = state => ({
   label: state.label,
 });

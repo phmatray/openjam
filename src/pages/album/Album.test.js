@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import AlbumPresenter from './AlbumPresenter';
+import Album from '../Album';
 
 import store from '../../redux/store';
 import I18nWrapper from '../../components/I18nWrapper';
@@ -93,9 +93,7 @@ it('renders without crashing', () => {
     <I18nWrapper>
       <Router>
         <Provider store={store}>
-          <ThemeWrapper>
-            <AlbumPresenter album={album} />
-          </ThemeWrapper>
+          <ThemeWrapper>{/*<Album entity={album} /> */}</ThemeWrapper>
         </Provider>
       </Router>
       <Router>

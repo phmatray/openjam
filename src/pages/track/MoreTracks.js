@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 
-import { fetchTracksByArtistId } from '../../../redux/modules/page-track';
-import Track from '../../../components/model/Track';
-import LinkEntity from '../../../components/LinkEntity';
+import Track from '../../components/model/Track';
+import LinkEntity from '../../components/LinkEntity';
+import { fetchTracksByArtistId } from '../../redux/modules/page-track';
 
 class MoreTracks extends Component {
   async componentDidMount() {

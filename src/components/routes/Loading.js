@@ -12,6 +12,7 @@ const Loading = ({ error, retry, timedOut, pastDelay }) => {
       </div>
     );
   }
+
   if (timedOut) {
     return (
       <div>
@@ -21,6 +22,7 @@ const Loading = ({ error, retry, timedOut, pastDelay }) => {
       </div>
     );
   }
+
   if (pastDelay) {
     return <div>Loading...</div>;
   }
@@ -32,6 +34,10 @@ Loading.propTypes = {
   retry: PropTypes.func.isRequired,
   timedOut: PropTypes.any.isRequired,
   pastDelay: PropTypes.any.isRequired,
+};
+
+Loading.defaultProps = {
+  error: null,
 };
 
 export default Loading;
