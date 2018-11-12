@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header } from 'semantic-ui-react';
 
-import LinkEntity from '../../../../components/LinkEntity';
+import LinkEntity from '../../../components/LinkEntity';
 
 const About = ({ track }) => (
   <React.Fragment>
