@@ -52,4 +52,10 @@ TextAreaFieldGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
+TextAreaFieldGroup.defaultProps = {
+  placeholder: null,
+  error: null,
+  info: null,
+};
+
 export default TextAreaFieldGroup;

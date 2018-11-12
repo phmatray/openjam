@@ -79,6 +79,16 @@ TextFieldGroup.propTypes = {
 };
 
 TextFieldGroup.defaultProps = {
+  placeholder: null,
+  label: null,
+  icon: null,
+  error: null,
+  info: null,
+  disabled: false,
+  required: false,
+};
+
+TextFieldGroup.defaultProps = {
   type: 'text',
 };
 

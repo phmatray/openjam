@@ -29,6 +29,10 @@ Labels.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
+Labels.defaultProps = {
+  labels: null,
+};
+
 const mapStateToProps = state => ({
   labels: state.label.labels,
   loading: state.label.loading,

@@ -21,46 +21,22 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_ARTISTS_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_ARTISTS_SUCCESS:
-      return {
-        ...state,
-        artists: action.payload,
-        loading: false,
-      };
+      return { ...state, artists: action.payload, loading: false };
 
     case FETCH_ARTISTS_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        artists: null,
-        loading: false,
-      };
+      return { ...state, error: action.payload, artists: null, loading: false };
 
     case FETCH_ARTIST_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_ARTIST_SUCCESS:
-      return {
-        ...state,
-        artist: action.payload,
-        loading: false,
-      };
+      return { ...state, artist: action.payload, loading: false };
 
     case FETCH_ARTIST_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        artist: initialState.artist,
-        loading: false,
-      };
+      return { ...state, error: action.payload, artist: initialState.artist, loading: false };
 
     default:
       return state;

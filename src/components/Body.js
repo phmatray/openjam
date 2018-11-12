@@ -25,4 +25,8 @@ Body.propTypes = {
   description: PropTypes.any,
 };
 
+Body.defaultProps = {
+  description: null,
+};
+
 export default Body;

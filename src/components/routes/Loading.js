@@ -34,4 +34,8 @@ Loading.propTypes = {
   pastDelay: PropTypes.any.isRequired,
 };
 
+Loading.defaultProps = {
+  error: null,
+};
+
 export default Loading;

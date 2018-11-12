@@ -57,4 +57,10 @@ SelectListGroup.propTypes = {
   options: PropTypes.array.isRequired,
 };
 
+SelectListGroup.defaultProps = {
+  placeholder: null,
+  error: null,
+  info: null,
+};
+
 export default SelectListGroup;

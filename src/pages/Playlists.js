@@ -29,6 +29,10 @@ Playlists.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
+Playlists.defaultProps = {
+  playlists: null,
+};
+
 const mapStateToProps = state => ({
   playlists: state.playlist.playlists,
   loading: state.playlist.loading,

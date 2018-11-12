@@ -22,16 +22,22 @@ const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case UPDATE_LANGUAGE:
       return { ...state, language: action.payload };
+
     case UPDATE_THEME:
       return { ...state, theme: action.payload };
+
     case SHOW_PENDING:
       return { ...state, pendingVisible: true };
+
     case HIDE_PENDING:
       return { ...state, pendingVisible: false };
+
     case SHOW_SIDEBAR:
       return { ...state, sidebarVisible: true };
+
     case HIDE_SIDEBAR:
       return { ...state, sidebarVisible: false };
+
     case TOGGLE_SIDEBAR:
       return { ...state, sidebarVisible: !state.sidebarVisible };
 

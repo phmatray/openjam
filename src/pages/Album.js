@@ -36,8 +36,13 @@ class Album extends Component {
 
 Album.propTypes = {
   fetchAlbum: PropTypes.func.isRequired,
-  album: PropTypes.object.isRequired,
+  album: PropTypes.object,
   loading: PropTypes.bool,
+};
+
+Album.defaultProps = {
+  album: null,
+  loading: false,
 };
 
 const mapStateToProps = state => ({

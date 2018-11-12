@@ -22,50 +22,30 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case UPDATE_POSTS:
-      return {
-        ...state,
-        posts: action.payload,
-        loading: false,
-      };
+      return { ...state, posts: action.payload, loading: false };
 
     case UPDATE_POST:
-      return {
-        ...state,
-        post: action.payload,
-        loading: false,
-      };
+      return { ...state, post: action.payload, loading: false };
 
     case UPDATE_POST_LIKE:
       return {
         ...state,
         posts: state.posts.map(post => {
           if (post._id === action.payload._id) {
-            return {
-              ...post,
-              ...action.payload,
-            };
+            return { ...post, ...action.payload };
           }
           return post;
         }),
       };
 
     case CREATE_POST:
-      return {
-        ...state,
-        posts: [action.payload, ...state.posts],
-      };
+      return { ...state, posts: [action.payload, ...state.posts] };
 
     case REMOVE_POST:
-      return {
-        ...state,
-        posts: state.posts.filter(post => post._id !== action.payload),
-      };
+      return { ...state, posts: state.posts.filter(post => post._id !== action.payload) };
 
     default:
       return state;

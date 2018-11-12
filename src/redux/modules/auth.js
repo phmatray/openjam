@@ -19,10 +19,7 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case UPDATE_USER:
       return {

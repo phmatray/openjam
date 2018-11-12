@@ -21,46 +21,22 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_LABELS_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_LABELS_SUCCESS:
-      return {
-        ...state,
-        labels: action.payload,
-        loading: false,
-      };
+      return { ...state, labels: action.payload, loading: false };
 
     case FETCH_LABELS_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        labels: null,
-        loading: false,
-      };
+      return { ...state, error: action.payload, labels: null, loading: false };
 
     case FETCH_LABEL_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_LABEL_SUCCESS:
-      return {
-        ...state,
-        label: action.payload,
-        loading: false,
-      };
+      return { ...state, label: action.payload, loading: false };
 
     case FETCH_LABEL_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        label: initialState.label,
-        loading: false,
-      };
+      return { ...state, error: action.payload, label: initialState.label, loading: false };
 
     default:
       return state;

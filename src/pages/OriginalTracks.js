@@ -11,7 +11,11 @@ import TracksPresenter from './tracks/TracksPresenter';
 
 class OriginalTracks extends Component {
   componentDidMount() {
-    this.props.fetchOriginalTracks();
+    const { originalTracks } = this.props;
+
+    if (originalTracks === null) {
+      this.props.fetchOriginalTracks();
+    }
   }
 
   render() {
@@ -39,6 +43,10 @@ OriginalTracks.propTypes = {
   fetchOriginalTracks: PropTypes.func.isRequired,
   originalTracks: PropTypes.array,
   originalTracksLoading: PropTypes.bool.isRequired,
+};
+
+OriginalTracks.defaultProps = {
+  originalTracks: null,
 };
 
 const mapStateToProps = state => ({

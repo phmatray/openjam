@@ -37,7 +37,11 @@ class Track extends Component {
 Track.propTypes = {
   fetchTrack: PropTypes.func.isRequired,
   track: PropTypes.object,
-  trackLoading: PropTypes.bool,
+  trackLoading: PropTypes.bool.isRequired,
+};
+
+Track.defaultProps = {
+  track: null,
 };
 
 const mapStateToProps = state => ({

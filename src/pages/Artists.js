@@ -7,7 +7,11 @@ import ArtistsPresenter from './artists/ArtistsPresenter';
 
 class Artists extends Component {
   componentDidMount() {
-    this.props.fetchArtists();
+    const { artists } = this.props;
+
+    if (artists === null) {
+      this.props.fetchArtists();
+    }
   }
 
   render() {
@@ -27,6 +31,10 @@ Artists.propTypes = {
   fetchArtists: PropTypes.func.isRequired,
   artists: PropTypes.array,
   loading: PropTypes.bool.isRequired,
+};
+
+Artists.defaultProps = {
+  artists: null,
 };
 
 const mapStateToProps = state => ({
