@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Divider, Header, Container } from 'semantic-ui-react';
+import { Divider, Header, Container } from 'semantic-ui-react';
 
 import TitleBreadcrumb from './TitleBreadcrumb';
 
 const Body = ({ breadcrumbSegments, description, children }) => (
   <Container>
-    <Segment basic>
-      <Header as="h1">
-        <TitleBreadcrumb breadcrumbSegments={breadcrumbSegments} />
-        <Header.Subheader style={{ fontWeight: '300', color: '#999' }}>
-          {description || <br />}
-        </Header.Subheader>
-      </Header>
+    <Header as="h1">
+      <TitleBreadcrumb breadcrumbSegments={breadcrumbSegments} />
+      <Header.Subheader style={{ fontWeight: '300', color: '#999' }}>
+        {description || <br />}
+      </Header.Subheader>
+    </Header>
 
-      <Divider />
-      {children}
-    </Segment>
+    <Divider />
+    {children}
   </Container>
 );
 

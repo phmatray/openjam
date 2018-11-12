@@ -60,7 +60,7 @@ class NavbarDesktop extends Component {
 
     const guestLinks = (
       <React.Fragment>
-        <Menu.Item as={Link} to="/" name="landing" onClick={this.handleItemClick}>
+        <Menu.Item as={Link} to="/login" name="landing" onClick={this.handleItemClick}>
           <Button color="teal">{t('components.navbar.sign-in')}</Button>
         </Menu.Item>
       </React.Fragment>
