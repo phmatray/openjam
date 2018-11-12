@@ -56,7 +56,12 @@ class NavbarSide extends Component {
 
     const guestLinks = (
       <React.Fragment>
-        <Menu.Item as={Link} to="/" name="landing" onClick={this.handleItemClick && hideSidebar}>
+        <Menu.Item
+          as={Link}
+          to="/login"
+          name="landing"
+          onClick={this.handleItemClick && hideSidebar}
+        >
           <Button fluid size="big" color="teal">
             {t('components.navbar.sign-in')}
           </Button>

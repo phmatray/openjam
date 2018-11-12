@@ -12,6 +12,7 @@ const Loading = ({ error, retry, timedOut, pastDelay }) => {
       </div>
     );
   }
+
   if (timedOut) {
     return (
       <div>
@@ -21,6 +22,7 @@ const Loading = ({ error, retry, timedOut, pastDelay }) => {
       </div>
     );
   }
+
   if (pastDelay) {
     return <div>Loading...</div>;
   }
