@@ -5,6 +5,7 @@ import auth from './modules/auth';
 import errors from './modules/error';
 import pageExplore from './modules/page-explore';
 import pageTrack from './modules/page-track';
+import pageAlbum from './modules/page-album';
 import profile from './modules/profile';
 import post from './modules/post';
 import github from './modules/github';
@@ -21,6 +22,7 @@ const reducers = {
   errors,
   pageExplore,
   pageTrack,
+  pageAlbum,
   profile,
   post,
   github,
