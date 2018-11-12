@@ -21,46 +21,22 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_TRACKS_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_TRACKS_SUCCESS:
-      return {
-        ...state,
-        tracks: action.payload,
-        loading: false,
-      };
+      return { ...state, tracks: action.payload, loading: false };
 
     case FETCH_TRACKS_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        tracks: null,
-        loading: false,
-      };
+      return { ...state, error: action.payload, tracks: null, loading: false };
 
     case FETCH_TRACK_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_TRACK_SUCCESS:
-      return {
-        ...state,
-        track: action.payload,
-        loading: false,
-      };
+      return { ...state, track: action.payload, loading: false };
 
     case FETCH_TRACK_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        track: initialState.track,
-        loading: false,
-      };
+      return { ...state, error: action.payload, track: initialState.track, loading: false };
 
     default:
       return state;
@@ -75,13 +51,6 @@ export default reducer;
 export const fetchTracks = () => ({
   types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
   callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks`),
-  shouldCallAPI: () => true,
-});
-
-// Fetch 20 random tracks
-export const fetchTracksRandom = () => ({
-  types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/random`),
   shouldCallAPI: () => true,
 });
 

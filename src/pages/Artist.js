@@ -40,6 +40,11 @@ Artist.propTypes = {
   loading: PropTypes.bool,
 };
 
+Artist.defaultProps = {
+  artist: null,
+  loading: false,
+};
+
 const mapStateToProps = state => ({
   artist: state.artist,
 });

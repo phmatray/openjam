@@ -41,6 +41,10 @@ Tracks.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
+Tracks.defaultProps = {
+  tracks: null,
+};
+
 const mapStateToProps = state => ({
   tracks: state.track.tracks,
   loading: state.track.loading,

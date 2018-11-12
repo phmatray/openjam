@@ -11,11 +11,26 @@ import background from '../images/backgrounds/piano-2601498_1920.jpg';
 
 export class Explore extends Component {
   componentDidMount() {
-    const { fetchOriginalTracks, fetchRemixTracks, fetchArtists } = this.props;
+    const {
+      originalTracks,
+      fetchOriginalTracks,
+      remixTracks,
+      fetchRemixTracks,
+      artists,
+      fetchArtists,
+    } = this.props;
 
-    fetchOriginalTracks();
-    fetchRemixTracks();
-    fetchArtists();
+    if (originalTracks === null) {
+      fetchOriginalTracks();
+    }
+
+    if (remixTracks === null) {
+      fetchRemixTracks();
+    }
+
+    if (artists === null) {
+      fetchArtists();
+    }
   }
 
   render() {
@@ -71,9 +86,9 @@ Explore.propTypes = {
 };
 
 Explore.defaultProps = {
-  originalTracks: [],
-  remixTracks: [],
-  artists: [],
+  originalTracks: null,
+  remixTracks: null,
+  artists: null,
 };
 
 const mapStateToProps = state => ({

@@ -21,46 +21,22 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_PLAYLISTS_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_PLAYLISTS_SUCCESS:
-      return {
-        ...state,
-        playlists: action.payload,
-        loading: false,
-      };
+      return { ...state, playlists: action.payload, loading: false };
 
     case FETCH_PLAYLISTS_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        playlists: null,
-        loading: false,
-      };
+      return { ...state, error: action.payload, playlists: null, loading: false };
 
     case FETCH_PLAYLIST_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
 
     case FETCH_PLAYLIST_SUCCESS:
-      return {
-        ...state,
-        playlist: action.payload,
-        loading: false,
-      };
+      return { ...state, playlist: action.payload, loading: false };
 
     case FETCH_PLAYLIST_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        playlist: initialState.playlist,
-        loading: false,
-      };
+      return { ...state, error: action.payload, playlist: initialState.playlist, loading: false };
 
     default:
       return state;

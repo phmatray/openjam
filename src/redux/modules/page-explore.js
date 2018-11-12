@@ -57,25 +57,13 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case FETCH_ARTISTS_PENDING:
-      return {
-        ...state,
-        artistLoading: true,
-      };
+      return { ...state, artistsLoading: true };
 
     case FETCH_ARTISTS_SUCCESS:
-      return {
-        ...state,
-        artists: action.payload,
-        artistLoading: false,
-      };
+      return { ...state, artists: action.payload, artistsLoading: false };
 
     case FETCH_ARTISTS_ERROR:
-      return {
-        ...state,
-        artistError: action.payload,
-        artists: null,
-        artistLoading: false,
-      };
+      return { ...state, artistError: action.payload, artists: null, artistsLoading: false };
 
     default:
       return state;

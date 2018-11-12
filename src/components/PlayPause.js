@@ -33,6 +33,10 @@ PlayPause.propTypes = {
   playing: PropTypes.bool.isRequired,
 };
 
+PlayPause.defaultProps = {
+  collectionId: null,
+};
+
 const mapStateToProps = state => ({
   collectionId: state.player.collectionId,
   playing: state.player.playing,

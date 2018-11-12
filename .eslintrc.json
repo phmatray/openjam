@@ -22,6 +22,12 @@
         "array": false
       }
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [".storybook/**", "**/stories.js"]
+      }
+    ],
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for": "off",
     "react/destructuring-assignment": [false],
@@ -34,7 +40,6 @@
     ],
     "react/jsx-no-bind": [false],
     "react/no-array-index-key": [false],
-    "react/prop-types": [false],
-    "react/require-default-props": [false]
+    "react/prop-types": [false]
   }
 }
