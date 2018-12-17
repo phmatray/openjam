@@ -61,10 +61,10 @@ const PlaylistTracks = ({
               />
             </Table.Cell>
             <Table.Cell>
-              <LinkArtistNames artists={track.artists} as="table" />
+              <LinkArtistNames artists={track.artists.map(a => a.artist)} as="table" />
             </Table.Cell>
             <Table.Cell>
-              <LinkEntity entity={track.album} as="table" />
+              <LinkEntity entity={track.albums[0].album} as="table" />
             </Table.Cell>
           </Row>
         ))}
@@ -78,7 +78,6 @@ PlaylistTracks.propTypes = {
     tracks: PropTypes.arrayOf(
       PropTypes.shape({
         _id: PropTypes.string.isRequired,
-        track_number: PropTypes.number.isRequired,
         artists: PropTypes.array.isRequired,
       }).isRequired,
     ).isRequired,

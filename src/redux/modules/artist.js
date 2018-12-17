@@ -24,7 +24,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case FETCH_ARTISTS_SUCCESS:
-      return { ...state, artists: action.payload, loading: false };
+      return { ...state, artists: action.payload.docs, loading: false };
 
     case FETCH_ARTISTS_ERROR:
       return { ...state, error: action.payload, artists: null, loading: false };
@@ -50,13 +50,13 @@ export default reducer;
 // Fetch all artists
 export const fetchArtists = () => ({
   types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artists`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artist`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a artist by _id
 export const fetchArtist = id => ({
   types: [FETCH_ARTIST_PENDING, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artists/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artist/${id}`),
   shouldCallAPI: () => true,
 });

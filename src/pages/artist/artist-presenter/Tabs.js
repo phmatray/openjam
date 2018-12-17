@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
 import { Header, Tab, Card, Label } from 'semantic-ui-react';
 
+import getYears from '../../../utils/getYears';
 import Section from '../../../components/Section';
 import { fetchTracks } from '../../../redux/modules/track';
 
@@ -13,16 +14,10 @@ class Tabs extends Component {
     fetchTracks();
   }
 
-  getYears = years =>
-    years
-      .reverse()
-      .map(_ => (_.from === _.to ? `${_.from}` : `${_.from}-${_.to}`))
-      .join(', ');
-
   render() {
     const { artist, tracks, loading } = this.props;
     const { description, members } = artist.information;
-    const hasDescription = description.length > 0;
+    const hasDescription = description && description[0].length > 0;
 
     const titlesPane = {
       menuItem: 'Titles',
@@ -50,24 +45,30 @@ class Tabs extends Component {
           </div>
           <br />
 
-          <Header as="h2">Members</Header>
-          <Card.Group itemsPerRow={2} doubling>
-            {members.map(_ => (
-              <Card key={_.name} color="teal">
-                <Card.Content>
-                  <Card.Header>{_.name}</Card.Header>
-                  <Card.Meta>{this.getYears(_.years)}</Card.Meta>
-                  <Card.Description>
-                    {_.roles.map(role => (
-                      <Label key={role} style={{ margin: '0px 4px 4px 0' }}>
-                        {role}
-                      </Label>
-                    ))}
-                  </Card.Description>
-                </Card.Content>
-              </Card>
-            ))}
-          </Card.Group>
+          {members && (
+            <React.Fragment>
+              <Header as="h2">Members</Header>
+              <Card.Group itemsPerRow={2} doubling>
+                {members.map(_ => (
+                  <Card key={_.name} color="teal">
+                    <Card.Content>
+                      <Card.Header>{_.name}</Card.Header>
+                      {_.years && <Card.Meta>{getYears(_.years)}</Card.Meta>}
+                      {_.roles && (
+                        <Card.Description>
+                          {_.roles.map(role => (
+                            <Label key={role} style={{ margin: '0px 4px 4px 0' }}>
+                              {role}
+                            </Label>
+                          ))}
+                        </Card.Description>
+                      )}
+                    </Card.Content>
+                  </Card>
+                ))}
+              </Card.Group>
+            </React.Fragment>
+          )}
         </Tab.Pane>
       ),
     };

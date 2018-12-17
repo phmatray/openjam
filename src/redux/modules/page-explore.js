@@ -32,7 +32,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, originalTracksLoading: true };
 
     case FETCH_ORIGINAL_TRACKS_SUCCESS:
-      return { ...state, originalTracks: action.payload, originalTracksLoading: false };
+      return { ...state, originalTracks: action.payload.docs, originalTracksLoading: false };
 
     case FETCH_ORIGINAL_TRACKS_ERROR:
       return {
@@ -46,7 +46,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, remixTracksLoading: true };
 
     case FETCH_REMIX_TRACKS_SUCCESS:
-      return { ...state, remixTracks: action.payload, remixTracksLoading: false };
+      return { ...state, remixTracks: action.payload.docs, remixTracksLoading: false };
 
     case FETCH_REMIX_TRACKS_ERROR:
       return {
@@ -60,7 +60,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, artistsLoading: true };
 
     case FETCH_ARTISTS_SUCCESS:
-      return { ...state, artists: action.payload, artistsLoading: false };
+      return { ...state, artists: action.payload.docs, artistsLoading: false };
 
     case FETCH_ARTISTS_ERROR:
       return { ...state, artistError: action.payload, artists: null, artistsLoading: false };
@@ -81,20 +81,26 @@ export const fetchOriginalTracks = () => ({
     FETCH_ORIGINAL_TRACKS_SUCCESS,
     FETCH_ORIGINAL_TRACKS_ERROR,
   ],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/originals`),
+  callAPI: () =>
+    axios.get(
+      `${process.env.REACT_APP_ENDPOINT}/track?type2=original&%24embed=artists&%24flatten=true`,
+    ),
   shouldCallAPI: () => true,
 });
 
 // Fetch all remix tracks
 export const fetchRemixTracks = () => ({
   types: [FETCH_REMIX_TRACKS_PENDING, FETCH_REMIX_TRACKS_SUCCESS, FETCH_REMIX_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/remixes`),
+  callAPI: () =>
+    axios.get(
+      `${process.env.REACT_APP_ENDPOINT}/track?type2=remix&%24embed=artists&%24flatten=true`,
+    ),
   shouldCallAPI: () => true,
 });
 
 // Fetch all artists
 export const fetchArtists = () => ({
   types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artists`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artist?visible=true`),
   shouldCallAPI: () => true,
 });

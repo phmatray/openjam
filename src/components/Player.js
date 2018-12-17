@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Sound from 'react-sound';
 
 import {
-  fetchTracksRandom,
+  fetchTracks,
   loadCollection,
   play,
   pause,
@@ -16,13 +16,20 @@ import {
 import PlayerPresenter from './player/PlayerPresenter';
 
 class Player extends Component {
-  componentDidMount() {
-    const { fetchTracksRandom, loadCollection } = this.props;
+  async componentDidMount() {
+    const { fetchTracks, loadCollection } = this.props;
+    await fetchTracks();
 
-    fetchTracksRandom().then(() => {
-      const { tracks } = this.props;
-      loadCollection(tracks);
-    });
+    const { tracks } = this.props;
+
+    // Select 20 tracks randomly
+    const randomly = [];
+    for (let index = 0; index < 20; index += 1) {
+      const track = tracks[Math.floor(Math.random() * tracks.length)];
+      randomly.push(track);
+    }
+
+    loadCollection(randomly);
   }
 
   setAudioInfo = ({ position, duration, volume }) => {
@@ -52,7 +59,7 @@ class Player extends Component {
 }
 
 Player.propTypes = {
-  fetchTracksRandom: PropTypes.func.isRequired,
+  fetchTracks: PropTypes.func.isRequired,
   loadCollection: PropTypes.func.isRequired,
   updateAudioInfo: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
@@ -82,5 +89,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchTracksRandom, loadCollection, updateAudioInfo, play, pause, previous, next },
+  { fetchTracks, loadCollection, updateAudioInfo, play, pause, previous, next },
 )(Player);

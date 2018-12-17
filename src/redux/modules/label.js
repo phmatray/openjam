@@ -24,7 +24,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case FETCH_LABELS_SUCCESS:
-      return { ...state, labels: action.payload, loading: false };
+      return { ...state, labels: action.payload.docs, loading: false };
 
     case FETCH_LABELS_ERROR:
       return { ...state, error: action.payload, labels: null, loading: false };
@@ -50,13 +50,13 @@ export default reducer;
 // Fetch all labels
 export const fetchLabels = () => ({
   types: [FETCH_LABELS_PENDING, FETCH_LABELS_SUCCESS, FETCH_LABELS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/labels`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/label`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a label by _id
 export const fetchLabel = id => ({
   types: [FETCH_LABEL_PENDING, FETCH_LABEL_SUCCESS, FETCH_LABEL_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/labels/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/label/${id}`),
   shouldCallAPI: () => true,
 });

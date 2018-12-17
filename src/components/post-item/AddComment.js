@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addComment } from '../../redux/modules/post';
+import { addComment } from '../../redux/modules/page-share';
 import { AvatarSmall, Button, AddCommentForm } from './styles';
 import Flex from '../Flex';
 import Div from '../Div';

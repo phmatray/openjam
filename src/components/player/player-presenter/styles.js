@@ -6,6 +6,7 @@ export const ProgressStyled = styled.div`
   overflow: hidden;
   cursor: pointer;
   background-color: #fff3;
+  margin-top: 1px;
   margin-left: 1px;
   margin-right: 1px;
 `;

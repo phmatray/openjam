@@ -42,6 +42,9 @@ export default reducer;
 // Fetch a album by _id
 export const fetchAlbum = id => ({
   types: [FETCH_ALBUM_PENDING, FETCH_ALBUM_SUCCESS, FETCH_ALBUM_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/albums/${id}`),
+  callAPI: () =>
+    axios.get(
+      `${process.env.REACT_APP_ENDPOINT}/album/${id}?%24embed=tracks&%24embed=tracks.artists`,
+    ),
   shouldCallAPI: () => true,
 });

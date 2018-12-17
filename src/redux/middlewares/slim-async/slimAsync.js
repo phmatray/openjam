@@ -4,11 +4,13 @@ function optionsAreValid(types) {
   return false;
 }
 
+const getAction = (type, payload) => ({ type, payload });
+
 // Middleware
 // Our middleware function receives an object with two fields: dispatch and getState.
 // These are named parameters provided by Redux.
 //
-const slimAsync = store => next => action => {
+const slimAsync = store => next => async action => {
   const { dispatch, getState } = store;
   const { types, callAPI, shouldCallAPI = () => true } = action;
 
@@ -25,27 +27,15 @@ const slimAsync = store => next => action => {
 
   dispatch(pendingAction);
 
-  return callAPI()
-    .then(response => {
-      const successAction = {
-        type: successType,
-        payload: response.data,
-      };
+  try {
+    const response = await callAPI();
 
-      dispatch(successAction);
-
-      return Promise.resolve(getState());
-    })
-    .catch(error => {
-      const errorAction = {
-        type: errorType,
-        payload: error,
-      };
-
-      dispatch(errorAction);
-
-      return Promise.reject(error);
-    });
+    dispatch(getAction(successType, response.data));
+    return Promise.resolve(getState());
+  } catch (error) {
+    dispatch(getAction(errorType, error));
+    return Promise.reject(error);
+  }
 };
 
 export default slimAsync;

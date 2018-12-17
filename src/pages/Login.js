@@ -26,8 +26,8 @@ class Login extends Component {
   }
 
   render() {
-    const { loginUser, errors } = this.props;
-    return <LoginPresenter loginUser={loginUser} errors={errors} />;
+    const { loginUser, errors, loading } = this.props;
+    return <LoginPresenter loginUser={loginUser} errors={errors} loading={loading} />;
   }
 }
 
@@ -38,6 +38,8 @@ Login.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
   auth: state.auth,
   errors: state.errors,
 });

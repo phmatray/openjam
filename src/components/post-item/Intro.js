@@ -11,7 +11,7 @@ const Intro = ({ post }) => {
 
   return (
     <Flex alignCenter justifyBetween fluid>
-      <Link to={`/profile/${handle}`}>
+      <Link to={`/profiles/${handle}`}>
         <Flex alignCenter>
           <Avatar src={avatar} alt={fullName} />
           <Flex column>

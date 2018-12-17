@@ -7,17 +7,12 @@ import { connect } from 'react-redux';
 
 import LanguageDropdown from './LanguageDropdown';
 
-import { logoutUser, getCurrentUser } from '../../../redux/modules/auth';
+import { logoutUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
 import logo from '../../../images/logos/logo_white.svg';
 
 class NavbarDesktop extends Component {
   state = { activeItem: 'home' };
-
-  componentDidMount() {
-    const { getCurrentUser } = this.props;
-    getCurrentUser();
-  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -76,13 +71,13 @@ class NavbarDesktop extends Component {
           onClick={this.handleItemClick}
         >
           <Image
-            src={user.avatar}
-            alt={`{user.firsname} {user.lastname}`}
+            src={user.profileImageUrl}
+            alt={`${user.firstName} ${user.lastName}`}
             circular
             size="mini"
             title="You must have a Gravatar connected to your email to display an image."
           />
-          <span style={{ marginLeft: '0.5em' }}>{user.firstname}</span>
+          <span style={{ marginLeft: '0.5em' }}>{user.firstName}</span>
         </Menu.Item>
         <Menu.Item onClick={this.handleLogoutClick}>{t('components.navbar.logout')}</Menu.Item>
       </React.Fragment>
@@ -133,7 +128,6 @@ class NavbarDesktop extends Component {
 NavbarDesktop.propTypes = {
   height: PropTypes.number.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  getCurrentUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   playing: PropTypes.bool.isRequired,
@@ -146,5 +140,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser, getCurrentUser, clearCurrentProfile },
+  { logoutUser, clearCurrentProfile },
 )(withNamespaces('common')(NavbarDesktop));

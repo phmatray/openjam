@@ -40,7 +40,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, byArtistLoading: true };
 
     case BY_ARTIST_SUCCESS:
-      return { ...state, byArtist: action.payload, byArtistLoading: false };
+      return { ...state, byArtist: action.payload.docs, byArtistLoading: false };
 
     case BY_ARTIST_ERROR:
       return {
@@ -62,12 +62,22 @@ export default reducer;
 // Fetch a track by _id
 export const fetchTrack = id => ({
   types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/${id}`),
+  callAPI: () =>
+    axios.get(
+      `${
+        process.env.REACT_APP_ENDPOINT
+      }/track/${id}?%24embed=albums&%24embed=artists&%24flatten=true`,
+    ),
   shouldCallAPI: () => true,
 });
 
 export const fetchTracksByArtistId = (artistId, limit = 3) => ({
   types: [BY_ARTIST_PENDING, BY_ARTIST_SUCCESS, BY_ARTIST_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/artist/${artistId}/${limit}`),
+  callAPI: () =>
+    axios.get(
+      `${
+        process.env.REACT_APP_ENDPOINT
+      }/artist/${artistId}/track?%24limit=${limit}&%24embed=artists&%24flatten=true`,
+    ),
   shouldCallAPI: () => true,
 });
