@@ -26,7 +26,9 @@ const PlayerPresenter = ({
     <Container style={{ height: '100%' }}>
       <FlexFill>
         <ColumnCover>
-          {current !== null && <Cover src={current.coverurl.w200} alt="cover" />}
+          {current !== null && current.coverurl !== null && (
+            <Cover src={current.coverurl.w200} alt="cover" />
+          )}
         </ColumnCover>
 
         <Flex column fluid>

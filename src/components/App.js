@@ -14,7 +14,12 @@ import Routes from './Routes';
 import ThemeWrapper from './app/ThemeWrapper';
 
 import store from '../redux/store';
-import { updateUser, logoutUser } from '../redux/modules/auth';
+import {
+  updateAccessToken,
+  updateRefreshToken,
+  updateUser,
+  logoutUser,
+} from '../redux/modules/auth';
 import { clearCurrentProfile } from '../redux/modules/profile';
 import setAuthToken from '../utils/setAuthToken';
 import { GlobalStyle } from '../theme/GlobalStyle';
@@ -23,24 +28,27 @@ import { GlobalStyle } from '../theme/GlobalStyle';
 library.add(fab, faGlobe);
 
 // Check for token
-if (localStorage.jwtToken) {
+const { accessToken, refreshToken } = localStorage;
+if (accessToken && refreshToken) {
   // Set auth token header auth
-  setAuthToken(localStorage.jwtToken);
+  setAuthToken(refreshToken);
   // Decode token and get user info and exp
-  const decoded = jwtDecode(localStorage.jwtToken);
+  const decoded = jwtDecode(accessToken);
   // Set user and isAuthenticated
-  store.dispatch(updateUser(decoded));
+  store.dispatch(updateAccessToken(accessToken));
+  store.dispatch(updateRefreshToken(refreshToken));
+  store.dispatch(updateUser(decoded.user));
 
-  // Check for expire token
-  const currentTime = Date.now() / 1000;
-  if (decoded.exp < currentTime) {
-    // Logout user
-    store.dispatch(logoutUser());
-    // Clear current Profile
-    store.dispatch(clearCurrentProfile());
-    // Redirect to login
-    window.location.href = '/login';
-  }
+  // // Check for expire token
+  // const currentTime = Date.now() / 1000;
+  // if (decoded.exp < currentTime) {
+  //   // Logout user
+  //   store.dispatch(logoutUser());
+  //   // Clear current Profile
+  //   store.dispatch(clearCurrentProfile());
+  //   // Redirect to login
+  //   window.location.href = '/login';
+  // }
 }
 
 const App = () => (

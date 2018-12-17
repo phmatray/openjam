@@ -32,7 +32,7 @@ const getAlbumName = album => {
 
 const Album = ({ entity, t }) => (
   <React.Fragment>
-    <Hero src={entity.tracks[0].coverurl.w800}>
+    <Hero src={entity.tracks[0].track.coverurl.w800}>
       <Flex fluid row alignCenter>
         <Div mr="16px">
           <PlayPause entity={entity} />

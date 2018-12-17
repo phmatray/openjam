@@ -47,7 +47,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, tracksLoading: true };
 
     case FETCH_TRACKS_SUCCESS:
-      return { ...state, tracks: action.payload, tracksLoading: false };
+      return { ...state, tracks: action.payload.docs, tracksLoading: false };
 
     case FETCH_TRACKS_ERROR:
       return { ...state, tracksError: action.payload, tracks: null, tracksLoading: false };
@@ -193,9 +193,9 @@ export const playTrack = (track = null) => (dispatch, getState) => {
   }
 };
 
-// Fetch 20 random tracks
-export const fetchTracksRandom = () => ({
+export const fetchTracks = () => ({
   types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/random`),
+  callAPI: () =>
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/track?%24embed=artists&%24flatten=true`),
   shouldCallAPI: () => true,
 });

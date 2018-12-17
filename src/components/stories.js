@@ -42,7 +42,7 @@ storiesOf('UI', module)
       <Social href="https://www.facebook.com/OpenJamEU/" />
       <Social href="https://www.linkedin.com/company/openjam/" />
       <Social href="https://www.instagram.com/openjam.eu/" />
-      <Social href="https://beta.openjam.eu/profile/philippe-matray" />
+      <Social href="https://beta.openjam.eu/profiles/philippe-matray" />
       <Social href="https://www.github.com/openjam-eu" />
       <Social href="https://www.twitter.com/OpenJam_EU" />
       <Social href="https://pandhora.bandcamp.com/" />

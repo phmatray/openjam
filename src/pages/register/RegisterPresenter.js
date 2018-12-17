@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Form, Message, Grid, GridColumn } from 'semantic-ui-react';
+import { Form, Message, Grid, Icon, Header, Segment } from 'semantic-ui-react';
 
-import Body from '../../components/Body';
+import BackgroundScreen from '../../components/BackgroundScreen';
 import Input from '../../components/Input';
 
 class RegisterPresenter extends Component {
@@ -37,87 +37,90 @@ class RegisterPresenter extends Component {
     const { errors, t } = this.props;
 
     return (
-      <Body
-        breadcrumbSegments={[t('pages.register.header')]}
-        description={t('pages.register.subheader')}
-      >
-        <Grid style={{ height: '100%' }} verticalAlign="middle">
-          <GridColumn style={{ maxWidth: 450 }}>
-            <Form error noValidate onSubmit={this.handleSubmit}>
-              <Input
-                as="text-field"
-                name="firstname"
-                label={t('pages.register.input-firstname')}
-                placeholder={t('pages.register.input-firstname')}
-                icon="user"
-                value={firstname}
-                onChange={this.handleChange}
-                error={errors.firstname}
-              />
+      <BackgroundScreen>
+        <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
+          <Grid.Column style={{ maxWidth: 500 }}>
+            <Header as="h1" icon inverted>
+              <Icon name="sign in" />
+              {t('pages.register.header')}
+              <Header.Subheader>{t('pages.register.subheader')}</Header.Subheader>
+            </Header>
 
-              <Input
-                as="text-field"
-                name="lastname"
-                label={t('pages.register.input-lastname')}
-                placeholder={t('pages.register.input-lastname')}
-                icon="user"
-                value={lastname}
-                onChange={this.handleChange}
-                error={errors.lastname}
-              />
+            <Segment stacked>
+              <Form error noValidate onSubmit={this.handleSubmit}>
+                <Form.Group widths="equal">
+                  <Input
+                    as="text-field"
+                    name="firstname"
+                    placeholder={t('pages.register.input-firstname')}
+                    icon="user"
+                    value={firstname}
+                    onChange={this.handleChange}
+                    error={errors.firstname}
+                  />
 
-              <Input
-                as="text-field"
-                type="email"
-                name="email"
-                label={t('pages.register.input-email')}
-                placeholder={t('pages.register.input-email')}
-                icon="mail"
-                value={email}
-                onChange={this.handleChange}
-                error={errors.email}
-                info={t('pages.register.gravatar')}
-              />
+                  <Input
+                    as="text-field"
+                    name="lastname"
+                    placeholder={t('pages.register.input-lastname')}
+                    icon="user"
+                    value={lastname}
+                    onChange={this.handleChange}
+                    error={errors.lastname}
+                  />
+                </Form.Group>
 
-              <Input
-                as="text-field"
-                type="password"
-                name="password"
-                label={t('pages.register.input-password')}
-                placeholder={t('pages.register.input-password')}
-                icon="lock"
-                value={password}
-                onChange={this.handleChange}
-                error={errors.password}
-              />
+                <Input
+                  as="text-field"
+                  type="email"
+                  name="email"
+                  placeholder={t('pages.register.input-email')}
+                  icon="mail"
+                  value={email}
+                  onChange={this.handleChange}
+                  error={errors.email}
+                  info={t('pages.register.gravatar')}
+                />
 
-              <Input
-                as="text-field"
-                type="password"
-                name="password2"
-                label={t('pages.register.input-password2')}
-                placeholder={t('pages.register.input-password2')}
-                icon="lock"
-                value={password2}
-                onChange={this.handleChange}
-                error={errors.password2}
-              />
+                <Input
+                  as="text-field"
+                  type="password"
+                  name="password"
+                  placeholder={t('pages.register.input-password')}
+                  icon="lock"
+                  value={password}
+                  onChange={this.handleChange}
+                  error={errors.password}
+                />
 
-              <Form.Button
-                fluid
-                size="large"
-                color="teal"
-                content={t('pages.register.action-submit')}
-              />
-            </Form>
+                <Input
+                  as="text-field"
+                  type="password"
+                  name="password2"
+                  placeholder={t('pages.register.input-password2')}
+                  icon="lock"
+                  value={password2}
+                  onChange={this.handleChange}
+                  error={errors.password2}
+                />
+
+                <Form.Button
+                  fluid
+                  size="large"
+                  color="teal"
+                  content={t('pages.register.action-submit')}
+                />
+              </Form>
+            </Segment>
+
             <Message style={{ textAlign: 'center' }}>
               {t('pages.register.already')}
               <br />
               <Link to="/login">{t('pages.register.sign-in')}</Link>
             </Message>
-          </GridColumn>
+          </Grid.Column>
         </Grid>
-      </Body>
+      </BackgroundScreen>
     );
   }
 }

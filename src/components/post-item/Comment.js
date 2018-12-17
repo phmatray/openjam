@@ -16,7 +16,7 @@ const Comment = ({ comment }) => {
 
         <div>
           <CommentContainer>
-            <Link to={`/profile/${handle}`}>
+            <Link to={`/profiles/${handle}`}>
               <strong>
                 {/* TODO: add handle */}
                 {/* <a href="true"> */}

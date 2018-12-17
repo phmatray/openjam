@@ -28,12 +28,12 @@ class LoginPresenter extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { errors, t } = this.props;
+    const { errors, t, loading } = this.props;
 
     return (
       <BackgroundScreen>
         <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
-          <Grid.Column style={{ maxWidth: 450 }}>
+          <Grid.Column style={{ maxWidth: 500 }}>
             <Header as="h1" icon inverted>
               <Icon name="sign in" />
               {t('pages.login.header')}
@@ -62,7 +62,7 @@ class LoginPresenter extends Component {
 
             <Segment stacked>
               <Header as="h3">{t('pages.login.header-email')}</Header>
-              <Form error noValidate onSubmit={this.handleSubmit}>
+              <Form error noValidate onSubmit={this.handleSubmit} loading={loading}>
                 <Input
                   as="text-field"
                   type="email"
@@ -71,7 +71,6 @@ class LoginPresenter extends Component {
                   icon="mail"
                   value={email}
                   onChange={this.handleChange}
-                  error={errors.email}
                 />
 
                 <Input
@@ -82,8 +81,9 @@ class LoginPresenter extends Component {
                   icon="lock"
                   value={password}
                   onChange={this.handleChange}
-                  error={errors.password}
                 />
+
+                <Message error header={errors.error} content={errors.message} />
 
                 <Form.Button
                   fluid

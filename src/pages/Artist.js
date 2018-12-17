@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArtist } from '../redux/modules/artist';
+import { fetchArtist } from '../redux/modules/page-artist';
 import Spinner from '../components/Spinner';
 import ArtistPresenter from './artist/ArtistPresenter';
 
@@ -24,7 +24,7 @@ class Artist extends Component {
   }
 
   render() {
-    const { artist, loading } = this.props.artist;
+    const { artist, loading } = this.props;
 
     return artist === null || artist === undefined || loading ? (
       <Spinner />
@@ -46,7 +46,8 @@ Artist.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  artist: state.artist,
+  artist: state.pageArtist.artist,
+  loading: state.pageArtist.loading,
 });
 
 export default connect(

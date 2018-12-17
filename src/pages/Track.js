@@ -40,7 +40,7 @@ const Track = ({ entity }) => (
         <Grid.Column mobile={8} tablet={6} computer={5}>
           <Grid columns={2} doubling>
             <Grid.Column width={16} only="tablet computer">
-              <AlbumCover album={entity.album} maxWidth={256} />
+              <AlbumCover album={entity.albums[0]} maxWidth={256} />
             </Grid.Column>
             <Grid.Column width={16}>
               <MoreTracks artist={entity.artists[0]} />
@@ -59,9 +59,11 @@ Track.propTypes = {
   entity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     artists: PropTypes.arrayOf(PropTypes.object).isRequired,
-    album: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
+    albums: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
     coverurl: PropTypes.shape({
       w800: PropTypes.string.isRequired,
     }).isRequired,

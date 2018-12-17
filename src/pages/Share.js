@@ -8,7 +8,7 @@ import HeroSimple from '../components/HeroSimple';
 import Feed from '../components/Feed';
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
-import { getPosts } from '../redux/modules/post';
+import { getPosts } from '../redux/modules/page-share';
 import background from '../images/backgrounds/container-1867697_1920.jpg';
 
 import PostForm from './share/PostForm';
@@ -73,7 +73,7 @@ Share.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  post: state.post,
+  post: state.pageShare,
   auth: state.auth,
 });
 

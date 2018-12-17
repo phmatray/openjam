@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
-import { addPost } from '../../redux/modules/post';
+
+import { addPost } from '../../redux/modules/page-share';
 import Div from '../../components/Div';
 import Input from '../../components/Input';
 
@@ -27,8 +28,8 @@ class PostForm extends Component {
 
     const newPost = {
       text: this.state.text,
-      firstname: user.firstname,
-      lastname: user.lastname,
+      firstName: user.firstName,
+      lastName: user.lastName,
       handle: user.handle,
       avatar: user.avatar,
     };
@@ -47,7 +48,7 @@ class PostForm extends Component {
           <Form error noValidate onSubmit={this.handleSubmit}>
             <Input
               as="text-area-field"
-              placeholder={`Speak your mind, ${user.firstname}`}
+              placeholder={`Speak your mind, ${user.firstName}`}
               name="text"
               value={this.state.text}
               onChange={this.handleChange}
