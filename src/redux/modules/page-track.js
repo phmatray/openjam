@@ -63,11 +63,7 @@ export default reducer;
 export const fetchTrack = id => ({
   types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
   callAPI: () =>
-    axios.get(
-      `${
-        process.env.REACT_APP_ENDPOINT
-      }/track/${id}?%24embed=albums&%24embed=artists&%24flatten=true`,
-    ),
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/track/${id}?%24embed=albums&%24embed=artists`),
   shouldCallAPI: () => true,
 });
 
@@ -77,7 +73,7 @@ export const fetchTracksByArtistId = (artistId, limit = 3) => ({
     axios.get(
       `${
         process.env.REACT_APP_ENDPOINT
-      }/artist/${artistId}/track?%24limit=${limit}&%24embed=artists&%24flatten=true`,
+      }/artist/${artistId}/track?%24limit=${limit}&%24embed=artists`,
     ),
   shouldCallAPI: () => true,
 });

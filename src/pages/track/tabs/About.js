@@ -8,9 +8,9 @@ const About = ({ track }) => (
   <React.Fragment>
     <Header as="h2">Albums</Header>
     <ul>
-      {track.albums.map(album => (
-        <li key={album._id}>
-          <LinkEntity entity={album} as="table" />
+      {track.albums.map(a => (
+        <li key={a.album._id}>
+          <LinkEntity entity={a.album} as="table" />
         </li>
       ))}
     </ul>

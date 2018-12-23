@@ -42,6 +42,9 @@ export default reducer;
 // Fetch a artist by _id
 export const fetchArtist = id => ({
   types: [FETCH_ARTIST_PENDING, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artist/${id}`),
+  callAPI: () =>
+    axios.get(
+      `${process.env.REACT_APP_ENDPOINT}/artist/${id}?%24embed=tracks&%24embed=tracks.artists`,
+    ),
   shouldCallAPI: () => true,
 });

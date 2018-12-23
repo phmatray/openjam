@@ -1,101 +1,87 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
-import { connect } from 'react-redux';
 import { Header, Tab, Card, Label } from 'semantic-ui-react';
 
 import getYears from '../../../utils/getYears';
 import Section from '../../../components/Section';
-import { fetchTracks } from '../../../redux/modules/track';
 
-class Tabs extends Component {
-  componentDidMount() {
-    const { fetchTracks } = this.props;
-    fetchTracks();
-  }
+const Tabs = ({ artist, loading }) => {
+  const { description, members } = artist.information;
+  const hasDescription = description && description[0].length > 0;
 
-  render() {
-    const { artist, tracks, loading } = this.props;
-    const { description, members } = artist.information;
-    const hasDescription = description && description[0].length > 0;
+  const titlesPane = {
+    menuItem: 'Titles',
+    render: () => (
+      <Tab.Pane attached color="teal" loading={loading}>
+        {artist.tracks !== null && (
+          <Section
+            title="Titles"
+            items={artist.tracks.map(t => t.track)}
+            maxHeight={256}
+            showDivider={false}
+          />
+        )}
+      </Tab.Pane>
+    ),
+  };
 
-    const titlesPane = {
-      menuItem: 'Titles',
-      render: () => (
-        <Tab.Pane attached color="teal" loading={loading}>
-          {tracks !== null && <Section title="Pinned titles" items={tracks} maxHeight={128} />}
-          {tracks !== null && (
-            <Section title="Titles" items={tracks} maxHeight={384} showDivider={false} />
+  const descriptionPane = {
+    menuItem: 'Description',
+    render: () => (
+      <Tab.Pane attached color="teal">
+        <Header as="h2">Description</Header>
+        <div>
+          {hasDescription ? (
+            description.map(_ => <ReactMarkdown key={_} source={_} />)
+          ) : (
+            <span>There is no description for this artist</span>
           )}
-        </Tab.Pane>
-      ),
-    };
+        </div>
+        <br />
 
-    const descriptionPane = {
-      menuItem: 'Description',
-      render: () => (
-        <Tab.Pane attached color="teal">
-          <Header as="h2">Description</Header>
-          <div>
-            {hasDescription ? (
-              description.map(_ => <ReactMarkdown key={_} source={_} />)
-            ) : (
-              <span>There is no description for this artist</span>
-            )}
-          </div>
-          <br />
+        {members && (
+          <React.Fragment>
+            <Header as="h2">Members</Header>
+            <Card.Group itemsPerRow={2} doubling>
+              {members.map(_ => (
+                <Card key={_.name} color="teal">
+                  <Card.Content>
+                    <Card.Header>{_.name}</Card.Header>
+                    {_.years && <Card.Meta>{getYears(_.years)}</Card.Meta>}
+                    {_.roles && (
+                      <Card.Description>
+                        {_.roles.map(role => (
+                          <Label key={role} style={{ margin: '0px 4px 4px 0' }}>
+                            {role}
+                          </Label>
+                        ))}
+                      </Card.Description>
+                    )}
+                  </Card.Content>
+                </Card>
+              ))}
+            </Card.Group>
+          </React.Fragment>
+        )}
+      </Tab.Pane>
+    ),
+  };
 
-          {members && (
-            <React.Fragment>
-              <Header as="h2">Members</Header>
-              <Card.Group itemsPerRow={2} doubling>
-                {members.map(_ => (
-                  <Card key={_.name} color="teal">
-                    <Card.Content>
-                      <Card.Header>{_.name}</Card.Header>
-                      {_.years && <Card.Meta>{getYears(_.years)}</Card.Meta>}
-                      {_.roles && (
-                        <Card.Description>
-                          {_.roles.map(role => (
-                            <Label key={role} style={{ margin: '0px 4px 4px 0' }}>
-                              {role}
-                            </Label>
-                          ))}
-                        </Card.Description>
-                      )}
-                    </Card.Content>
-                  </Card>
-                ))}
-              </Card.Group>
-            </React.Fragment>
-          )}
-        </Tab.Pane>
-      ),
-    };
+  const panes = [titlesPane, descriptionPane];
 
-    const panes = [titlesPane, descriptionPane];
-
-    return <Tab menu={{ secondary: true, pointing: true }} panes={panes} />;
-  }
-}
+  return <Tab menu={{ secondary: true, pointing: true }} panes={panes} />;
+};
 
 Tabs.propTypes = {
-  fetchTracks: PropTypes.func.isRequired,
-  tracks: PropTypes.array,
+  artist: PropTypes.shape({
+    tracks: PropTypes.array,
+  }).isRequired,
   loading: PropTypes.bool,
 };
 
 Tabs.defaultProps = {
-  tracks: [],
   loading: false,
 };
 
-const mapStateToProps = state => ({
-  tracks: state.track.tracks,
-  loading: state.track.loading,
-});
-
-export default connect(
-  mapStateToProps,
-  { fetchTracks },
-)(Tabs);
+export default Tabs;

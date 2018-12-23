@@ -195,7 +195,6 @@ export const playTrack = (track = null) => (dispatch, getState) => {
 
 export const fetchTracks = () => ({
   types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-  callAPI: () =>
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/track?%24embed=artists&%24flatten=true`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track?%24embed=artists`),
   shouldCallAPI: () => true,
 });

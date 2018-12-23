@@ -38,33 +38,33 @@ const PlaylistTracks = ({
       </Table.Header>
 
       <Table.Body>
-        {playlist.tracks.map(track => (
-          <Row key={track._id} active={isActive(track._id)}>
+        {playlist.tracks.map(t => (
+          <Row key={t.track._id} active={isActive(t.track._id)}>
             <Table.Cell style={{ padding: 0 }}>
               <CoverToggle
                 {...{
                   playSelected,
                   pause,
                   playlist,
-                  track,
-                  isActive: isActive(track._id),
+                  track: t.track,
+                  isActive: isActive(t.track._id),
                   playerPlaying,
                 }}
               />
             </Table.Cell>
             <Table.Cell style={{ paddingLeft: 0 }}>
               <LinkPlay
-                entity={track}
+                entity={t.track}
                 as="table"
                 strong
-                handleClick={() => playSelected(playlist, track)}
+                handleClick={() => playSelected(playlist, t.track)}
               />
             </Table.Cell>
             <Table.Cell>
-              <LinkArtistNames artists={track.artists.map(a => a.artist)} as="table" />
+              <LinkArtistNames artists={t.track.artists.map(a => a.artist)} as="table" />
             </Table.Cell>
             <Table.Cell>
-              <LinkEntity entity={track.albums[0].album} as="table" />
+              <LinkEntity entity={t.track.albums[0].album} as="table" />
             </Table.Cell>
           </Row>
         ))}
@@ -77,8 +77,10 @@ PlaylistTracks.propTypes = {
   playlist: PropTypes.shape({
     tracks: PropTypes.arrayOf(
       PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        artists: PropTypes.array.isRequired,
+        track: PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+          artists: PropTypes.array.isRequired,
+        }).isRequired,
       }).isRequired,
     ).isRequired,
   }).isRequired,

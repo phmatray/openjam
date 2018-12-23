@@ -27,7 +27,7 @@ const Track = ({ entity }) => (
             <LinkEntity entity={entity} as="inverted" alternate />
           </Header>
           <Header as="h2" inverted style={{ marginTop: 0 }}>
-            <LinkArtistNames artists={entity.artists} as="inverted" />
+            <LinkArtistNames artists={entity.artists.map(a => a.artist)} as="inverted" />
           </Header>
         </Flex>
       </Flex>
@@ -40,10 +40,10 @@ const Track = ({ entity }) => (
         <Grid.Column mobile={8} tablet={6} computer={5}>
           <Grid columns={2} doubling>
             <Grid.Column width={16} only="tablet computer">
-              <AlbumCover album={entity.albums[0]} maxWidth={256} />
+              <AlbumCover album={entity.albums.map(a => a.album)[0]} maxWidth={256} />
             </Grid.Column>
             <Grid.Column width={16}>
-              <MoreTracks artist={entity.artists[0]} />
+              <MoreTracks artist={entity.artists.map(a => a.artist)[0]} />
             </Grid.Column>
           </Grid>
         </Grid.Column>
@@ -58,10 +58,16 @@ const Track = ({ entity }) => (
 Track.propTypes = {
   entity: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    artists: PropTypes.arrayOf(PropTypes.object).isRequired,
+    artists: PropTypes.arrayOf(
+      PropTypes.shape({
+        artist: PropTypes.object.isRequired,
+      }).isRequired,
+    ).isRequired,
     albums: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
+        album: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }).isRequired,
       }),
     ).isRequired,
     coverurl: PropTypes.shape({
