@@ -24,7 +24,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case FETCH_ALBUMS_SUCCESS:
-      return { ...state, albums: action.payload, loading: false };
+      return { ...state, albums: action.payload.docs, loading: false };
 
     case FETCH_ALBUMS_ERROR:
       return { ...state, error: action.payload, albums: null, loading: false };
@@ -33,6 +33,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case FETCH_ALBUM_SUCCESS:
+      console.warn(action.payload);
       return { ...state, album: action.payload, loading: false };
 
     case FETCH_ALBUM_ERROR:
@@ -50,13 +51,13 @@ export default reducer;
 // Fetch all albums
 export const fetchAlbums = () => ({
   types: [FETCH_ALBUMS_PENDING, FETCH_ALBUMS_SUCCESS, FETCH_ALBUMS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/albums`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/album`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a album by _id
 export const fetchAlbum = id => ({
   types: [FETCH_ALBUM_PENDING, FETCH_ALBUM_SUCCESS, FETCH_ALBUM_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/albums/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/album/${id}?%24embed=tracks`),
   shouldCallAPI: () => true,
 });

@@ -6,19 +6,21 @@ import LinkEntity from '../../../components/LinkEntity';
 
 const About = ({ track }) => (
   <React.Fragment>
-    <Header as="h2">About</Header>
-    <p>
-      {'From the album '}
-      <br />
-      <LinkEntity entity={track.album} as="table" />
-    </p>
+    <Header as="h2">Albums</Header>
+    <ul>
+      {track.albums.map(album => (
+        <li key={album._id}>
+          <LinkEntity entity={album} as="table" />
+        </li>
+      ))}
+    </ul>
     {track.explicit && <p>This title contains explicit content.</p>}
   </React.Fragment>
 );
 
 About.propTypes = {
   track: PropTypes.shape({
-    album: PropTypes.object.isRequired,
+    albums: PropTypes.arrayOf(PropTypes.object).isRequired,
     explicit: PropTypes.bool.isRequired,
   }).isRequired,
 };

@@ -24,7 +24,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case FETCH_PLAYLISTS_SUCCESS:
-      return { ...state, playlists: action.payload, loading: false };
+      return { ...state, playlists: action.payload.docs, loading: false };
 
     case FETCH_PLAYLISTS_ERROR:
       return { ...state, error: action.payload, playlists: null, loading: false };
@@ -50,13 +50,19 @@ export default reducer;
 // Fetch all playlists
 export const fetchPlaylists = () => ({
   types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/playlists`),
+  callAPI: () =>
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/playlist?%24embed=tracks&%24flatten=true`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a playlist by _id
 export const fetchPlaylist = id => ({
   types: [FETCH_PLAYLIST_PENDING, FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/playlists/${id}`),
+  callAPI: () =>
+    axios.get(
+      `${
+        process.env.REACT_APP_ENDPOINT
+      }/playlist/${id}?%24embed=tracks&%24embed=tracks.artists&%24embed=tracks.albums&%24flatten=true`,
+    ),
   shouldCallAPI: () => true,
 });

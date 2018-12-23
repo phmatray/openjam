@@ -24,7 +24,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case FETCH_TRACKS_SUCCESS:
-      return { ...state, tracks: action.payload, loading: false };
+      return { ...state, tracks: action.payload.docs, loading: false };
 
     case FETCH_TRACKS_ERROR:
       return { ...state, error: action.payload, tracks: null, loading: false };
@@ -50,13 +50,14 @@ export default reducer;
 // Fetch all tracks
 export const fetchTracks = () => ({
   types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks`),
+  callAPI: () =>
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/track?%24embed=artists&%24flatten=true`),
   shouldCallAPI: () => true,
 });
 
 // Fetch a track by _id
 export const fetchTrack = id => ({
   types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/tracks/${id}`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track/${id}`),
   shouldCallAPI: () => true,
 });

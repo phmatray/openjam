@@ -22,14 +22,14 @@ const AlbumTracks = ({ tracks }) => {
       </Table.Header>
 
       <Table.Body>
-        {tracks.sort(compare).map(track => (
-          <Table.Row key={track._id}>
-            <Table.Cell>{track.track_number}</Table.Cell>
+        {tracks.sort(compare).map(item => (
+          <Table.Row key={item.track._id}>
+            <Table.Cell>{item.track_number}</Table.Cell>
             <Table.Cell>
-              <LinkEntity entity={track} as="table" strong />
+              <LinkEntity entity={item.track} as="table" strong />
             </Table.Cell>
             <Table.Cell>
-              <LinkArtistNames artists={track.artists} as="table" />
+              <LinkArtistNames artists={item.track.artists.map(a => a.artist)} as="table" />
             </Table.Cell>
           </Table.Row>
         ))}
@@ -43,7 +43,7 @@ AlbumTracks.propTypes = {
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
       track_number: PropTypes.number.isRequired,
-      artists: PropTypes.array.isRequired,
+      track: PropTypes.shape({ artists: PropTypes.array.isRequired }),
     }).isRequired,
   ).isRequired,
 };

@@ -3,12 +3,12 @@ import { combineReducers } from 'redux';
 import layout from './modules/layout';
 import auth from './modules/auth';
 import errors from './modules/error';
+import pageArtist from './modules/page-artist';
 import pageExplore from './modules/page-explore';
 import pageTrack from './modules/page-track';
 import pageAlbum from './modules/page-album';
+import pageShare from './modules/page-share';
 import profile from './modules/profile';
-import post from './modules/post';
-import github from './modules/github';
 import artist from './modules/artist';
 import album from './modules/album';
 import label from './modules/label';
@@ -20,12 +20,12 @@ const reducers = {
   layout,
   auth,
   errors,
+  pageArtist,
   pageExplore,
   pageTrack,
   pageAlbum,
+  pageShare,
   profile,
-  post,
-  github,
   artist,
   album,
   label,

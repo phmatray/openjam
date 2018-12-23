@@ -51,78 +51,60 @@ export const clearCurrentProfile = () => ({ type: CLEAR_CURRENT_PROFILE });
 // Side effects, only as applicable (thunks)
 //
 // Get current profile
-export const getCurrentProfile = () => dispatch => {
-  dispatch(loadProfiles());
-  axios
-    .get(`${process.env.REACT_APP_ENDPOINT}/profile`)
-    .then(res => dispatch(updateProfile(res.data)))
-    .catch(() => dispatch(updateProfile({})));
+export const getCurrentProfile = () => async dispatch => {
+  try {
+    dispatch(loadProfiles());
+    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile/me`);
+
+    dispatch(updateProfile(res.data));
+  } catch (error) {
+    dispatch(updateProfile({}));
+  }
 };
 
 // Get profile by handle
-export const getProfileByHandle = handle => dispatch => {
-  dispatch(loadProfiles());
-  axios
-    .get(`${process.env.REACT_APP_ENDPOINT}/profile/handle/${handle}`)
-    .then(res => dispatch(updateProfile(res.data)))
-    .catch(() => dispatch(updateProfile(null)));
+export const getProfileByHandle = handle => async dispatch => {
+  try {
+    dispatch(loadProfiles());
+    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile/handle/${handle}`);
+
+    dispatch(updateProfile(res.data));
+  } catch (error) {
+    dispatch(updateProfile(null));
+  }
 };
 
 // Create profile
-export const createProfile = (profileData, history) => dispatch => {
-  axios
-    .post(`${process.env.REACT_APP_ENDPOINT}/profile`, profileData)
-    .then(() => history.push('/dashboard'))
-    .catch(err => dispatch(updateErrors(err.response.data)));
-};
-
-// Add experience
-export const addExperience = (expData, history) => dispatch => {
-  axios
-    .post(`${process.env.REACT_APP_ENDPOINT}/profile/experience`, expData)
-    .then(() => history.push('/dashboard'))
-    .catch(err => dispatch(updateErrors(err.response.data)));
-};
-
-// Add education
-export const addEducation = (eduData, history) => dispatch => {
-  axios
-    .post(`${process.env.REACT_APP_ENDPOINT}/profile/education`, eduData)
-    .then(() => history.push('/dashboard'))
-    .catch(err => dispatch(updateErrors(err.response.data)));
-};
-
-// Delete experience
-export const deleteExperience = id => dispatch => {
-  axios
-    .delete(`${process.env.REACT_APP_ENDPOINT}/profile/experience/${id}`)
-    .then(res => dispatch(updateProfile(res.data)))
-    .catch(err => dispatch(updateErrors(err.response.data)));
-};
-
-// Delete education
-export const deleteEducation = id => dispatch => {
-  axios
-    .delete(`${process.env.REACT_APP_ENDPOINT}/profile/education/${id}`)
-    .then(res => dispatch(updateProfile(res.data)))
-    .catch(err => dispatch(updateErrors(err.response.data)));
+export const createProfile = (profileData, history) => async dispatch => {
+  try {
+    await axios.post(`${process.env.REACT_APP_ENDPOINT}/profile`, profileData);
+    history.push('/dashboard');
+  } catch (error) {
+    dispatch(updateErrors(error.response.data));
+  }
 };
 
 // Get all profiles
-export const getProfiles = () => dispatch => {
-  dispatch(loadProfiles());
-  axios
-    .get(`${process.env.REACT_APP_ENDPOINT}/profile/all`)
-    .then(res => dispatch(updateProfiles(res.data)))
-    .catch(() => dispatch(updateProfiles(null)));
+export const getProfiles = () => async dispatch => {
+  try {
+    dispatch(loadProfiles());
+    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile`);
+
+    dispatch(updateProfiles(res.data));
+  } catch (error) {
+    dispatch(updateProfiles(null));
+  }
 };
 
 // Delete account & profile
-export const deleteAccount = () => dispatch => {
+export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
-    axios
-      .delete(`${process.env.REACT_APP_ENDPOINT}/profile`)
-      .then(() => dispatch(logoutUser()))
-      .catch(err => dispatch(updateErrors(err.response.data)));
+    try {
+      await axios.delete(`${process.env.REACT_APP_ENDPOINT}/profile`);
+
+      dispatch(logoutUser());
+    } catch (error) {
+      dispatch(updateErrors(error.response.data));
+    }
   }
 };

@@ -8,7 +8,7 @@ import { SegmentPostBasic } from '../SegmentPost';
 import Intro from './Intro';
 import { Content } from './styles';
 import Comment from './Comment';
-import { deletePost, addLike, removeLike } from '../../redux/modules/post';
+import { deletePost, addLike, removeLike } from '../../redux/modules/page-share';
 
 class PostBasic extends Component {
   findUserLike = likes => {
