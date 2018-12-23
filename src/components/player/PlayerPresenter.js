@@ -78,7 +78,7 @@ const PlayerPresenter = ({
                 <ArtistName>
                   <i>{t('components.player.by')}</i>
                   &nbsp;&nbsp;
-                  <LinkArtistNames artists={current.artists} as="inverted" />
+                  <LinkArtistNames artists={current.artists.map(a => a.artist)} as="inverted" />
                 </ArtistName>
               </Flex>
             </Flex>

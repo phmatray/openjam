@@ -29,7 +29,7 @@ class Artist extends Component {
     return artist === null || artist === undefined || loading ? (
       <Spinner />
     ) : (
-      <ArtistPresenter artist={artist} />
+      <ArtistPresenter artist={artist} loading={loading} />
     );
   }
 }

@@ -39,7 +39,7 @@ const TrackItem = ({ track, playTrack, pause, playerPlaying, playerCollectionId 
         <Divider style={{ margin: '0 0 0.6em 0' }} />
         <LinkEntity entity={track} as="table" strong />
         <Artists>
-          <LinkArtistNames artists={track.artists} as="table" />
+          <LinkArtistNames artists={track.artists.map(a => a.artist)} as="table" />
         </Artists>
       </Details>
     </ContentBlock>
@@ -50,8 +50,10 @@ TrackItem.propTypes = {
   track: PropTypes.shape({
     artists: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      }),
+        artist: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+      }).isRequired,
     ).isRequired,
     title: PropTypes.string.isRequired,
     coverurl: PropTypes.shape({

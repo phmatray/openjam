@@ -82,19 +82,14 @@ export const fetchOriginalTracks = () => ({
     FETCH_ORIGINAL_TRACKS_ERROR,
   ],
   callAPI: () =>
-    axios.get(
-      `${process.env.REACT_APP_ENDPOINT}/track?type2=original&%24embed=artists&%24flatten=true`,
-    ),
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/track?type2=original&%24embed=artists`),
   shouldCallAPI: () => true,
 });
 
 // Fetch all remix tracks
 export const fetchRemixTracks = () => ({
   types: [FETCH_REMIX_TRACKS_PENDING, FETCH_REMIX_TRACKS_SUCCESS, FETCH_REMIX_TRACKS_ERROR],
-  callAPI: () =>
-    axios.get(
-      `${process.env.REACT_APP_ENDPOINT}/track?type2=remix&%24embed=artists&%24flatten=true`,
-    ),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track?type2=remix&%24embed=artists`),
   shouldCallAPI: () => true,
 });
 
