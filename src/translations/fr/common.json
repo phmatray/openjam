@@ -120,10 +120,19 @@
       "input-email": "Adresse électronique",
       "input-password": "Mot de passe",
       "input-password2": "Confirmer votre mot de passe",
+      "input-pin": "Saisissez votre code PIN à 4 chiffres.",
       "action-submit": "S'inscrire",
       "already": "Vous avez déjà un compte ?",
       "sign-in": "Se connecter",
-      "gravatar": "Cette application utilise Gravatar. Si vous voulez une image de profil, utilisez une adresse e-mail Gravatar."
+      "gravatar": "Cette application utilise Gravatar. Si vous voulez une image de profil, utilisez une adresse e-mail Gravatar.",
+      "note": "Note",
+      "pin-info": "Votre code PIN à 4 chiffres vous sera demandé si vous devez réinitialiser votre mot de passe à l'avenir. S'il vous plaît, conservez-le en lieu sûr."
+    },
+    "register-thanks": {
+      "header": "Merci de vous être enregistré !",
+      "subheader": "Nous vous invitons à consulter votre boîte email pour trouver le lien d'activation de votre compte.",
+      "already": "Vous avez déjà un compte ?",
+      "sign-in": "Se connecter"
     },
     "tracks": {
       "header": "Titres",

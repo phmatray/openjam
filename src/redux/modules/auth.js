@@ -96,15 +96,16 @@ export const registerUser = (userData, history) => async dispatch => {
       registerType: 'Register',
     });
 
-    console.log(res);
     if (!res.data.errmsg) {
-      console.log("you're good");
-      history.push('/thanks');
+      dispatch(updateErrors({}));
+      history.push('/register-thanks');
     }
-
-    history.push('/login');
   } catch (error) {
-    dispatch(updateErrors(error));
+    const errorMessage =
+      'There was an error during the registration process. ' +
+      'Please try again or contact us if you continue to have trouble creating an account.';
+
+    dispatch(updateErrors({ ...error.response, message: errorMessage }));
   }
 };
 
@@ -123,9 +124,43 @@ export const loginUser = userData => async dispatch => {
       dispatch(updateAccessToken(accessToken));
       dispatch(updateUser(user));
       dispatch(updateErrors({}));
+      // TODO: dispatch a toast notification
+      // notify.success('Login successful', 'Success!')
     }
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    const { data } = error.response;
+    const responseMessage = data.message;
+
+    let errorMessage = '';
+
+    switch (responseMessage) {
+      case 'Invalid Email or Password.':
+      case 'Maximum number of auth attempts reached. Please try again later.':
+        errorMessage = responseMessage;
+        break;
+
+      case 'Account is inactive.':
+        errorMessage =
+          'You need to activate your account. Please enter your email address and ' +
+          'click the link below to resend an activation email.';
+        break;
+
+      case 'Account is disabled.':
+        errorMessage =
+          'Your account has been disabled. Please contact the SuperAdmin ' +
+          'to enable your account.';
+        break;
+
+      case 'Account is deleted.':
+        errorMessage = 'This account has been deleted';
+        break;
+
+      default:
+        errorMessage = 'There was an error logging in, please try again.';
+        break;
+    }
+
+    dispatch(updateErrors({ ...data, message: errorMessage }));
   }
 };
 

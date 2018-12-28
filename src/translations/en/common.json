@@ -120,10 +120,19 @@
       "input-email": "Email address",
       "input-password": "Password",
       "input-password2": "Confirm password",
+      "input-pin": "Please enter your 4 digit PIN.",
       "action-submit": "Submit",
       "already": "Already an account?",
       "sign-in": "Sign in",
-      "gravatar": "This app uses Gravatar so if you want a profile image, use a Gravatar email."
+      "gravatar": "This app uses Gravatar so if you want a profile image, use a Gravatar email.",
+      "note": "Note",
+      "pin-info": "Your 4 digit PIN will be required if you need to reset your password in the future. Please keep it somewhere safe."
+    },
+    "register-thanks": {
+      "header": "Thank you for registering!",
+      "subheader": "Please check your email for an account activation link.",
+      "already": "Already an account?",
+      "sign-in": "Sign in"
     },
     "tracks": {
       "header": "Tracks",
