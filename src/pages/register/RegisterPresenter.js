@@ -8,8 +8,8 @@ import Input from '../../components/Input';
 
 class RegisterPresenter extends Component {
   state = {
-    firstname: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     password2: '',
@@ -18,22 +18,23 @@ class RegisterPresenter extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
-    const { firstname, lastname, email, password, password2 } = this.state;
-    const { registerUser } = this.props;
+    const { firstName, lastName, email, password, password2 } = this.state;
+    const { registerUser, history } = this.props;
+    console.error(history);
 
     const newUser = {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       password,
       password2,
     };
 
-    registerUser(newUser, this.props.history);
+    registerUser(newUser, history);
   };
 
   render() {
-    const { firstname, lastname, email, password, password2 } = this.state;
+    const { firstName, lastName, email, password, password2 } = this.state;
     const { errors, t } = this.props;
 
     return (
@@ -51,22 +52,22 @@ class RegisterPresenter extends Component {
                 <Form.Group widths="equal">
                   <Input
                     as="text-field"
-                    name="firstname"
+                    name="firstName"
                     placeholder={t('pages.register.input-firstname')}
                     icon="user"
-                    value={firstname}
+                    value={firstName}
                     onChange={this.handleChange}
-                    error={errors.firstname}
+                    error={errors.firstName}
                   />
 
                   <Input
                     as="text-field"
-                    name="lastname"
+                    name="lastName"
                     placeholder={t('pages.register.input-lastname')}
                     icon="user"
-                    value={lastname}
+                    value={lastName}
                     onChange={this.handleChange}
-                    error={errors.lastname}
+                    error={errors.lastName}
                   />
                 </Form.Group>
 
@@ -103,6 +104,8 @@ class RegisterPresenter extends Component {
                   onChange={this.handleChange}
                   error={errors.password2}
                 />
+
+                <Message error header={errors.error} content={errors.message} />
 
                 <Form.Button
                   fluid
