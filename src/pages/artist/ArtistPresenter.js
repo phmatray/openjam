@@ -10,7 +10,7 @@ import ActionsMenu from './artist-presenter/ActionsMenu';
 import Tabs from './artist-presenter/Tabs';
 import Aside from './artist-presenter/Aside';
 
-const ArtistPresenter = ({ artist }) =>
+const ArtistPresenter = ({ artist, loading }) =>
   artist.images && artist.information ? (
     <React.Fragment>
       <Hero src={artist.images[0].url}>
@@ -35,7 +35,7 @@ const ArtistPresenter = ({ artist }) =>
       <Container>
         <Grid divided stackable reversed="mobile">
           <Grid.Column mobile={16} tablet={10} computer={11}>
-            <Tabs artist={artist} />
+            <Tabs artist={artist} loading={loading} />
           </Grid.Column>
           <Grid.Column mobile={8} tablet={6} computer={5}>
             <Aside artist={artist} />
@@ -51,6 +51,7 @@ ArtistPresenter.propTypes = {
   artist: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default ArtistPresenter;

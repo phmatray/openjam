@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode';
 import { updateErrors } from './error';
 import isEmpty from '../../utils/validation/is-empty';
 import setAuthToken from '../../utils/setAuthToken';
+import { USER_ROLES } from '../../config';
 
 // Actions
 //
@@ -87,21 +88,23 @@ export const updateRefreshToken = refreshToken => ({ type: UPDATE_REFRESH_TOKEN,
 // Register User
 export const registerUser = (userData, history) => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/user`, userData);
+    const user = { ...userData, role: USER_ROLES.USER };
+    delete user.password2;
+
+    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/register`, {
+      user,
+      registerType: 'Register',
+    });
 
     console.log(res);
     if (!res.data.errmsg) {
       console.log("you're good");
-      // this.setState({
-      //   redirectTo: '/login',
-      // });
-    } else {
-      console.log('duplicate');
+      history.push('/thanks');
     }
 
     history.push('/login');
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(updateErrors(error));
   }
 };
 

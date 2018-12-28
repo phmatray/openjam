@@ -20,7 +20,6 @@ import {
   updateUser,
   logoutUser,
 } from '../redux/modules/auth';
-import { clearCurrentProfile } from '../redux/modules/profile';
 import setAuthToken from '../utils/setAuthToken';
 import { GlobalStyle } from '../theme/GlobalStyle';
 
@@ -39,16 +38,14 @@ if (accessToken && refreshToken) {
   store.dispatch(updateRefreshToken(refreshToken));
   store.dispatch(updateUser(decoded.user));
 
-  // // Check for expire token
-  // const currentTime = Date.now() / 1000;
-  // if (decoded.exp < currentTime) {
-  //   // Logout user
-  //   store.dispatch(logoutUser());
-  //   // Clear current Profile
-  //   store.dispatch(clearCurrentProfile());
-  //   // Redirect to login
-  //   window.location.href = '/login';
-  // }
+  // Check for expire token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+    // Redirect to login
+    window.location.href = '/login';
+  }
 }
 
 const App = () => (

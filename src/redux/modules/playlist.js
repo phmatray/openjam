@@ -50,8 +50,7 @@ export default reducer;
 // Fetch all playlists
 export const fetchPlaylists = () => ({
   types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
-  callAPI: () =>
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/playlist?%24embed=tracks&%24flatten=true`),
+  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/playlist?%24embed=tracks`),
   shouldCallAPI: () => true,
 });
 
@@ -62,7 +61,7 @@ export const fetchPlaylist = id => ({
     axios.get(
       `${
         process.env.REACT_APP_ENDPOINT
-      }/playlist/${id}?%24embed=tracks&%24embed=tracks.artists&%24embed=tracks.albums&%24flatten=true`,
+      }/playlist/${id}?%24embed=tracks&%24embed=tracks.artists&%24embed=tracks.albums`,
     ),
   shouldCallAPI: () => true,
 });
