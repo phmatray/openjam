@@ -6,10 +6,9 @@ const Card = styled.div`
   max-width: 350px;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.primary};
-  background-image: url(${props => props.imagesrc});
-  background-repeat: no-repeat;
-  background: cover;
+  background: ${props => props.theme.primary} url(${props => props.imagesrc}) no-repeat center
+    center;
+  background-size: cover;
   position: relative;
   z-index: 1;
   margin-right: 1em;
