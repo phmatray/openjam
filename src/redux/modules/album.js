@@ -33,7 +33,6 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case FETCH_ALBUM_SUCCESS:
-      console.warn(action.payload);
       return { ...state, album: action.payload, loading: false };
 
     case FETCH_ALBUM_ERROR:
