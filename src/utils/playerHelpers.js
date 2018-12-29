@@ -1,4 +1,6 @@
-export const getPreviousIndex = (playlistLength, currentIndex) => {
+// @flow
+
+export const getPreviousIndex = (playlistLength: number, currentIndex: number) => {
   let index = currentIndex - 1;
   if (index < 0) {
     index = playlistLength - 1;
@@ -7,7 +9,7 @@ export const getPreviousIndex = (playlistLength, currentIndex) => {
   return index;
 };
 
-export const getNextIndex = (playlistLength, currentIndex) => {
+export const getNextIndex = (playlistLength: number, currentIndex: number) => {
   let index = currentIndex + 1;
   if (index >= playlistLength) {
     index = 0;
@@ -16,7 +18,7 @@ export const getNextIndex = (playlistLength, currentIndex) => {
   return index;
 };
 
-export const fancyTimeFormat = ms => {
+export const fancyTimeFormat = (ms: number) => {
   const milliseconds = Math.round(ms / 1000);
 
   // Hours, minutes and seconds

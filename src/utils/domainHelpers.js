@@ -1,4 +1,6 @@
-export const extractHostname = url => {
+// @flow
+
+export const extractHostname = (url: string) => {
   let hostname;
   // find & remove protocol (http, ftp, etc.) and get hostname
 
@@ -17,7 +19,7 @@ export const extractHostname = url => {
 };
 
 // To address those who want the "root domain," use this function:
-export const extractRootDomain = url => {
+export const extractRootDomain = (url: string) => {
   let domain = extractHostname(url);
   const splitArr = domain.split('.');
   const arrLen = splitArr.length;
@@ -36,7 +38,7 @@ export const extractRootDomain = url => {
 };
 
 // To address those who want the "root domain" without the extension.
-export const extractWithoutExtension = url => {
+export const extractWithoutExtension = (url: string) => {
   const domain = extractRootDomain(url);
   const splitArr = domain.split('.');
   const result = splitArr[0];

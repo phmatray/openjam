@@ -1,3 +1,5 @@
+// @flow
+
 const getRandomColor = () => {
   const colors = [
     { name: 'red', hex: '#B03060' },
