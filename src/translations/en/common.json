@@ -29,6 +29,20 @@
     }
   },
   "pages": {
+    "activate-account": {
+      "header": "Account Activation",
+      "subheader": "Activate your account to complete your registration.",
+      "sign-in": "Sign in",
+      "no-token": {
+        "title": "No Token",
+        "message": "The link you used did not contain a token. Please click on the activation link in your email to activate your account, or proceed to login to request a new activation email."
+      }
+    },
+    "activate-account-success": {
+      "header": "Congratulations!",
+      "subheader": "Your account has been activated. Please proceed to the login page to sign in with your account.",
+      "sign-in": "Sign in"
+    },
     "albums": {
       "header": "Albums",
       "subheader": "Pick some music by album.",

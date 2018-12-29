@@ -7,7 +7,6 @@ const ButtonRegister = ({ t }) => (
   <Button
     as={Link}
     to="/register"
-    color="teal"
     size="massive"
     fluid
     style={{ fontFamily: 'Ubuntu' }}

@@ -109,6 +109,24 @@ export const registerUser = (userData, history) => async dispatch => {
   }
 };
 
+// Register - Activate Account
+export const activateAccount = (token, history) => async dispatch => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/register/activate`, { token });
+
+    if (!res.data.errmsg) {
+      dispatch(updateErrors({}));
+      history.push('/register-thanks');
+    }
+  } catch (error) {
+    const errorMessage =
+      'There was an error during the activation process. The token in your email link may be expired, ' +
+      'you can request a new activation email to be sent during your next login attempt.';
+
+    dispatch(updateErrors({ ...error.response, message: errorMessage }));
+  }
+};
+
 // Login - Get User Token
 export const loginUser = userData => async dispatch => {
   try {

@@ -87,7 +87,7 @@ class LoginPresenter extends Component {
 
                 <Form.Button
                   fluid
-                  size="large"
+                  size="big"
                   color="teal"
                   content={t('pages.login.action-submit')}
                 />
