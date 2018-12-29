@@ -39,7 +39,6 @@ class ActivateAccount extends Component {
     const { t } = this.props;
 
     if (errors && errors.message) {
-      console.warn(errors);
       return <Message error header="Error" content={errors.message} />;
     }
 
