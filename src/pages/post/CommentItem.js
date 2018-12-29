@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Comment, Icon } from 'semantic-ui-react';
-import { deleteComment } from '../../redux/modules/post';
+import { deleteComment } from '../../redux/modules/page-share';
 
 class CommentItem extends Component {
   handleDeleteClick = (postId, commentId) => {

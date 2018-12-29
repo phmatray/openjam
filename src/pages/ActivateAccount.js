@@ -31,6 +31,7 @@ class ActivateAccount extends Component {
 
     // error handling
     if (nextProps.errors) {
+      // eslint-disable-next-line react/no-unused-state
       this.setState({ errors: nextProps.errors });
     }
   }

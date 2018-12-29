@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Album from '../Album';
+import App from '../App';
 
-describe('<Album />', () => {
+describe('<App />', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<Album />);
+    const wrapper = shallow(<App />);
     expect(wrapper.length).toEqual(1);
   });
 });
