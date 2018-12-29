@@ -1,7 +1,17 @@
-const getYears = years =>
+// @flow
+
+type Year = { from: string, to: ?string };
+
+const getYears = (years: Year[]) =>
   years
     .reverse()
-    .map(_ => (_.from === _.to ? `${_.from}` : `${_.from}-${_.to}`))
+    .map(_ => {
+      if (!_.to) {
+        return `${_.from}`;
+      }
+
+      return _.from === _.to ? `${_.from}` : `${_.from}-${_.to}`;
+    })
     .join(', ');
 
 export default getYears;
