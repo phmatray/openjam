@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 import TextAreaFieldGroup from '../../components/input/TextAreaFieldGroup';
-import { addComment } from '../../redux/modules/post';
+import { addComment } from '../../redux/modules/page-share';
 
 class CommentForm extends Component {
   state = {
