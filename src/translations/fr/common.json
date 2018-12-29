@@ -29,6 +29,20 @@
     }
   },
   "pages": {
+    "activate-account": {
+      "header": "Activation de votre compte",
+      "subheader": "Activez votre compte pour finaliser votre inscription.",
+      "sign-in": "Se connecter",
+      "no-token": {
+        "title": "Token invalide",
+        "message": "Le lien que vous avez utilisé ne contenait pas de token. Veuillez cliquer sur le lien d'activation dans votre boîte email pour activer votre compte, ou procéder à la connexion pour demander un nouvel email d'activation."
+      }
+    },
+    "activate-account-success": {
+      "header": "Félicitations !",
+      "subheader": "Votre compte a été activé. Nous vous invitons à accéder à la page de connexion pour vous identifier avec votre compte.",
+      "sign-in": "Se connecter"
+    },
     "albums": {
       "header": "Albums",
       "subheader": "Choisissez de la musique par album.",
@@ -120,10 +134,19 @@
       "input-email": "Adresse électronique",
       "input-password": "Mot de passe",
       "input-password2": "Confirmer votre mot de passe",
+      "input-pin": "Saisissez votre code PIN à 4 chiffres.",
       "action-submit": "S'inscrire",
       "already": "Vous avez déjà un compte ?",
       "sign-in": "Se connecter",
-      "gravatar": "Cette application utilise Gravatar. Si vous voulez une image de profil, utilisez une adresse e-mail Gravatar."
+      "gravatar": "Cette application utilise Gravatar. Si vous voulez une image de profil, utilisez une adresse e-mail Gravatar.",
+      "note": "Note",
+      "pin-info": "Votre code PIN à 4 chiffres vous sera demandé si vous devez réinitialiser votre mot de passe à l'avenir. S'il vous plaît, conservez-le en lieu sûr."
+    },
+    "register-thanks": {
+      "header": "Merci de vous être enregistré !",
+      "subheader": "Nous vous invitons à consulter votre boîte email pour trouver le lien d'activation de votre compte.",
+      "already": "Vous avez déjà un compte ?",
+      "sign-in": "Se connecter"
     },
     "tracks": {
       "header": "Titres",

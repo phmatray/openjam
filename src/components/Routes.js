@@ -16,6 +16,24 @@ const AsyncRegister = Loadable({
   timeout: 10000,
 });
 
+const AsyncRegisterThanks = Loadable({
+  loader: () => import('../pages/RegisterThanks'),
+  loading: Loading,
+  timeout: 10000,
+});
+
+const AsyncActivateAccount = Loadable({
+  loader: () => import('../pages/ActivateAccount'),
+  loading: Loading,
+  timeout: 10000,
+});
+
+const AsyncActivateAccountSuccess = Loadable({
+  loader: () => import('../pages/ActivateAccountSuccess'),
+  loading: Loading,
+  timeout: 10000,
+});
+
 const AsyncLanding = Loadable({
   loader: () => import('../pages/Landing'),
   loading: Loading,
@@ -147,6 +165,14 @@ const Routes = ({ childProps }) => (
     <Route path="/" exact component={AsyncLanding} props={childProps} />
     <Route path="/login" exact component={AsyncLogin} props={childProps} />
     <Route path="/register" exact component={AsyncRegister} props={childProps} />
+    <Route path="/register-thanks" exact component={AsyncRegisterThanks} props={childProps} />
+    <Route path="/activate" exact component={AsyncActivateAccount} props={childProps} />
+    <Route
+      path="/activate-success"
+      exact
+      component={AsyncActivateAccountSuccess}
+      props={childProps}
+    />
     <Route path="/explore" exact component={AsyncExplore} props={childProps} />
     <Route path="/share" exact component={AsyncShare} props={childProps} />
     <Route path="/jammers" exact component={AsyncJammers} props={childProps} />

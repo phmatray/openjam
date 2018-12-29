@@ -13,14 +13,14 @@ class RegisterPresenter extends Component {
     email: '',
     password: '',
     password2: '',
+    pin: '',
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = () => {
-    const { firstName, lastName, email, password, password2 } = this.state;
+    const { firstName, lastName, email, password, password2, pin } = this.state;
     const { registerUser, history } = this.props;
-    console.error(history);
 
     const newUser = {
       firstName,
@@ -28,13 +28,14 @@ class RegisterPresenter extends Component {
       email,
       password,
       password2,
+      pin,
     };
 
     registerUser(newUser, history);
   };
 
   render() {
-    const { firstName, lastName, email, password, password2 } = this.state;
+    const { firstName, lastName, email, password, password2, pin } = this.state;
     const { errors, t } = this.props;
 
     return (
@@ -105,11 +106,26 @@ class RegisterPresenter extends Component {
                   error={errors.password2}
                 />
 
+                <Message info>
+                  <Message.Header>{t('pages.register.note')}</Message.Header>
+                  <p>{t('pages.register.pin-info')}</p>
+                </Message>
+
+                <Input
+                  as="text-field"
+                  name="pin"
+                  placeholder={t('pages.register.input-pin')}
+                  icon="asterisk"
+                  value={pin}
+                  onChange={this.handleChange}
+                  error={errors.pin}
+                />
+
                 <Message error header={errors.error} content={errors.message} />
 
                 <Form.Button
                   fluid
-                  size="large"
+                  size="big"
                   color="teal"
                   content={t('pages.register.action-submit')}
                 />
