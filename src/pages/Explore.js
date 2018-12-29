@@ -9,7 +9,7 @@ import Section from '../components/Section';
 import { fetchOriginalTracks, fetchRemixTracks, fetchArtists } from '../redux/modules/page-explore';
 import background from '../images/backgrounds/piano-2601498_1920.jpg';
 
-export class Explore extends Component {
+class Explore extends Component {
   componentDidMount() {
     const {
       originalTracks,

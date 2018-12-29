@@ -1,4 +1,17 @@
-export const getBrandColor = domain => {
+// @flow
+
+type Domain =
+  | 'youtube'
+  | 'facebook'
+  | 'linkedin'
+  | 'instagram'
+  | 'github'
+  | 'twitter'
+  | 'soundcloud'
+  | 'bandcamp'
+  | 'openjam';
+
+export const getBrandColor = (domain: Domain) => {
   switch (domain) {
     case 'youtube':
       return '#ff0000';
@@ -24,7 +37,7 @@ export const getBrandColor = domain => {
   }
 };
 
-export const getBrandIconName = domain => {
+export const getBrandIconName = (domain: Domain) => {
   switch (domain) {
     case 'facebook':
       return ['fab', 'facebook-f'];
