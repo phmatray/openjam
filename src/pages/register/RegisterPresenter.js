@@ -21,7 +21,6 @@ class RegisterPresenter extends Component {
   handleSubmit = () => {
     const { firstName, lastName, email, password, password2, pin } = this.state;
     const { registerUser, history } = this.props;
-    console.error(history);
 
     const newUser = {
       firstName,
@@ -126,7 +125,7 @@ class RegisterPresenter extends Component {
 
                 <Form.Button
                   fluid
-                  size="large"
+                  size="big"
                   color="teal"
                   content={t('pages.register.action-submit')}
                 />
