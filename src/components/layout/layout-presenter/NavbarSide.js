@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { ThemeConsumer } from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Sidebar, Menu, Icon, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+
 import { logoutUser } from '../../../redux/modules/auth';
 import { clearCurrentProfile } from '../../../redux/modules/profile';
 
@@ -55,18 +57,20 @@ class NavbarSide extends Component {
     );
 
     const guestLinks = (
-      <React.Fragment>
-        <Menu.Item
-          as={Link}
-          to="/login"
-          name="landing"
-          onClick={this.handleItemClick && hideSidebar}
-        >
-          <Button fluid size="big" color="teal">
-            {t('components.navbar.sign-in')}
-          </Button>
-        </Menu.Item>
-      </React.Fragment>
+      <ThemeConsumer>
+        {theme => (
+          <Menu.Item
+            as={Link}
+            to="/login"
+            name="landing"
+            onClick={this.handleItemClick && hideSidebar}
+          >
+            <Button fluid size="big" color={theme.primarySemantic}>
+              {t('components.navbar.sign-in')}
+            </Button>
+          </Menu.Item>
+        )}
+      </ThemeConsumer>
     );
 
     const authLinks = (

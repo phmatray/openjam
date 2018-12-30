@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ThemeConsumer } from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -54,11 +55,13 @@ class NavbarDesktop extends Component {
     );
 
     const guestLinks = (
-      <React.Fragment>
-        <Menu.Item as={Link} to="/login" name="landing" onClick={this.handleItemClick}>
-          <Button color="teal">{t('components.navbar.sign-in')}</Button>
-        </Menu.Item>
-      </React.Fragment>
+      <ThemeConsumer>
+        {theme => (
+          <Menu.Item as={Link} to="/login" name="landing" onClick={this.handleItemClick}>
+            <Button color={theme.primarySemantic}>{t('components.navbar.sign-in')}</Button>
+          </Menu.Item>
+        )}
+      </ThemeConsumer>
     );
 
     const authLinks = (
@@ -84,43 +87,47 @@ class NavbarDesktop extends Component {
     );
 
     return (
-      <Menu inverted fixed="top" style={{ height: `${height}px`, backgroundColor: 'black' }}>
-        <Container>
-          <Menu.Item
-            header
-            as={Link}
-            to="/"
-            name="landing"
-            active
-            onClick={this.handleItemClick}
-            color="teal"
-          >
-            <img
-              src={logo}
-              style={
-                playing
-                  ? {
-                      margin: '0.5em 0.5em 0.5em 0',
-                      animationName: 'spin',
-                      animationDuration: '5000ms',
-                      animationIterationCount: 'infinite',
-                      animationTimingFunction: 'linear',
-                    }
-                  : { margin: '0.5em 0.5em 0.5em 0' }
-              }
-              alt="logo"
-            />
-            <strong style={{ fontFamily: 'Comfortaa' }}>{t('app')}</strong>
-          </Menu.Item>
+      <ThemeConsumer>
+        {theme => (
+          <Menu inverted fixed="top" style={{ height: `${height}px`, backgroundColor: 'black' }}>
+            <Container>
+              <Menu.Item
+                header
+                as={Link}
+                to="/"
+                name="landing"
+                active
+                onClick={this.handleItemClick}
+                color={theme.primarySemantic}
+              >
+                <img
+                  src={logo}
+                  style={
+                    playing
+                      ? {
+                          margin: '0.5em 0.5em 0.5em 0',
+                          animationName: 'spin',
+                          animationDuration: '5000ms',
+                          animationIterationCount: 'infinite',
+                          animationTimingFunction: 'linear',
+                        }
+                      : { margin: '0.5em 0.5em 0.5em 0' }
+                  }
+                  alt="logo"
+                />
+                <strong style={{ fontFamily: 'Comfortaa' }}>{t('app')}</strong>
+              </Menu.Item>
 
-          {leftLinks}
+              {leftLinks}
 
-          <Menu.Menu position="right">
-            <LanguageDropdown />
-            {isAuthenticated ? authLinks : guestLinks}
-          </Menu.Menu>
-        </Container>
-      </Menu>
+              <Menu.Menu position="right">
+                <LanguageDropdown />
+                {isAuthenticated ? authLinks : guestLinks}
+              </Menu.Menu>
+            </Container>
+          </Menu>
+        )}
+      </ThemeConsumer>
     );
   }
 }

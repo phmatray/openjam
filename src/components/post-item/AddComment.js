@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addComment } from '../../redux/modules/page-share';
-import { AvatarSmall, Button, AddCommentForm } from './styles';
+
 import Flex from '../Flex';
 import Div from '../Div';
 import Input from '../Input';
+import { addComment } from '../../redux/modules/page-share';
+
+import { AvatarSmall, Button, AddCommentForm } from './styles';
 
 class AddComment extends Component {
   state = {
@@ -43,29 +46,33 @@ class AddComment extends Component {
     const { user } = this.props;
 
     return (
-      <Flex>
-        <AvatarSmall src={user.avatar} />
-        <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
-          <Div mb="-1em">
-            <Input
-              as="text-area-field"
-              placeholder="Express yourself"
-              name="text"
-              value={this.state.text}
-              onChange={this.handleChange}
-              error={errors.text}
-            />
-            <Button
-              circular
-              compact
-              icon="send"
-              color="teal"
-              content="Send"
-              onClick={this.handleSubmit}
-            />
-          </Div>
-        </AddCommentForm>
-      </Flex>
+      <ThemeConsumer>
+        {theme => (
+          <Flex>
+            <AvatarSmall src={user.avatar} />
+            <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
+              <Div mb="-1em">
+                <Input
+                  as="text-area-field"
+                  placeholder="Express yourself"
+                  name="text"
+                  value={this.state.text}
+                  onChange={this.handleChange}
+                  error={errors.text}
+                />
+                <Button
+                  circular
+                  compact
+                  icon="send"
+                  color={theme.primarySemantic}
+                  content="Send"
+                  onClick={this.handleSubmit}
+                />
+              </Div>
+            </AddCommentForm>
+          </Flex>
+        )}
+      </ThemeConsumer>
     );
   }
 }
