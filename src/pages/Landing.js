@@ -6,7 +6,7 @@ import LandingPresenter from './landing/LandingPresenter';
 class Landing extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/share');
+      this.props.history.push('/explore');
     }
   }
 

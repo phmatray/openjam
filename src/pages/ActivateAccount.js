@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
@@ -7,7 +8,6 @@ import { withRouter, Link } from 'react-router-dom';
 import { Grid, Icon, Header, Button, Divider, Message } from 'semantic-ui-react';
 
 import { activateAccount } from '../redux/modules/auth';
-
 import BackgroundScreen from '../components/BackgroundScreen';
 
 class ActivateAccount extends Component {
@@ -61,23 +61,27 @@ class ActivateAccount extends Component {
     const { token } = queryString.parse(location.search);
 
     return (
-      <BackgroundScreen>
-        <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
-          <Grid.Column style={{ maxWidth: 500 }}>
-            <Header as="h1" icon inverted>
-              <Icon name={(errors && errors.message) || !token ? 'lock' : 'unlock'} />
-              {t('pages.activate-account.header')}
-              <Header.Subheader>{t('pages.activate-account.subheader')}</Header.Subheader>
-            </Header>
-            <Divider />
-            {this.getMessage(token, errors)}
+      <ThemeConsumer>
+        {theme => (
+          <BackgroundScreen>
+            <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
+              <Grid.Column style={{ maxWidth: 500 }}>
+                <Header as="h1" icon inverted>
+                  <Icon name={(errors && errors.message) || !token ? 'lock' : 'unlock'} />
+                  {t('pages.activate-account.header')}
+                  <Header.Subheader>{t('pages.activate-account.subheader')}</Header.Subheader>
+                </Header>
+                <Divider />
+                {this.getMessage(token, errors)}
 
-            <Button as={Link} to="login" color="teal" fluid>
-              {t('pages.activate-account.sign-in')}
-            </Button>
-          </Grid.Column>
-        </Grid>
-      </BackgroundScreen>
+                <Button as={Link} to="login" color={theme.primarySemantic} fluid>
+                  {t('pages.activate-account.sign-in')}
+                </Button>
+              </Grid.Column>
+            </Grid>
+          </BackgroundScreen>
+        )}
+      </ThemeConsumer>
     );
   }
 }

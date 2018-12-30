@@ -12,7 +12,7 @@ import RegisterPresenter from './register/RegisterPresenter';
 class Register extends Component {
   componentDidMount() {
     if (this.props.isAuthenticated) {
-      this.props.history.push('/share');
+      this.props.history.push('/explore');
     }
   }
 

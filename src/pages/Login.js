@@ -11,13 +11,13 @@ import LoginPresenter from './login/LoginPresenter';
 class Login extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/share');
+      this.props.history.push('/explore');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/share');
+      this.props.history.push('/explore');
     }
 
     if (nextProps.errors) {
