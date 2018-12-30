@@ -62,7 +62,7 @@ class NavbarSide extends Component {
           <Menu.Item
             as={Link}
             to="/login"
-            name="landing"
+            name="login"
             onClick={this.handleItemClick && hideSidebar}
           >
             <Button fluid size="big" color={theme.primarySemantic}>

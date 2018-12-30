@@ -1,6 +1,6 @@
 {
   "name": "openjam",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "engines": {
     "node": "10.9.0"
   },
