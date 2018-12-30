@@ -57,7 +57,7 @@ class NavbarDesktop extends Component {
     const guestLinks = (
       <ThemeConsumer>
         {theme => (
-          <Menu.Item as={Link} to="/login" name="landing" onClick={this.handleItemClick}>
+          <Menu.Item as={Link} to="/login" name="login" onClick={this.handleItemClick}>
             <Button color={theme.primarySemantic}>{t('components.navbar.sign-in')}</Button>
           </Menu.Item>
         )}

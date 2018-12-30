@@ -30,7 +30,7 @@ class NavbarMobile extends Component {
           onClick={this.handleItemClick}
         >
           <Image
-            src={user.avatar}
+            src={user.profileImageUrl}
             alt={`${user.firstname} ${user.lastname}`}
             circular
             size="mini"
