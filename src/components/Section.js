@@ -1,6 +1,6 @@
 import React from 'react';
+import styled, { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button, Divider, Header } from 'semantic-ui-react';
@@ -20,40 +20,44 @@ const Scrollable = styled.div`
 `;
 
 const Section = ({ title, items, to, maxHeight, showDivider, scrollable, t }) => (
-  <div>
-    <Flex row fluid alignCenter justifyBetween mb="1em">
-      {title && (
-        <Header as="h2" style={{ margin: '8px 0' }}>
-          {title}
-        </Header>
-      )}
-      {to && (
-        <Button as={Link} to={to} basic color="teal">
-          {t('pages.explore.show-all')}
-        </Button>
-      )}
-    </Flex>
-
-    {scrollable ? (
-      <Scrollable>
-        <Flex column wrapBreak contentStart style={{ maxHeight }}>
-          <ModelCollection models={items} />
+  <ThemeConsumer>
+    {theme => (
+      <div>
+        <Flex row fluid alignCenter justifyBetween mb="1em">
+          {title && (
+            <Header as="h2" style={{ margin: '8px 0' }}>
+              {title}
+            </Header>
+          )}
+          {to && (
+            <Button as={Link} to={to} basic color={theme.primarySemantic}>
+              {t('pages.explore.show-all')}
+            </Button>
+          )}
         </Flex>
-      </Scrollable>
-    ) : (
-      <Flex wrapBreak justifyStart>
-        <ModelCollection models={items} />
-      </Flex>
-    )}
 
-    <Div mb="32px" />
+        {scrollable ? (
+          <Scrollable>
+            <Flex column wrapBreak contentStart style={{ maxHeight }}>
+              <ModelCollection models={items} />
+            </Flex>
+          </Scrollable>
+        ) : (
+          <Flex wrapBreak justifyStart>
+            <ModelCollection models={items} />
+          </Flex>
+        )}
 
-    {showDivider && (
-      <Div mb="32px">
-        <Divider />
-      </Div>
+        <Div mb="32px" />
+
+        {showDivider && (
+          <Div mb="32px">
+            <Divider />
+          </Div>
+        )}
+      </div>
     )}
-  </div>
+  </ThemeConsumer>
 );
 
 Section.propTypes = {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
@@ -43,27 +44,29 @@ class PostForm extends Component {
     const { errors } = this.state;
 
     return (
-      <div>
-        <Div mb="1em">
-          <Form error noValidate onSubmit={this.handleSubmit}>
-            <Input
-              as="text-area-field"
-              placeholder={`Speak your mind, ${user.firstName}`}
-              name="text"
-              value={this.state.text}
-              onChange={this.handleChange}
-              error={errors.text}
-            />
-            <Form.Button
-              fluid
-              size="large"
-              color="teal"
-              content="Share"
-              onClick={this.handleSubmit}
-            />
-          </Form>
-        </Div>
-      </div>
+      <ThemeConsumer>
+        {theme => (
+          <Div mb="1em">
+            <Form error noValidate onSubmit={this.handleSubmit}>
+              <Input
+                as="text-area-field"
+                placeholder={`Speak your mind, ${user.firstName}`}
+                name="text"
+                value={this.state.text}
+                onChange={this.handleChange}
+                error={errors.text}
+              />
+              <Form.Button
+                fluid
+                size="large"
+                color={theme.primarySemantic}
+                content="Share"
+                onClick={this.handleSubmit}
+              />
+            </Form>
+          </Div>
+        )}
+      </ThemeConsumer>
     );
   }
 }
