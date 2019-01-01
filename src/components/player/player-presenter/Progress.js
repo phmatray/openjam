@@ -8,7 +8,7 @@ class Progress extends Component {
   handleSeekTrack = e => {
     const { updatePosition, duration } = this.props;
 
-    console.log(`duration: ${duration}`);
+    // console.log(`duration: ${duration}`);
     const xPos =
       (e.pageX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.offsetWidth;
 

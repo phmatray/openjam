@@ -139,15 +139,13 @@ export const loginUser = userData => async dispatch => {
     if (res.status === 200) {
       const { accessToken, refreshToken, user } = res.data;
 
-      console.info(accessToken);
-      console.info(refreshToken);
-
       setAuthToken(refreshToken);
       dispatch(updateRefreshToken(refreshToken));
       dispatch(updateAccessToken(accessToken));
 
       dispatch(updateUser(user));
       dispatch(updateErrors({}));
+
       // TODO: dispatch a toast notification
       // notify.success('Login successful', 'Success!')
     }
