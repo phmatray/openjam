@@ -73,6 +73,8 @@ export const loadUser = () => ({ type: LOAD });
 export const updateUser = payload => ({ type: UPDATE_USER, payload });
 
 export const updateAccessToken = accessToken => {
+  localStorage.setItem('accessToken', accessToken);
+
   const payload =
     accessToken === initialState.accessToken
       ? _.pick(initialState, ['accessToken', 'scope', 'exp', 'iat'])
@@ -81,7 +83,10 @@ export const updateAccessToken = accessToken => {
   return { type: UPDATE_ACCESS_TOKEN, payload };
 };
 
-export const updateRefreshToken = refreshToken => ({ type: UPDATE_REFRESH_TOKEN, refreshToken });
+export const updateRefreshToken = refreshToken => {
+  localStorage.setItem('refreshToken', refreshToken);
+  return { type: UPDATE_REFRESH_TOKEN, refreshToken };
+};
 
 // Side effects, only as applicable (thunks)
 //
@@ -134,12 +139,13 @@ export const loginUser = userData => async dispatch => {
     if (res.status === 200) {
       const { accessToken, refreshToken, user } = res.data;
 
+      console.info(accessToken);
+      console.info(refreshToken);
+
       setAuthToken(refreshToken);
       dispatch(updateRefreshToken(refreshToken));
-
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
       dispatch(updateAccessToken(accessToken));
+
       dispatch(updateUser(user));
       dispatch(updateErrors({}));
       // TODO: dispatch a toast notification
@@ -198,7 +204,3 @@ export const logoutUser = () => async dispatch => {
     dispatch(updateErrors(error.response.data));
   }
 };
-
-// export const updateTokens = () => dispatch => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-// };
