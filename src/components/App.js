@@ -14,12 +14,7 @@ import Routes from './Routes';
 import ThemeWrapper from './app/ThemeWrapper';
 
 import store from '../redux/store';
-import {
-  updateAccessToken,
-  updateRefreshToken,
-  updateUser,
-  logoutUser,
-} from '../redux/modules/auth';
+import { updateAccessToken, updateRefreshToken, updateUser } from '../redux/modules/auth';
 import setAuthToken from '../utils/setAuthToken';
 import { GlobalStyle } from '../theme/GlobalStyle';
 
@@ -41,8 +36,9 @@ if (accessToken && refreshToken) {
   // Check for expire token
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
-    // Logout user
-    store.dispatch(logoutUser());
+    // Delete the tokens
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
     // Redirect to login
     window.location.href = '/login';
   }
