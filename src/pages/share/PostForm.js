@@ -25,14 +25,12 @@ class PostForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { user } = this.props.auth;
+    const { user } = this.props;
 
     const newPost = {
+      type: 'post-basic',
       text: this.state.text,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      handle: user.handle,
-      avatar: user.avatar,
+      byUser: user._id,
     };
 
     this.props.addPost(newPost);
@@ -40,7 +38,7 @@ class PostForm extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
+    const { user } = this.props;
     const { errors } = this.state;
 
     return (
@@ -73,12 +71,12 @@ class PostForm extends Component {
 
 PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  user: state.auth.user,
   errors: state.errors,
 });
 

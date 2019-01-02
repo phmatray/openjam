@@ -7,7 +7,7 @@ import Title from './artist/Title';
 
 const Artist = ({ artist }) => (
   <Link to={`/artist/${artist._id}`}>
-    <Card imagesrc={artist.images[0].url}>
+    <Card imagesrc={artist.images && artist.images.length > 0 && artist.images[0].url}>
       <Content>
         <Title>{artist.name}</Title>
       </Content>

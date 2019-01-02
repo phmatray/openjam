@@ -15,6 +15,15 @@ import logo from '../../../images/logos/logo_white.svg';
 class NavbarDesktop extends Component {
   state = { activeItem: 'home' };
 
+  componentDidMount() {
+    try {
+      const activeItem = window.location.href.split(['/'])[3];
+      this.setState({ activeItem });
+    } catch (error) {
+      this.setState({ activeItem: 'home' });
+    }
+  }
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   handleLogoutClick = e => {
@@ -95,7 +104,7 @@ class NavbarDesktop extends Component {
                 header
                 as={Link}
                 to="/"
-                name="landing"
+                name={isAuthenticated ? 'explore' : 'landing'}
                 active
                 onClick={this.handleItemClick}
                 color={theme.primarySemantic}

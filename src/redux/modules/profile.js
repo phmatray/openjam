@@ -44,7 +44,12 @@ export default reducer;
 // Action Creators
 //
 export const loadProfiles = () => ({ type: LOAD });
-export const updateProfiles = payload => ({ type: UPDATE_PROFILES, payload });
+
+export const updateProfiles = payload => {
+  const profiles = payload && payload.docs ? payload.docs : payload;
+  return { type: UPDATE_PROFILES, payload: profiles };
+};
+
 export const updateProfile = payload => ({ type: UPDATE_PROFILE, payload });
 export const clearCurrentProfile = () => ({ type: CLEAR_CURRENT_PROFILE });
 
@@ -88,9 +93,9 @@ export const createProfile = (profileData, history) => async dispatch => {
 export const getProfiles = () => async dispatch => {
   try {
     dispatch(loadProfiles());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile`);
+    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/user`);
 
-    dispatch(updateProfiles(res.data));
+    dispatch(updateProfiles(res.data.docs));
   } catch (error) {
     dispatch(updateProfiles(null));
   }

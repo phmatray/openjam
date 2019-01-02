@@ -12,7 +12,7 @@ const HeaderStyled = styled(Header).attrs({
 const PageHeader = () => (
   <HeaderStyled icon>
     <Icon name="users" circular />
-    <Header.Content>Share on OpenJam</Header.Content>
+    <Header.Content>{`Share on ${process.env.REACT_APP_NAME}`}</Header.Content>
   </HeaderStyled>
 );
 

@@ -3,18 +3,9 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  Segment,
-  Header,
-  Button,
-  Icon,
-  Container,
-  Tab,
-  Card,
-  Image,
-  Divider,
-} from 'semantic-ui-react';
-import { getCurrentProfile, deleteAccount } from '../redux/modules/profile';
+import { Header, Button, Icon, Container, Tab, Card, Image, Divider } from 'semantic-ui-react';
+import { deleteAccount } from '../redux/modules/profile';
+import { getMe } from '../redux/modules/page-dashboard';
 
 import Spinner from '../components/Spinner';
 import ProfileActions from './dashboard/ProfileActions';
@@ -23,13 +14,16 @@ import Div from '../components/Div';
 const panes = [
   {
     menuItem: 'Compte',
-    render: props => (
-      <Tab.Pane attached={false}>
+    render: ({
+      loading,
+      user: { email, firstName, lastName, profileImageUrl, createdAt, roleName },
+    }) => (
+      <Tab.Pane attached={false} loading={loading}>
         <Header as="h5" dividing sub>
           Adresse e-mail
         </Header>
         <Div mt="0.5em">
-          <strong>{props.user.email}</strong>
+          <strong>{email}</strong>
         </Div>
         <Header as="h5" dividing sub>
           Se connecter avec d'autres réseaux sociaux - (Soon)
@@ -62,18 +56,18 @@ const panes = [
         <Div mt="1em" mb="3em">
           <Card>
             <Card.Content>
-              <Image floated="right" size="mini" src={props.user.profileImageUrl} />
-              <Card.Header>{`${props.user.firstName} ${props.user.lastName}`}</Card.Header>
+              <Image floated="right" size="mini" src={profileImageUrl} />
+              <Card.Header>{`${firstName} ${lastName}`}</Card.Header>
               <Card.Meta>
                 <span className="date">
                   {`Joined `}
-                  <Moment fromNow>{props.user.createdAt}</Moment>
+                  <Moment fromNow>{createdAt}</Moment>
                 </span>
               </Card.Meta>
             </Card.Content>
             <Card.Content extra>
               <Icon name="user" />
-              {`Role: ${props.user.roleName}`}
+              {`Role: ${roleName}`}
             </Card.Content>
           </Card>
         </Div>
@@ -84,19 +78,76 @@ const panes = [
       </Tab.Pane>
     ),
   },
-  // {
-  //   menuItem: 'Contenu',
-  //   render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
-  // },
-  // {
-  //   menuItem: 'Confidentialité',
-  //   render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>,
-  // },
+  {
+    menuItem: 'Profil',
+    render: ({ loading, user: { profiles, artists } }) => (
+      <Tab.Pane attached={false} loading={loading}>
+        <Header as="h5" dividing sub>
+          Profil public
+        </Header>
+        <Div mt="0.5em">
+          {profiles && profiles.length === 0 && (
+            <div>
+              {"Vous n'avez pas de profil"}
+              <br />
+              <Button compact disabled>
+                Create a profile
+              </Button>
+            </div>
+          )}
+        </Div>
+        <Header as="h5" dividing sub>
+          Profil artiste
+        </Header>
+        <Div mt="0.5em">
+          {artists && artists.length === 0 && (
+            <div>
+              {"Etes-vous un artiste ou faites-vous partie d'un collectif d'artistes ?"}
+              <br />
+              <Button compact disabled>
+                Create a new artist profile
+              </Button>
+              <Button compact disabled>
+                Join an existing artist profile
+              </Button>
+            </div>
+          )}
+        </Div>
+      </Tab.Pane>
+    ),
+  },
+  {
+    menuItem: 'Marketplace',
+    render: ({ loading }) => (
+      <Tab.Pane attached={false} loading={loading}>
+        <Header as="h5" dividing sub>
+          Services
+        </Header>
+        <Div mt="0.5em">
+          {'Vous ne proposez actuellement pas de service'}
+          <br />
+          <Button compact disabled>
+            Add a service
+          </Button>
+        </Div>
+        <Header as="h5" dividing sub>
+          Articles
+        </Header>
+        <Div mt="0.5em">
+          {"Vous ne vendez actuellement pas d'article"}
+          <br />
+          <Button compact disabled>
+            Add a article
+          </Button>
+        </Div>
+      </Tab.Pane>
+    ),
+  },
 ];
 
 class Dashboard extends Component {
   componentDidMount() {
-    this.props.getCurrentProfile();
+    this.props.getMe();
   }
 
   onDeleteClick = () => {
@@ -104,9 +155,8 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
-    const { email } = this.props.user;
-    const { profile, loading } = this.props.profile;
+    const { user, loading } = this.props;
+    const { profile } = this.props.profile;
 
     let dashboardContent;
 
@@ -150,10 +200,15 @@ class Dashboard extends Component {
           <Header as="h1">
             Dashboard
             <Header.Subheader>
-              Configure your profile and what you listen to on OpenJam.
+              {`Configure your profile and what you listen to on ${process.env.REACT_APP_NAME}.`}
             </Header.Subheader>
           </Header>
-          <Tab menu={{ secondary: true, pointing: true }} panes={panes} user={user} />
+          <Tab
+            menu={{ secondary: true, pointing: true }}
+            panes={panes}
+            user={user}
+            loading={loading}
+          />
         </Div>
       </Container>
     );
@@ -161,22 +216,32 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
+  getMe: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
+
   user: PropTypes.shape({
     email: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    profileImageUrl: PropTypes.string,
+    createdAt: PropTypes.string,
+    roleName: PropTypes.string,
   }).isRequired,
+};
+
+Dashboard.defaultProps = {
+  loading: false,
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  auth: state.auth,
-  user: state.auth.user,
+  user: state.pageDashboard.user,
+  loading: state.pageDashboard.loading,
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, deleteAccount },
+  { deleteAccount, getMe },
 )(Dashboard);
