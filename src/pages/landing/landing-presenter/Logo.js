@@ -7,7 +7,7 @@ import logoWhite from '../../../images/logos/logo_white.svg';
 
 const Logo = ({ t }) => (
   <Flex justifyCenter alignCenter>
-    <img alt="OpenJam logo" src={logoWhite} style={{ height: '60px' }} />
+    <img alt={`${process.env.REACT_APP_NAME} logo`} src={logoWhite} style={{ height: '60px' }} />
     <Span
       ml=".25em"
       style={{

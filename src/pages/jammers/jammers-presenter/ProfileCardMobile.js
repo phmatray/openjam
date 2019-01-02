@@ -7,20 +7,19 @@ import isEmpty from '../../../utils/validation/is-empty';
 const ProfileCardMobile = ({ profile }) => (
   <React.Fragment>
     <Card.Content>
-      <Image floated="left" size="mini" src={profile.user.avatar} />
+      <Image floated="left" size="mini" src={profile.profileImageUrl} />
       <Card.Header>
-        <Link to={`/jammer/${profile.handle}`}>
-          {`${profile.user.firstname} ${profile.user.lastname}`}
-        </Link>
+        <Link to={`/jammer/${profile.handle}`}>{`${profile.firstName} ${profile.lastName}`}</Link>
       </Card.Header>
       <Card.Meta>{isEmpty(profile.location) ? null : <span>{profile.location}</span>}</Card.Meta>
     </Card.Content>
     <Card.Content extra>
-      {profile.skills.slice(0, 4).map((skill, index) => (
-        <Label basic key={index}>
-          {skill}
-        </Label>
-      ))}
+      {profile.skills &&
+        profile.skills.slice(0, 4).map((skill, index) => (
+          <Label basic key={index}>
+            {skill}
+          </Label>
+        ))}
     </Card.Content>
   </React.Fragment>
 );
@@ -29,8 +28,8 @@ ProfileCardMobile.propTypes = {
   profile: PropTypes.shape({
     user: PropTypes.shape({
       avatar: PropTypes.string.isRequired,
-      firstname: PropTypes.string.isRequired,
-      lastname: PropTypes.string.isRequired,
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
     }).isRequired,
     handle: PropTypes.string.isRequired,
     location: PropTypes.string,

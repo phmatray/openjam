@@ -31,10 +31,10 @@ class AddComment extends Component {
 
     const newComment = {
       text: this.state.text,
-      firstname: user.firstname,
-      lastname: user.lastname,
+      firstName: user.firstName,
+      lastName: user.lastName,
       handle: user.handle,
-      avatar: user.avatar,
+      profileImageUrl: user.profileImageUrl,
     };
 
     this.props.addComment(postId, newComment);
@@ -49,12 +49,12 @@ class AddComment extends Component {
       <ThemeConsumer>
         {theme => (
           <Flex>
-            <AvatarSmall src={user.avatar} />
+            <AvatarSmall src={user.profileImageUrl} />
             <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
               <Div mb="-1em">
                 <Input
                   as="text-area-field"
-                  placeholder="Express yourself"
+                  placeholder={`Express yourself ${user.firstName}...`}
                   name="text"
                   value={this.state.text}
                   onChange={this.handleChange}
@@ -80,10 +80,10 @@ class AddComment extends Component {
 AddComment.propTypes = {
   postId: PropTypes.string.isRequired,
   user: PropTypes.shape({
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     handle: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
+    profileImageUrl: PropTypes.string.isRequired,
   }).isRequired,
 };
 

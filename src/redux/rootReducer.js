@@ -4,6 +4,7 @@ import layout from './modules/layout';
 import auth from './modules/auth';
 import errors from './modules/error';
 import pageArtist from './modules/page-artist';
+import pageDashboard from './modules/page-dashboard';
 import pageExplore from './modules/page-explore';
 import pageTrack from './modules/page-track';
 import pageAlbum from './modules/page-album';
@@ -21,6 +22,7 @@ const reducers = {
   auth,
   errors,
   pageArtist,
+  pageDashboard,
   pageExplore,
   pageTrack,
   pageAlbum,
