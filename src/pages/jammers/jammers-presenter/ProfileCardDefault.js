@@ -7,22 +7,21 @@ import isEmpty from '../../../utils/validation/is-empty';
 const ProfileCardDefault = ({ profile }) => (
   <React.Fragment>
     <Link to={`/jammer/${profile.handle}`}>
-      <Image src={profile.user.avatar} size="medium" />
+      <Image src={profile.profileImageUrl} size="medium" />
     </Link>
     <Card.Content>
       <Card.Header>
-        <Link to={`/jammer/${profile.handle}`}>
-          {`${profile.user.firstname} ${profile.user.lastname}`}
-        </Link>
+        <Link to={`/jammer/${profile.handle}`}>{`${profile.firstName} ${profile.lastName}`}</Link>
       </Card.Header>
       <Card.Meta>{isEmpty(profile.location) ? null : <span>{profile.location}</span>}</Card.Meta>
     </Card.Content>
     <Card.Content extra>
-      {profile.skills.slice(0, 4).map((skill, index) => (
-        <Label basic key={index}>
-          {skill}
-        </Label>
-      ))}
+      {profile.skills &&
+        profile.skills.slice(0, 4).map((skill, index) => (
+          <Label basic key={index}>
+            {skill}
+          </Label>
+        ))}
     </Card.Content>
   </React.Fragment>
 );
@@ -30,9 +29,9 @@ const ProfileCardDefault = ({ profile }) => (
 ProfileCardDefault.propTypes = {
   profile: PropTypes.shape({
     user: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      firstname: PropTypes.string.isRequired,
-      lastname: PropTypes.string.isRequired,
+      profileImageUrl: PropTypes.string.isRequired,
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
     }).isRequired,
     handle: PropTypes.string.isRequired,
     location: PropTypes.string,

@@ -13,7 +13,7 @@ import { deletePost, addLike, removeLike } from '../../redux/modules/page-share'
 class PostBasic extends Component {
   findUserLike = likes => {
     const { user } = this.props;
-    return likes.filter(like => like.user === user._id).length > 0;
+    return likes && likes.filter(like => like.user === user._id).length > 0;
   };
 
   renderComments = comments =>
@@ -35,7 +35,7 @@ class PostBasic extends Component {
         <Content>
           <p>{text}</p>
 
-          {(comments.length > 0 || isAuthenticated) && (
+          {comments && (comments.length > 0 || isAuthenticated) && (
             <SegmentGroup>
               {comments.length > 0 && <Segment>{this.renderComments(comments)}</Segment>}
               {isAuthenticated && (
@@ -66,7 +66,6 @@ PostBasic.propTypes = {
   user: PropTypes.object.isRequired,
   post: PropTypes.shape({
     text: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
     likes: PropTypes.array,
     shares: PropTypes.array,
     comments: PropTypes.array,

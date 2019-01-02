@@ -7,22 +7,26 @@ import Flex from '../Flex';
 
 const Intro = ({ post }) => {
   const { firstname, lastname, handle, avatar, date } = post;
-  const fullName = `${firstname} ${lastname}`;
+  const {
+    byUser: { firstName, lastName, profileImageUrl },
+    createdAt,
+  } = post;
+  const fullName = `${firstName} ${lastName}`;
 
   return (
     <Flex alignCenter justifyBetween fluid>
       <Link to={`/profiles/${handle}`}>
         <Flex alignCenter>
-          <Avatar src={avatar} alt={fullName} />
+          <Avatar src={profileImageUrl} alt={fullName} />
           <Flex column>
             <strong style={{ fontWeight: 700 }}>{fullName}</strong>
-            <Span color="#666">{`@${handle}`}</Span>
+            {/* <Span color="#666">{`@${handle}`}</Span> */}
           </Flex>
         </Flex>
       </Link>
 
       <div>
-        <FromNow>{date}</FromNow>
+        <FromNow>{createdAt}</FromNow>
       </div>
     </Flex>
   );
@@ -30,11 +34,13 @@ const Intro = ({ post }) => {
 
 Intro.propTypes = {
   post: PropTypes.shape({
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
+    byUser: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      profileImageUrl: PropTypes.string.isRequired,
+    }).isRequired,
+    createdAt: PropTypes.string.isRequired,
     handle: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
   }).isRequired,
 };
 

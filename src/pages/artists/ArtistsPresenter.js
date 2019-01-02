@@ -7,19 +7,23 @@ import HeroSimple from '../../components/HeroSimple';
 import background from '../../images/backgrounds/people-2562222_1920.jpg';
 import Section from '../../components/Section';
 
-const ArtistsPresenter = ({ artists, t }) => (
-  <React.Fragment>
-    <HeroSimple
-      background={background}
-      header={t('pages.artists.header')}
-      subheader={t('pages.artists.subheader')}
-    />
+const ArtistsPresenter = ({ artists, t }) => {
+  const filteredArtists = artists.filter(a => a.images && a.images.length > 0);
 
-    <Container>
-      <Section items={artists} scrollable={false} showDivider={false} />
-    </Container>
-  </React.Fragment>
-);
+  return (
+    <React.Fragment>
+      <HeroSimple
+        background={background}
+        header={t('pages.artists.header')}
+        subheader={t('pages.artists.subheader')}
+      />
+
+      <Container>
+        <Section items={filteredArtists} scrollable={false} showDivider={false} />
+      </Container>
+    </React.Fragment>
+  );
+};
 
 ArtistsPresenter.propTypes = {
   artists: PropTypes.arrayOf(

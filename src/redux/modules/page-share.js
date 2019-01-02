@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { updateErrors, clearErrors } from './error';
+import { restGetPosts, restGetPost, restDeletePost, restAddPost } from '../logion';
 
 // Actions
 //
@@ -25,7 +26,7 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, loading: true };
 
     case UPDATE_POSTS:
-      return { ...state, posts: action.payload.docs, loading: false };
+      return { ...state, posts: action.payload, loading: false };
 
     case UPDATE_POST:
       return { ...state, post: action.payload, loading: false };
@@ -57,7 +58,12 @@ export default reducer;
 // Action Creators
 //
 export const loadPosts = () => ({ type: LOAD });
-export const updatePosts = payload => ({ type: UPDATE_POSTS, payload });
+
+export const updatePosts = payload => {
+  const posts = payload && payload.docs ? payload.docs : payload;
+  return { type: UPDATE_POSTS, payload: posts };
+};
+
 export const updatePost = payload => ({ type: UPDATE_POST, payload });
 export const createPost = payload => ({ type: CREATE_POST, payload });
 export const removePost = payload => ({ type: REMOVE_POST, payload });
@@ -66,12 +72,20 @@ export const updatePostLike = payload => ({ type: UPDATE_POST_LIKE, payload });
 // Side effects, only as applicable (thunks)
 //
 // Add Post
-export const addPost = postData => async dispatch => {
+export const addPost = postData => async (dispatch, getState) => {
   try {
+    console.warn(postData);
     dispatch(clearErrors());
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/post`, postData);
+    const res = await restAddPost(postData);
 
-    dispatch(createPost(res.data));
+    const post = res.data;
+    const { user } = getState().auth;
+    delete post.byUser;
+    post.byUser = user;
+
+    console.warn(post);
+
+    dispatch(createPost(post));
   } catch (error) {
     dispatch(updateErrors(error.response.data));
   }
@@ -81,15 +95,10 @@ export const addPost = postData => async dispatch => {
 export const getPosts = () => async dispatch => {
   try {
     dispatch(loadPosts());
-    const res = await axios.get(
-      `${
-        process.env.REACT_APP_ENDPOINT
-      }/post?%24embed=byProfile&%24embed=byArtist&%24embed=likes&%24embed=comments`,
-    );
-
+    const res = await restGetPosts();
     dispatch(updatePosts(res.data));
   } catch (error) {
-    dispatch(updatePosts(null));
+    dispatch(updatePosts(initialState.posts));
   }
 };
 
@@ -97,8 +106,7 @@ export const getPosts = () => async dispatch => {
 export const getPost = id => async dispatch => {
   try {
     dispatch(loadPosts());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/post/${id}`);
-
+    const res = await restGetPost(id);
     dispatch(updatePost(res.data));
   } catch (error) {
     dispatch(updatePost(null));
@@ -108,8 +116,7 @@ export const getPost = id => async dispatch => {
 // Delete Post
 export const deletePost = id => async dispatch => {
   try {
-    await axios.delete(`${process.env.REACT_APP_ENDPOINT}/post/${id}`);
-
+    await restDeletePost(id);
     dispatch(removePost(id));
   } catch (error) {
     dispatch(updateErrors(error.response.data));

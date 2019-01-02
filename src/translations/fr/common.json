@@ -63,7 +63,7 @@
       "labels": "Labels",
       "original-titles": "Titres originaux (stems)",
       "original-artists": "Artistes originaux (stems)",
-      "remix-titles": "Remixes originaux",
+      "remix-titles": "Titres remixés",
       "remix-artists": "Artistes remixeurs",
       "show-all": "Tout afficher"
     },
@@ -99,7 +99,7 @@
       "subheader": "Un stem est un groupe de sources audio mélangées ensemble, généralement par une seule personne."
     },
     "remix-tracks": {
-      "header": "Remixes originaux",
+      "header": "Titres remixés",
       "subheader": "En musique, un remix est une reconceptualisation musicale d'une œuvre déjà composée."
     },
     "playlists": {

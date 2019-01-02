@@ -12,7 +12,7 @@ const JammersPresenter = ({ jammers, isAuthenticated, t }) => (
     {!isAuthenticated && <Message />}
 
     {jammers !== null && (
-      <Card.Group itemsPerRow={4} stackable>
+      <Card.Group itemsPerRow={6} stackable>
         {jammers.map(jammer => (
           <Jammer key={jammer._id} jammer={jammer} />
         ))}
