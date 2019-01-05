@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { restGetTracks, restGetTrack } from '../logion';
 
 // Actions
 //
@@ -50,13 +50,13 @@ export default reducer;
 // Fetch all tracks
 export const fetchTracks = () => ({
   types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track?%24embed=artists`),
+  callAPI: () => restGetTracks(),
   shouldCallAPI: () => true,
 });
 
 // Fetch a track by _id
 export const fetchTrack = id => ({
   types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track/${id}`),
+  callAPI: () => restGetTrack(id),
   shouldCallAPI: () => true,
 });

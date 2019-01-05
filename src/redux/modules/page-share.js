@@ -1,7 +1,14 @@
-import axios from 'axios';
-
 import { updateErrors, clearErrors } from './error';
-import { restGetPosts, restGetPost, restDeletePost, restAddPost } from '../logion';
+import {
+  restGetPosts,
+  restGetPost,
+  restDeletePost,
+  restAddPost,
+  restAddPostLike,
+  restDeletePostLike,
+  restAddPostComment,
+  restDeletePostComment,
+} from '../logion';
 
 // Actions
 //
@@ -126,8 +133,7 @@ export const deletePost = id => async dispatch => {
 // Add Like
 export const addLike = id => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/post/like/${id}`);
-
+    const res = await restAddPostLike(id);
     dispatch(updatePostLike(res.data));
   } catch (error) {
     dispatch(updateErrors(error.response.data));
@@ -137,8 +143,7 @@ export const addLike = id => async dispatch => {
 // Remove Like
 export const removeLike = id => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/post/unlike/${id}`);
-
+    const res = await restDeletePostLike(id);
     dispatch(updatePostLike(res.data));
   } catch (error) {
     dispatch(updateErrors(error.response.data));
@@ -149,11 +154,7 @@ export const removeLike = id => async dispatch => {
 export const addComment = (postId, commentData) => async dispatch => {
   try {
     dispatch(clearErrors());
-    const res = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT}/post/comment/${postId}`,
-      commentData,
-    );
-
+    const res = await restAddPostComment(postId, commentData);
     dispatch(updatePost(res.data));
   } catch (error) {
     dispatch(updateErrors(error.response.data));
@@ -163,10 +164,7 @@ export const addComment = (postId, commentData) => async dispatch => {
 // Delete Comment
 export const deleteComment = (postId, commentId) => async dispatch => {
   try {
-    const res = await axios.delete(
-      `${process.env.REACT_APP_ENDPOINT}/post/comment/${postId}/${commentId}`,
-    );
-
+    const res = await restDeletePostComment(postId, commentId);
     dispatch(updatePost(res.data));
   } catch (error) {
     dispatch(updateErrors(error.response.data));
