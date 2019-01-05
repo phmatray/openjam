@@ -2,6 +2,25 @@
 
 import axios from 'axios';
 
+type PostInput = {
+  type: 'post-basic',
+  text: string,
+  byUser: string,
+};
+
+type LoginInput = {
+  email: string,
+  password: string,
+};
+
+type RegisterInput = {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  pin: number,
+};
+
 const api = process.env.REACT_APP_ENDPOINT;
 if (!api) {
   throw new Error('no endpoint');
@@ -60,7 +79,7 @@ export function restGetPosts() {
   );
 }
 
-export function restAddPost(postData: { type: 'post-basic', text: string, byUser: string }) {
+export function restAddPost(postData: PostInput) {
   return axios.post(`${apiPost}`, postData);
 }
 
@@ -125,7 +144,7 @@ export function restGetUser(userId: string) {
   return axios.get(`${apiUser}/${userId}?%24embed=profiles&%24embed=artists`);
 }
 
-export function restRegister(userData) {
+export function restRegister(userData: RegisterInput) {
   const data = { user: userData, registerType: 'Register' };
   return axios.post(`${api}/register`, data);
 }
@@ -134,7 +153,7 @@ export function restRegisterActivate(token: string) {
   return axios.post(`${api}/register/activate`, { token });
 }
 
-export function restLogin(userData) {
+export function restLogin(userData: LoginInput) {
   return axios.post(`${api}/login`, userData);
 }
 
