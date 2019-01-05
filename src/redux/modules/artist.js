@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { restGetArtists, restGetArtist } from '../logion';
 
 // Actions
 //
@@ -50,13 +50,13 @@ export default reducer;
 // Fetch all artists
 export const fetchArtists = () => ({
   types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artist`),
+  callAPI: () => restGetArtists(),
   shouldCallAPI: () => true,
 });
 
 // Fetch a artist by _id
 export const fetchArtist = id => ({
   types: [FETCH_ARTIST_PENDING, FETCH_ARTIST_SUCCESS, FETCH_ARTIST_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artist/${id}`),
+  callAPI: () => restGetArtist(id),
   shouldCallAPI: () => true,
 });

@@ -1,11 +1,11 @@
 import _ from 'lodash';
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 import { updateErrors } from './error';
 import isEmpty from '../../utils/validation/is-empty';
 import setAuthToken from '../../utils/setAuthToken';
 import { USER_ROLES } from '../../config';
+import { restLogout, restLogin, restRegisterActivate, restRegister } from '../logion';
 
 // Actions
 //
@@ -96,10 +96,7 @@ export const registerUser = (userData, history) => async dispatch => {
     const user = { ...userData, role: USER_ROLES.USER };
     delete user.password2;
 
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/register`, {
-      user,
-      registerType: 'Register',
-    });
+    const res = await restRegister(user);
 
     if (!res.data.errmsg) {
       dispatch(updateErrors({}));
@@ -117,7 +114,7 @@ export const registerUser = (userData, history) => async dispatch => {
 // Register - Activate Account
 export const activateAccount = (token, history) => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/register/activate`, { token });
+    const res = await restRegisterActivate(token);
 
     if (!res.data.errmsg) {
       dispatch(updateErrors({}));
@@ -135,7 +132,7 @@ export const activateAccount = (token, history) => async dispatch => {
 // Login - Get User Token
 export const loginUser = userData => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/login`, userData);
+    const res = await restLogin(userData);
     if (res.status === 200) {
       const { accessToken, refreshToken, user } = res.data;
 
@@ -189,7 +186,7 @@ export const loginUser = userData => async dispatch => {
 // Log user out
 export const logoutUser = () => async dispatch => {
   try {
-    const res = await axios.delete(`${process.env.REACT_APP_ENDPOINT}/logout`, {});
+    const res = await restLogout();
     if (res.status === 200) {
       // Set current user to {} which will set isAuthenticated to false
       localStorage.removeItem('accessToken');

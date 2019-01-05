@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { restGetPlaylists, restGetPlaylist } from '../logion';
 
 // Actions
 //
@@ -50,18 +50,13 @@ export default reducer;
 // Fetch all playlists
 export const fetchPlaylists = () => ({
   types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/playlist?%24embed=tracks`),
+  callAPI: () => restGetPlaylists(),
   shouldCallAPI: () => true,
 });
 
 // Fetch a playlist by _id
 export const fetchPlaylist = id => ({
   types: [FETCH_PLAYLIST_PENDING, FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_ERROR],
-  callAPI: () =>
-    axios.get(
-      `${
-        process.env.REACT_APP_ENDPOINT
-      }/playlist/${id}?%24embed=tracks&%24embed=tracks.artists&%24embed=tracks.albums`,
-    ),
+  callAPI: () => restGetPlaylist(id),
   shouldCallAPI: () => true,
 });

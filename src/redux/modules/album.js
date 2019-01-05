@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { restGetAlbums, restGetAlbum } from '../logion';
 
 // Actions
 //
@@ -50,13 +50,13 @@ export default reducer;
 // Fetch all albums
 export const fetchAlbums = () => ({
   types: [FETCH_ALBUMS_PENDING, FETCH_ALBUMS_SUCCESS, FETCH_ALBUMS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/album`),
+  callAPI: () => restGetAlbums(),
   shouldCallAPI: () => true,
 });
 
 // Fetch a album by _id
 export const fetchAlbum = id => ({
   types: [FETCH_ALBUM_PENDING, FETCH_ALBUM_SUCCESS, FETCH_ALBUM_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/album/${id}?%24embed=tracks`),
+  callAPI: () => restGetAlbum(id),
   shouldCallAPI: () => true,
 });

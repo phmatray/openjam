@@ -1,9 +1,14 @@
 /* eslint-disable no-alert */
 
-import axios from 'axios';
-
 import { updateErrors } from './error';
 import { logoutUser } from './auth';
+import {
+  restGetProfileMe,
+  restGetProfileByHandle,
+  restAddProfile,
+  restGetUsers,
+  restDeleteProfile,
+} from '../logion';
 
 // Actions
 //
@@ -59,8 +64,7 @@ export const clearCurrentProfile = () => ({ type: CLEAR_CURRENT_PROFILE });
 export const getCurrentProfile = () => async dispatch => {
   try {
     dispatch(loadProfiles());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile/me`);
-
+    const res = await restGetProfileMe();
     dispatch(updateProfile(res.data));
   } catch (error) {
     dispatch(updateProfile({}));
@@ -71,8 +75,7 @@ export const getCurrentProfile = () => async dispatch => {
 export const getProfileByHandle = handle => async dispatch => {
   try {
     dispatch(loadProfiles());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile/handle/${handle}`);
-
+    const res = await restGetProfileByHandle(handle);
     dispatch(updateProfile(res.data));
   } catch (error) {
     dispatch(updateProfile(null));
@@ -82,7 +85,7 @@ export const getProfileByHandle = handle => async dispatch => {
 // Create profile
 export const createProfile = (profileData, history) => async dispatch => {
   try {
-    await axios.post(`${process.env.REACT_APP_ENDPOINT}/profile`, profileData);
+    await restAddProfile(profileData);
     history.push('/dashboard');
   } catch (error) {
     dispatch(updateErrors(error.response.data));
@@ -93,8 +96,7 @@ export const createProfile = (profileData, history) => async dispatch => {
 export const getProfiles = () => async dispatch => {
   try {
     dispatch(loadProfiles());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/user`);
-
+    const res = await restGetUsers();
     dispatch(updateProfiles(res.data.docs));
   } catch (error) {
     dispatch(updateProfiles(null));
@@ -105,8 +107,7 @@ export const getProfiles = () => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      await axios.delete(`${process.env.REACT_APP_ENDPOINT}/profile`);
-
+      await restDeleteProfile();
       dispatch(logoutUser());
     } catch (error) {
       dispatch(updateErrors(error.response.data));

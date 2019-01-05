@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-import axios from 'axios';
 import { getPreviousIndex, getNextIndex } from '../../utils/playerHelpers';
+import { restGetTracks } from '../logion';
 
 // Actions
 //
@@ -195,6 +195,6 @@ export const playTrack = (track = null) => (dispatch, getState) => {
 
 export const fetchTracks = () => ({
   types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track?%24embed=artists`),
+  callAPI: () => restGetTracks(),
   shouldCallAPI: () => true,
 });
