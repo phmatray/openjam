@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Segment, Button, Feed } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
 
 import Spinner from '../components/Spinner';
-import { getPost } from '../redux/modules/page-share';
 import PostItem from '../components/PostItem';
+import { getPost, getLoading, getPostState } from '../redux/modules/page-share';
 
 import CommentForm from './post/CommentForm';
 import CommentFeed from './post/CommentFeed';
@@ -17,7 +17,7 @@ class Post extends Component {
   }
 
   render() {
-    const { post, loading } = this.props.post;
+    const { post, loading } = this.props;
 
     let postContent;
 
@@ -49,7 +49,8 @@ Post.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  post: state.post,
+  post: getPostState(state),
+  loading: getLoading(state),
 });
 
 export default connect(

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
 import { Feed, Icon } from 'semantic-ui-react';
-import { playSelected, pause } from '../../redux/modules/player';
+
+import { playSelected, actions, getPlaying, getCurrent } from '../../redux/modules/player';
 
 class TrackItem extends Component {
   handleShareClick = trackId => {
@@ -16,8 +17,7 @@ class TrackItem extends Component {
   };
 
   render() {
-    const { track, isAuthenticated } = this.props;
-    const { playing, current } = this.props.player;
+    const { track, isAuthenticated, playing, current } = this.props;
 
     const buttonPlayPause = playing ? (
       <Feed.Like onClick={() => this.props.pause()}>
@@ -79,13 +79,16 @@ class TrackItem extends Component {
 TrackItem.propTypes = {
   playSelected: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
+  playing: PropTypes.bool.isRequired,
+  current: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  player: state.player,
+  playing: getPlaying(state),
+  current: getCurrent(state),
 });
 
 export default connect(
   mapStateToProps,
-  { playSelected, pause },
+  { playSelected, pause: actions.pause },
 )(TrackItem);

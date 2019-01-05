@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import { restGetAlbums, restGetAlbum } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_ALBUMS_PENDING: 'album/FETCH_ALBUMS_PENDING',
@@ -46,6 +47,12 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getAlbums = state => state.album.albums;
+export const getAlbum = (state, id) => _.find(state.album.albums, a => a._id === id);
+export const getLoading = state => state.album.loading;
 
 // Side effects, only as applicable (thunks)
 //

@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import { restGetArtists, restGetArtist } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_ARTISTS_PENDING: 'artist/FETCH_ARTISTS_PENDING',
@@ -46,6 +47,12 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getArtists = state => state.artist.artists;
+export const getArtist = (state, id) => _.find(state.artist.artists, a => a._id === id);
+export const getLoading = state => state.artist.loading;
 
 // Side effects, only as applicable (thunks)
 //

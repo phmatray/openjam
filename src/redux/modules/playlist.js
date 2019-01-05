@@ -1,6 +1,6 @@
 import { restGetPlaylists, restGetPlaylist } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_PLAYLISTS_PENDING: 'playlist/FETCH_PLAYLISTS_PENDING',
@@ -46,6 +46,12 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getPlaylists = state => state.playlist.playlists;
+export const getPlaylist = state => state.playlist.playlist;
+export const getLoading = state => state.playlist.loading;
 
 // Side effects, only as applicable (thunks)
 //

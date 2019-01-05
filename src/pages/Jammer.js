@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
+
+import Spinner from '../components/Spinner';
+import Message from '../components/Message';
+import { getProfileByHandle, getProfile, getLoading } from '../redux/modules/profile';
+import { getIsAuthenticated } from '../redux/modules/auth';
+
 import ProfileHeader from './jammer/ProfileHeader';
 import ProfileAbout from './jammer/ProfileAbout';
-import Spinner from '../components/Spinner';
-import { getProfileByHandle } from '../redux/modules/profile';
-import Message from '../components/Message';
 
 class Profile extends Component {
   componentDidMount() {
@@ -22,8 +25,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile, loading } = this.props.profile;
-    const { isAuthenticated } = this.props.auth;
+    const { profile, loading, isAuthenticated } = this.props;
 
     let profileContent;
 
@@ -54,12 +56,14 @@ class Profile extends Component {
 Profile.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth,
+  profile: getProfile(state),
+  loading: getLoading(state),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(

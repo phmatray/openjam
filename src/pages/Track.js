@@ -10,7 +10,7 @@ import AlbumCover from '../components/AlbumCover';
 import LinkEntity from '../components/LinkEntity';
 import LinkArtistNames from '../components/LinkArtistNames';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
-import { fetchTrack } from '../redux/modules/page-track';
+import { fetchTrack, getTrack } from '../redux/modules/page-track';
 
 import Tabs from './track/Tabs';
 import MoreTracks from './track/MoreTracks';
@@ -22,14 +22,16 @@ const Track = ({ entity }) => (
         <Div mr="16px">
           <PlayPause entity={entity} />
         </Div>
-        <Flex fluid column justifyCenter>
-          <Header as="h1" inverted>
-            <LinkEntity entity={entity} as="inverted" alternate />
-          </Header>
-          <Header as="h2" inverted style={{ marginTop: 0 }}>
-            <LinkArtistNames artists={entity.artists.map(a => a.artist)} as="inverted" />
-          </Header>
-        </Flex>
+        <Div mr="16px">
+          <Flex fluid column justifyCenter>
+            <Header as="h1" inverted>
+              <LinkEntity entity={entity} as="inverted" alternate />
+            </Header>
+            <Header as="h2" inverted style={{ marginTop: 0 }}>
+              <LinkArtistNames artists={entity.artists.map(a => a.artist)} as="inverted" />
+            </Header>
+          </Flex>
+        </Div>
       </Flex>
     </Hero>
     {/* TODO: Enable ActionsMenu */}
@@ -77,8 +79,7 @@ Track.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  entity: state.pageTrack.track,
-  loading: state.pageTrack.trackLoading,
+  entity: getTrack(state),
 });
 
 export default EntityContainerHOC(Track, mapStateToProps, { fetchEntity: fetchTrack });

@@ -4,12 +4,13 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Header, Button, Icon, Container, Tab, Card, Image, Divider } from 'semantic-ui-react';
-import { deleteAccount } from '../redux/modules/profile';
-import { getMe } from '../redux/modules/page-dashboard';
 
 import Spinner from '../components/Spinner';
-import ProfileActions from './dashboard/ProfileActions';
 import Div from '../components/Div';
+import { deleteAccount, getProfile } from '../redux/modules/profile';
+import { getMe, getDashboardUser, getLoading } from '../redux/modules/page-dashboard';
+
+import ProfileActions from './dashboard/ProfileActions';
 
 const panes = [
   {
@@ -155,8 +156,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { user, loading } = this.props;
-    const { profile } = this.props.profile;
+    const { profile, user, loading } = this.props;
 
     let dashboardContent;
 
@@ -218,7 +218,9 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   getMe: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.shape({
+    handle: PropTypes.string,
+  }).isRequired,
   loading: PropTypes.bool,
 
   user: PropTypes.shape({
@@ -236,9 +238,9 @@ Dashboard.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  user: state.pageDashboard.user,
-  loading: state.pageDashboard.loading,
+  profile: getProfile(state),
+  user: getDashboardUser(state),
+  loading: getLoading(state),
 });
 
 export default connect(

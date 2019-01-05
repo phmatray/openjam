@@ -3,8 +3,11 @@ import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
+
 import TextAreaFieldGroup from '../../components/input/TextAreaFieldGroup';
 import { addComment } from '../../redux/modules/page-share';
+import { getErrors } from '../../redux/modules/error';
+import { getUser } from '../../redux/modules/auth';
 
 class CommentForm extends Component {
   state = {
@@ -23,13 +26,12 @@ class CommentForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { user } = this.props.auth;
-    const { postId } = this.props;
+    const { user, postId } = this.props;
 
     const newComment = {
       text: this.state.text,
-      firstname: user.firstname,
-      lastname: user.lastname,
+      firstName: user.firstName,
+      lastName: user.lastName,
       avatar: user.avatar,
     };
 
@@ -70,14 +72,14 @@ class CommentForm extends Component {
 
 CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
+  user: getUser(state),
+  errors: getErrors(state),
 });
 
 export default connect(

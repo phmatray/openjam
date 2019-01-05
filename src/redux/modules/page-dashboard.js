@@ -1,6 +1,6 @@
 import { restGetUser } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   LOAD: 'dashboard/LOAD',
@@ -28,6 +28,12 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+// TODO: change the name 'getDashboardUser'
+export const getDashboardUser = state => state.pageDashboard.user;
+export const getLoading = state => state.pageDashboard.loading;
 
 // Action Creators
 //

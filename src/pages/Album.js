@@ -12,7 +12,7 @@ import AlbumCover from '../components/AlbumCover';
 import LinkEntity from '../components/LinkEntity';
 import Body from '../components/Body';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
-import { fetchAlbum } from '../redux/modules/page-album';
+import { fetchAlbum, getAlbum, getAlbumLoading } from '../redux/modules/page-album';
 
 import AlbumTracks from './album/AlbumTracks';
 import Description from './album/Description';
@@ -85,8 +85,8 @@ Album.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  entity: state.pageAlbum.album,
-  loading: state.pageAlbum.albumLoading,
+  entity: getAlbum(state),
+  loading: getAlbumLoading(state),
 });
 
 export default EntityContainerHOC(withNamespaces('common')(Album), mapStateToProps, {

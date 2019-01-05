@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlaylists } from '../redux/modules/playlist';
+
 import Spinner from '../components/Spinner';
+import { fetchPlaylists, getPlaylists, getLoading } from '../redux/modules/playlist';
+
 import PlaylistsPresenter from './playlists/PlaylistsPresenter';
 
 class Playlists extends Component {
@@ -34,8 +36,8 @@ Playlists.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  playlists: state.playlist.playlists,
-  loading: state.playlist.loading,
+  playlists: getPlaylists(state),
+  loading: getLoading(state),
 });
 
 export default connect(

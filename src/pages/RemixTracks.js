@@ -5,7 +5,11 @@ import { withNamespaces } from 'react-i18next';
 
 import Spinner from '../components/Spinner';
 import background from '../images/backgrounds/digital-1744118_1920.jpg';
-import { fetchRemixTracks } from '../redux/modules/page-explore';
+import {
+  fetchRemixTracks,
+  getRemixTracks,
+  getRemixTracksLoading,
+} from '../redux/modules/page-explore';
 
 import TracksPresenter from './tracks/TracksPresenter';
 
@@ -50,8 +54,8 @@ RemixTracks.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  remixTracks: state.pageExplore.remixTracks,
-  remixTracksLoading: state.pageExplore.remixTracksLoading,
+  remixTracks: getRemixTracks(state),
+  remixTracksLoading: getRemixTracksLoading(state),
 });
 
 export default connect(

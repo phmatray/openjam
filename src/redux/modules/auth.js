@@ -12,7 +12,7 @@ import {
   restRegister,
 } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   LOAD: 'auth/LOAD',
@@ -77,7 +77,6 @@ export default reducer;
 //
 export const actions = {
   loadUser: () => ({ type: types.LOAD }),
-
   updateUser: payload => ({ type: types.UPDATE_USER, payload }),
 
   updateAccessToken: accessToken => {
@@ -96,6 +95,17 @@ export const actions = {
     return { type: types.UPDATE_REFRESH_TOKEN, refreshToken };
   },
 };
+
+// Selectors
+//
+export const getUser = state => state.auth.user;
+export const getScope = state => state.auth.scope;
+export const getExo = state => state.auth.exp;
+export const getIat = state => state.auth.iat;
+export const getAccessToken = state => state.auth.accessToken;
+export const getRefreshToken = state => state.auth.refreshToken;
+export const getLoading = state => state.auth.loading;
+export const getIsAuthenticated = state => state.auth.isAuthenticated;
 
 // Side effects, only as applicable (thunks)
 //

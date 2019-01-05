@@ -11,7 +11,7 @@ const Tabs = ({ track }) => {
   const descriptionPane = {
     menuItem: 'Description',
     render: () => (
-      <Tab.Pane attached>
+      <Tab.Pane attached={false}>
         <Header as="h2">Description</Header>
         <ReactMarkdown source={description || 'There is no description for this title'} />
       </Tab.Pane>
@@ -21,7 +21,7 @@ const Tabs = ({ track }) => {
   const aboutPane = {
     menuItem: 'About',
     render: () => (
-      <Tab.Pane attached>
+      <Tab.Pane attached={false}>
         <About track={track} />
       </Tab.Pane>
     ),
@@ -33,7 +33,7 @@ const Tabs = ({ track }) => {
     const lyricsPane = {
       menuItem: 'Lyrics',
       render: () => (
-        <Tab.Pane attached>
+        <Tab.Pane attached={false}>
           <Header as="h2">Lyrics</Header>
           <ReactMarkdown source={lyrics} />
         </Tab.Pane>

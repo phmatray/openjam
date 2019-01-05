@@ -1,6 +1,6 @@
 import { restGetTrack, restGetArtistTracks } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_TRACK_PENDING: 'page-track/FETCH_TRACK_PENDING',
@@ -58,6 +58,15 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getTrack = state => state.pageTrack.track;
+export const getTrackLoading = state => state.pageTrack.trackLoading;
+export const getTrackError = state => state.pageTrack.trackError;
+export const getByArtist = state => state.pageTrack.byArtist;
+export const getByArtistLoading = state => state.pageTrack.byArtistLoading;
+export const getByArtistError = state => state.pageTrack.byArtistError;
 
 // Side effects, only as applicable (thunks)
 //

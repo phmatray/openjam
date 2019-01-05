@@ -10,7 +10,7 @@ import {
   restDeletePostComment,
 } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   LOAD: 'post/LOAD',
@@ -63,6 +63,13 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+// TODO: rename 'getPostsState' and 'getPostState'
+export const getPostsState = state => state.pageShare.posts;
+export const getPostState = state => state.pageShare.post;
+export const getLoading = state => state.pageShare.loading;
 
 // Action Creators
 //
