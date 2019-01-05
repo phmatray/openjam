@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 
 import LanguageDropdown from './LanguageDropdown';
 
-import { logoutUser } from '../../../redux/modules/auth';
+import { logoutUser, getIsAuthenticated, getUser } from '../../../redux/modules/auth';
+import { getPlaying } from '../../../redux/modules/player';
 import { actions as profileActions } from '../../../redux/modules/profile';
 import logo from '../../../images/logos/logo_white.svg';
 
@@ -33,9 +34,8 @@ class NavbarDesktop extends Component {
   };
 
   render() {
-    const { auth, playing, height, t } = this.props;
+    const { isAuthenticated, user, playing, height, t } = this.props;
     const { activeItem } = this.state;
-    const { isAuthenticated, user } = auth;
 
     const leftLinks = (
       <React.Fragment>
@@ -145,13 +145,15 @@ NavbarDesktop.propTypes = {
   height: PropTypes.number.isRequired,
   logoutUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
   playing: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  playing: state.player.playing,
+  isAuthenticated: getIsAuthenticated(state),
+  user: getUser(state),
+  playing: getPlaying(state),
 });
 
 export default connect(

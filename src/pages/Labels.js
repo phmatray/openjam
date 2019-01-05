@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchLabels } from '../redux/modules/label';
+
 import Spinner from '../components/Spinner';
+import { fetchLabels, getLabels, getLoading } from '../redux/modules/label';
+
 import LabelsPresenter from './labels/LabelsPresenter';
 
 class Labels extends Component {
@@ -34,8 +36,8 @@ Labels.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  labels: state.label.labels,
-  loading: state.label.loading,
+  labels: getLabels(state),
+  loading: getLoading(state),
 });
 
 export default connect(

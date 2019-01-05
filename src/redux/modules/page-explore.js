@@ -1,6 +1,6 @@
 import { restGetTracks, restGetArtists } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_ORIGINAL_TRACKS_PENDING: 'page-explore/FETCH_ORIGINAL_TRACKS_PENDING',
@@ -73,6 +73,18 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getOriginalTracks = state => state.pageExplore.originalTracks;
+export const getOriginalTracksLoading = state => state.pageExplore.originalTracksLoading;
+export const getOriginalTracksError = state => state.pageExplore.originalTracksError;
+export const getRemixTracks = state => state.pageExplore.remixTracks;
+export const getRemixTracksLoading = state => state.pageExplore.remixTracksLoading;
+export const getRemixTracksError = state => state.pageExplore.remixTracksError;
+export const getArtists = state => state.pageExplore.artists;
+export const getArtistsLoading = state => state.pageExplore.artistsLoading;
+export const getArtistsError = state => state.pageExplore.artistsError;
 
 // Side effects, only as applicable (thunks)
 //

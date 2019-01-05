@@ -3,7 +3,7 @@
 import { getPreviousIndex, getNextIndex } from '../../utils/playerHelpers';
 import { restGetTracks } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_TRACKS_PENDING: 'player/FETCH_TRACKS_PENDING',
@@ -127,6 +127,17 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getTracks = state => state.player.tracks;
+export const getPlaylist = state => state.player.playlist;
+export const getPlaying = state => state.player.playing;
+export const getCurrent = state => state.player.current;
+export const getAudioInfo = state => state.player.audioInfo;
+export const getStatus = state => state.player.status;
+export const getCollection = state => state.player.collection;
+export const getCollectionId = state => state.player.collectionId;
 
 // Action Creators
 //

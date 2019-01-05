@@ -6,7 +6,17 @@ import { Container } from 'semantic-ui-react';
 
 import HeroSimple from '../components/HeroSimple';
 import Section from '../components/Section';
-import { fetchOriginalTracks, fetchRemixTracks, fetchArtists } from '../redux/modules/page-explore';
+import {
+  fetchOriginalTracks,
+  fetchRemixTracks,
+  fetchArtists,
+  getOriginalTracks,
+  getOriginalTracksLoading,
+  getRemixTracks,
+  getRemixTracksLoading,
+  getArtists,
+  getArtistsLoading,
+} from '../redux/modules/page-explore';
 import background from '../images/backgrounds/piano-2601498_1920.jpg';
 
 class Explore extends Component {
@@ -92,12 +102,12 @@ Explore.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  originalTracks: state.pageExplore.originalTracks,
-  originalTracksLoading: state.pageExplore.originalTracksLoading,
-  remixTracks: state.pageExplore.remixTracks,
-  remixTracksLoading: state.pageExplore.remixTracksLoading,
-  artists: state.pageExplore.artists,
-  artistsLoading: state.pageExplore.artistsLoading,
+  originalTracks: getOriginalTracks(state),
+  originalTracksLoading: getOriginalTracksLoading(state),
+  remixTracks: getRemixTracks(state),
+  remixTracksLoading: getRemixTracksLoading(state),
+  artists: getArtists(state),
+  artistsLoading: getArtistsLoading(state),
 });
 
 export default connect(

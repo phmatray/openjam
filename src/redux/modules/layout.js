@@ -1,4 +1,4 @@
-// Actions
+// Action Types
 //
 export const types = {
   UPDATE_LANGUAGE: 'layout/UPDATE_LANGUAGE',
@@ -49,6 +49,14 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getLanguage = state => state.layout.language;
+export const getTheme = state => state.layout.theme;
+export const getPlayerVisible = state => state.layout.playerVisible;
+export const getPendingVisible = state => state.layout.pendingVisible;
+export const getSidebarVisible = state => state.layout.sidebarVisible;
 
 // Action Creators
 //

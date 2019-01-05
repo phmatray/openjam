@@ -1,6 +1,6 @@
 import { restGetLabels, restGetLabel } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_LABELS_PENDING: 'label/FETCH_LABELS_PENDING',
@@ -46,6 +46,13 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getLabels = state => state.label.labels;
+export const getLabel = state => state.label.label;
+export const getLoading = state => state.label.loading;
+export const getError = state => state.label.error;
 
 // Side effects, only as applicable (thunks)
 //

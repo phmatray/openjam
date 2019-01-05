@@ -1,6 +1,6 @@
 import { restGetAlbum } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_ALBUM_PENDING: 'page-album/FETCH_ALBUM_PENDING',
@@ -38,6 +38,11 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getAlbum = state => state.pageAlbum.album;
+export const getAlbumLoading = state => state.pageAlbum.albumLoading;
 
 // Side effects, only as applicable (thunks)
 //

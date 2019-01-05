@@ -10,7 +10,7 @@ import {
   restDeleteProfile,
 } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   LOAD: 'profile/LOAD',
@@ -47,6 +47,14 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+// TODO: change the name 'getProfiles'
+export const getProfilesState = state => state.profile.profiles;
+export const getProfile = state => state.profile.profile;
+export const getProfileHandle = state => state.profile.profile.handle;
+export const getLoading = state => state.profile.loading;
 
 // Action Creators
 //

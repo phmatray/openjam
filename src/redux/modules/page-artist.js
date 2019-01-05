@@ -1,6 +1,6 @@
 import { restGetArtist } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_ARTIST_PENDING: 'page-artist/FETCH_ARTIST_PENDING',
@@ -38,6 +38,11 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getArtist = state => state.pageArtist.artist;
+export const getArtistLoading = state => state.pageArtist.artistLoading;
 
 // Side effects, only as applicable (thunks)
 //

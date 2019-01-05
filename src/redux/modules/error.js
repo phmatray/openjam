@@ -1,4 +1,4 @@
-// Actions
+// Action Types
 //
 export const types = {
   UPDATE: 'error/UPDATE',
@@ -23,6 +23,10 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getErrors = state => state.errors;
 
 // Action Creators
 //

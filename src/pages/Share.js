@@ -8,10 +8,11 @@ import HeroSimple from '../components/HeroSimple';
 import Feed from '../components/Feed';
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
-import { getPosts } from '../redux/modules/page-share';
+import { getPosts, getPostsState, getLoading } from '../redux/modules/page-share';
 import background from '../images/backgrounds/container-1867697_1920.jpg';
 
 import PostForm from './share/PostForm';
+import { getIsAuthenticated } from '../redux/modules/auth';
 
 class Share extends Component {
   state = { activeItem: 'newsfeed' };
@@ -23,9 +24,7 @@ class Share extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    const { t } = this.props;
-    const { posts, loading } = this.props.post;
-    const { isAuthenticated } = this.props.auth;
+    const { posts, loading, isAuthenticated, t } = this.props;
     const { activeItem } = this.state;
 
     return (
@@ -68,13 +67,15 @@ class Share extends Component {
 
 Share.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loading: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  post: state.pageShare,
-  auth: state.auth,
+  posts: getPostsState(state),
+  loading: getLoading(state),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(

@@ -9,6 +9,8 @@ import Input from '../Input';
 import { addComment } from '../../redux/modules/page-share';
 
 import { AvatarSmall, Button, AddCommentForm } from './styles';
+import { getUser } from '../../redux/modules/auth';
+import { getErrors } from '../../redux/modules/error';
 
 class AddComment extends Component {
   state = {
@@ -88,8 +90,8 @@ AddComment.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
-  errors: state.errors,
+  user: getUser(state),
+  errors: getErrors(state),
 });
 
 export default connect(

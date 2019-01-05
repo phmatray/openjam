@@ -1,6 +1,6 @@
 import { restGetTracks, restGetTrack } from '../../services/logionApi';
 
-// Actions
+// Action Types
 //
 export const types = {
   FETCH_TRACKS_PENDING: 'track/FETCH_TRACKS_PENDING',
@@ -46,6 +46,13 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+
+// Selectors
+//
+export const getTracks = state => state.track.tracks;
+export const getTrack = state => state.track.track;
+export const getLoading = state => state.track.loading;
+export const getError = state => state.track.error;
 
 // Side effects, only as applicable (thunks)
 //
