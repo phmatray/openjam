@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { updatePosition } from '../../../redux/modules/player';
+
+import { actions } from '../../../redux/modules/player';
 import { ProgressStyled, ProgressInner } from './styles';
 
 class Progress extends Component {
@@ -47,5 +48,5 @@ Progress.propTypes = {
 
 export default connect(
   null,
-  { updatePosition },
+  { updatePosition: actions.updatePosition },
 )(Progress);

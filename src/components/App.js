@@ -14,7 +14,7 @@ import Routes from './Routes';
 import ThemeWrapper from './app/ThemeWrapper';
 
 import store from '../redux/store';
-import { updateAccessToken, updateRefreshToken, updateUser } from '../redux/modules/auth';
+import { actions } from '../redux/modules/auth';
 import setAuthToken from '../utils/setAuthToken';
 import { GlobalStyle } from '../theme/GlobalStyle';
 
@@ -29,9 +29,9 @@ if (accessToken && refreshToken) {
   // Decode token and get user info and exp
   const decoded = jwtDecode(accessToken);
   // Set user and isAuthenticated
-  store.dispatch(updateAccessToken(accessToken));
-  store.dispatch(updateRefreshToken(refreshToken));
-  store.dispatch(updateUser(decoded.user));
+  store.dispatch(actions.updateAccessToken(accessToken));
+  store.dispatch(actions.updateRefreshToken(refreshToken));
+  store.dispatch(actions.updateUser(decoded.user));
 
   // Check for expire token
   const currentTime = Date.now() / 1000;

@@ -3,15 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sound from 'react-sound';
 
-import {
-  fetchTracks,
-  loadCollection,
-  play,
-  pause,
-  previous,
-  next,
-  updateAudioInfo,
-} from '../redux/modules/player';
+import { fetchTracks, actions } from '../redux/modules/player';
 
 import PlayerPresenter from './player/PlayerPresenter';
 
@@ -89,5 +81,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchTracks, loadCollection, updateAudioInfo, play, pause, previous, next },
+  { fetchTracks, ...actions },
 )(Player);

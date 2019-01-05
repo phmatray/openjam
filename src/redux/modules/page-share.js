@@ -1,4 +1,4 @@
-import { updateErrors, clearErrors } from './error';
+import { actions as errorActions } from './error';
 import {
   restGetPosts,
   restGetPost,
@@ -8,20 +8,22 @@ import {
   restDeletePostLike,
   restAddPostComment,
   restDeletePostComment,
-} from '../logion';
+} from '../../services/logionApi';
 
 // Actions
 //
-const LOAD = 'post/LOAD';
-const UPDATE_POSTS = 'post/UPDATE_POSTS';
-const CREATE_POST = 'post/CREATE_POST';
-const UPDATE_POST = 'post/UPDATE_POST';
-const UPDATE_POST_LIKE = 'post/UPDATE_POST_LIKE';
-const REMOVE_POST = 'post/REMOVE_POST';
+export const types = {
+  LOAD: 'post/LOAD',
+  UPDATE_POSTS: 'post/UPDATE_POSTS',
+  CREATE_POST: 'post/CREATE_POST',
+  UPDATE_POST: 'post/UPDATE_POST',
+  UPDATE_POST_LIKE: 'post/UPDATE_POST_LIKE',
+  REMOVE_POST: 'post/REMOVE_POST',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   posts: [],
   post: {},
   loading: false,
@@ -29,16 +31,16 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case LOAD:
+    case types.LOAD:
       return { ...state, loading: true };
 
-    case UPDATE_POSTS:
+    case types.UPDATE_POSTS:
       return { ...state, posts: action.payload, loading: false };
 
-    case UPDATE_POST:
+    case types.UPDATE_POST:
       return { ...state, post: action.payload, loading: false };
 
-    case UPDATE_POST_LIKE:
+    case types.UPDATE_POST_LIKE:
       return {
         ...state,
         posts: state.posts.map(post => {
@@ -49,10 +51,10 @@ const reducer = (state = initialState, action = {}) => {
         }),
       };
 
-    case CREATE_POST:
+    case types.CREATE_POST:
       return { ...state, posts: [action.payload, ...state.posts] };
 
-    case REMOVE_POST:
+    case types.REMOVE_POST:
       return { ...state, posts: state.posts.filter(post => post._id !== action.payload) };
 
     default:
@@ -64,17 +66,19 @@ export default reducer;
 
 // Action Creators
 //
-export const loadPosts = () => ({ type: LOAD });
+export const actions = {
+  loadPosts: () => ({ type: types.LOAD }),
 
-export const updatePosts = payload => {
-  const posts = payload && payload.docs ? payload.docs : payload;
-  return { type: UPDATE_POSTS, payload: posts };
+  updatePosts: payload => {
+    const posts = payload && payload.docs ? payload.docs : payload;
+    return { type: types.UPDATE_POSTS, payload: posts };
+  },
+
+  updatePost: payload => ({ type: types.UPDATE_POST, payload }),
+  createPost: payload => ({ type: types.CREATE_POST, payload }),
+  removePost: payload => ({ type: types.REMOVE_POST, payload }),
+  updatePostLike: payload => ({ type: types.UPDATE_POST_LIKE, payload }),
 };
-
-export const updatePost = payload => ({ type: UPDATE_POST, payload });
-export const createPost = payload => ({ type: CREATE_POST, payload });
-export const removePost = payload => ({ type: REMOVE_POST, payload });
-export const updatePostLike = payload => ({ type: UPDATE_POST_LIKE, payload });
 
 // Side effects, only as applicable (thunks)
 //
@@ -82,7 +86,7 @@ export const updatePostLike = payload => ({ type: UPDATE_POST_LIKE, payload });
 export const addPost = postData => async (dispatch, getState) => {
   try {
     console.warn(postData);
-    dispatch(clearErrors());
+    dispatch(errorActions.clearErrors());
     const res = await restAddPost(postData);
 
     const post = res.data;
@@ -92,31 +96,31 @@ export const addPost = postData => async (dispatch, getState) => {
 
     console.warn(post);
 
-    dispatch(createPost(post));
+    dispatch(actions.createPost(post));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Get Posts
 export const getPosts = () => async dispatch => {
   try {
-    dispatch(loadPosts());
+    dispatch(actions.loadPosts());
     const res = await restGetPosts();
-    dispatch(updatePosts(res.data));
+    dispatch(actions.updatePosts(res.data));
   } catch (error) {
-    dispatch(updatePosts(initialState.posts));
+    dispatch(actions.updatePosts(initialState.posts));
   }
 };
 
 // Get Post
 export const getPost = id => async dispatch => {
   try {
-    dispatch(loadPosts());
+    dispatch(actions.loadPosts());
     const res = await restGetPost(id);
-    dispatch(updatePost(res.data));
+    dispatch(actions.updatePost(res.data));
   } catch (error) {
-    dispatch(updatePost(null));
+    dispatch(actions.updatePost(null));
   }
 };
 
@@ -124,9 +128,9 @@ export const getPost = id => async dispatch => {
 export const deletePost = id => async dispatch => {
   try {
     await restDeletePost(id);
-    dispatch(removePost(id));
+    dispatch(actions.removePost(id));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
@@ -134,9 +138,9 @@ export const deletePost = id => async dispatch => {
 export const addLike = id => async dispatch => {
   try {
     const res = await restAddPostLike(id);
-    dispatch(updatePostLike(res.data));
+    dispatch(actions.updatePostLike(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
@@ -144,20 +148,20 @@ export const addLike = id => async dispatch => {
 export const removeLike = id => async dispatch => {
   try {
     const res = await restDeletePostLike(id);
-    dispatch(updatePostLike(res.data));
+    dispatch(actions.updatePostLike(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Add Comment
 export const addComment = (postId, commentData) => async dispatch => {
   try {
-    dispatch(clearErrors());
+    dispatch(errorActions.clearErrors());
     const res = await restAddPostComment(postId, commentData);
-    dispatch(updatePost(res.data));
+    dispatch(actions.updatePost(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
@@ -165,8 +169,8 @@ export const addComment = (postId, commentData) => async dispatch => {
 export const deleteComment = (postId, commentId) => async dispatch => {
   try {
     const res = await restDeletePostComment(postId, commentId);
-    dispatch(updatePost(res.data));
+    dispatch(actions.updatePost(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
