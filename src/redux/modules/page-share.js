@@ -66,9 +66,8 @@ export default reducer;
 
 // Selectors
 //
-// TODO: rename 'getPostsState' and 'getPostState'
-export const getPostsState = state => state.pageShare.posts;
-export const getPostState = state => state.pageShare.post;
+export const getPosts = state => state.pageShare.posts;
+export const getPost = state => state.pageShare.post;
 export const getLoading = state => state.pageShare.loading;
 
 // Action Creators
@@ -110,7 +109,7 @@ export const addPost = postData => async (dispatch, getState) => {
 };
 
 // Get Posts
-export const getPosts = () => async dispatch => {
+export const fetchPosts = () => async dispatch => {
   try {
     dispatch(actions.loadPosts());
     const res = await restGetPosts();
@@ -121,7 +120,7 @@ export const getPosts = () => async dispatch => {
 };
 
 // Get Post
-export const getPost = id => async dispatch => {
+export const fetchPost = id => async dispatch => {
   try {
     dispatch(actions.loadPosts());
     const res = await restGetPost(id);

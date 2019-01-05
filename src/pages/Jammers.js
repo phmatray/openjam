@@ -4,14 +4,14 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
-import { getProfiles, getProfilesState, getLoading } from '../redux/modules/profile';
+import { fetchProfiles, getProfiles, getLoading } from '../redux/modules/profile';
 import { getIsAuthenticated } from '../redux/modules/auth';
 
 import JammersPresenter from './jammers/JammersPresenter';
 
 class Jammers extends Component {
   componentDidMount() {
-    this.props.getProfiles();
+    this.props.fetchProfiles();
   }
 
   render() {
@@ -28,19 +28,19 @@ class Jammers extends Component {
 }
 
 Jammers.propTypes = {
-  getProfiles: PropTypes.func.isRequired,
+  fetchProfiles: PropTypes.func.isRequired,
   profiles: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profiles: getProfilesState(state),
+  profiles: getProfiles(state),
   loading: getLoading(state),
   isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(
   mapStateToProps,
-  { getProfiles },
+  { fetchProfiles },
 )(withNamespaces('common')(Jammers));

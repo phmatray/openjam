@@ -5,7 +5,7 @@ import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react
 
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
-import { getProfileByHandle, getProfile, getLoading } from '../redux/modules/profile';
+import { fetchProfileByHandle, getProfile, getLoading } from '../redux/modules/profile';
 import { getIsAuthenticated } from '../redux/modules/auth';
 
 import ProfileHeader from './jammer/ProfileHeader';
@@ -14,7 +14,7 @@ import ProfileAbout from './jammer/ProfileAbout';
 class Profile extends Component {
   componentDidMount() {
     if (this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
+      this.props.fetchProfileByHandle(this.props.match.params.handle);
     }
   }
 
@@ -54,7 +54,7 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-  getProfileByHandle: PropTypes.func.isRequired,
+  fetchProfileByHandle: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -68,5 +68,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProfileByHandle },
+  { fetchProfileByHandle },
 )(Profile);

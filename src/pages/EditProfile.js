@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 
 import Input from '../components/Input';
-import { createProfile, getCurrentProfile, getProfile } from '../redux/modules/profile';
+import { createProfile, fetchCurrentProfile, getProfile } from '../redux/modules/profile';
 import isEmpty from '../utils/validation/is-empty';
 import { getErrors } from '../redux/modules/error';
 
@@ -30,7 +30,7 @@ class EditProfile extends Component {
   };
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    this.props.fetchCurrentProfile();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -332,7 +332,7 @@ class EditProfile extends Component {
 
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
+  fetchCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -345,6 +345,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { createProfile, getCurrentProfile },
+    { createProfile, fetchCurrentProfile },
   )(EditProfile),
 );

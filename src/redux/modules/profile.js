@@ -50,8 +50,7 @@ export default reducer;
 
 // Selectors
 //
-// TODO: change the name 'getProfiles'
-export const getProfilesState = state => state.profile.profiles;
+export const getProfiles = state => state.profile.profiles;
 export const getProfile = state => state.profile.profile;
 export const getProfileHandle = state => state.profile.profile.handle;
 export const getLoading = state => state.profile.loading;
@@ -73,7 +72,7 @@ export const actions = {
 // Side effects, only as applicable (thunks)
 //
 // Get current profile
-export const getCurrentProfile = () => async dispatch => {
+export const fetchCurrentProfile = () => async dispatch => {
   try {
     dispatch(actions.loadProfiles());
     const res = await restGetProfileMe();
@@ -84,7 +83,7 @@ export const getCurrentProfile = () => async dispatch => {
 };
 
 // Get profile by handle
-export const getProfileByHandle = handle => async dispatch => {
+export const fetchProfileByHandle = handle => async dispatch => {
   try {
     dispatch(actions.loadProfiles());
     const res = await restGetProfileByHandle(handle);
@@ -105,7 +104,7 @@ export const createProfile = (profileData, history) => async dispatch => {
 };
 
 // Get all profiles
-export const getProfiles = () => async dispatch => {
+export const fetchProfiles = () => async dispatch => {
   try {
     dispatch(actions.loadProfiles());
     const res = await restGetUsers();

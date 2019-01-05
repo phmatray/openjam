@@ -31,8 +31,7 @@ export default reducer;
 
 // Selectors
 //
-// TODO: change the name 'getDashboardUser'
-export const getDashboardUser = state => state.pageDashboard.user;
+export const getUser = state => state.pageDashboard.user;
 export const getLoading = state => state.pageDashboard.loading;
 
 // Action Creators
@@ -45,7 +44,7 @@ export const actions = {
 // Side effects, only as applicable (thunks)
 //
 // Get User
-export const getUser = id => async dispatch => {
+export const fetchUser = id => async dispatch => {
   try {
     dispatch(actions.loadUser());
     const res = await restGetUser(id);
@@ -55,7 +54,7 @@ export const getUser = id => async dispatch => {
   }
 };
 
-export const getMe = () => async (dispatch, getState) => {
+export const fetchMe = () => async (dispatch, getState) => {
   try {
     dispatch(actions.loadUser());
     const myId = getState().auth.user._id;

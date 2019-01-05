@@ -6,14 +6,14 @@ import { Segment, Button, Feed } from 'semantic-ui-react';
 
 import Spinner from '../components/Spinner';
 import PostItem from '../components/PostItem';
-import { getPost, getLoading, getPostState } from '../redux/modules/page-share';
+import { fetchPost, getLoading, getPost } from '../redux/modules/page-share';
 
 import CommentForm from './post/CommentForm';
 import CommentFeed from './post/CommentFeed';
 
 class Post extends Component {
   componentDidMount() {
-    this.props.getPost(this.props.match.params.id);
+    this.props.fetchPost(this.props.match.params.id);
   }
 
   render() {
@@ -44,16 +44,16 @@ class Post extends Component {
 }
 
 Post.propTypes = {
-  getPost: PropTypes.func.isRequired,
+  fetchPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  post: getPostState(state),
+  post: getPost(state),
   loading: getLoading(state),
 });
 
 export default connect(
   mapStateToProps,
-  { getPost },
+  { fetchPost },
 )(Post);
