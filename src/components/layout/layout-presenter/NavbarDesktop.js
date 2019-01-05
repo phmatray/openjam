@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import LanguageDropdown from './LanguageDropdown';
 
 import { logoutUser } from '../../../redux/modules/auth';
-import { clearCurrentProfile } from '../../../redux/modules/profile';
+import { actions as profileActions } from '../../../redux/modules/profile';
 import logo from '../../../images/logos/logo_white.svg';
 
 class NavbarDesktop extends Component {
@@ -156,5 +156,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile },
+  { logoutUser, clearCurrentProfile: profileActions.clearCurrentProfile },
 )(withNamespaces('common')(NavbarDesktop));

@@ -7,7 +7,7 @@ import { Divider } from 'semantic-ui-react';
 import LinkArtistNames from '../LinkArtistNames';
 import LinkEntity from '../LinkEntity';
 import Div from '../Div';
-import { playTrack, pause } from '../../redux/modules/player';
+import { playTrack, actions } from '../../redux/modules/player';
 
 import ContentBlock from './track/ContentBlock';
 import CoverToggle from './track/CoverToggle';
@@ -75,5 +75,5 @@ const mapStateToProps = ({ player }) => {
 
 export default connect(
   mapStateToProps,
-  { playTrack, pause },
+  { playTrack, pause: actions.pause },
 )(TrackItem);

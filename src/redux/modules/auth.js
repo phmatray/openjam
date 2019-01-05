@@ -1,22 +1,29 @@
 import _ from 'lodash';
 import jwtDecode from 'jwt-decode';
 
-import { updateErrors } from './error';
+import { actions as errorActions } from './error';
 import isEmpty from '../../utils/validation/is-empty';
 import setAuthToken from '../../utils/setAuthToken';
 import { USER_ROLES } from '../../config';
-import { restLogout, restLogin, restRegisterActivate, restRegister } from '../logion';
+import {
+  restLogout,
+  restLogin,
+  restRegisterActivate,
+  restRegister,
+} from '../../services/logionApi';
 
 // Actions
 //
-const LOAD = 'auth/LOAD';
-const UPDATE_USER = 'auth/UPDATE_USER';
-const UPDATE_ACCESS_TOKEN = 'auth/UPDATE_ACCESS_TOKEN';
-const UPDATE_REFRESH_TOKEN = 'auth/UPDATE_REFRESH_TOKEN';
+export const types = {
+  LOAD: 'auth/LOAD',
+  UPDATE_USER: 'auth/UPDATE_USER',
+  UPDATE_ACCESS_TOKEN: 'auth/UPDATE_ACCESS_TOKEN',
+  UPDATE_REFRESH_TOKEN: 'auth/UPDATE_REFRESH_TOKEN',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   user: {},
   scope: [],
   exp: 0,
@@ -30,13 +37,13 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case LOAD:
+    case types.LOAD:
       return {
         ...state,
         loading: true,
       };
 
-    case UPDATE_USER:
+    case types.UPDATE_USER:
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
@@ -44,7 +51,7 @@ const reducer = (state = initialState, action = {}) => {
         loading: false,
       };
 
-    case UPDATE_ACCESS_TOKEN:
+    case types.UPDATE_ACCESS_TOKEN:
       return {
         ...state,
         scope: action.payload.scope,
@@ -53,7 +60,7 @@ const reducer = (state = initialState, action = {}) => {
         accessToken: action.payload.accessToken,
       };
 
-    case UPDATE_REFRESH_TOKEN:
+    case types.UPDATE_REFRESH_TOKEN:
       return {
         ...state,
         refreshToken: action.payload,
@@ -68,24 +75,26 @@ export default reducer;
 
 // Action Creators
 //
-export const loadUser = () => ({ type: LOAD });
+export const actions = {
+  loadUser: () => ({ type: types.LOAD }),
 
-export const updateUser = payload => ({ type: UPDATE_USER, payload });
+  updateUser: payload => ({ type: types.UPDATE_USER, payload }),
 
-export const updateAccessToken = accessToken => {
-  localStorage.setItem('accessToken', accessToken);
+  updateAccessToken: accessToken => {
+    localStorage.setItem('accessToken', accessToken);
 
-  const payload =
-    accessToken === initialState.accessToken
-      ? _.pick(initialState, ['accessToken', 'scope', 'exp', 'iat'])
-      : { accessToken, ..._.pick(jwtDecode(accessToken), ['scope', 'exp', 'iat']) };
+    const payload =
+      accessToken === initialState.accessToken
+        ? _.pick(initialState, ['accessToken', 'scope', 'exp', 'iat'])
+        : { accessToken, ..._.pick(jwtDecode(accessToken), ['scope', 'exp', 'iat']) };
 
-  return { type: UPDATE_ACCESS_TOKEN, payload };
-};
+    return { type: types.UPDATE_ACCESS_TOKEN, payload };
+  },
 
-export const updateRefreshToken = refreshToken => {
-  localStorage.setItem('refreshToken', refreshToken);
-  return { type: UPDATE_REFRESH_TOKEN, refreshToken };
+  updateRefreshToken: refreshToken => {
+    localStorage.setItem('refreshToken', refreshToken);
+    return { type: types.UPDATE_REFRESH_TOKEN, refreshToken };
+  },
 };
 
 // Side effects, only as applicable (thunks)
@@ -99,7 +108,7 @@ export const registerUser = (userData, history) => async dispatch => {
     const res = await restRegister(user);
 
     if (!res.data.errmsg) {
-      dispatch(updateErrors({}));
+      dispatch(errorActions.updateErrors({}));
       history.push('/register-thanks');
     }
   } catch (error) {
@@ -107,7 +116,7 @@ export const registerUser = (userData, history) => async dispatch => {
       'There was an error during the registration process. ' +
       'Please try again or contact us if you continue to have trouble creating an account.';
 
-    dispatch(updateErrors({ ...error.response, message: errorMessage }));
+    dispatch(errorActions.updateErrors({ ...error.response, message: errorMessage }));
   }
 };
 
@@ -117,7 +126,7 @@ export const activateAccount = (token, history) => async dispatch => {
     const res = await restRegisterActivate(token);
 
     if (!res.data.errmsg) {
-      dispatch(updateErrors({}));
+      dispatch(errorActions.updateErrors({}));
       history.push('/register-thanks');
     }
   } catch (error) {
@@ -125,7 +134,7 @@ export const activateAccount = (token, history) => async dispatch => {
       'There was an error during the activation process. The token in your email link may be expired, ' +
       'you can request a new activation email to be sent during your next login attempt.';
 
-    dispatch(updateErrors({ ...error.response, message: errorMessage }));
+    dispatch(errorActions.updateErrors({ ...error.response, message: errorMessage }));
   }
 };
 
@@ -137,11 +146,11 @@ export const loginUser = userData => async dispatch => {
       const { accessToken, refreshToken, user } = res.data;
 
       setAuthToken(refreshToken);
-      dispatch(updateRefreshToken(refreshToken));
-      dispatch(updateAccessToken(accessToken));
+      dispatch(actions.updateRefreshToken(refreshToken));
+      dispatch(actions.updateAccessToken(accessToken));
 
-      dispatch(updateUser(user));
-      dispatch(updateErrors({}));
+      dispatch(actions.updateUser(user));
+      dispatch(errorActions.updateErrors({}));
 
       // TODO: dispatch a toast notification
       // notify.success('Login successful', 'Success!')
@@ -179,7 +188,7 @@ export const loginUser = userData => async dispatch => {
         break;
     }
 
-    dispatch(updateErrors({ ...data, message: errorMessage }));
+    dispatch(errorActions.updateErrors({ ...data, message: errorMessage }));
   }
 };
 
@@ -191,11 +200,11 @@ export const logoutUser = () => async dispatch => {
       // Set current user to {} which will set isAuthenticated to false
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
-      dispatch(updateAccessToken(initialState.accessToken));
-      dispatch(updateRefreshToken(initialState.refreshToken));
-      dispatch(updateUser(initialState.user));
+      dispatch(actions.updateAccessToken(initialState.accessToken));
+      dispatch(actions.updateRefreshToken(initialState.refreshToken));
+      dispatch(actions.updateUser(initialState.user));
     }
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };

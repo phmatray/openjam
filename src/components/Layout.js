@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { showSidebar, hideSidebar, toggleSidebar } from '../redux/modules/layout';
+import { actions } from '../redux/modules/layout';
 import LayoutPresenter from './layout/LayoutPresenter';
 
 const Layout = props => <LayoutPresenter {...props} />;
@@ -25,6 +25,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { showSidebar, hideSidebar, toggleSidebar },
+    actions,
   )(Layout),
 );

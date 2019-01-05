@@ -7,7 +7,7 @@ import { Sidebar, Menu, Icon, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../../redux/modules/auth';
-import { clearCurrentProfile } from '../../../redux/modules/profile';
+import { actions as profileActions } from '../../../redux/modules/profile';
 
 class NavbarSide extends Component {
   state = { activeItem: 'home' };
@@ -123,5 +123,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile },
+  { logoutUser, clearCurrentProfile: profileActions.clearCurrentProfile },
 )(withNamespaces('common')(NavbarSide));
