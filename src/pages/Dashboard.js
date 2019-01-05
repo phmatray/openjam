@@ -8,7 +8,7 @@ import { Header, Button, Icon, Container, Tab, Card, Image, Divider } from 'sema
 import Spinner from '../components/Spinner';
 import Div from '../components/Div';
 import { deleteAccount, getProfile } from '../redux/modules/profile';
-import { getMe, getDashboardUser, getLoading } from '../redux/modules/page-dashboard';
+import { fetchMe, getUser, getLoading } from '../redux/modules/page-dashboard';
 
 import ProfileActions from './dashboard/ProfileActions';
 
@@ -148,7 +148,7 @@ const panes = [
 
 class Dashboard extends Component {
   componentDidMount() {
-    this.props.getMe();
+    this.props.fetchMe();
   }
 
   onDeleteClick = () => {
@@ -217,7 +217,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
-  getMe: PropTypes.func.isRequired,
+  fetchMe: PropTypes.func.isRequired,
   profile: PropTypes.shape({
     handle: PropTypes.string,
   }).isRequired,
@@ -239,11 +239,11 @@ Dashboard.defaultProps = {
 
 const mapStateToProps = state => ({
   profile: getProfile(state),
-  user: getDashboardUser(state),
+  user: getUser(state),
   loading: getLoading(state),
 });
 
 export default connect(
   mapStateToProps,
-  { deleteAccount, getMe },
+  { deleteAccount, fetchMe },
 )(Dashboard);

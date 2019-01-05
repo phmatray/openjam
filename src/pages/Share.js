@@ -8,7 +8,7 @@ import HeroSimple from '../components/HeroSimple';
 import Feed from '../components/Feed';
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
-import { getPosts, getPostsState, getLoading } from '../redux/modules/page-share';
+import { fetchPosts, getPosts, getLoading } from '../redux/modules/page-share';
 import background from '../images/backgrounds/container-1867697_1920.jpg';
 
 import PostForm from './share/PostForm';
@@ -18,7 +18,7 @@ class Share extends Component {
   state = { activeItem: 'newsfeed' };
 
   componentDidMount() {
-    this.props.getPosts();
+    this.props.fetchPosts();
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -66,19 +66,19 @@ class Share extends Component {
 }
 
 Share.propTypes = {
-  getPosts: PropTypes.func.isRequired,
+  fetchPosts: PropTypes.func.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  posts: getPostsState(state),
+  posts: getPosts(state),
   loading: getLoading(state),
   isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(
   mapStateToProps,
-  { getPosts },
+  { fetchPosts },
 )(withNamespaces('common')(Share));
