@@ -189,7 +189,12 @@ const Routes = ({ childProps }) => (
     <Route path="/album/:id" exact component={AsyncAlbum} props={childProps} />
     <Route path="/labels" exact component={AsyncLabels} props={childProps} />
     <Route path="/label/:id" exact component={AsyncLabel} props={childProps} />
-    <AuthenticatedRoute path="/dashboard" exact component={AsyncDashboard} props={childProps} />
+    <AuthenticatedRoute
+      path="/dashboard/:tabKey?"
+      exact
+      component={AsyncDashboard}
+      props={childProps}
+    />
     <AuthenticatedRoute
       path="/create-profile"
       exact
