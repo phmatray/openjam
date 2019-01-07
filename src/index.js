@@ -5,11 +5,14 @@ import 'semantic-ui-css/semantic.min.css';
 
 import * as serviceWorker from './serviceWorker';
 import I18nWrapper from './components/I18nWrapper';
-import App from './components/App';
+import Root from './components/Root';
+import configureStore from './redux/configureStore';
+
+const store = configureStore();
 
 ReactDOM.render(
   <I18nWrapper>
-    <App />
+    <Root store={store} />
   </I18nWrapper>,
   document.getElementById('root'),
 );
