@@ -1,9 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import throttle from 'lodash/throttle';
+
 import slimAsync from './middlewares/slim-async/slimAsync';
 import rootReducer from './rootReducer';
+import { loadState, saveState } from './localStorage';
 
-const initialState = {};
+const persistedState = loadState();
 
 const middlewares = [slimAsync, thunk];
 const enhancers = [];
@@ -23,11 +26,19 @@ if (isDevelopment && typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EX
 
 const store = createStore(
   rootReducer,
-  initialState,
+  persistedState,
   compose(
     applyMiddleware(...middlewares),
     ...enhancers,
   ),
 );
+
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState());
+  }, 1000),
+);
+
+console.log(store.getState());
 
 export default store;
