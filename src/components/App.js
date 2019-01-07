@@ -1,6 +1,5 @@
 import React from 'react';
 import HttpsRedirect from 'react-https-redirect';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -18,14 +17,12 @@ library.add(fab, faGlobe);
 
 const App = () => (
   <HttpsRedirect>
-    <Router>
-      <ThemeWrapper>
-        <Layout style={{ height: '100vh' }}>
-          <Routes />
-          <GlobalStyle />
-        </Layout>
-      </ThemeWrapper>
-    </Router>
+    <ThemeWrapper>
+      <Layout style={{ height: '100vh' }}>
+        <Routes />
+        <GlobalStyle />
+      </Layout>
+    </ThemeWrapper>
   </HttpsRedirect>
 );
 

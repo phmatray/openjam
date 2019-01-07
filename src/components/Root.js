@@ -1,6 +1,7 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import setAuthToken from '../utils/setAuthToken';
 import { actions } from '../redux/modules/auth';
@@ -33,7 +34,11 @@ const Root = ({ store }) => {
 
   return (
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <div>
+          <Route path="/" component={App} />
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 };
