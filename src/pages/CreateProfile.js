@@ -8,6 +8,8 @@ import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-rea
 import Input from '../components/Input';
 import { createProfile } from '../redux/modules/profile';
 import generateHandle from '../utils/generateHandle';
+import { getIsAuthenticated, getUser } from '../redux/modules/auth';
+import { getErrors } from '../redux/modules/error';
 
 class CreateProfile extends Component {
   state = {
@@ -318,9 +320,9 @@ CreateProfile.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user,
-  errors: state.errors,
+  isAuthenticated: getIsAuthenticated(state),
+  user: getUser(state),
+  errors: getErrors(state),
 });
 
 export default withRouter(

@@ -1,17 +1,19 @@
-import axios from 'axios';
+import { restGetPlaylists, restGetPlaylist } from '../../api/logion';
 
-// Actions
+// Action Types
 //
-const FETCH_PLAYLISTS_PENDING = 'playlist/FETCH_PLAYLISTS_PENDING';
-const FETCH_PLAYLISTS_SUCCESS = 'playlist/FETCH_PLAYLISTS_SUCCESS';
-const FETCH_PLAYLISTS_ERROR = 'playlist/FETCH_PLAYLISTS_ERROR';
-const FETCH_PLAYLIST_PENDING = 'playlist/FETCH_PLAYLIST_PENDING';
-const FETCH_PLAYLIST_SUCCESS = 'playlist/FETCH_PLAYLIST_SUCCESS';
-const FETCH_PLAYLIST_ERROR = 'playlist/FETCH_PLAYLIST_ERROR';
+export const types = {
+  FETCH_PLAYLISTS_PENDING: 'playlist/FETCH_PLAYLISTS_PENDING',
+  FETCH_PLAYLISTS_SUCCESS: 'playlist/FETCH_PLAYLISTS_SUCCESS',
+  FETCH_PLAYLISTS_ERROR: 'playlist/FETCH_PLAYLISTS_ERROR',
+  FETCH_PLAYLIST_PENDING: 'playlist/FETCH_PLAYLIST_PENDING',
+  FETCH_PLAYLIST_SUCCESS: 'playlist/FETCH_PLAYLIST_SUCCESS',
+  FETCH_PLAYLIST_ERROR: 'playlist/FETCH_PLAYLIST_ERROR',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   playlists: null, // array
   playlist: null, // object
   loading: false, // bool
@@ -20,22 +22,22 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case FETCH_PLAYLISTS_PENDING:
+    case types.FETCH_PLAYLISTS_PENDING:
       return { ...state, loading: true };
 
-    case FETCH_PLAYLISTS_SUCCESS:
+    case types.FETCH_PLAYLISTS_SUCCESS:
       return { ...state, playlists: action.payload.docs, loading: false };
 
-    case FETCH_PLAYLISTS_ERROR:
+    case types.FETCH_PLAYLISTS_ERROR:
       return { ...state, error: action.payload, playlists: null, loading: false };
 
-    case FETCH_PLAYLIST_PENDING:
+    case types.FETCH_PLAYLIST_PENDING:
       return { ...state, loading: true };
 
-    case FETCH_PLAYLIST_SUCCESS:
+    case types.FETCH_PLAYLIST_SUCCESS:
       return { ...state, playlist: action.payload, loading: false };
 
-    case FETCH_PLAYLIST_ERROR:
+    case types.FETCH_PLAYLIST_ERROR:
       return { ...state, error: action.payload, playlist: initialState.playlist, loading: false };
 
     default:
@@ -45,23 +47,28 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
+// Selectors
+//
+export const getPlaylists = state => state.playlist.playlists;
+export const getPlaylist = state => state.playlist.playlist;
+export const getLoading = state => state.playlist.loading;
+
 // Side effects, only as applicable (thunks)
 //
 // Fetch all playlists
 export const fetchPlaylists = () => ({
-  types: [FETCH_PLAYLISTS_PENDING, FETCH_PLAYLISTS_SUCCESS, FETCH_PLAYLISTS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/playlist?%24embed=tracks`),
+  types: [
+    types.FETCH_PLAYLISTS_PENDING,
+    types.FETCH_PLAYLISTS_SUCCESS,
+    types.FETCH_PLAYLISTS_ERROR,
+  ],
+  callAPI: () => restGetPlaylists(),
   shouldCallAPI: () => true,
 });
 
 // Fetch a playlist by _id
 export const fetchPlaylist = id => ({
-  types: [FETCH_PLAYLIST_PENDING, FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_ERROR],
-  callAPI: () =>
-    axios.get(
-      `${
-        process.env.REACT_APP_ENDPOINT
-      }/playlist/${id}?%24embed=tracks&%24embed=tracks.artists&%24embed=tracks.albums`,
-    ),
+  types: [types.FETCH_PLAYLIST_PENDING, types.FETCH_PLAYLIST_SUCCESS, types.FETCH_PLAYLIST_ERROR],
+  callAPI: () => restGetPlaylist(id),
   shouldCallAPI: () => true,
 });

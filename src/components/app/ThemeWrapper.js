@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import themeOpenjam from '../../theme/themeOpenjam';
 import themeRemix from '../../theme/themeRemix';
+import { getTheme } from '../../redux/modules/layout';
 
 const ThemeWrapper = ({ theme, children }) => {
   let themeContent;
@@ -30,7 +31,7 @@ ThemeWrapper.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  theme: state.layout.theme,
+  theme: getTheme(state),
 });
 
 export default withRouter(connect(mapStateToProps)(ThemeWrapper));

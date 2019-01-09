@@ -10,7 +10,7 @@ import LinkPlay from './playlist-tracks/LinkPlay';
 import CoverToggle from './playlist-tracks/CoverToggle';
 import Row from './playlist-tracks/Row';
 import { HeaderCell } from './playlist-tracks/Atoms';
-import { playSelected, pause } from '../redux/modules/player';
+import { playSelected, actions } from '../redux/modules/player';
 
 const PlaylistTracks = ({
   playSelected,
@@ -106,5 +106,5 @@ const mapStateToProps = ({ player }) => {
 
 export default connect(
   mapStateToProps,
-  { playSelected, pause },
+  { playSelected, pause: actions.pause },
 )(withNamespaces('common')(PlaylistTracks));

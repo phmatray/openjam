@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { Sidebar, Menu, Icon, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-import { logoutUser } from '../../../redux/modules/auth';
-import { clearCurrentProfile } from '../../../redux/modules/profile';
+import { logoutUser, getIsAuthenticated } from '../../../redux/modules/auth';
+import { actions as profileActions } from '../../../redux/modules/profile';
 
 class NavbarSide extends Component {
   state = { activeItem: 'home' };
@@ -21,9 +21,8 @@ class NavbarSide extends Component {
   };
 
   render() {
-    const { auth, hideSidebar, visible, t } = this.props;
+    const { isAuthenticated, hideSidebar, visible, t } = this.props;
     const { activeItem } = this.state;
-    const { isAuthenticated } = auth;
 
     const leftLinks = (
       <React.Fragment>
@@ -114,14 +113,14 @@ NavbarSide.propTypes = {
   visible: PropTypes.bool.isRequired,
   logoutUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile },
+  { logoutUser, clearCurrentProfile: profileActions.clearCurrentProfile },
 )(withNamespaces('common')(NavbarSide));

@@ -1,18 +1,20 @@
-// Actions
+// Action Types
 //
-const UPDATE = 'error/UPDATE';
-const CLEAR = 'error/CLEAR';
+export const types = {
+  UPDATE: 'error/UPDATE',
+  CLEAR: 'error/CLEAR',
+};
 
 // Reducer
 //
-const initialState = {};
+export const initialState = {};
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case UPDATE:
+    case types.UPDATE:
       return action.payload;
 
-    case CLEAR:
+    case types.CLEAR:
       return {};
 
     default:
@@ -22,7 +24,13 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
+// Selectors
+//
+export const getErrors = state => state.errors;
+
 // Action Creators
 //
-export const updateErrors = payload => ({ type: UPDATE, payload });
-export const clearErrors = () => ({ type: CLEAR });
+export const actions = {
+  updateErrors: payload => ({ type: types.UPDATE, payload }),
+  clearErrors: () => ({ type: types.CLEAR }),
+};

@@ -1,25 +1,27 @@
 /* eslint-disable no-param-reassign */
 
-import axios from 'axios';
 import { getPreviousIndex, getNextIndex } from '../../utils/playerHelpers';
+import { restGetTracks } from '../../api/logion';
 
-// Actions
+// Action Types
 //
-const FETCH_TRACKS_PENDING = 'player/FETCH_TRACKS_PENDING';
-const FETCH_TRACKS_SUCCESS = 'player/FETCH_TRACKS_SUCCESS';
-const FETCH_TRACKS_ERROR = 'player/FETCH_TRACKS_ERROR';
+export const types = {
+  FETCH_TRACKS_PENDING: 'player/FETCH_TRACKS_PENDING',
+  FETCH_TRACKS_SUCCESS: 'player/FETCH_TRACKS_SUCCESS',
+  FETCH_TRACKS_ERROR: 'player/FETCH_TRACKS_ERROR',
 
-const PLAY = 'player/PLAY';
-const PAUSE = 'player/PAUSE';
-const STOP = 'player/STOP';
-const PREVIOUS = 'player/PREVIOUS';
-const NEXT = 'player/NEXT';
+  PLAY: 'player/PLAY',
+  PAUSE: 'player/PAUSE',
+  STOP: 'player/STOP',
+  PREVIOUS: 'player/PREVIOUS',
+  NEXT: 'player/NEXT',
 
-const UPDATE_AUDIO_INFO = 'player/UPDATE_AUDIO_INFO';
-const UPDATE_POSITION = 'player/UPDATE_POSITION';
-const UPDATE_VOLUME = 'player/UPDATE_VOLUME';
+  UPDATE_AUDIO_INFO: 'player/UPDATE_AUDIO_INFO',
+  UPDATE_POSITION: 'player/UPDATE_POSITION',
+  UPDATE_VOLUME: 'player/UPDATE_VOLUME',
 
-const LOAD_COLLECTION = 'player/LOAD_COLLECTION';
+  LOAD_COLLECTION: 'player/LOAD_COLLECTION',
+};
 
 // Reducer
 //
@@ -43,22 +45,22 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case FETCH_TRACKS_PENDING:
+    case types.FETCH_TRACKS_PENDING:
       return { ...state, tracksLoading: true };
 
-    case FETCH_TRACKS_SUCCESS:
+    case types.FETCH_TRACKS_SUCCESS:
       return { ...state, tracks: action.payload.docs, tracksLoading: false };
 
-    case FETCH_TRACKS_ERROR:
+    case types.FETCH_TRACKS_ERROR:
       return { ...state, tracksError: action.payload, tracks: null, tracksLoading: false };
 
-    case PLAY:
+    case types.PLAY:
       return { ...state, playing: true, status: 'PLAYING' };
 
-    case PAUSE:
+    case types.PAUSE:
       return { ...state, playing: false, status: 'PAUSED' };
 
-    case STOP:
+    case types.STOP:
       return {
         ...state,
         playing: false,
@@ -69,7 +71,7 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
 
-    case PREVIOUS:
+    case types.PREVIOUS:
       return {
         ...state,
         current:
@@ -83,7 +85,7 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
 
-    case NEXT:
+    case types.NEXT:
       return {
         ...state,
         current:
@@ -97,16 +99,16 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
 
-    case UPDATE_AUDIO_INFO:
+    case types.UPDATE_AUDIO_INFO:
       return { ...state, audioInfo: action.payload };
 
-    case UPDATE_POSITION:
+    case types.UPDATE_POSITION:
       return { ...state, audioInfo: { ...state.audioInfo, position: action.payload } };
 
-    case UPDATE_VOLUME:
+    case types.UPDATE_VOLUME:
       return { ...state, audioInfo: { ...state.audioInfo, volume: action.payload } };
 
-    case LOAD_COLLECTION:
+    case types.LOAD_COLLECTION:
       return {
         ...state,
         collection: action.payload.collection,
@@ -126,32 +128,45 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
+// Selectors
+//
+export const getTracks = state => state.player.tracks;
+export const getPlaylist = state => state.player.playlist;
+export const getPlaying = state => state.player.playing;
+export const getCurrent = state => state.player.current;
+export const getAudioInfo = state => state.player.audioInfo;
+export const getStatus = state => state.player.status;
+export const getCollection = state => state.player.collection;
+export const getCollectionId = state => state.player.collectionId;
+
 // Action Creators
 //
-export const play = () => ({ type: PLAY });
-export const pause = () => ({ type: PAUSE });
-export const stop = () => ({ type: STOP });
-export const previous = () => ({ type: PREVIOUS });
-export const next = () => ({ type: NEXT });
-export const volume = volume => ({ type: UPDATE_VOLUME, payload: volume });
-export const updateAudioInfo = audioInfo => ({ type: UPDATE_AUDIO_INFO, payload: audioInfo });
-export const updatePosition = position => ({ type: UPDATE_POSITION, payload: position });
+export const actions = {
+  play: () => ({ type: types.PLAY }),
+  pause: () => ({ type: types.PAUSE }),
+  stop: () => ({ type: types.STOP }),
+  previous: () => ({ type: types.PREVIOUS }),
+  next: () => ({ type: types.NEXT }),
+  volume: volume => ({ type: types.UPDATE_VOLUME, payload: volume }),
+  updateAudioInfo: audioInfo => ({ type: types.UPDATE_AUDIO_INFO, payload: audioInfo }),
+  updatePosition: position => ({ type: types.UPDATE_POSITION, payload: position }),
 
-export const loadCollection = (collection, index = 0) => {
-  if (collection.length) {
-    collection = { type: 'default', tracks: collection };
-  }
+  loadCollection: (collection, index = 0) => {
+    if (collection.length) {
+      collection = { type: 'default', tracks: collection };
+    }
 
-  return {
-    type: LOAD_COLLECTION,
-    payload: {
-      collection: {
-        ...collection,
-        tracks: collection.tracks.map((track, i) => ({ ...track, index: i })),
+    return {
+      type: types.LOAD_COLLECTION,
+      payload: {
+        collection: {
+          ...collection,
+          tracks: collection.tracks.map((track, i) => ({ ...track, index: i })),
+        },
+        current: { ...collection.tracks[index], index },
       },
-      current: { ...collection.tracks[index], index },
-    },
-  };
+    };
+  },
 };
 
 // Side effects, only as applicable (thunks)
@@ -167,16 +182,16 @@ export const playSelected = (collection, track = null) => (dispatch, getState) =
   const sameCollection = collection._id === collectionId;
 
   if (track === null) {
-    dispatch(loadCollection(collection, 0));
+    dispatch(actions.loadCollection(collection, 0));
   } else {
     const sameTrack = sameCollection && track._id === currentId;
     if (!sameTrack) {
       const index = collection.tracks.findIndex(element => element._id === track._id);
-      dispatch(loadCollection(collection, index));
+      dispatch(actions.loadCollection(collection, index));
     }
   }
 
-  dispatch(play());
+  dispatch(actions.play());
 };
 
 export const playTrack = (track = null) => (dispatch, getState) => {
@@ -187,14 +202,14 @@ export const playTrack = (track = null) => (dispatch, getState) => {
     const sameCollection = collection._id === collectionId;
 
     if (!sameCollection) {
-      dispatch(loadCollection(collection, 0));
+      dispatch(actions.loadCollection(collection, 0));
     }
-    dispatch(play());
+    dispatch(actions.play());
   }
 };
 
 export const fetchTracks = () => ({
-  types: [FETCH_TRACKS_PENDING, FETCH_TRACKS_SUCCESS, FETCH_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track?%24embed=artists`),
+  types: [types.FETCH_TRACKS_PENDING, types.FETCH_TRACKS_SUCCESS, types.FETCH_TRACKS_ERROR],
+  callAPI: () => restGetTracks(),
   shouldCallAPI: () => true,
 });

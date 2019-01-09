@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import { getIsAuthenticated } from '../redux/modules/auth';
+
 import LandingPresenter from './landing/LandingPresenter';
 
 class Landing extends Component {
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
+    const { isAuthenticated } = this.props;
+    if (isAuthenticated) {
       this.props.history.push('/explore');
     }
   }
@@ -16,13 +20,11 @@ class Landing extends Component {
 }
 
 Landing.propTypes = {
-  auth: PropTypes.shape({
-    isAuthenticated: PropTypes.bool.isRequired,
-  }).isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(mapStateToProps)(Landing);

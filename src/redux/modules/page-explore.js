@@ -1,20 +1,22 @@
-import axios from 'axios';
+import { restGetTracks, restGetArtists } from '../../api/logion';
 
-// Actions
+// Action Types
 //
-const FETCH_ORIGINAL_TRACKS_PENDING = 'page-explore/FETCH_ORIGINAL_TRACKS_PENDING';
-const FETCH_ORIGINAL_TRACKS_SUCCESS = 'page-explore/FETCH_ORIGINAL_TRACKS_SUCCESS';
-const FETCH_ORIGINAL_TRACKS_ERROR = 'page-explore/FETCH_ORIGINAL_TRACKS_ERROR';
-const FETCH_REMIX_TRACKS_PENDING = 'page-explore/FETCH_REMIX_TRACKS_PENDING';
-const FETCH_REMIX_TRACKS_SUCCESS = 'page-explore/FETCH_REMIX_TRACKS_SUCCESS';
-const FETCH_REMIX_TRACKS_ERROR = 'page-explore/FETCH_REMIX_TRACKS_ERROR';
-const FETCH_ARTISTS_PENDING = 'page-explore/FETCH_ARTISTS_PENDING';
-const FETCH_ARTISTS_SUCCESS = 'page-explore/FETCH_ARTISTS_SUCCESS';
-const FETCH_ARTISTS_ERROR = 'page-explore/FETCH_ARTISTS_ERROR';
+export const types = {
+  FETCH_ORIGINAL_TRACKS_PENDING: 'page-explore/FETCH_ORIGINAL_TRACKS_PENDING',
+  FETCH_ORIGINAL_TRACKS_SUCCESS: 'page-explore/FETCH_ORIGINAL_TRACKS_SUCCESS',
+  FETCH_ORIGINAL_TRACKS_ERROR: 'page-explore/FETCH_ORIGINAL_TRACKS_ERROR',
+  FETCH_REMIX_TRACKS_PENDING: 'page-explore/FETCH_REMIX_TRACKS_PENDING',
+  FETCH_REMIX_TRACKS_SUCCESS: 'page-explore/FETCH_REMIX_TRACKS_SUCCESS',
+  FETCH_REMIX_TRACKS_ERROR: 'page-explore/FETCH_REMIX_TRACKS_ERROR',
+  FETCH_ARTISTS_PENDING: 'page-explore/FETCH_ARTISTS_PENDING',
+  FETCH_ARTISTS_SUCCESS: 'page-explore/FETCH_ARTISTS_SUCCESS',
+  FETCH_ARTISTS_ERROR: 'page-explore/FETCH_ARTISTS_ERROR',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   originalTracks: null, // array
   originalTracksLoading: false, // bool
   originalTracksError: null,
@@ -28,13 +30,13 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case FETCH_ORIGINAL_TRACKS_PENDING:
+    case types.FETCH_ORIGINAL_TRACKS_PENDING:
       return { ...state, originalTracksLoading: true };
 
-    case FETCH_ORIGINAL_TRACKS_SUCCESS:
+    case types.FETCH_ORIGINAL_TRACKS_SUCCESS:
       return { ...state, originalTracks: action.payload.docs, originalTracksLoading: false };
 
-    case FETCH_ORIGINAL_TRACKS_ERROR:
+    case types.FETCH_ORIGINAL_TRACKS_ERROR:
       return {
         ...state,
         originalTracksError: action.payload,
@@ -42,13 +44,13 @@ const reducer = (state = initialState, action = {}) => {
         originalTracksLoading: false,
       };
 
-    case FETCH_REMIX_TRACKS_PENDING:
+    case types.FETCH_REMIX_TRACKS_PENDING:
       return { ...state, remixTracksLoading: true };
 
-    case FETCH_REMIX_TRACKS_SUCCESS:
+    case types.FETCH_REMIX_TRACKS_SUCCESS:
       return { ...state, remixTracks: action.payload.docs, remixTracksLoading: false };
 
-    case FETCH_REMIX_TRACKS_ERROR:
+    case types.FETCH_REMIX_TRACKS_ERROR:
       return {
         ...state,
         remixTracksError: action.payload,
@@ -56,13 +58,13 @@ const reducer = (state = initialState, action = {}) => {
         remixTracksLoading: false,
       };
 
-    case FETCH_ARTISTS_PENDING:
+    case types.FETCH_ARTISTS_PENDING:
       return { ...state, artistsLoading: true };
 
-    case FETCH_ARTISTS_SUCCESS:
+    case types.FETCH_ARTISTS_SUCCESS:
       return { ...state, artists: action.payload.docs, artistsLoading: false };
 
-    case FETCH_ARTISTS_ERROR:
+    case types.FETCH_ARTISTS_ERROR:
       return { ...state, artistError: action.payload, artists: null, artistsLoading: false };
 
     default:
@@ -72,30 +74,45 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
+// Selectors
+//
+export const getOriginalTracks = state => state.pageExplore.originalTracks;
+export const getOriginalTracksLoading = state => state.pageExplore.originalTracksLoading;
+export const getOriginalTracksError = state => state.pageExplore.originalTracksError;
+export const getRemixTracks = state => state.pageExplore.remixTracks;
+export const getRemixTracksLoading = state => state.pageExplore.remixTracksLoading;
+export const getRemixTracksError = state => state.pageExplore.remixTracksError;
+export const getArtists = state => state.pageExplore.artists;
+export const getArtistsLoading = state => state.pageExplore.artistsLoading;
+export const getArtistsError = state => state.pageExplore.artistsError;
+
 // Side effects, only as applicable (thunks)
 //
 // Fetch all original tracks
 export const fetchOriginalTracks = () => ({
   types: [
-    FETCH_ORIGINAL_TRACKS_PENDING,
-    FETCH_ORIGINAL_TRACKS_SUCCESS,
-    FETCH_ORIGINAL_TRACKS_ERROR,
+    types.FETCH_ORIGINAL_TRACKS_PENDING,
+    types.FETCH_ORIGINAL_TRACKS_SUCCESS,
+    types.FETCH_ORIGINAL_TRACKS_ERROR,
   ],
-  callAPI: () =>
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/track?type2=original&%24embed=artists`),
+  callAPI: () => restGetTracks('original'),
   shouldCallAPI: () => true,
 });
 
 // Fetch all remix tracks
 export const fetchRemixTracks = () => ({
-  types: [FETCH_REMIX_TRACKS_PENDING, FETCH_REMIX_TRACKS_SUCCESS, FETCH_REMIX_TRACKS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/track?type2=remix&%24embed=artists`),
+  types: [
+    types.FETCH_REMIX_TRACKS_PENDING,
+    types.FETCH_REMIX_TRACKS_SUCCESS,
+    types.FETCH_REMIX_TRACKS_ERROR,
+  ],
+  callAPI: () => restGetTracks('remix'),
   shouldCallAPI: () => true,
 });
 
 // Fetch all artists
 export const fetchArtists = () => ({
-  types: [FETCH_ARTISTS_PENDING, FETCH_ARTISTS_SUCCESS, FETCH_ARTISTS_ERROR],
-  callAPI: () => axios.get(`${process.env.REACT_APP_ENDPOINT}/artist?visible=true`),
+  types: [types.FETCH_ARTISTS_PENDING, types.FETCH_ARTISTS_SUCCESS, types.FETCH_ARTISTS_ERROR],
+  callAPI: () => restGetArtists(),
   shouldCallAPI: () => true,
 });

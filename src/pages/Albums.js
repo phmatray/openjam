@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAlbums } from '../redux/modules/album';
+import { fetchAlbums, getAlbums, getLoading } from '../redux/modules/album';
 import Spinner from '../components/Spinner';
 import AlbumsPresenter from './albums/AlbumsPresenter';
 
@@ -34,8 +34,8 @@ Albums.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  albums: state.album.albums,
-  loading: state.album.loading,
+  albums: getAlbums(state),
+  loading: getLoading(state),
 });
 
 export default connect(

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
-import { addPost } from '../../redux/modules/page-share';
 import Div from '../../components/Div';
 import Input from '../../components/Input';
+import { addPost } from '../../redux/modules/page-share';
+import { getErrors } from '../../redux/modules/error';
+import { getUser } from '../../redux/modules/auth';
 
 class PostForm extends Component {
   state = {
@@ -76,8 +78,8 @@ PostForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
-  errors: state.errors,
+  user: getUser(state),
+  errors: getErrors(state),
 });
 
 export default connect(

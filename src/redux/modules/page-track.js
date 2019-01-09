@@ -1,17 +1,19 @@
-import axios from 'axios';
+import { restGetTrack, restGetArtistTracks } from '../../api/logion';
 
-// Actions
+// Action Types
 //
-const FETCH_TRACK_PENDING = 'page-track/FETCH_TRACK_PENDING';
-const FETCH_TRACK_SUCCESS = 'page-track/FETCH_TRACK_SUCCESS';
-const FETCH_TRACK_ERROR = 'page-track/FETCH_TRACK_ERROR';
-const BY_ARTIST_PENDING = 'page-track/BY_ARTIST_PENDING';
-const BY_ARTIST_SUCCESS = 'page-track/BY_ARTIST_SUCCESS';
-const BY_ARTIST_ERROR = 'page-track/BY_ARTIST_ERROR';
+export const types = {
+  FETCH_TRACK_PENDING: 'page-track/FETCH_TRACK_PENDING',
+  FETCH_TRACK_SUCCESS: 'page-track/FETCH_TRACK_SUCCESS',
+  FETCH_TRACK_ERROR: 'page-track/FETCH_TRACK_ERROR',
+  BY_ARTIST_PENDING: 'page-track/BY_ARTIST_PENDING',
+  BY_ARTIST_SUCCESS: 'page-track/BY_ARTIST_SUCCESS',
+  BY_ARTIST_ERROR: 'page-track/BY_ARTIST_ERROR',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   track: null, // object
   trackLoading: false, // bool
   trackError: null,
@@ -22,13 +24,13 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case FETCH_TRACK_PENDING:
+    case types.FETCH_TRACK_PENDING:
       return { ...state, trackLoading: true };
 
-    case FETCH_TRACK_SUCCESS:
+    case types.FETCH_TRACK_SUCCESS:
       return { ...state, track: action.payload, trackLoading: false };
 
-    case FETCH_TRACK_ERROR:
+    case types.FETCH_TRACK_ERROR:
       return {
         ...state,
         trackError: action.payload,
@@ -36,13 +38,13 @@ const reducer = (state = initialState, action = {}) => {
         trackLoading: false,
       };
 
-    case BY_ARTIST_PENDING:
+    case types.BY_ARTIST_PENDING:
       return { ...state, byArtistLoading: true };
 
-    case BY_ARTIST_SUCCESS:
+    case types.BY_ARTIST_SUCCESS:
       return { ...state, byArtist: action.payload.docs, byArtistLoading: false };
 
-    case BY_ARTIST_ERROR:
+    case types.BY_ARTIST_ERROR:
       return {
         ...state,
         byArtistError: action.payload,
@@ -57,23 +59,26 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
+// Selectors
+//
+export const getTrack = state => state.pageTrack.track;
+export const getTrackLoading = state => state.pageTrack.trackLoading;
+export const getTrackError = state => state.pageTrack.trackError;
+export const getByArtist = state => state.pageTrack.byArtist;
+export const getByArtistLoading = state => state.pageTrack.byArtistLoading;
+export const getByArtistError = state => state.pageTrack.byArtistError;
+
 // Side effects, only as applicable (thunks)
 //
 // Fetch a track by _id
 export const fetchTrack = id => ({
-  types: [FETCH_TRACK_PENDING, FETCH_TRACK_SUCCESS, FETCH_TRACK_ERROR],
-  callAPI: () =>
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/track/${id}?%24embed=albums&%24embed=artists`),
+  types: [types.FETCH_TRACK_PENDING, types.FETCH_TRACK_SUCCESS, types.FETCH_TRACK_ERROR],
+  callAPI: () => restGetTrack(id),
   shouldCallAPI: () => true,
 });
 
 export const fetchTracksByArtistId = (artistId, limit = 3) => ({
-  types: [BY_ARTIST_PENDING, BY_ARTIST_SUCCESS, BY_ARTIST_ERROR],
-  callAPI: () =>
-    axios.get(
-      `${
-        process.env.REACT_APP_ENDPOINT
-      }/artist/${artistId}/track?%24limit=${limit}&%24embed=artists`,
-    ),
+  types: [types.BY_ARTIST_PENDING, types.BY_ARTIST_SUCCESS, types.BY_ARTIST_ERROR],
+  callAPI: () => restGetArtistTracks(artistId, limit),
   shouldCallAPI: () => true,
 });

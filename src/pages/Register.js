@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { registerUser } from '../redux/modules/auth';
+import { registerUser, getIsAuthenticated, getLoading } from '../redux/modules/auth';
+import { getErrors } from '../redux/modules/error';
 
 import RegisterPresenter from './register/RegisterPresenter';
 
@@ -43,9 +44,9 @@ Register.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  loading: state.auth.loading,
-  errors: state.errors,
+  isAuthenticated: getIsAuthenticated(state),
+  loading: getLoading(state),
+  errors: getErrors(state),
 });
 
 export default withRouter(

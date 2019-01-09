@@ -5,7 +5,11 @@ import { Header } from 'semantic-ui-react';
 
 import Track from '../../components/model/Track';
 import LinkEntity from '../../components/LinkEntity';
-import { fetchTracksByArtistId } from '../../redux/modules/page-track';
+import {
+  fetchTracksByArtistId,
+  getByArtist,
+  getByArtistLoading,
+} from '../../redux/modules/page-track';
 
 class MoreTracks extends Component {
   async componentDidMount() {
@@ -43,8 +47,8 @@ MoreTracks.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  byArtist: state.pageTrack.byArtist,
-  byArtistLoading: state.pageTrack.byArtistLoading,
+  byArtist: getByArtist(state),
+  byArtistLoading: getByArtistLoading(state),
 });
 
 export default connect(

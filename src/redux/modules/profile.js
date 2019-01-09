@@ -1,20 +1,27 @@
 /* eslint-disable no-alert */
 
-import axios from 'axios';
-
-import { updateErrors } from './error';
+import { actions as errorActions } from './error';
 import { logoutUser } from './auth';
+import {
+  restGetProfileMe,
+  restGetProfileByHandle,
+  restAddProfile,
+  restGetUsers,
+  restDeleteProfile,
+} from '../../api/logion';
 
-// Actions
+// Action Types
 //
-const LOAD = 'profile/LOAD';
-const UPDATE_PROFILES = 'profile/UPDATE_PROFILES';
-const UPDATE_PROFILE = 'profile/UPDATE_PROFILE';
-const CLEAR_CURRENT_PROFILE = 'profile/CLEAR_CURRENT_PROFILE';
+export const types = {
+  LOAD: 'profile/LOAD',
+  UPDATE_PROFILES: 'profile/UPDATE_PROFILES',
+  UPDATE_PROFILE: 'profile/UPDATE_PROFILE',
+  CLEAR_CURRENT_PROFILE: 'profile/CLEAR_CURRENT_PROFILE',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   profile: null,
   profiles: null,
   loading: false,
@@ -22,16 +29,16 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case LOAD:
+    case types.LOAD:
       return { ...state, loading: true };
 
-    case UPDATE_PROFILES:
+    case types.UPDATE_PROFILES:
       return { ...state, profiles: action.payload, loading: false };
 
-    case UPDATE_PROFILE:
+    case types.UPDATE_PROFILE:
       return { ...state, profile: action.payload, loading: false };
 
-    case CLEAR_CURRENT_PROFILE:
+    case types.CLEAR_CURRENT_PROFILE:
       return { ...state, profile: null };
 
     default:
@@ -41,63 +48,69 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
+// Selectors
+//
+export const getProfiles = state => state.profile.profiles;
+export const getProfile = state => state.profile.profile;
+export const getProfileHandle = state => state.profile.profile.handle;
+export const getLoading = state => state.profile.loading;
+
 // Action Creators
 //
-export const loadProfiles = () => ({ type: LOAD });
+export const actions = {
+  loadProfiles: () => ({ type: types.LOAD }),
 
-export const updateProfiles = payload => {
-  const profiles = payload && payload.docs ? payload.docs : payload;
-  return { type: UPDATE_PROFILES, payload: profiles };
+  updateProfiles: payload => {
+    const profiles = payload && payload.docs ? payload.docs : payload;
+    return { type: types.UPDATE_PROFILES, payload: profiles };
+  },
+
+  updateProfile: payload => ({ type: types.UPDATE_PROFILE, payload }),
+  clearCurrentProfile: () => ({ type: types.CLEAR_CURRENT_PROFILE }),
 };
-
-export const updateProfile = payload => ({ type: UPDATE_PROFILE, payload });
-export const clearCurrentProfile = () => ({ type: CLEAR_CURRENT_PROFILE });
 
 // Side effects, only as applicable (thunks)
 //
 // Get current profile
-export const getCurrentProfile = () => async dispatch => {
+export const fetchCurrentProfile = () => async dispatch => {
   try {
-    dispatch(loadProfiles());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile/me`);
-
-    dispatch(updateProfile(res.data));
+    dispatch(actions.loadProfiles());
+    const res = await restGetProfileMe();
+    dispatch(actions.updateProfile(res.data));
   } catch (error) {
-    dispatch(updateProfile({}));
+    dispatch(actions.updateProfile({}));
   }
 };
 
 // Get profile by handle
-export const getProfileByHandle = handle => async dispatch => {
+export const fetchProfileByHandle = handle => async dispatch => {
   try {
-    dispatch(loadProfiles());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/profile/handle/${handle}`);
-
-    dispatch(updateProfile(res.data));
+    dispatch(actions.loadProfiles());
+    const res = await restGetProfileByHandle(handle);
+    dispatch(actions.updateProfile(res.data));
   } catch (error) {
-    dispatch(updateProfile(null));
+    dispatch(actions.updateProfile(null));
   }
 };
 
 // Create profile
 export const createProfile = (profileData, history) => async dispatch => {
   try {
-    await axios.post(`${process.env.REACT_APP_ENDPOINT}/profile`, profileData);
+    await restAddProfile(profileData);
     history.push('/dashboard');
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Get all profiles
-export const getProfiles = () => async dispatch => {
+export const fetchProfiles = () => async dispatch => {
   try {
-    dispatch(loadProfiles());
-    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT}/user`);
-
-    dispatch(updateProfiles(res.data.docs));
+    dispatch(actions.loadProfiles());
+    const res = await restGetUsers();
+    dispatch(actions.updateProfiles(res.data.docs));
   } catch (error) {
-    dispatch(updateProfiles(null));
+    dispatch(actions.updateProfiles(null));
   }
 };
 
@@ -105,11 +118,10 @@ export const getProfiles = () => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      await axios.delete(`${process.env.REACT_APP_ENDPOINT}/profile`);
-
+      await restDeleteProfile();
       dispatch(logoutUser());
     } catch (error) {
-      dispatch(updateErrors(error.response.data));
+      dispatch(errorActions.updateErrors(error.response.data));
     }
   }
 };

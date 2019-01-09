@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Comment, Icon } from 'semantic-ui-react';
+
 import { deleteComment } from '../../redux/modules/page-share';
+import { getUser } from '../../redux/modules/auth';
 
 class CommentItem extends Component {
   handleDeleteClick = (postId, commentId) => {
@@ -10,7 +12,7 @@ class CommentItem extends Component {
   };
 
   render() {
-    const { comment, postId, auth } = this.props;
+    const { comment, postId, user } = this.props;
 
     return (
       <Comment>
@@ -21,7 +23,7 @@ class CommentItem extends Component {
             <div>Today at 5:42PM</div>
           </Comment.Metadata>
           <Comment.Text>{comment.text}</Comment.Text>
-          {comment.user === auth.user.id ? (
+          {comment.user === user._id ? (
             <Comment.Actions>
               <Comment.Action onClick={this.handleDeleteClick.bind(undefined, postId, comment._id)}>
                 <Icon name="times" />
@@ -36,13 +38,13 @@ class CommentItem extends Component {
 
 CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
-  comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  auth: PropTypes.object.isRequired,
+  comment: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  user: getUser(state),
 });
 
 export default connect(

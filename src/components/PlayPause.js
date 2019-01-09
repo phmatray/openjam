@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { playSelected, playTrack, pause } from '../redux/modules/player';
+import {
+  playSelected,
+  playTrack,
+  actions,
+  getCollectionId,
+  getPlaying,
+} from '../redux/modules/player';
 
 import { PlayPauseIcon, StyledButton } from './play-pause/Atoms';
 
@@ -38,11 +44,11 @@ PlayPause.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  collectionId: state.player.collectionId,
-  playing: state.player.playing,
+  collectionId: getCollectionId(state),
+  playing: getPlaying(state),
 });
 
 export default connect(
   mapStateToProps,
-  { playSelected, playTrack, pause },
+  { playSelected, playTrack, pause: actions.pause },
 )(PlayPause);

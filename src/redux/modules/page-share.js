@@ -1,20 +1,29 @@
-import axios from 'axios';
+import { actions as errorActions } from './error';
+import {
+  restGetPosts,
+  restGetPost,
+  restDeletePost,
+  restAddPost,
+  restAddPostLike,
+  restDeletePostLike,
+  restAddPostComment,
+  restDeletePostComment,
+} from '../../api/logion';
 
-import { updateErrors, clearErrors } from './error';
-import { restGetPosts, restGetPost, restDeletePost, restAddPost } from '../logion';
-
-// Actions
+// Action Types
 //
-const LOAD = 'post/LOAD';
-const UPDATE_POSTS = 'post/UPDATE_POSTS';
-const CREATE_POST = 'post/CREATE_POST';
-const UPDATE_POST = 'post/UPDATE_POST';
-const UPDATE_POST_LIKE = 'post/UPDATE_POST_LIKE';
-const REMOVE_POST = 'post/REMOVE_POST';
+export const types = {
+  LOAD: 'post/LOAD',
+  UPDATE_POSTS: 'post/UPDATE_POSTS',
+  CREATE_POST: 'post/CREATE_POST',
+  UPDATE_POST: 'post/UPDATE_POST',
+  UPDATE_POST_LIKE: 'post/UPDATE_POST_LIKE',
+  REMOVE_POST: 'post/REMOVE_POST',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   posts: [],
   post: {},
   loading: false,
@@ -22,16 +31,16 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case LOAD:
+    case types.LOAD:
       return { ...state, loading: true };
 
-    case UPDATE_POSTS:
+    case types.UPDATE_POSTS:
       return { ...state, posts: action.payload, loading: false };
 
-    case UPDATE_POST:
+    case types.UPDATE_POST:
       return { ...state, post: action.payload, loading: false };
 
-    case UPDATE_POST_LIKE:
+    case types.UPDATE_POST_LIKE:
       return {
         ...state,
         posts: state.posts.map(post => {
@@ -42,10 +51,10 @@ const reducer = (state = initialState, action = {}) => {
         }),
       };
 
-    case CREATE_POST:
+    case types.CREATE_POST:
       return { ...state, posts: [action.payload, ...state.posts] };
 
-    case REMOVE_POST:
+    case types.REMOVE_POST:
       return { ...state, posts: state.posts.filter(post => post._id !== action.payload) };
 
     default:
@@ -55,19 +64,27 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
+// Selectors
+//
+export const getPosts = state => state.pageShare.posts;
+export const getPost = state => state.pageShare.post;
+export const getLoading = state => state.pageShare.loading;
+
 // Action Creators
 //
-export const loadPosts = () => ({ type: LOAD });
+export const actions = {
+  loadPosts: () => ({ type: types.LOAD }),
 
-export const updatePosts = payload => {
-  const posts = payload && payload.docs ? payload.docs : payload;
-  return { type: UPDATE_POSTS, payload: posts };
+  updatePosts: payload => {
+    const posts = payload && payload.docs ? payload.docs : payload;
+    return { type: types.UPDATE_POSTS, payload: posts };
+  },
+
+  updatePost: payload => ({ type: types.UPDATE_POST, payload }),
+  createPost: payload => ({ type: types.CREATE_POST, payload }),
+  removePost: payload => ({ type: types.REMOVE_POST, payload }),
+  updatePostLike: payload => ({ type: types.UPDATE_POST_LIKE, payload }),
 };
-
-export const updatePost = payload => ({ type: UPDATE_POST, payload });
-export const createPost = payload => ({ type: CREATE_POST, payload });
-export const removePost = payload => ({ type: REMOVE_POST, payload });
-export const updatePostLike = payload => ({ type: UPDATE_POST_LIKE, payload });
 
 // Side effects, only as applicable (thunks)
 //
@@ -75,7 +92,7 @@ export const updatePostLike = payload => ({ type: UPDATE_POST_LIKE, payload });
 export const addPost = postData => async (dispatch, getState) => {
   try {
     console.warn(postData);
-    dispatch(clearErrors());
+    dispatch(errorActions.clearErrors());
     const res = await restAddPost(postData);
 
     const post = res.data;
@@ -85,31 +102,31 @@ export const addPost = postData => async (dispatch, getState) => {
 
     console.warn(post);
 
-    dispatch(createPost(post));
+    dispatch(actions.createPost(post));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Get Posts
-export const getPosts = () => async dispatch => {
+export const fetchPosts = () => async dispatch => {
   try {
-    dispatch(loadPosts());
+    dispatch(actions.loadPosts());
     const res = await restGetPosts();
-    dispatch(updatePosts(res.data));
+    dispatch(actions.updatePosts(res.data));
   } catch (error) {
-    dispatch(updatePosts(initialState.posts));
+    dispatch(actions.updatePosts(initialState.posts));
   }
 };
 
 // Get Post
-export const getPost = id => async dispatch => {
+export const fetchPost = id => async dispatch => {
   try {
-    dispatch(loadPosts());
+    dispatch(actions.loadPosts());
     const res = await restGetPost(id);
-    dispatch(updatePost(res.data));
+    dispatch(actions.updatePost(res.data));
   } catch (error) {
-    dispatch(updatePost(null));
+    dispatch(actions.updatePost(null));
   }
 };
 
@@ -117,58 +134,49 @@ export const getPost = id => async dispatch => {
 export const deletePost = id => async dispatch => {
   try {
     await restDeletePost(id);
-    dispatch(removePost(id));
+    dispatch(actions.removePost(id));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Add Like
 export const addLike = id => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/post/like/${id}`);
-
-    dispatch(updatePostLike(res.data));
+    const res = await restAddPostLike(id);
+    dispatch(actions.updatePostLike(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Remove Like
 export const removeLike = id => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/post/unlike/${id}`);
-
-    dispatch(updatePostLike(res.data));
+    const res = await restDeletePostLike(id);
+    dispatch(actions.updatePostLike(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Add Comment
 export const addComment = (postId, commentData) => async dispatch => {
   try {
-    dispatch(clearErrors());
-    const res = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT}/post/comment/${postId}`,
-      commentData,
-    );
-
-    dispatch(updatePost(res.data));
+    dispatch(errorActions.clearErrors());
+    const res = await restAddPostComment(postId, commentData);
+    dispatch(actions.updatePost(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };
 
 // Delete Comment
 export const deleteComment = (postId, commentId) => async dispatch => {
   try {
-    const res = await axios.delete(
-      `${process.env.REACT_APP_ENDPOINT}/post/comment/${postId}/${commentId}`,
-    );
-
-    dispatch(updatePost(res.data));
+    const res = await restDeletePostComment(postId, commentId);
+    dispatch(actions.updatePost(res.data));
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };

@@ -3,13 +3,14 @@ import { ThemeConsumer } from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Menu, Container, Image, Button } from 'semantic-ui-react';
+import { Menu, Container, Image, Button, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import LanguageDropdown from './LanguageDropdown';
 
-import { logoutUser } from '../../../redux/modules/auth';
-import { clearCurrentProfile } from '../../../redux/modules/profile';
+import { logoutUser, getIsAuthenticated, getUser } from '../../../redux/modules/auth';
+import { getPlaying } from '../../../redux/modules/player';
+import { actions as profileActions } from '../../../redux/modules/profile';
 import logo from '../../../images/logos/logo_white.svg';
 
 class NavbarDesktop extends Component {
@@ -33,9 +34,8 @@ class NavbarDesktop extends Component {
   };
 
   render() {
-    const { auth, playing, height, t } = this.props;
+    const { isAuthenticated, user, playing, height, t } = this.props;
     const { activeItem } = this.state;
-    const { isAuthenticated, user } = auth;
 
     const leftLinks = (
       <React.Fragment>
@@ -131,6 +131,15 @@ class NavbarDesktop extends Component {
 
               <Menu.Menu position="right">
                 <LanguageDropdown />
+                <Menu.Item
+                  as={Link}
+                  to="/search"
+                  name="search"
+                  active={activeItem === 'search'}
+                  onClick={this.handleItemClick}
+                >
+                  <Icon name="search" />
+                </Menu.Item>
                 {isAuthenticated ? authLinks : guestLinks}
               </Menu.Menu>
             </Container>
@@ -145,16 +154,18 @@ NavbarDesktop.propTypes = {
   height: PropTypes.number.isRequired,
   logoutUser: PropTypes.func.isRequired,
   clearCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
   playing: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  playing: state.player.playing,
+  isAuthenticated: getIsAuthenticated(state),
+  user: getUser(state),
+  playing: getPlaying(state),
 });
 
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile },
+  { logoutUser, clearCurrentProfile: profileActions.clearCurrentProfile },
 )(withNamespaces('common')(NavbarDesktop));

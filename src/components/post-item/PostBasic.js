@@ -9,6 +9,7 @@ import Intro from './Intro';
 import { Content } from './styles';
 import Comment from './Comment';
 import { deletePost, addLike, removeLike } from '../../redux/modules/page-share';
+import { getUser, getIsAuthenticated } from '../../redux/modules/auth';
 
 class PostBasic extends Component {
   findUserLike = likes => {
@@ -82,8 +83,8 @@ PostBasic.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
-  isAuthenticated: state.auth.isAuthenticated,
+  user: getUser(state),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(

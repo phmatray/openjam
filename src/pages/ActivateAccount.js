@@ -9,6 +9,7 @@ import { Grid, Icon, Header, Button, Divider, Message } from 'semantic-ui-react'
 
 import { activateAccount } from '../redux/modules/auth';
 import BackgroundScreen from '../components/BackgroundScreen';
+import { getErrors } from '../redux/modules/error';
 
 class ActivateAccount extends Component {
   state = {
@@ -92,7 +93,7 @@ ActivateAccount.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  errors: state.errors,
+  errors: getErrors(state),
 });
 
 export default withRouter(

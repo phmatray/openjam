@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 
-import { fetchTracks } from '../redux/modules/track';
 import Spinner from '../components/Spinner';
 import background from '../images/backgrounds/vinyl-2592068_1920.jpg';
+import { fetchTracks, getTracks, getLoading } from '../redux/modules/track';
 
 import TracksPresenter from './tracks/TracksPresenter';
 
@@ -46,8 +46,8 @@ Tracks.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  tracks: state.track.tracks,
-  loading: state.track.loading,
+  tracks: getTracks(state),
+  loading: getLoading(state),
 });
 
 export default connect(

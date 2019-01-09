@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { showSidebar, hideSidebar, toggleSidebar } from '../redux/modules/layout';
+
+import { actions, getSidebarVisible } from '../redux/modules/layout';
+import { getPlaying } from '../redux/modules/player';
+
 import LayoutPresenter from './layout/LayoutPresenter';
+import { getIsAuthenticated, getUser } from '../redux/modules/auth';
 
 const Layout = props => <LayoutPresenter {...props} />;
 
@@ -16,15 +20,15 @@ Layout.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  sidebarVisible: state.layout.sidebarVisible,
-  playing: state.player.playing,
-  isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user,
+  sidebarVisible: getSidebarVisible(state),
+  playing: getPlaying(state),
+  isAuthenticated: getIsAuthenticated(state),
+  user: getUser(state),
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { showSidebar, hideSidebar, toggleSidebar },
+    actions,
   )(Layout),
 );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArtists } from '../redux/modules/artist';
+import { fetchArtists, getArtists, getLoading } from '../redux/modules/artist';
 import Spinner from '../components/Spinner';
 import ArtistsPresenter from './artists/ArtistsPresenter';
 
@@ -38,8 +38,8 @@ Artists.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  artists: state.artist.artists,
-  loading: state.artist.loading,
+  artists: getArtists(state),
+  loading: getLoading(state),
 });
 
 export default connect(

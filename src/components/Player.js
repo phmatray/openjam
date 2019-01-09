@@ -5,12 +5,13 @@ import Sound from 'react-sound';
 
 import {
   fetchTracks,
-  loadCollection,
-  play,
-  pause,
-  previous,
-  next,
-  updateAudioInfo,
+  actions,
+  getTracks,
+  getPlaylist,
+  getPlaying,
+  getCurrent,
+  getAudioInfo,
+  getStatus,
 } from '../redux/modules/player';
 
 import PlayerPresenter from './player/PlayerPresenter';
@@ -79,15 +80,15 @@ Player.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  tracks: state.player.tracks,
-  playlist: state.player.playlist,
-  playing: state.player.playing,
-  current: state.player.current,
-  audioInfo: state.player.audioInfo,
-  status: state.player.status,
+  tracks: getTracks(state),
+  playlist: getPlaylist(state),
+  playing: getPlaying(state),
+  current: getCurrent(state),
+  audioInfo: getAudioInfo(state),
+  status: getStatus(state),
 });
 
 export default connect(
   mapStateToProps,
-  { fetchTracks, loadCollection, updateAudioInfo, play, pause, previous, next },
+  { fetchTracks, ...actions },
 )(Player);

@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 
 import Input from '../components/Input';
-import { createProfile, getCurrentProfile } from '../redux/modules/profile';
+import { createProfile, fetchCurrentProfile, getProfile } from '../redux/modules/profile';
 import isEmpty from '../utils/validation/is-empty';
+import { getErrors } from '../redux/modules/error';
 
 class EditProfile extends Component {
   state = {
@@ -29,7 +30,7 @@ class EditProfile extends Component {
   };
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    this.props.fetchCurrentProfile();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,8 +38,8 @@ class EditProfile extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    if (nextProps.profile.profile) {
-      const { profile } = nextProps.profile;
+    if (nextProps.profile) {
+      const { profile } = nextProps;
 
       // Bring skills array back to CSV
       const skillsCSV = profile.skills.join(',');
@@ -331,19 +332,19 @@ class EditProfile extends Component {
 
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
+  fetchCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  errors: state.errors,
+  profile: getProfile(state),
+  errors: getErrors(state),
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { createProfile, getCurrentProfile },
+    { createProfile, fetchCurrentProfile },
   )(EditProfile),
 );

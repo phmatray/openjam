@@ -1,22 +1,24 @@
 import _ from 'lodash';
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
-import { updateErrors } from './error';
+import { actions as errorActions } from './error';
 import isEmpty from '../../utils/validation/is-empty';
 import setAuthToken from '../../utils/setAuthToken';
 import { USER_ROLES } from '../../config';
+import { restLogout, restLogin, restRegisterActivate, restRegister } from '../../api/logion';
 
-// Actions
+// Action Types
 //
-const LOAD = 'auth/LOAD';
-const UPDATE_USER = 'auth/UPDATE_USER';
-const UPDATE_ACCESS_TOKEN = 'auth/UPDATE_ACCESS_TOKEN';
-const UPDATE_REFRESH_TOKEN = 'auth/UPDATE_REFRESH_TOKEN';
+export const types = {
+  LOAD: 'auth/LOAD',
+  UPDATE_USER: 'auth/UPDATE_USER',
+  UPDATE_ACCESS_TOKEN: 'auth/UPDATE_ACCESS_TOKEN',
+  UPDATE_REFRESH_TOKEN: 'auth/UPDATE_REFRESH_TOKEN',
+};
 
 // Reducer
 //
-const initialState = {
+export const initialState = {
   user: {},
   scope: [],
   exp: 0,
@@ -30,13 +32,13 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case LOAD:
+    case types.LOAD:
       return {
         ...state,
         loading: true,
       };
 
-    case UPDATE_USER:
+    case types.UPDATE_USER:
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
@@ -44,7 +46,7 @@ const reducer = (state = initialState, action = {}) => {
         loading: false,
       };
 
-    case UPDATE_ACCESS_TOKEN:
+    case types.UPDATE_ACCESS_TOKEN:
       return {
         ...state,
         scope: action.payload.scope,
@@ -53,7 +55,7 @@ const reducer = (state = initialState, action = {}) => {
         accessToken: action.payload.accessToken,
       };
 
-    case UPDATE_REFRESH_TOKEN:
+    case types.UPDATE_REFRESH_TOKEN:
       return {
         ...state,
         refreshToken: action.payload,
@@ -68,25 +70,37 @@ export default reducer;
 
 // Action Creators
 //
-export const loadUser = () => ({ type: LOAD });
+export const actions = {
+  loadUser: () => ({ type: types.LOAD }),
+  updateUser: payload => ({ type: types.UPDATE_USER, payload }),
 
-export const updateUser = payload => ({ type: UPDATE_USER, payload });
+  updateAccessToken: accessToken => {
+    localStorage.setItem('accessToken', accessToken);
 
-export const updateAccessToken = accessToken => {
-  localStorage.setItem('accessToken', accessToken);
+    const payload =
+      accessToken === initialState.accessToken
+        ? _.pick(initialState, ['accessToken', 'scope', 'exp', 'iat'])
+        : { accessToken, ..._.pick(jwtDecode(accessToken), ['scope', 'exp', 'iat']) };
 
-  const payload =
-    accessToken === initialState.accessToken
-      ? _.pick(initialState, ['accessToken', 'scope', 'exp', 'iat'])
-      : { accessToken, ..._.pick(jwtDecode(accessToken), ['scope', 'exp', 'iat']) };
+    return { type: types.UPDATE_ACCESS_TOKEN, payload };
+  },
 
-  return { type: UPDATE_ACCESS_TOKEN, payload };
+  updateRefreshToken: refreshToken => {
+    localStorage.setItem('refreshToken', refreshToken);
+    return { type: types.UPDATE_REFRESH_TOKEN, refreshToken };
+  },
 };
 
-export const updateRefreshToken = refreshToken => {
-  localStorage.setItem('refreshToken', refreshToken);
-  return { type: UPDATE_REFRESH_TOKEN, refreshToken };
-};
+// Selectors
+//
+export const getUser = state => state.auth.user;
+export const getScope = state => state.auth.scope;
+export const getExo = state => state.auth.exp;
+export const getIat = state => state.auth.iat;
+export const getAccessToken = state => state.auth.accessToken;
+export const getRefreshToken = state => state.auth.refreshToken;
+export const getLoading = state => state.auth.loading;
+export const getIsAuthenticated = state => state.auth.isAuthenticated;
 
 // Side effects, only as applicable (thunks)
 //
@@ -96,13 +110,10 @@ export const registerUser = (userData, history) => async dispatch => {
     const user = { ...userData, role: USER_ROLES.USER };
     delete user.password2;
 
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/register`, {
-      user,
-      registerType: 'Register',
-    });
+    const res = await restRegister(user);
 
     if (!res.data.errmsg) {
-      dispatch(updateErrors({}));
+      dispatch(errorActions.updateErrors({}));
       history.push('/register-thanks');
     }
   } catch (error) {
@@ -110,17 +121,17 @@ export const registerUser = (userData, history) => async dispatch => {
       'There was an error during the registration process. ' +
       'Please try again or contact us if you continue to have trouble creating an account.';
 
-    dispatch(updateErrors({ ...error.response, message: errorMessage }));
+    dispatch(errorActions.updateErrors({ ...error.response, message: errorMessage }));
   }
 };
 
 // Register - Activate Account
 export const activateAccount = (token, history) => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/register/activate`, { token });
+    const res = await restRegisterActivate(token);
 
     if (!res.data.errmsg) {
-      dispatch(updateErrors({}));
+      dispatch(errorActions.updateErrors({}));
       history.push('/register-thanks');
     }
   } catch (error) {
@@ -128,23 +139,23 @@ export const activateAccount = (token, history) => async dispatch => {
       'There was an error during the activation process. The token in your email link may be expired, ' +
       'you can request a new activation email to be sent during your next login attempt.';
 
-    dispatch(updateErrors({ ...error.response, message: errorMessage }));
+    dispatch(errorActions.updateErrors({ ...error.response, message: errorMessage }));
   }
 };
 
 // Login - Get User Token
 export const loginUser = userData => async dispatch => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_ENDPOINT}/login`, userData);
+    const res = await restLogin(userData);
     if (res.status === 200) {
       const { accessToken, refreshToken, user } = res.data;
 
       setAuthToken(refreshToken);
-      dispatch(updateRefreshToken(refreshToken));
-      dispatch(updateAccessToken(accessToken));
+      dispatch(actions.updateRefreshToken(refreshToken));
+      dispatch(actions.updateAccessToken(accessToken));
 
-      dispatch(updateUser(user));
-      dispatch(updateErrors({}));
+      dispatch(actions.updateUser(user));
+      dispatch(errorActions.updateErrors({}));
 
       // TODO: dispatch a toast notification
       // notify.success('Login successful', 'Success!')
@@ -182,23 +193,23 @@ export const loginUser = userData => async dispatch => {
         break;
     }
 
-    dispatch(updateErrors({ ...data, message: errorMessage }));
+    dispatch(errorActions.updateErrors({ ...data, message: errorMessage }));
   }
 };
 
 // Log user out
 export const logoutUser = () => async dispatch => {
   try {
-    const res = await axios.delete(`${process.env.REACT_APP_ENDPOINT}/logout`, {});
+    const res = await restLogout();
     if (res.status === 200) {
       // Set current user to {} which will set isAuthenticated to false
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
-      dispatch(updateAccessToken(initialState.accessToken));
-      dispatch(updateRefreshToken(initialState.refreshToken));
-      dispatch(updateUser(initialState.user));
+      dispatch(actions.updateAccessToken(initialState.accessToken));
+      dispatch(actions.updateRefreshToken(initialState.refreshToken));
+      dispatch(actions.updateUser(initialState.user));
     }
   } catch (error) {
-    dispatch(updateErrors(error.response.data));
+    dispatch(errorActions.updateErrors(error.response.data));
   }
 };

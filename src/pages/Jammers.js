@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import JammersPresenter from './jammers/JammersPresenter';
-import { getProfiles } from '../redux/modules/profile';
 import Spinner from '../components/Spinner';
+import { fetchProfiles, getProfiles, getLoading } from '../redux/modules/profile';
+import { getIsAuthenticated } from '../redux/modules/auth';
+
+import JammersPresenter from './jammers/JammersPresenter';
 
 class Jammers extends Component {
   componentDidMount() {
-    this.props.getProfiles();
+    this.props.fetchProfiles();
   }
 
   render() {
@@ -26,19 +28,19 @@ class Jammers extends Component {
 }
 
 Jammers.propTypes = {
-  getProfiles: PropTypes.func.isRequired,
-  profiles: PropTypes.any.isRequired,
+  fetchProfiles: PropTypes.func.isRequired,
+  profiles: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  profiles: state.profile.profiles,
-  loading: state.profile.loading,
-  isAuthenticated: state.auth.isAuthenticated,
+  profiles: getProfiles(state),
+  loading: getLoading(state),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(
   mapStateToProps,
-  { getProfiles },
+  { fetchProfiles },
 )(withNamespaces('common')(Jammers));

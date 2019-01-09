@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getIsAuthenticated } from '../../redux/modules/auth';
 
 const AuthenticatedRoute = ({ component: Component, isAuthenticated, ...rest }) => (
   <Route
@@ -17,7 +18,7 @@ AuthenticatedRoute.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(mapStateToProps)(AuthenticatedRoute);
