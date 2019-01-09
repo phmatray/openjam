@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
 import TextAreaFieldGroup from '../../components/input/TextAreaFieldGroup';
-import { addComment } from '../../redux/modules/page-share';
-import { getErrors } from '../../redux/modules/error';
-import { getUser } from '../../redux/modules/auth';
+import { addComment } from '../../reducers/ui/pages/share';
+import { getErrors } from '../../reducers/data/error';
+import { getUser } from '../../reducers/auth';
 
 class CommentForm extends Component {
   state = {

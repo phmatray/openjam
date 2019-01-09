@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import * as actions from '../../actions';
-import { getVisibleTracks, getErrorMessage, getIsFetching } from '../../reducers';
+import { getVisibleTracks, getErrorMessage, getIsFetching } from '../../reducers/data/tracks';
 
 import TrackList from './visible-track-list/TrackList';
 import FetchError from './visible-track-list/FetchError';
@@ -56,11 +56,10 @@ VisibleTrackList.defaultProps = {
 
 const mapStateToProps = (state, { match: { params } }) => {
   const filter = params.filter || 'all';
-  const { tracks } = state;
   return {
-    isFetching: getIsFetching(tracks, filter),
-    errorMessage: getErrorMessage(tracks, filter),
-    tracks: getVisibleTracks(tracks, filter),
+    isFetching: getIsFetching(state, filter),
+    errorMessage: getErrorMessage(state, filter),
+    tracks: getVisibleTracks(state, filter),
     filter,
   };
 };

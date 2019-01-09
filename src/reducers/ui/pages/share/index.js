@@ -1,4 +1,4 @@
-import { actions as errorActions } from './error';
+import { actions as errorActions } from '../../../data/error';
 import {
   restGetPosts,
   restGetPost,
@@ -8,7 +8,7 @@ import {
   restDeletePostLike,
   restAddPostComment,
   restDeletePostComment,
-} from '../../api/logion';
+} from '../../../../api/logion';
 
 // Action Types
 //
@@ -66,9 +66,9 @@ export default reducer;
 
 // Selectors
 //
-export const getPosts = state => state.pageShare.posts;
-export const getPost = state => state.pageShare.post;
-export const getLoading = state => state.pageShare.loading;
+export const getPosts = state => state.ui.pages.share.posts;
+export const getPost = state => state.ui.pages.share.post;
+export const getLoading = state => state.ui.pages.share.loading;
 
 // Action Creators
 //

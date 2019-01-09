@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Header, Container, Tab } from 'semantic-ui-react';
 
 import Div from '../components/Div';
-import { deleteAccount } from '../redux/modules/profile';
-import { fetchMe, getUser, getLoading } from '../redux/modules/page-dashboard';
+import { deleteAccount } from '../reducers/data/profile';
+import { fetchMe, getUser, getLoading } from '../reducers/ui/pages/dashboard';
 
 import PaneAccount from './dashboard/PaneAccount';
 import PaneProfile from './dashboard/PaneProfile';

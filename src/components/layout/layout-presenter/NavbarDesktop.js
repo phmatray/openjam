@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 
 import LanguageDropdown from './LanguageDropdown';
 
-import { logoutUser, getIsAuthenticated, getUser } from '../../../redux/modules/auth';
-import { getPlaying } from '../../../redux/modules/player';
-import { actions as profileActions } from '../../../redux/modules/profile';
+import { logoutUser, getIsAuthenticated, getUser } from '../../../reducers/auth';
+import { getPlaying } from '../../../reducers/ui/player';
+import { actions as profileActions } from '../../../reducers/data/profile';
 import logo from '../../../images/logos/logo_white.svg';
 
 class NavbarDesktop extends Component {

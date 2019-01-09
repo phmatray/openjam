@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
-import { fetchPlaylist, getPlaylist, getLoading } from '../redux/modules/playlist';
-import { getPlaying, getCollection, getCurrent } from '../redux/modules/player';
+import { fetchPlaylist, getPlaylist, getLoading } from '../reducers/data/playlist';
+import { getPlaying, getCollection, getCurrent } from '../reducers/ui/player';
 
 import PlaylistPresenter from './playlist/PlaylistPresenter';
 

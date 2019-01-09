@@ -6,9 +6,9 @@ import { Form } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
 import Input from '../../components/Input';
-import { addPost } from '../../redux/modules/page-share';
-import { getErrors } from '../../redux/modules/error';
-import { getUser } from '../../redux/modules/auth';
+import { addPost } from '../../reducers/ui/pages/share';
+import { getErrors } from '../../reducers/data/error';
+import { getUser } from '../../reducers/auth';
 
 class PostForm extends Component {
   state = {

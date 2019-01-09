@@ -12,7 +12,7 @@ import AlbumCover from '../components/AlbumCover';
 import LinkEntity from '../components/LinkEntity';
 import Body from '../components/Body';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
-import { fetchAlbum, getAlbum, getAlbumLoading } from '../redux/modules/page-album';
+import { fetchAlbum, getAlbum, getAlbumLoading } from '../reducers/ui/pages/album';
 
 import AlbumTracks from './album/AlbumTracks';
 import Description from './album/Description';

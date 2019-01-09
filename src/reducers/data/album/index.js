@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { restGetAlbums, restGetAlbum } from '../../api/logion';
+import { restGetAlbums, restGetAlbum } from '../../../api/logion';
 
 // Action Types
 //
@@ -50,9 +50,9 @@ export default reducer;
 
 // Selectors
 //
-export const getAlbums = state => state.album.albums;
-export const getAlbum = (state, id) => _.find(state.album.albums, a => a._id === id);
-export const getLoading = state => state.album.loading;
+export const getAlbums = state => state.data.album.albums;
+export const getAlbum = (state, id) => _.find(state.data.album.albums, a => a._id === id);
+export const getLoading = state => state.data.album.loading;
 
 // Side effects, only as applicable (thunks)
 //

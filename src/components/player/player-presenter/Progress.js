@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { actions } from '../../../redux/modules/player';
+import { actions } from '../../../reducers/ui/player';
 import { ProgressStyled, ProgressInner } from './styles';
 
 class Progress extends Component {

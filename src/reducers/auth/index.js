@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import jwtDecode from 'jwt-decode';
 
-import { actions as errorActions } from './error';
+import { actions as errorActions } from '../data/error';
 import isEmpty from '../../utils/validation/is-empty';
 import setAuthToken from '../../utils/setAuthToken';
 import { USER_ROLES } from '../../config';

@@ -1,14 +1,14 @@
 /* eslint-disable no-alert */
 
-import { actions as errorActions } from './error';
-import { logoutUser } from './auth';
+import { actions as errorActions } from '../error';
+import { logoutUser } from '../../auth';
 import {
   restGetProfileMe,
   restGetProfileByHandle,
   restAddProfile,
   restGetUsers,
   restDeleteProfile,
-} from '../../api/logion';
+} from '../../../api/logion';
 
 // Action Types
 //
@@ -50,10 +50,10 @@ export default reducer;
 
 // Selectors
 //
-export const getProfiles = state => state.profile.profiles;
-export const getProfile = state => state.profile.profile;
-export const getProfileHandle = state => state.profile.profile.handle;
-export const getLoading = state => state.profile.loading;
+export const getProfiles = state => state.data.profile.profiles;
+export const getProfile = state => state.data.profile.profile;
+export const getProfileHandle = state => state.data.profile.profile.handle;
+export const getLoading = state => state.data.profile.loading;
 
 // Action Creators
 //

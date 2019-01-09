@@ -1,4 +1,4 @@
-import { restGetUser } from '../../api/logion';
+import { restGetUser } from '../../../../api/logion';
 
 // Action Types
 //
@@ -31,8 +31,8 @@ export default reducer;
 
 // Selectors
 //
-export const getUser = state => state.pageDashboard.user;
-export const getLoading = state => state.pageDashboard.loading;
+export const getUser = state => state.ui.pages.dashboard.user;
+export const getLoading = state => state.ui.pages.dashboard.loading;
 
 // Action Creators
 //

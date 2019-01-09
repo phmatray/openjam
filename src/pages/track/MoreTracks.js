@@ -9,7 +9,7 @@ import {
   fetchTracksByArtistId,
   getByArtist,
   getByArtistLoading,
-} from '../../redux/modules/page-track';
+} from '../../reducers/ui/pages/track';
 
 class MoreTracks extends Component {
   async componentDidMount() {

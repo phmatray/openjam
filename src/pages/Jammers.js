@@ -4,8 +4,8 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
-import { fetchProfiles, getProfiles, getLoading } from '../redux/modules/profile';
-import { getIsAuthenticated } from '../redux/modules/auth';
+import { fetchProfiles, getProfiles, getLoading } from '../reducers/data/profile';
+import { getIsAuthenticated } from '../reducers/auth';
 
 import JammersPresenter from './jammers/JammersPresenter';
 

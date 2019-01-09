@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
 
-import { updateTheme } from '../redux/modules/layout';
+import { updateTheme } from '../reducers/ui/layout';
 
 const themes = [
   {

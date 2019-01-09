@@ -9,7 +9,7 @@ import {
   fetchOriginalTracks,
   getOriginalTracks,
   getOriginalTracksLoading,
-} from '../redux/modules/page-explore';
+} from '../reducers/ui/pages/explore';
 
 import TracksPresenter from './tracks/TracksPresenter';
 

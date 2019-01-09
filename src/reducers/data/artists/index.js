@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import { restGetArtists, restGetArtist } from '../../api/logion';
+import { createSelector } from 'reselect';
+import { restGetArtists, restGetArtist } from '../../../api/logion';
 
 // Action Types
 //
@@ -50,9 +51,14 @@ export default reducer;
 
 // Selectors
 //
-export const getArtists = state => state.artist.artists;
-export const getArtist = (state, id) => _.find(state.artist.artists, a => a._id === id);
-export const getLoading = state => state.artist.loading;
+export const getArtists = state => state.data.artists.artists;
+export const getLoading = state => state.data.artists.loading;
+export const getId = (state, id) => id;
+
+export const getArtist = createSelector(
+  [getArtists, getId],
+  (artists, id) => _.find(artists, a => a._id === id),
+);
 
 // Side effects, only as applicable (thunks)
 //

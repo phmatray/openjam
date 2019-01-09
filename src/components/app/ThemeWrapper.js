@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import themeOpenjam from '../../theme/themeOpenjam';
 import themeRemix from '../../theme/themeRemix';
-import { getTheme } from '../../redux/modules/layout';
+import { getTheme } from '../../reducers/ui/layout';
 
 const ThemeWrapper = ({ theme, children }) => {
   let themeContent;

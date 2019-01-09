@@ -10,7 +10,7 @@ import AlbumCover from '../components/AlbumCover';
 import LinkEntity from '../components/LinkEntity';
 import LinkArtistNames from '../components/LinkArtistNames';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
-import { fetchTrack, getTrack } from '../redux/modules/page-track';
+import { fetchTrack, getTrack } from '../reducers/ui/pages/track';
 
 import Tabs from './track/Tabs';
 import MoreTracks from './track/MoreTracks';

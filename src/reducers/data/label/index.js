@@ -1,4 +1,4 @@
-import { restGetLabels, restGetLabel } from '../../api/logion';
+import { restGetLabels, restGetLabel } from '../../../api/logion';
 
 // Action Types
 //
@@ -49,10 +49,10 @@ export default reducer;
 
 // Selectors
 //
-export const getLabels = state => state.label.labels;
-export const getLabel = state => state.label.label;
-export const getLoading = state => state.label.loading;
-export const getError = state => state.label.error;
+export const getLabels = state => state.data.label.labels;
+export const getLabel = state => state.data.label.label;
+export const getLoading = state => state.data.label.loading;
+export const getError = state => state.data.label.error;
 
 // Side effects, only as applicable (thunks)
 //

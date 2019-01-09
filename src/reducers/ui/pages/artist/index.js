@@ -1,4 +1,4 @@
-import { restGetArtist } from '../../api/logion';
+import { restGetArtist } from '../../../../api/logion';
 
 // Action Types
 //
@@ -41,8 +41,8 @@ export default reducer;
 
 // Selectors
 //
-export const getArtist = state => state.pageArtist.artist;
-export const getArtistLoading = state => state.pageArtist.artistLoading;
+export const getArtist = state => state.ui.pages.artist.artist;
+export const getArtistLoading = state => state.ui.pages.artist.artistLoading;
 
 // Side effects, only as applicable (thunks)
 //

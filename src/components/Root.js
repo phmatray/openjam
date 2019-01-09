@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import setAuthToken from '../utils/setAuthToken';
-import { actions } from '../redux/modules/auth';
+import { actions } from '../reducers/auth';
 
 import App from './App';
 

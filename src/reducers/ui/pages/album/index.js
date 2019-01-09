@@ -1,4 +1,4 @@
-import { restGetAlbum } from '../../api/logion';
+import { restGetAlbum } from '../../../../api/logion';
 
 // Action Types
 //
@@ -41,8 +41,8 @@ export default reducer;
 
 // Selectors
 //
-export const getAlbum = state => state.pageAlbum.album;
-export const getAlbumLoading = state => state.pageAlbum.albumLoading;
+export const getAlbum = state => state.ui.pages.album.album;
+export const getAlbumLoading = state => state.ui.pages.album.albumLoading;
 
 // Side effects, only as applicable (thunks)
 //

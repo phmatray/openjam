@@ -26,7 +26,7 @@ export default reducer;
 
 // Selectors
 //
-export const getErrors = state => state.errors;
+export const getErrors = state => state.data.error;
 
 // Action Creators
 //

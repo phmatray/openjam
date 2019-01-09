@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { registerUser, getIsAuthenticated, getLoading } from '../redux/modules/auth';
-import { getErrors } from '../redux/modules/error';
+import { registerUser, getIsAuthenticated, getLoading } from '../reducers/auth';
+import { getErrors } from '../reducers/data/error';
 
 import RegisterPresenter from './register/RegisterPresenter';
 

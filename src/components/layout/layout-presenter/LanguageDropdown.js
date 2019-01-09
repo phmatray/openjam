@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { Dropdown } from 'semantic-ui-react';
 
-import { actions } from '../../../redux/modules/layout';
+import { actions } from '../../../reducers/ui/layout';
 
 const StyledDropdown = styled(Dropdown)`
   & i.icon {

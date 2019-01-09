@@ -1,4 +1,4 @@
-import { restGetTracks, restGetArtists } from '../../api/logion';
+import { restGetTracks, restGetArtists } from '../../../../api/logion';
 
 // Action Types
 //
@@ -76,15 +76,15 @@ export default reducer;
 
 // Selectors
 //
-export const getOriginalTracks = state => state.pageExplore.originalTracks;
-export const getOriginalTracksLoading = state => state.pageExplore.originalTracksLoading;
-export const getOriginalTracksError = state => state.pageExplore.originalTracksError;
-export const getRemixTracks = state => state.pageExplore.remixTracks;
-export const getRemixTracksLoading = state => state.pageExplore.remixTracksLoading;
-export const getRemixTracksError = state => state.pageExplore.remixTracksError;
-export const getArtists = state => state.pageExplore.artists;
-export const getArtistsLoading = state => state.pageExplore.artistsLoading;
-export const getArtistsError = state => state.pageExplore.artistsError;
+export const getOriginalTracks = state => state.ui.pages.explore.originalTracks;
+export const getOriginalTracksLoading = state => state.ui.pages.explore.originalTracksLoading;
+export const getOriginalTracksError = state => state.ui.pages.explore.originalTracksError;
+export const getRemixTracks = state => state.ui.pages.explore.remixTracks;
+export const getRemixTracksLoading = state => state.ui.pages.explore.remixTracksLoading;
+export const getRemixTracksError = state => state.ui.pages.explore.remixTracksError;
+export const getArtists = state => state.ui.pages.explore.artists;
+export const getArtistsLoading = state => state.ui.pages.explore.artistsLoading;
+export const getArtistsError = state => state.ui.pages.explore.artistsError;
 
 // Side effects, only as applicable (thunks)
 //

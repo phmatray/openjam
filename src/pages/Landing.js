@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getIsAuthenticated } from '../redux/modules/auth';
+import { getIsAuthenticated } from '../reducers/auth';
 
 import LandingPresenter from './landing/LandingPresenter';
 

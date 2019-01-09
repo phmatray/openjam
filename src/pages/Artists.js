@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArtists, getArtists, getLoading } from '../redux/modules/artist';
+
+import { fetchArtists, getArtists, getLoading } from '../reducers/data/artists';
 import Spinner from '../components/Spinner';
+
 import ArtistsPresenter from './artists/ArtistsPresenter';
 
 class Artists extends Component {

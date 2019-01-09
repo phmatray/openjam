@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
-import { fetchLabel, getLabel, getLoading } from '../redux/modules/label';
+import { fetchLabel, getLabel, getLoading } from '../reducers/data/label';
 
 import LabelPresenter from './label/LabelPresenter';
 

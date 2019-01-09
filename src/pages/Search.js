@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import VisibleTrackList from './tracks/VisibleTrackList';
+import VisibleTrackList from './search/VisibleTrackList';
 
 class Search extends Component {
   componentDidMount() {}

@@ -7,7 +7,13 @@ import { Divider } from 'semantic-ui-react';
 import LinkArtistNames from '../LinkArtistNames';
 import LinkEntity from '../LinkEntity';
 import Div from '../Div';
-import { playTrack, actions } from '../../redux/modules/player';
+import {
+  playTrack,
+  actions,
+  getPlaying,
+  getCollectionId,
+  getCurrent,
+} from '../../reducers/ui/player';
 
 import ContentBlock from './track/ContentBlock';
 import CoverToggle from './track/CoverToggle';
@@ -63,15 +69,11 @@ TrackItem.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = ({ player }) => {
-  const { playing, collectionId, current } = player;
-
-  return {
-    playerPlaying: playing,
-    playerCollectionId: collectionId,
-    playerTrack: current,
-  };
-};
+const mapStateToProps = state => ({
+  playerPlaying: getPlaying(state),
+  playerCollectionId: getCollectionId(state),
+  playerTrack: getCurrent(state),
+});
 
 export default connect(
   mapStateToProps,

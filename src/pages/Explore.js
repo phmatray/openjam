@@ -16,7 +16,7 @@ import {
   getRemixTracksLoading,
   getArtists,
   getArtistsLoading,
-} from '../redux/modules/page-explore';
+} from '../reducers/ui/pages/explore';
 import background from '../images/backgrounds/piano-2601498_1920.jpg';
 
 class Explore extends Component {

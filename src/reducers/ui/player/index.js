@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-import { getPreviousIndex, getNextIndex } from '../../utils/playerHelpers';
-import { restGetTracks } from '../../api/logion';
+import { getPreviousIndex, getNextIndex } from '../../../utils/playerHelpers';
+import { restGetTracks } from '../../../api/logion';
 
 // Action Types
 //
@@ -130,14 +130,14 @@ export default reducer;
 
 // Selectors
 //
-export const getTracks = state => state.player.tracks;
-export const getPlaylist = state => state.player.playlist;
-export const getPlaying = state => state.player.playing;
-export const getCurrent = state => state.player.current;
-export const getAudioInfo = state => state.player.audioInfo;
-export const getStatus = state => state.player.status;
-export const getCollection = state => state.player.collection;
-export const getCollectionId = state => state.player.collectionId;
+export const getTracks = state => state.ui.player.tracks;
+export const getPlaylist = state => state.ui.player.playlist;
+export const getPlaying = state => state.ui.player.playing;
+export const getCurrent = state => state.ui.player.current;
+export const getAudioInfo = state => state.ui.player.audioInfo;
+export const getStatus = state => state.ui.player.status;
+export const getCollection = state => state.ui.player.collection;
+export const getCollectionId = state => state.ui.player.collectionId;
 
 // Action Creators
 //

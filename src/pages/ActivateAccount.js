@@ -7,9 +7,9 @@ import { withNamespaces } from 'react-i18next';
 import { withRouter, Link } from 'react-router-dom';
 import { Grid, Icon, Header, Button, Divider, Message } from 'semantic-ui-react';
 
-import { activateAccount } from '../redux/modules/auth';
+import { activateAccount } from '../reducers/auth';
 import BackgroundScreen from '../components/BackgroundScreen';
-import { getErrors } from '../redux/modules/error';
+import { getErrors } from '../reducers/data/error';
 
 class ActivateAccount extends Component {
   state = {

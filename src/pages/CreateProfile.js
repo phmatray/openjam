@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 
 import Input from '../components/Input';
-import { createProfile } from '../redux/modules/profile';
+import { createProfile } from '../reducers/data/profile';
 import generateHandle from '../utils/generateHandle';
-import { getIsAuthenticated, getUser } from '../redux/modules/auth';
-import { getErrors } from '../redux/modules/error';
+import { getIsAuthenticated, getUser } from '../reducers/auth';
+import { getErrors } from '../reducers/data/error';
 
 class CreateProfile extends Component {
   state = {

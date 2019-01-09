@@ -1,9 +1,8 @@
 import * as api from '../api/logion';
-import { getIsFetching } from '../reducers';
+import { getIsFetching } from '../reducers/data/tracks';
 
 export const fetchTracks = filter => (dispatch, getState) => {
-  const { tracks } = getState();
-  if (getIsFetching(tracks, filter)) {
+  if (getIsFetching(getState(), filter)) {
     return Promise.resolve();
   }
 

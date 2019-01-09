@@ -8,7 +8,7 @@ import {
   actions,
   getCollectionId,
   getPlaying,
-} from '../redux/modules/player';
+} from '../reducers/ui/player';
 
 import { PlayPauseIcon, StyledButton } from './play-pause/Atoms';
 

@@ -12,7 +12,7 @@ import {
   getCurrent,
   getAudioInfo,
   getStatus,
-} from '../redux/modules/player';
+} from '../reducers/ui/player';
 
 import PlayerPresenter from './player/PlayerPresenter';
 

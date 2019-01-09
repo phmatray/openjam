@@ -5,8 +5,8 @@ import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react
 
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
-import { fetchProfileByHandle, getProfile, getLoading } from '../redux/modules/profile';
-import { getIsAuthenticated } from '../redux/modules/auth';
+import { fetchProfileByHandle, getProfile, getLoading } from '../reducers/data/profile';
+import { getIsAuthenticated } from '../reducers/auth';
 
 import ProfileHeader from './jammer/ProfileHeader';
 import ProfileAbout from './jammer/ProfileAbout';

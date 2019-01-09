@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { actions, getSidebarVisible } from '../redux/modules/layout';
-import { getPlaying } from '../redux/modules/player';
+import { actions, getSidebarVisible } from '../reducers/ui/layout';
+import { getPlaying } from '../reducers/ui/player';
 
 import LayoutPresenter from './layout/LayoutPresenter';
-import { getIsAuthenticated, getUser } from '../redux/modules/auth';
+import { getIsAuthenticated, getUser } from '../reducers/auth';
 
 const Layout = props => <LayoutPresenter {...props} />;
 

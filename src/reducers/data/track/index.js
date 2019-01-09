@@ -1,4 +1,4 @@
-import { restGetTracks, restGetTrack } from '../../api/logion';
+import { restGetTracks, restGetTrack } from '../../../api/logion';
 
 // Action Types
 //
@@ -49,10 +49,10 @@ export default reducer;
 
 // Selectors
 //
-export const getTracks = state => state.track.tracks;
-export const getTrack = state => state.track.track;
-export const getLoading = state => state.track.loading;
-export const getError = state => state.track.error;
+export const getTracks = state => state.data.track.tracks;
+export const getTrack = state => state.data.track.track;
+export const getLoading = state => state.data.track.loading;
+export const getError = state => state.data.track.error;
 
 // Side effects, only as applicable (thunks)
 //

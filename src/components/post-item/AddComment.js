@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import Flex from '../Flex';
 import Div from '../Div';
 import Input from '../Input';
-import { addComment } from '../../redux/modules/page-share';
+import { addComment } from '../../reducers/ui/pages/share';
 
 import { AvatarSmall, Button, AddCommentForm } from './styles';
-import { getUser } from '../../redux/modules/auth';
-import { getErrors } from '../../redux/modules/error';
+import { getUser } from '../../reducers/auth';
+import { getErrors } from '../../reducers/data/error';
 
 class AddComment extends Component {
   state = {

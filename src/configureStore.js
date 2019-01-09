@@ -3,16 +3,14 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import throttle from 'lodash/throttle';
 
-import slimAsync from './redux/middlewares/slim-async/slimAsync';
-import rootReducer from './redux/rootReducer';
-import openjamApp from './reducers';
-import { loadState, saveState } from './redux/localStorage';
+import slimAsync from './middlewares/slim-async/slimAsync';
+import rootReducer from './reducers/rootReducer';
+import { loadState, saveState } from './localStorage';
 
 const configureStore = () => {
   const middlewares = [slimAsync, thunk];
   const enhancers = [];
 
-  // const middlewares = [slimAsync, thunk];
   const isDevelopment = process.env.NODE_ENV !== 'production';
   if (isDevelopment) {
     // In development, use redux-logger

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAlbums, getAlbums, getLoading } from '../redux/modules/album';
+
+import { fetchAlbums, getAlbums, getLoading } from '../reducers/data/album';
 import Spinner from '../components/Spinner';
+
 import AlbumsPresenter from './albums/AlbumsPresenter';
 
 class Albums extends Component {

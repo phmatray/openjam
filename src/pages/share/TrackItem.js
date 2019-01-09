@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Feed, Icon } from 'semantic-ui-react';
 
-import { playSelected, actions, getPlaying, getCurrent } from '../../redux/modules/player';
+import { playSelected, actions, getPlaying, getCurrent } from '../../reducers/ui/player';
 
 class TrackItem extends Component {
   handleShareClick = trackId => {

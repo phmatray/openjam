@@ -44,24 +44,24 @@ class LoginPresenter extends Component {
                 </Header>
 
                 {/*
-            <Segment stacked>
-              <Header as="h3">{t('pages.login.header-social')}</Header>
-              <Button.Group basic vertical fluid>
-                <Button as="a" size="large" href="https://api.openjam.eu/auth/facebook">
-                  <Icon name="facebook" />
-                  {` ${t('pages.login.action-facebook')}`}
-                </Button>
-                <Button as="a" size="large" href="https://api.openjam.eu/auth/github">
-                  <Icon name="github" />
-                  {` ${t('pages.login.action-github')}`}
-                </Button>
-              </Button.Group>
-            </Segment>
+                <Segment stacked>
+                  <Header as="h3">{t('pages.login.header-social')}</Header>
+                  <Button.Group basic vertical fluid>
+                    <Button as="a" size="large" href="https://api.openjam.eu/auth/facebook">
+                      <Icon name="facebook" />
+                      {` ${t('pages.login.action-facebook')}`}
+                    </Button>
+                    <Button as="a" size="large" href="https://api.openjam.eu/auth/github">
+                      <Icon name="github" />
+                      {` ${t('pages.login.action-github')}`}
+                    </Button>
+                  </Button.Group>
+                </Segment>
 
-            <Divider horizontal inverted>
-              {t('pages.login.or')}
-            </Divider>
-             */}
+                <Divider horizontal inverted>
+                  {t('pages.login.or')}
+                </Divider>
+                */}
 
                 <Segment stacked>
                   <Header as="h3">{t('pages.login.header-email')}</Header>

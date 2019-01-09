@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { Sidebar, Menu, Icon, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-import { logoutUser, getIsAuthenticated } from '../../../redux/modules/auth';
-import { actions as profileActions } from '../../../redux/modules/profile';
+import { logoutUser, getIsAuthenticated } from '../../../reducers/auth';
+import { actions as profileActions } from '../../../reducers/data/profile';
 
 class NavbarSide extends Component {
   state = { activeItem: 'home' };

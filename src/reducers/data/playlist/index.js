@@ -1,4 +1,4 @@
-import { restGetPlaylists, restGetPlaylist } from '../../api/logion';
+import { restGetPlaylists, restGetPlaylist } from '../../../api/logion';
 
 // Action Types
 //
@@ -49,9 +49,9 @@ export default reducer;
 
 // Selectors
 //
-export const getPlaylists = state => state.playlist.playlists;
-export const getPlaylist = state => state.playlist.playlist;
-export const getLoading = state => state.playlist.loading;
+export const getPlaylists = state => state.data.playlist.playlists;
+export const getPlaylist = state => state.data.playlist.playlist;
+export const getLoading = state => state.data.playlist.loading;
 
 // Side effects, only as applicable (thunks)
 //

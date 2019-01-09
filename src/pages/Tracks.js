@@ -5,7 +5,7 @@ import { withNamespaces } from 'react-i18next';
 
 import Spinner from '../components/Spinner';
 import background from '../images/backgrounds/vinyl-2592068_1920.jpg';
-import { fetchTracks, getTracks, getLoading } from '../redux/modules/track';
+import { fetchTracks, getTracks, getLoading } from '../reducers/data/track';
 
 import TracksPresenter from './tracks/TracksPresenter';
 

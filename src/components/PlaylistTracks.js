@@ -10,7 +10,13 @@ import LinkPlay from './playlist-tracks/LinkPlay';
 import CoverToggle from './playlist-tracks/CoverToggle';
 import Row from './playlist-tracks/Row';
 import { HeaderCell } from './playlist-tracks/Atoms';
-import { playSelected, actions } from '../redux/modules/player';
+import {
+  playSelected,
+  actions,
+  getPlaying,
+  getCollection,
+  getCurrent,
+} from '../reducers/ui/player';
 
 const PlaylistTracks = ({
   playSelected,
@@ -94,15 +100,11 @@ PlaylistTracks.propTypes = {
 
 PlaylistTracks.defaultProps = {};
 
-const mapStateToProps = ({ player }) => {
-  const { playing, collection, current } = player;
-
-  return {
-    playerPlaying: playing,
-    playerCollection: collection,
-    playerTrack: current,
-  };
-};
+const mapStateToProps = state => ({
+  playerPlaying: getPlaying(state),
+  playerCollection: getCollection(state),
+  playerTrack: getCurrent(state),
+});
 
 export default connect(
   mapStateToProps,

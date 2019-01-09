@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Segment, SegmentGroup } from 'semantic-ui-react';
+
+import { SegmentPostBasic } from '../SegmentPost';
+import { deletePost, addLike, removeLike } from '../../reducers/ui/pages/share';
+import { getUser, getIsAuthenticated } from '../../reducers/auth';
+
 import LikeButton from './LikeButton';
 import AddComment from './AddComment';
-import { SegmentPostBasic } from '../SegmentPost';
 import Intro from './Intro';
-import { Content } from './styles';
 import Comment from './Comment';
-import { deletePost, addLike, removeLike } from '../../redux/modules/page-share';
-import { getUser, getIsAuthenticated } from '../../redux/modules/auth';
+import { Content } from './styles';
 
 class PostBasic extends Component {
   findUserLike = likes => {

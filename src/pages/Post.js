@@ -6,7 +6,7 @@ import { Segment, Button, Feed } from 'semantic-ui-react';
 
 import Spinner from '../components/Spinner';
 import PostItem from '../components/PostItem';
-import { fetchPost, getLoading, getPost } from '../redux/modules/page-share';
+import { fetchPost, getLoading, getPost } from '../reducers/ui/pages/share';
 
 import CommentForm from './post/CommentForm';
 import CommentFeed from './post/CommentFeed';

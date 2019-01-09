@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { loginUser, getIsAuthenticated, getLoading } from '../redux/modules/auth';
+import { loginUser, getIsAuthenticated, getLoading } from '../reducers/auth';
 
 import LoginPresenter from './login/LoginPresenter';
-import { getErrors } from '../redux/modules/error';
+import { getErrors } from '../reducers/data/error';
 
 class Login extends Component {
   componentDidMount() {

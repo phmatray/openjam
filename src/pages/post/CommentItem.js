@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Comment, Icon } from 'semantic-ui-react';
 
-import { deleteComment } from '../../redux/modules/page-share';
-import { getUser } from '../../redux/modules/auth';
+import { deleteComment } from '../../reducers/ui/pages/share';
+import { getUser } from '../../reducers/auth';
 
 class CommentItem extends Component {
   handleDeleteClick = (postId, commentId) => {

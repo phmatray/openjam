@@ -52,11 +52,11 @@ export default reducer;
 
 // Selectors
 //
-export const getLanguage = state => state.layout.language;
-export const getTheme = state => state.layout.theme;
-export const getPlayerVisible = state => state.layout.playerVisible;
-export const getPendingVisible = state => state.layout.pendingVisible;
-export const getSidebarVisible = state => state.layout.sidebarVisible;
+export const getLanguage = state => state.ui.layout.language;
+export const getTheme = state => state.ui.layout.theme;
+export const getPlayerVisible = state => state.ui.layout.playerVisible;
+export const getPendingVisible = state => state.ui.layout.pendingVisible;
+export const getSidebarVisible = state => state.ui.layout.sidebarVisible;
 
 // Action Creators
 //

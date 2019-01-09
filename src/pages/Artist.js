@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArtist, getArtist, getArtistLoading } from '../redux/modules/page-artist';
+import { fetchArtist, getArtist, getArtistLoading } from '../reducers/ui/pages/artist';
 import Spinner from '../components/Spinner';
 import ArtistPresenter from './artist/ArtistPresenter';
 
