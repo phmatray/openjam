@@ -1,4 +1,4 @@
-import { restGetAlbum } from '../../services/logionApi';
+import { restGetAlbum } from '../../api/logion';
 
 // Action Types
 //

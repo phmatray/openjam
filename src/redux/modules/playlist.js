@@ -1,4 +1,4 @@
-import { restGetPlaylists, restGetPlaylist } from '../../services/logionApi';
+import { restGetPlaylists, restGetPlaylist } from '../../api/logion';
 
 // Action Types
 //

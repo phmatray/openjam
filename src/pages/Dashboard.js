@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Header, Container, Tab } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 
 import Div from '../components/Div';
 import { deleteAccount } from '../redux/modules/profile';

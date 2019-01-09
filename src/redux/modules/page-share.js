@@ -8,7 +8,7 @@ import {
   restDeletePostLike,
   restAddPostComment,
   restDeletePostComment,
-} from '../../services/logionApi';
+} from '../../api/logion';
 
 // Action Types
 //

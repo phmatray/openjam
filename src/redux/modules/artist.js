@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { restGetArtists, restGetArtist } from '../../services/logionApi';
+import { restGetArtists, restGetArtist } from '../../api/logion';
 
 // Action Types
 //

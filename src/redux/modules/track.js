@@ -1,4 +1,4 @@
-import { restGetTracks, restGetTrack } from '../../services/logionApi';
+import { restGetTracks, restGetTrack } from '../../api/logion';
 
 // Action Types
 //

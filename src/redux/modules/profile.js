@@ -8,7 +8,7 @@ import {
   restAddProfile,
   restGetUsers,
   restDeleteProfile,
-} from '../../services/logionApi';
+} from '../../api/logion';
 
 // Action Types
 //
