@@ -3,13 +3,13 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import throttle from 'lodash/throttle';
 
-import slimAsync from './middlewares/slim-async/slimAsync';
-import rootReducer from './rootReducer';
-import { loadState, saveState } from './localStorage';
+import slimAsync from './redux/middlewares/slim-async/slimAsync';
+import rootReducer from './redux/rootReducer';
+import openjamApp from './reducers';
+import { loadState, saveState } from './redux/localStorage';
 
 const configureStore = () => {
   const middlewares = [slimAsync, thunk];
-  // const middlewares = [slimAsync, thunk];
   const enhancers = [];
 
   // const middlewares = [slimAsync, thunk];
@@ -24,7 +24,8 @@ const configureStore = () => {
     }
   }
 
-  const persistedState = loadState();
+  // const persistedState = loadState();
+  const persistedState = {};
   const store = createStore(
     rootReducer,
     persistedState,

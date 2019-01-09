@@ -3,7 +3,7 @@ import { ThemeConsumer } from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Menu, Container, Image, Button } from 'semantic-ui-react';
+import { Menu, Container, Image, Button, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import LanguageDropdown from './LanguageDropdown';
@@ -131,6 +131,15 @@ class NavbarDesktop extends Component {
 
               <Menu.Menu position="right">
                 <LanguageDropdown />
+                <Menu.Item
+                  as={Link}
+                  to="/search"
+                  name="search"
+                  active={activeItem === 'search'}
+                  onClick={this.handleItemClick}
+                >
+                  <Icon name="search" />
+                </Menu.Item>
                 {isAuthenticated ? authLinks : guestLinks}
               </Menu.Menu>
             </Container>

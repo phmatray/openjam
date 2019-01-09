@@ -1,4 +1,4 @@
-import { restGetArtist } from '../../services/logionApi';
+import { restGetArtist } from '../../api/logion';
 
 // Action Types
 //

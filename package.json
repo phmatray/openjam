@@ -1,6 +1,6 @@
 {
   "name": "openjam",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "engines": {
     "node": "10.9.0"
   },
@@ -15,7 +15,7 @@
     "ajv": "^6.6.2",
     "axios": "^0.18.0",
     "husky": "^1.3.1",
-    "i18next": "^13.1.0",
+    "i18next": "^13.1.1",
     "jwt-decode": "^2.2.0",
     "lint-staged": "^8.1.0",
     "lodash": "^4.17.11",
@@ -37,7 +37,6 @@
     "react-sound": "^1.2.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.2",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "semantic-ui-css": "^2.4.1",
@@ -69,10 +68,10 @@
     "serve": "serve -s build -p 3000"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "4.1.4",
-    "@storybook/addon-links": "4.1.4",
-    "@storybook/addons": "4.1.4",
-    "@storybook/react": "4.1.4",
+    "@storybook/addon-actions": "4.1.6",
+    "@storybook/addon-links": "4.1.6",
+    "@storybook/addons": "4.1.6",
+    "@storybook/react": "4.1.6",
     "coveralls": "^3.0.2",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import AuthenticatedRoute from './routes/AuthenticatedRoute';
 import Loading from './routes/Loading';
+import Search from '../pages/Search';
 
 const AsyncLogin = Loadable({
   loader: () => import('../pages/Login'),
@@ -175,6 +176,7 @@ const Routes = ({ childProps }) => (
     />
     <Route path="/explore" exact component={AsyncExplore} props={childProps} />
     <Route path="/share" exact component={AsyncShare} props={childProps} />
+    <Route path="/search/:filter?" exact component={Search} />
     <Route path="/jammers" exact component={AsyncJammers} props={childProps} />
     <Route path="/jammer/:handle" exact component={AsyncJammer} props={childProps} />
     <Route path="/playlists" exact component={AsyncPlaylists} props={childProps} />

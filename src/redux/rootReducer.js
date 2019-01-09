@@ -17,6 +17,8 @@ import track from './modules/track';
 import player from './modules/player';
 import playlist from './modules/playlist';
 
+import tracks from '../reducers';
+
 const reducers = {
   layout,
   auth,
@@ -34,6 +36,8 @@ const reducers = {
   playlist,
   track,
   player,
+
+  tracks,
 };
 
 const rootReducer = combineReducers(reducers);

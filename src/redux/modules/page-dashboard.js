@@ -1,4 +1,4 @@
-import { restGetUser } from '../../services/logionApi';
+import { restGetUser } from '../../api/logion';
 
 // Action Types
 //

@@ -6,7 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 import * as serviceWorker from './serviceWorker';
 import I18nWrapper from './components/I18nWrapper';
 import Root from './components/Root';
-import configureStore from './redux/configureStore';
+import configureStore from './configureStore';
 
 const store = configureStore();
 

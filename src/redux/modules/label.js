@@ -1,4 +1,4 @@
-import { restGetLabels, restGetLabel } from '../../services/logionApi';
+import { restGetLabels, restGetLabel } from '../../api/logion';
 
 // Action Types
 //

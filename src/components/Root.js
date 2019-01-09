@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import jwtDecode from 'jwt-decode';
+import HttpsRedirect from 'react-https-redirect';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -33,14 +35,20 @@ const Root = ({ store }) => {
   }
 
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <div>
-          <Route path="/" component={App} />
-        </div>
-      </BrowserRouter>
-    </Provider>
+    <HttpsRedirect>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div>
+            <Route path="/" component={App} />
+          </div>
+        </BrowserRouter>
+      </Provider>
+    </HttpsRedirect>
   );
+};
+
+Root.propTypes = {
+  store: PropTypes.object.isRequired,
 };
 
 export default Root;
