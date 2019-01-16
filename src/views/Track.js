@@ -12,6 +12,7 @@ import LinkArtistNames from '../components/LinkArtistNames';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
 import { fetchTrack, getTrack } from '../reducers/ui/views/track';
 
+import ActionsMenu from './track/ActionsMenu';
 import Tabs from './track/Tabs';
 import MoreTracks from './track/MoreTracks';
 
@@ -34,9 +35,11 @@ const Track = ({ entity }) => (
         </Div>
       </Flex>
     </Hero>
+
     {/* TODO: Enable ActionsMenu */}
-    {/* <ActionsMenu track={entity} /> */}
+    <ActionsMenu track={entity} />
     <Divider style={{ marginTop: 0 }} />
+
     <Container>
       <Grid divided stackable reversed="mobile">
         <Grid.Column mobile={8} tablet={6} computer={5}>

@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header, Container, Divider } from 'semantic-ui-react';
+import { Header, Container, Divider, Segment } from 'semantic-ui-react';
 
+import Div from '../../components/Div';
 import Flex from '../../components/Flex';
 import Hero from '../../components/Hero';
 import Section from '../../components/Section';
+
+import ActionsMenu from './tracks-presenter/ActionsMenu';
 
 const TracksPresenter = ({ tracks, header, subheader, background }) => (
   <React.Fragment>
@@ -21,11 +24,16 @@ const TracksPresenter = ({ tracks, header, subheader, background }) => (
         </div>
       </Flex>
     </Hero>
-    <Divider style={{ marginTop: 0, marginBottom: 32 }} />
 
-    <Container>
-      <Section items={tracks} scrollable={false} showDivider={false} />
-    </Container>
+    <Div mt="1em" mb="1em">
+      <ActionsMenu />
+    </Div>
+
+    <Div mb="1em">
+      <Container>
+        <Section items={tracks} scrollable={false} showDivider={false} />
+      </Container>
+    </Div>
   </React.Fragment>
 );
 

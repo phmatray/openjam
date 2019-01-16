@@ -106,7 +106,8 @@ export function restDeletePostLike(postId: string) {
 }
 
 export function restAddPostComment(postId: string, commentData) {
-  return axios.post(`${apiPost}/comment/${postId}`, commentData);
+  console.warn({ postId, commentData });
+  return axios.post(`${apiPost}/${postId}/comment`, [...commentData]);
 }
 
 export function restDeletePostComment(postId: string, commentId: string) {

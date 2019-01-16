@@ -23,9 +23,21 @@ const ActionsMenu = ({ track }) => (
               {` ${track.meta.downloads.length}`}
             </Menu.Item>
           )}
+
           <Menu.Item position="right" fitted="horizontally">
-            <Button>Repost</Button>
+            <Button color={theme.primarySemantic} disabled>
+              Repost
+            </Button>
           </Menu.Item>
+
+          {track.type2 === 'original' && (
+            <Menu.Item fitted="horizontally">
+              <Button color={theme.primarySemantic} disabled>
+                Download Stems
+              </Button>
+            </Menu.Item>
+          )}
+
           {track.meta.downloadable && (
             <Menu.Item fitted="horizontally">
               <Button
@@ -48,6 +60,7 @@ const ActionsMenu = ({ track }) => (
 
 ActionsMenu.propTypes = {
   track: PropTypes.shape({
+    type2: PropTypes.string.isRequired,
     audiourl: PropTypes.string.isRequired,
   }).isRequired,
 };

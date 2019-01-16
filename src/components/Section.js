@@ -3,7 +3,7 @@ import styled, { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Button, Divider, Header } from 'semantic-ui-react';
+import { Button, Divider, Header, Segment } from 'semantic-ui-react';
 
 import ModelCollection from './section/ModelCollection';
 import Div from './Div';
@@ -22,7 +22,7 @@ const Scrollable = styled.div`
 const Section = ({ title, items, to, maxHeight, showDivider, scrollable, t }) => (
   <ThemeConsumer>
     {theme => (
-      <div>
+      <Segment>
         <Flex row fluid alignCenter justifyBetween mb="1em">
           {title && (
             <Header as="h2" style={{ margin: '8px 0' }}>
@@ -30,7 +30,7 @@ const Section = ({ title, items, to, maxHeight, showDivider, scrollable, t }) =>
             </Header>
           )}
           {to && (
-            <Button as={Link} to={to} basic color={theme.primarySemantic}>
+            <Button as={Link} to={to} basic size="small" color={theme.primarySemantic}>
               {t('pages.explore.show-all')}
             </Button>
           )}
@@ -47,15 +47,7 @@ const Section = ({ title, items, to, maxHeight, showDivider, scrollable, t }) =>
             <ModelCollection models={items} />
           </Flex>
         )}
-
-        <Div mb="32px" />
-
-        {showDivider && (
-          <Div mb="32px">
-            <Divider />
-          </Div>
-        )}
-      </div>
+      </Segment>
     )}
   </ThemeConsumer>
 );

@@ -5,7 +5,7 @@ import { Header, Divider } from 'semantic-ui-react';
 import Hero from './Hero';
 import Flex from './Flex';
 
-const HeroSimple = ({ background, header, subheader }) => (
+const HeroSimple = ({ background, header, subheader, divider }) => (
   <React.Fragment>
     <Hero src={background}>
       <Flex fluid row alignCenter>
@@ -20,7 +20,8 @@ const HeroSimple = ({ background, header, subheader }) => (
         </div>
       </Flex>
     </Hero>
-    <Divider style={{ marginTop: 0, marginBottom: 32 }} />
+
+    {divider && <Divider style={{ marginTop: 0, marginBottom: 32 }} />}
   </React.Fragment>
 );
 
@@ -28,10 +29,12 @@ HeroSimple.propTypes = {
   background: PropTypes.string,
   header: PropTypes.string.isRequired,
   subheader: PropTypes.string.isRequired,
+  divider: PropTypes.bool,
 };
 
 HeroSimple.defaultProps = {
   background: null,
+  divider: true,
 };
 
 export default HeroSimple;
