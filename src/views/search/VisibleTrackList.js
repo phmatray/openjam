@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import * as actions from '../../actions';
+import * as actions from '../../actions/tracks';
 import { getVisibleTracks, getErrorMessage, getIsFetching } from '../../reducers/data/tracks';
 
 import TrackList from './visible-track-list/TrackList';

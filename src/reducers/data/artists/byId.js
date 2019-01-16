@@ -1,10 +1,10 @@
 const byId = (state = {}, action) => {
   switch (action.type) {
-    case 'FETCH_TRACKS_SUCCESS':
+    case 'FETCH_ARTISTS_SUCCESS':
       // eslint-disable-next-line no-case-declarations
       const nextState = { ...state };
-      action.response.forEach(track => {
-        nextState[track._id] = track;
+      action.response.forEach(artist => {
+        nextState[artist._id] = artist;
       });
       return nextState;
     default:
@@ -14,4 +14,4 @@ const byId = (state = {}, action) => {
 
 export default byId;
 
-export const getTrack = (state, id) => state[id._id];
+export const getArtist = (state, id) => state[id._id];

@@ -1,77 +1,39 @@
-import _ from 'lodash';
+import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
-import { restGetArtists, restGetArtist } from '../../../api/logion';
 
-// Action Types
-//
-export const types = {
-  FETCH_ARTISTS_PENDING: 'artist/FETCH_ARTISTS_PENDING',
-  FETCH_ARTISTS_SUCCESS: 'artist/FETCH_ARTISTS_SUCCESS',
-  FETCH_ARTISTS_ERROR: 'artist/FETCH_ARTISTS_ERROR',
-  FETCH_ARTIST_PENDING: 'artist/FETCH_ARTIST_PENDING',
-  FETCH_ARTIST_SUCCESS: 'artist/FETCH_ARTIST_SUCCESS',
-  FETCH_ARTIST_ERROR: 'artist/FETCH_ARTIST_ERROR',
-};
+import byId, * as fromById from './byId';
+import createList, * as fromList from './createList';
 
-// Reducer
-//
-export const initialState = {
-  artists: null, // array
-  artist: null, // object
-  loading: false, // bool
-  error: null,
-};
+const listByFilter = combineReducers({
+  all: createList('all'),
+});
 
-const reducer = (state = initialState, action = {}) => {
-  switch (action.type) {
-    case types.FETCH_ARTISTS_PENDING:
-      return { ...state, loading: true };
+const artists = combineReducers({
+  byId,
+  listByFilter,
+});
 
-    case types.FETCH_ARTISTS_SUCCESS:
-      return { ...state, artists: action.payload.docs, loading: false };
-
-    case types.FETCH_ARTISTS_ERROR:
-      return { ...state, error: action.payload, artists: null, loading: false };
-
-    case types.FETCH_ARTIST_PENDING:
-      return { ...state, loading: true };
-
-    case types.FETCH_ARTIST_SUCCESS:
-      return { ...state, artist: action.payload, loading: false };
-
-    case types.FETCH_ARTIST_ERROR:
-      return { ...state, error: action.payload, artist: initialState.artist, loading: false };
-
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+export default artists;
 
 // Selectors
 //
-export const getArtists = state => state.data.artists.artists;
-export const getLoading = state => state.data.artists.loading;
-export const getId = (state, id) => id;
+export const getArtists = state => state.data.artists;
+export const getFilter = (state, filter) => filter;
 
-export const getArtist = createSelector(
-  [getArtists, getId],
-  (artists, id) => _.find(artists, a => a._id === id),
+export const getVisibleArtists = createSelector(
+  [getArtists, getFilter],
+  (artists, filter) => {
+    const ids = fromList.getIds(artists.listByFilter[filter]);
+    return ids.map(id => fromById.getArtist(artists.byId, id));
+  },
 );
 
-// Side effects, only as applicable (thunks)
-//
-// Fetch all artists
-export const fetchArtists = () => ({
-  types: [types.FETCH_ARTISTS_PENDING, types.FETCH_ARTISTS_SUCCESS, types.FETCH_ARTISTS_ERROR],
-  callAPI: () => restGetArtists(),
-  shouldCallAPI: () => true,
-});
+export const getIsFetching = createSelector(
+  [getArtists, getFilter],
+  (artists, filter) => fromList.getIsFetching(artists.listByFilter[filter]),
+);
 
-// Fetch a artist by _id
-export const fetchArtist = id => ({
-  types: [types.FETCH_ARTIST_PENDING, types.FETCH_ARTIST_SUCCESS, types.FETCH_ARTIST_ERROR],
-  callAPI: () => restGetArtist(id),
-  shouldCallAPI: () => true,
-});
+export const getErrorMessage = createSelector(
+  [getArtists, getFilter],
+  (artists, filter) => fromList.getErrorMessage(artists.listByFilter[filter]),
+);

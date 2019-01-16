@@ -37,11 +37,11 @@ const apiUser = `${api}/user`;
 
 // TODO: remove this test method
 export function addTrack() {
-  console.warn('not implemented - DELETE ME');
+  console.warn('not implemented');
 }
 
 // TODO: remove this test method
-export async function fetchTracks(filter: ?'original' | ?'remix') {
+export async function fetchTracks(filter: ?'all' | 'original' | ?'remix') {
   let baseUrl = `${apiTrack}?`;
   if (filter && filter !== 'all') {
     baseUrl += `type2=${filter}`;
@@ -50,6 +50,20 @@ export async function fetchTracks(filter: ?'original' | ?'remix') {
   const response = await axios.get(`${baseUrl}&%24embed=artists`);
   const tracks = response.data.docs;
   return tracks;
+}
+
+// TODO: remove this test method
+export function addArtist() {
+  console.warn('not implemented');
+}
+
+// TODO: remove this test method
+export async function fetchArtists(filter: ?'all') {
+  const baseUrl = `${apiArtist}?`;
+
+  const response = await axios.get(`${baseUrl}`);
+  const artists = response.data.docs;
+  return artists;
 }
 
 export function restGetAlbums() {
