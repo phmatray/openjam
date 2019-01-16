@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr';
+import * as schema from './schema';
 import * as api from '../api/logion';
 import { getIsFetching } from '../reducers/data/artists';
 
@@ -16,7 +18,7 @@ export const fetchArtists = filter => (dispatch, getState) => {
       dispatch({
         type: 'FETCH_ARTISTS_SUCCESS',
         filter,
-        response,
+        response: normalize(response, schema.artistListSchema),
       });
     },
     error => {
@@ -33,7 +35,7 @@ export const addArtist = text => dispatch =>
   api.addArtist(text).then(response => {
     dispatch({
       type: 'ADD_ARTIST_SUCCESS',
-      response,
+      response: normalize(response, schema.artistSchema),
     });
   });
 

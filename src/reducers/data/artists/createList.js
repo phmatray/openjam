@@ -4,9 +4,9 @@ const createList = filter => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case 'FETCH_ARTISTS_SUCCESS':
-        return filter === action.filter ? action.response : state;
+        return filter === action.filter ? action.response.result : state;
       case 'ADD_ARTIST_SUCCESS':
-        return filter !== 'completed' ? [...state, action.response] : state;
+        return filter !== 'completed' ? [...state, action.response.result] : state;
       default:
         return state;
     }

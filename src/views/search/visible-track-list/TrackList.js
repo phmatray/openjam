@@ -16,7 +16,7 @@ TrackList.propTypes = {
   tracks: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
+      type2: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,

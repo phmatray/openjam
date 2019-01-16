@@ -1,17 +1,13 @@
 const byId = (state = {}, action) => {
-  switch (action.type) {
-    case 'FETCH_TRACKS_SUCCESS':
-      // eslint-disable-next-line no-case-declarations
-      const nextState = { ...state };
-      action.response.forEach(track => {
-        nextState[track._id] = track;
-      });
-      return nextState;
-    default:
-      return state;
+  if (action.response) {
+    return {
+      ...state,
+      ...action.response.entities.tracks,
+    };
   }
+  return state;
 };
 
 export default byId;
 
-export const getTrack = (state, id) => state[id._id];
+export const getTrack = (state, id) => state[id];

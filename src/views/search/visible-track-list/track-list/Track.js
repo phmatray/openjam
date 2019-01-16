@@ -4,11 +4,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Track = ({ onClick, completed, title }) => (
+const Track = ({ onClick, type2, title }) => (
   <li
     onClick={onClick}
     style={{
-      textDecoration: completed ? 'line-through' : 'none',
+      textDecoration: type2 === 'original' ? 'underline' : 'none',
     }}
   >
     {title}
@@ -17,7 +17,7 @@ const Track = ({ onClick, completed, title }) => (
 
 Track.propTypes = {
   onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
+  type2: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
