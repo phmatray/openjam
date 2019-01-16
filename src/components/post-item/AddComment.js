@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Flex from '../Flex';
 import Div from '../Div';
 import Input from '../Input';
-import { addComment } from '../../reducers/ui/pages/share';
+import { addComment } from '../../reducers/ui/views/share';
 
 import { AvatarSmall, Button, AddCommentForm } from './styles';
 import { getUser } from '../../reducers/auth';

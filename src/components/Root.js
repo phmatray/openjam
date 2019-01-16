@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import HttpsRedirect from 'react-https-redirect';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import setAuthToken from '../utils/setAuthToken';
+import setAuthToken from '../lib/utils/setAuthToken';
 import { actions } from '../reducers/auth';
 
 import App from './App';
@@ -37,11 +37,11 @@ const Root = ({ store }) => {
   return (
     <HttpsRedirect>
       <Provider store={store}>
-        <BrowserRouter>
+        <Router>
           <div>
             <Route path="/" component={App} />
           </div>
-        </BrowserRouter>
+        </Router>
       </Provider>
     </HttpsRedirect>
   );

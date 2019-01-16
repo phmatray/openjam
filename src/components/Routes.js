@@ -3,160 +3,160 @@ import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import AuthenticatedRoute from './routes/AuthenticatedRoute';
 import Loading from './routes/Loading';
-import Search from '../pages/Search';
+import Search from '../views/Search';
 
 const AsyncLogin = Loadable({
-  loader: () => import('../pages/Login'),
+  loader: () => import('../views/Login'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncRegister = Loadable({
-  loader: () => import('../pages/Register'),
+  loader: () => import('../views/Register'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncRegisterThanks = Loadable({
-  loader: () => import('../pages/RegisterThanks'),
+  loader: () => import('../views/RegisterThanks'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncActivateAccount = Loadable({
-  loader: () => import('../pages/ActivateAccount'),
+  loader: () => import('../views/ActivateAccount'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncActivateAccountSuccess = Loadable({
-  loader: () => import('../pages/ActivateAccountSuccess'),
+  loader: () => import('../views/ActivateAccountSuccess'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncLanding = Loadable({
-  loader: () => import('../pages/Landing'),
+  loader: () => import('../views/Landing'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncExplore = Loadable({
-  loader: () => import('../pages/Explore'),
+  loader: () => import('../views/Explore'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncShare = Loadable({
-  loader: () => import('../pages/Share'),
+  loader: () => import('../views/Share'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncJammers = Loadable({
-  loader: () => import('../pages/Jammers'),
+  loader: () => import('../views/Jammers'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncJammer = Loadable({
-  loader: () => import('../pages/Jammer'),
+  loader: () => import('../views/Jammer'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncPlaylists = Loadable({
-  loader: () => import('../pages/Playlists'),
+  loader: () => import('../views/Playlists'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncPlaylist = Loadable({
-  loader: () => import('../pages/Playlist'),
+  loader: () => import('../views/Playlist'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncTracks = Loadable({
-  loader: () => import('../pages/Tracks'),
+  loader: () => import('../views/Tracks'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncOriginalTracks = Loadable({
-  loader: () => import('../pages/OriginalTracks'),
+  loader: () => import('../views/OriginalTracks'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncRemixTracks = Loadable({
-  loader: () => import('../pages/RemixTracks'),
+  loader: () => import('../views/RemixTracks'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncTrack = Loadable({
-  loader: () => import('../pages/Track'),
+  loader: () => import('../views/Track'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncArtists = Loadable({
-  loader: () => import('../pages/Artists'),
+  loader: () => import('../views/Artists'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncArtist = Loadable({
-  loader: () => import('../pages/Artist'),
+  loader: () => import('../views/Artist'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncAlbums = Loadable({
-  loader: () => import('../pages/Albums'),
+  loader: () => import('../views/Albums'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncAlbum = Loadable({
-  loader: () => import('../pages/Album'),
+  loader: () => import('../views/Album'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncLabels = Loadable({
-  loader: () => import('../pages/Labels'),
+  loader: () => import('../views/Labels'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncLabel = Loadable({
-  loader: () => import('../pages/Label'),
+  loader: () => import('../views/Label'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncDashboard = Loadable({
-  loader: () => import('../pages/Dashboard'),
+  loader: () => import('../views/Dashboard'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncCreateProfile = Loadable({
-  loader: () => import('../pages/CreateProfile'),
+  loader: () => import('../views/CreateProfile'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncEditProfile = Loadable({
-  loader: () => import('../pages/EditProfile'),
+  loader: () => import('../views/EditProfile'),
   loading: Loading,
   timeout: 10000,
 });
 
 const AsyncNotFound = Loadable({
-  loader: () => import('../pages/NotFound'),
+  loader: () => import('../views/NotFound'),
   loading: Loading,
   timeout: 10000,
 });

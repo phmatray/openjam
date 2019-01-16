@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Segment, SegmentGroup } from 'semantic-ui-react';
 
 import { SegmentPostBasic } from '../SegmentPost';
-import { deletePost, addLike, removeLike } from '../../reducers/ui/pages/share';
+import { deletePost, addLike, removeLike } from '../../reducers/ui/views/share';
 import { getUser, getIsAuthenticated } from '../../reducers/auth';
 
 import LikeButton from './LikeButton';

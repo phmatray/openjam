@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { getPreviousIndex, getNextIndex } from '../../../utils/playerHelpers';
+import { getPreviousIndex, getNextIndex } from '../../../lib/utils/playerHelpers';
 import { restGetTracks } from '../../../api/logion';
 
 // Action Types

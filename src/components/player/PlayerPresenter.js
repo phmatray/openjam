@@ -8,7 +8,7 @@ import Flex from '../Flex';
 import Div from '../Div';
 import LinkArtistNames from '../LinkArtistNames';
 import LinkEntity from '../LinkEntity';
-import { fancyTimeFormat } from '../../utils/playerHelpers';
+import { fancyTimeFormat } from '../../lib/utils/playerHelpers';
 
 import { PlayerStyled, FlexFill, ColumnCover, ColumnTime, Cover, ArtistName } from './styles';
 import Progress from './player-presenter/Progress';

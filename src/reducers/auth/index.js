@@ -2,8 +2,8 @@ import _ from 'lodash';
 import jwtDecode from 'jwt-decode';
 
 import { actions as errorActions } from '../data/error';
-import isEmpty from '../../utils/validation/is-empty';
-import setAuthToken from '../../utils/setAuthToken';
+import isEmpty from '../../lib/validation/is-empty';
+import setAuthToken from '../../lib/utils/setAuthToken';
 import { USER_ROLES } from '../../config';
 import { restLogout, restLogin, restRegisterActivate, restRegister } from '../../api/logion';
 

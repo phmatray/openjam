@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import layout from './layout';
 import player from './player';
-import pages from './pages';
+import views from './views';
 
 const data = combineReducers({
   layout,
   player,
-  pages,
+  views,
 });
 
 export default data;

@@ -11,7 +11,7 @@ import LanguageDropdown from './LanguageDropdown';
 import { logoutUser, getIsAuthenticated, getUser } from '../../../reducers/auth';
 import { getPlaying } from '../../../reducers/ui/player';
 import { actions as profileActions } from '../../../reducers/data/profile';
-import logo from '../../../images/logos/logo_white.svg';
+import logo from '../../../assets/images/logos/logo_white.svg';
 
 class NavbarDesktop extends Component {
   state = { activeItem: 'home' };

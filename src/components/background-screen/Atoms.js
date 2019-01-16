@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import loginBackground from '../../images/backgrounds/login-background.jpg';
+import loginBackground from '../../assets/images/backgrounds/login-background.jpg';
 
 export const FullHeightContainer = styled.div`
   display: table;

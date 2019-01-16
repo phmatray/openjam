@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getBrandColor, getBrandIconName } from '../utils/brandHelpers';
-import logoWhite from '../images/logos/logo_white.svg';
+import { getBrandColor, getBrandIconName } from '../lib/utils/brandHelpers';
+import logoWhite from '../assets/images/logos/logo_white.svg';
 
 const Span = styled.span`
   background-color: ${props => props.color};
