@@ -18,7 +18,7 @@ export const fetchTracks = filter => (dispatch, getState) => {
       dispatch({
         type: 'FETCH_TRACKS_SUCCESS',
         filter,
-        response: normalize(response, schema.trackListSchema),
+        response: normalize(response, schema.trackList),
       });
     },
     error => {
@@ -35,7 +35,7 @@ export const addTrack = text => dispatch =>
   api.addTrack(text).then(response => {
     dispatch({
       type: 'ADD_TRACK_SUCCESS',
-      response: normalize(response, schema.trackSchema),
+      response: normalize(response, schema.track),
     });
   });
 

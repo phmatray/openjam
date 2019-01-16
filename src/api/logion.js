@@ -21,50 +21,25 @@ type RegisterInput = {
   pin: number,
 };
 
-const api = process.env.REACT_APP_ENDPOINT;
-if (!api) {
-  throw new Error('no endpoint');
-}
-
-const apiAlbum = `${api}/album`;
-const apiArtist = `${api}/artist`;
-const apiLabel = `${api}/label`;
-const apiPlaylist = `${api}/playlist`;
-const apiPost = `${api}/post`;
-const apiProfile = `${api}/profile`;
-const apiTrack = `${api}/track`;
-const apiUser = `${api}/user`;
-
-// TODO: remove this test method
-export function addTrack() {
-  console.warn('not implemented');
-}
-
-// TODO: remove this test method
-export async function fetchTracks(filter: ?'all' | 'original' | ?'remix') {
-  let baseUrl = `${apiTrack}?`;
-  if (filter && filter !== 'all') {
-    baseUrl += `type2=${filter}`;
+export function getApi() {
+  const api = process.env.REACT_APP_ENDPOINT;
+  if (!api) {
+    throw new Error('no endpoint');
   }
-
-  const response = await axios.get(`${baseUrl}&%24embed=artists`);
-  const tracks = response.data.docs;
-  return tracks;
+  return api;
 }
 
-// TODO: remove this test method
-export function addArtist() {
-  console.warn('not implemented');
-}
+export * from './logion/tracks';
+export * from './logion/artists';
 
-// TODO: remove this test method
-export async function fetchArtists(filter: ?'all') {
-  const baseUrl = `${apiArtist}?`;
-
-  const response = await axios.get(`${baseUrl}`);
-  const artists = response.data.docs;
-  return artists;
-}
+const apiAlbum = `${getApi()}/album`;
+const apiArtist = `${getApi()}/artist`;
+const apiLabel = `${getApi()}/label`;
+const apiPlaylist = `${getApi()}/playlist`;
+const apiPost = `${getApi()}/post`;
+const apiProfile = `${getApi()}/profile`;
+const apiTrack = `${getApi()}/track`;
+const apiUser = `${getApi()}/user`;
 
 export function restGetAlbums() {
   return axios.get(`${apiAlbum}`);
@@ -177,17 +152,17 @@ export function restGetUser(userId: string) {
 
 export function restRegister(userData: RegisterInput) {
   const data = { user: userData, registerType: 'Register' };
-  return axios.post(`${api}/register`, data);
+  return axios.post(`${getApi()}/register`, data);
 }
 
 export function restRegisterActivate(token: string) {
-  return axios.post(`${api}/register/activate`, { token });
+  return axios.post(`${getApi()}/register/activate`, { token });
 }
 
 export function restLogin(userData: LoginInput) {
-  return axios.post(`${api}/login`, userData);
+  return axios.post(`${getApi()}/login`, userData);
 }
 
 export function restLogout() {
-  return axios.delete(`${api}/logout`, {});
+  return axios.delete(`${getApi()}/logout`, {});
 }
