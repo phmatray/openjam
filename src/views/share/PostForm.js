@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ import { addPost } from '../../reducers/ui/views/share';
 import { getErrors } from '../../reducers/data/error';
 import { getUser } from '../../reducers/auth';
 
-class PostForm extends Component {
+class PostForm extends PureComponent {
   state = {
     text: '',
     errors: {},

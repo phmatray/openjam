@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
@@ -13,7 +13,7 @@ import {
 
 import TracksPresenter from './tracks/TracksPresenter';
 
-class OriginalTracks extends Component {
+class OriginalTracks extends PureComponent {
   componentDidMount() {
     const { originalTracks } = this.props;
 

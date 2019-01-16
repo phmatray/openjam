@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-state */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { getErrors } from '../reducers/data/error';
 
 import RegisterPresenter from './register/RegisterPresenter';
 
-class Register extends Component {
+class Register extends PureComponent {
   componentDidMount() {
     if (this.props.isAuthenticated) {
       this.props.history.push('/explore');

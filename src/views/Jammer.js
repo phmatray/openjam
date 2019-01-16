@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
@@ -11,7 +11,7 @@ import { getIsAuthenticated } from '../reducers/auth';
 import ProfileHeader from './jammer/ProfileHeader';
 import ProfileAbout from './jammer/ProfileAbout';
 
-class Profile extends Component {
+class Profile extends PureComponent {
   componentDidMount() {
     if (this.props.match.params.handle) {
       this.props.fetchProfileByHandle(this.props.match.params.handle);

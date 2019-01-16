@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ThemeConsumer } from 'styled-components';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { createProfile, fetchCurrentProfile, getProfile } from '../reducers/data
 import isEmpty from '../lib/validation/is-empty';
 import { getErrors } from '../reducers/data/error';
 
-class EditProfile extends Component {
+class EditProfile extends PureComponent {
   state = {
     displaySocialInputs: false,
     handle: '',

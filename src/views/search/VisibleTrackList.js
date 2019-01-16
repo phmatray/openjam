@@ -1,6 +1,6 @@
 /* eslint-disable no-class-assign */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { getVisibleTracks, getErrorMessage, getIsFetching } from '../../reducers
 import TrackList from './visible-track-list/TrackList';
 import FetchError from './visible-track-list/FetchError';
 
-class VisibleTrackList extends Component {
+class VisibleTrackList extends PureComponent {
   componentDidMount() {
     this.fetchData();
   }

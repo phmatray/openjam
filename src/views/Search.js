@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import VisibleTrackList from './search/VisibleTrackList';
 
-class Search extends Component {
+class Search extends PureComponent {
   componentDidMount() {}
 
   render() {

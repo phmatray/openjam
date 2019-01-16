@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
@@ -7,7 +7,7 @@ import Spinner from '../../components/Spinner';
 
 import ProfileActions from './ProfileActions';
 
-class DashboardContent extends Component {
+class DashboardContent extends PureComponent {
   onDeleteClick = () => {
     this.props.deleteAccount();
   };

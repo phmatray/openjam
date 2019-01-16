@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Ghost } from 'react-kawaii';
 import { styler, tween, merge, action, easing } from 'popmotion';
 
-class KawaiiAnimation extends Component {
+class KawaiiAnimation extends PureComponent {
   constructor(props) {
     super(props);
 

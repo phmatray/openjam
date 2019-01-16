@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import { getIsAuthenticated } from '../reducers/auth';
 
 import JammersPresenter from './jammers/JammersPresenter';
 
-class Jammers extends Component {
+class Jammers extends PureComponent {
   componentDidMount() {
     this.props.fetchProfiles();
   }

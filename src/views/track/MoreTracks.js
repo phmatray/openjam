@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
@@ -11,7 +11,7 @@ import {
   getByArtistLoading,
 } from '../../reducers/ui/views/track';
 
-class MoreTracks extends Component {
+class MoreTracks extends PureComponent {
   async componentDidMount() {
     const { artist, limit } = this.props;
     await this.props.fetchTracksByArtistId(artist._id, limit);

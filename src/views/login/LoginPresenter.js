@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ThemeConsumer } from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { Form, Message, Grid, Icon, Header, Segment } from 'semantic-ui-react';
 import BackgroundScreen from '../../components/BackgroundScreen';
 import Input from '../../components/Input';
 
-class LoginPresenter extends Component {
+class LoginPresenter extends PureComponent {
   state = {
     email: '',
     password: '',

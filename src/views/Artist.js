@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArtist, getArtist, getArtistLoading } from '../reducers/ui/views/artist';
 import Spinner from '../components/Spinner';
 import ArtistPresenter from './artist/ArtistPresenter';
 
-class Artist extends Component {
+class Artist extends PureComponent {
   state = {
     artistId: null,
   };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Header, Container, Tab } from 'semantic-ui-react';
@@ -26,7 +26,7 @@ const panes = [
   },
 ];
 
-class Dashboard extends Component {
+class Dashboard extends PureComponent {
   componentDidMount() {
     this.props.fetchMe();
   }

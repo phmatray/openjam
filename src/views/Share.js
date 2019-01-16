@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ import background from '../assets/images/backgrounds/container-1867697_1920.jpg'
 import PostForm from './share/PostForm';
 import { getIsAuthenticated } from '../reducers/auth';
 
-class Share extends Component {
+class Share extends PureComponent {
   state = { activeItem: 'newsfeed' };
 
   componentDidMount() {

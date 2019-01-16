@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
@@ -9,7 +9,7 @@ import { fetchTracks, getTracks, getLoading } from '../reducers/data/track';
 
 import TracksPresenter from './tracks/TracksPresenter';
 
-class Tracks extends Component {
+class Tracks extends PureComponent {
   componentDidMount() {
     this.props.fetchTracks();
   }

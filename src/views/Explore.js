@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ import {
 } from '../reducers/ui/views/explore';
 import background from '../assets/images/backgrounds/piano-2601498_1920.jpg';
 
-class Explore extends Component {
+class Explore extends PureComponent {
   componentDidMount() {
     const {
       originalTracks,

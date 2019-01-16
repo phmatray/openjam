@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import { addComment } from '../../reducers/ui/views/share';
 import { getErrors } from '../../reducers/data/error';
 import { getUser } from '../../reducers/auth';
 
-class CommentForm extends Component {
+class CommentForm extends PureComponent {
   state = {
     text: '',
     errors: {},

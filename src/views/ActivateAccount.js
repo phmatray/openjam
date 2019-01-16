@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
@@ -11,7 +11,7 @@ import { activateAccount } from '../reducers/auth';
 import BackgroundScreen from '../components/BackgroundScreen';
 import { getErrors } from '../reducers/data/error';
 
-class ActivateAccount extends Component {
+class ActivateAccount extends PureComponent {
   state = {
     token: null,
   };

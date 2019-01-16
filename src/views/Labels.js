@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { fetchLabels, getLabels, getLoading } from '../reducers/data/label';
 
 import LabelsPresenter from './labels/LabelsPresenter';
 
-class Labels extends Component {
+class Labels extends PureComponent {
   componentDidMount() {
     this.props.fetchLabels();
   }

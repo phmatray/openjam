@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,7 +7,7 @@ import Spinner from '../components/Spinner';
 
 import ArtistsPresenter from './artists/ArtistsPresenter';
 
-class Artists extends Component {
+class Artists extends PureComponent {
   componentDidMount() {
     const { artists } = this.props;
 

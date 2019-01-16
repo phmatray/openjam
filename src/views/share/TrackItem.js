@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { Feed, Icon } from 'semantic-ui-react';
 
 import { playSelected, actions, getPlaying, getCurrent } from '../../reducers/ui/player';
 
-class TrackItem extends Component {
+class TrackItem extends PureComponent {
   handleShareClick = trackId => {
     console.log(`Shared: ${trackId}`);
   };

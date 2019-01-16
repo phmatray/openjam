@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { fetchLabel, getLabel, getLoading } from '../reducers/data/label';
 
 import LabelPresenter from './label/LabelPresenter';
 
-class Label extends Component {
+class Label extends PureComponent {
   state = {
     labelId: null,
   };

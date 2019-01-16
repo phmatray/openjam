@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -6,7 +6,7 @@ import { getIsAuthenticated } from '../reducers/auth';
 
 import LandingPresenter from './landing/LandingPresenter';
 
-class Landing extends Component {
+class Landing extends PureComponent {
   componentDidMount() {
     const { isAuthenticated } = this.props;
     if (isAuthenticated) {

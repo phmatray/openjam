@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Comment, Icon } from 'semantic-ui-react';
@@ -6,7 +6,7 @@ import { Comment, Icon } from 'semantic-ui-react';
 import { deleteComment } from '../../reducers/ui/views/share';
 import { getUser } from '../../reducers/auth';
 
-class CommentItem extends Component {
+class CommentItem extends PureComponent {
   handleDeleteClick = (postId, commentId) => {
     this.props.deleteComment(postId, commentId);
   };

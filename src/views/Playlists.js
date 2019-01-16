@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { fetchPlaylists, getPlaylists, getLoading } from '../reducers/data/playl
 
 import PlaylistsPresenter from './playlists/PlaylistsPresenter';
 
-class Playlists extends Component {
+class Playlists extends PureComponent {
   componentDidMount() {
     this.props.fetchPlaylists();
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,7 @@ import { getPlaying, getCollection, getCurrent } from '../reducers/ui/player';
 
 import PlaylistPresenter from './playlist/PlaylistPresenter';
 
-class Playlist extends Component {
+class Playlist extends PureComponent {
   state = {
     playlistId: null,
   };
