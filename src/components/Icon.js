@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import logoWhite from '../assets/images/logos/logo_white.svg';
 import { getBrandColor, getBrandIconName } from '../lib/utils/brandHelpers';
-import type { Domain } from '../lib/types/common';
+import type { Domain } from '../types';
 
 import Span from './icon/Span';
 

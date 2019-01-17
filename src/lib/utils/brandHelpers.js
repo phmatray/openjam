@@ -1,6 +1,6 @@
 // @flow
 
-import type { Domain } from '../types/common';
+import type { Domain } from '../../types';
 
 export const getBrandColor = (domain: Domain) => {
   switch (domain) {

@@ -105,7 +105,7 @@ export function restDeletePostLike(postId: string) {
   return axios.post(`${apiPost}/unlike/${postId}`);
 }
 
-export function restAddPostComment(postId: string, commentData) {
+export function restAddPostComment(postId: string, commentData: {}) {
   console.warn({ postId, commentData });
   return axios.post(`${apiPost}/${postId}/comment`, [...commentData]);
 }
@@ -114,7 +114,7 @@ export function restDeletePostComment(postId: string, commentId: string) {
   return axios.delete(`${apiPost}/comment/${postId}/${commentId}`);
 }
 
-export function restAddProfile(profileData) {
+export function restAddProfile(profileData: {}) {
   return axios.post(`${apiProfile}`, profileData);
 }
 

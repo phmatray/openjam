@@ -9,7 +9,10 @@ import Playlist from './model/Playlist';
 import Label from './model/Label';
 
 type Props = {
-  model: { type: 'artist' | 'track' | 'album' | 'playlist' | 'label' },
+  model: {
+    _id: string,
+    type: 'artist' | 'track' | 'album' | 'playlist' | 'label',
+  },
 };
 
 const Model = ({ model }: Props) => {

@@ -7,12 +7,13 @@ import { withNamespaces } from 'react-i18next';
 import Spinner from '../components/Spinner';
 import background from '../assets/images/backgrounds/vinyl-2592068_1920.jpg';
 import { fetchTracks, getTracks, getLoading } from '../reducers/data/track';
+import type { TrackBasic } from '../types';
 
 import TracksPresenter from './tracks/TracksPresenter';
 
 type Props = {
   fetchTracks: () => void,
-  tracks?: {}[],
+  tracks?: TrackBasic[],
   loading: boolean,
   t: any,
 };

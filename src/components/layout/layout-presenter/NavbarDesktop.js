@@ -13,7 +13,7 @@ import { logoutUser, getIsAuthenticated, getUser } from '../../../reducers/auth'
 import { getPlaying } from '../../../reducers/ui/player';
 import { actions as profileActions } from '../../../reducers/data/profile';
 import logo from '../../../assets/images/logos/logo_white.svg';
-import type { UserBasic } from '../../../lib/types/common';
+import type { UserBasic } from '../../../types';
 
 type Props = {
   height: number,

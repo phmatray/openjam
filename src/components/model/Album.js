@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import LinkEntity from '../LinkEntity';
-import type { AlbumBasic } from '../../lib/types/common';
+import type { AlbumBasic } from '../../types';
 
 import Cover from './album/Cover';
 import Title from './album/Title';

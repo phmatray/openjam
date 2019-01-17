@@ -4,7 +4,7 @@ import React from 'react';
 import { Header } from 'semantic-ui-react';
 
 import getYears from '../../../../lib/utils/getYears';
-import type { Year } from '../../../../lib/types/common';
+import type { Year } from '../../../../types';
 
 type Props = {
   years: Year[],

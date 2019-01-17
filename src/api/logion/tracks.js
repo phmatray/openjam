@@ -3,10 +3,11 @@
 import axios from 'axios';
 
 import { getApi } from '../logion';
+import type { TrackFilter } from '../../types';
 
 const apiTrack = `${getApi()}/track`;
 
-export async function fetchTracks(filter: ?'all' | 'original' | ?'remix') {
+export async function fetchTracks(filter: TrackFilter) {
   let baseUrl = `${apiTrack}?`;
   if (filter && filter !== 'all') {
     baseUrl += `type2=${filter}`;

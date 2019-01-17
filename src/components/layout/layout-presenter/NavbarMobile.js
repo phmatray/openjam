@@ -9,7 +9,7 @@ import { Menu, Icon, Image } from 'semantic-ui-react';
 import LanguageDropdown from './LanguageDropdown';
 
 import logo from '../../../assets/images/logos/logo_white.svg';
-import type { UserBasic } from '../../../lib/types/common';
+import type { UserBasic } from '../../../types';
 
 type Props = {
   toggleSidebar: () => void,

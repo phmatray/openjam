@@ -4,7 +4,7 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 
 type Props = {
-  retry: func.isRequired,
+  retry: () => void,
   timedOut: any,
   pastDelay: any,
   error?: any,

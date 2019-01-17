@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 // import Span from '../Span';
 import Flex from '../Flex';
-import type { UserBasic } from '../../lib/types/common';
+import type { UserBasic } from '../../types';
 
 import { Avatar, FromNow } from './styles';
 

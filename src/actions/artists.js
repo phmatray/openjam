@@ -1,19 +1,19 @@
 // @flow
 
 import { normalize } from 'normalizr';
-import * as schema from './schema';
+
 import * as api from '../api/logion';
 import { getIsFetching } from '../reducers/data/artists';
+import type { ArtistFilter, Dispatch, GetState } from '../types';
 
-export const fetchArtists = filter => (dispatch, getState) => {
+import * as schema from './schema';
+
+export const fetchArtists = (filter: ArtistFilter) => (dispatch: Dispatch, getState: GetState) => {
   if (getIsFetching(getState(), filter)) {
     return Promise.resolve();
   }
 
-  dispatch({
-    type: 'FETCH_ARTISTS_REQUEST',
-    filter,
-  });
+  dispatch({ type: 'FETCH_ARTISTS_REQUEST', filter });
 
   return api.fetchArtists(filter).then(
     response => {
@@ -33,7 +33,7 @@ export const fetchArtists = filter => (dispatch, getState) => {
   );
 };
 
-export const addArtist = text => dispatch =>
+export const addArtist = (text: string) => (dispatch: Dispatch) =>
   api.addArtist(text).then(response => {
     dispatch({
       type: 'ADD_ARTIST_SUCCESS',
@@ -41,7 +41,7 @@ export const addArtist = text => dispatch =>
     });
   });
 
-export const toggleArtist = id => ({
+export const toggleArtist = (id: string) => ({
   type: 'TOGGLE_ARTIST',
   id,
 });

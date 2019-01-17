@@ -1,11 +1,14 @@
 // @flow
 
 import { normalize } from 'normalizr';
-import * as schema from './schema';
+
 import * as api from '../api/logion';
 import { getIsFetching } from '../reducers/data/tracks';
+import type { TrackFilter, Dispatch, GetState } from '../types';
 
-export const fetchTracks = filter => (dispatch, getState) => {
+import * as schema from './schema';
+
+export const fetchTracks = (filter: TrackFilter) => (dispatch: Dispatch, getState: GetState) => {
   if (getIsFetching(getState(), filter)) {
     return Promise.resolve();
   }
@@ -33,7 +36,7 @@ export const fetchTracks = filter => (dispatch, getState) => {
   );
 };
 
-export const addTrack = text => dispatch =>
+export const addTrack = (text: string) => (dispatch: Dispatch) =>
   api.addTrack(text).then(response => {
     dispatch({
       type: 'ADD_TRACK_SUCCESS',
@@ -41,7 +44,7 @@ export const addTrack = text => dispatch =>
     });
   });
 
-export const toggleTrack = id => ({
+export const toggleTrack = (id: string) => ({
   type: 'TOGGLE_TRACK',
   id,
 });

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Responsive, Sidebar } from 'semantic-ui-react';
 
 import Player from '../Player';
-import type { UserBasic } from '../../lib/types/common';
+import type { UserBasic } from '../../types';
 
 import NavbarDesktop from './layout-presenter/NavbarDesktop';
 import NavbarMobile from './layout-presenter/NavbarMobile';

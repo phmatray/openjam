@@ -7,11 +7,12 @@ import Div from '../../components/Div';
 import Flex from '../../components/Flex';
 import Hero from '../../components/Hero';
 import Section from '../../components/Section';
+import type { TrackBasic } from '../../types';
 
 import ActionsMenu from './tracks-presenter/ActionsMenu';
 
 type Props = {
-  tracks: { _id: string }[],
+  tracks: TrackBasic[],
   background: string,
   header?: string,
   subheader?: string,

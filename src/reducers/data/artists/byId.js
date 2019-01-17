@@ -1,6 +1,8 @@
 // @flow
 
-const byId = (state = {}, action) => {
+type State = {};
+
+const byId = (state: State = {}, action) => {
   if (action.response) {
     return {
       ...state,

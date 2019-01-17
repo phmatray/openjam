@@ -12,7 +12,7 @@ import Flex from './Flex';
 import Scrollable from './section/Scrollable';
 
 type Props = {
-  items: [],
+  items: { _id: string }[],
   title?: string,
   to?: string,
   maxHeight?: number,
