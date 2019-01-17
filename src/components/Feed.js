@@ -1,11 +1,12 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import FeedPresenter from './feed/FeedPresenter';
 
-const Feed = ({ posts }) => <FeedPresenter posts={posts} />;
-
-Feed.propTypes = {
-  posts: PropTypes.array.isRequired,
+type Props = {
+  posts: [],
 };
+
+const Feed = ({ posts }: Props) => <FeedPresenter posts={posts} />;
 
 export default Feed;

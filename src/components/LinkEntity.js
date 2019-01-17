@@ -1,9 +1,26 @@
+// @flow
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
 import { TableLink, InvertedLink, Alternate, AlternateEdit } from './link-entity/Atoms';
 
-const LinkEntity = ({ entity, as, strong, alternate }) => {
+type Entity = {
+  _id: string,
+  type: 'album' | 'artist' | 'label' | 'playlist' | 'track',
+  name?: string,
+  title?: string,
+  edit?: string,
+};
+
+type Props = {
+  entity: Entity,
+  as: 'link' | 'table' | 'inverted',
+  strong: boolean,
+  alternate: boolean,
+};
+
+const LinkEntity = ({ entity, as, strong, alternate }: Props) => {
   // check entity
   if (entity === undefined || entity === null) {
     return <span />;
@@ -48,19 +65,6 @@ const LinkEntity = ({ entity, as, strong, alternate }) => {
     default:
       return <Link to={href}>{content}</Link>;
   }
-};
-
-LinkEntity.propTypes = {
-  entity: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(['album', 'artist', 'label', 'playlist', 'track']).isRequired,
-    name: PropTypes.string,
-    title: PropTypes.string,
-    edit: PropTypes.string,
-  }).isRequired,
-  as: PropTypes.oneOf(['link', 'table', 'inverted']),
-  strong: PropTypes.bool,
-  alternate: PropTypes.bool,
 };
 
 LinkEntity.defaultProps = {

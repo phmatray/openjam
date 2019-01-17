@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
@@ -7,9 +8,25 @@ import { fetchLabel, getLabel, getLoading } from '../reducers/data/label';
 
 import LabelPresenter from './label/LabelPresenter';
 
-class Label extends PureComponent {
+type Props = {
+  fetchLabel: (labelId: string) => void,
+  match: { params: { id: string } },
+  label?: {},
+  loading?: boolean,
+};
+
+type State = {
+  labelId: string,
+};
+
+class Label extends PureComponent<Props, State> {
   state = {
     labelId: null,
+  };
+
+  static defaultProps = {
+    label: null,
+    loading: false,
   };
 
   componentDidMount() {
@@ -35,17 +52,6 @@ class Label extends PureComponent {
     );
   }
 }
-
-Label.propTypes = {
-  fetchLabel: PropTypes.func.isRequired,
-  label: PropTypes.object,
-  loading: PropTypes.bool,
-};
-
-Label.defaultProps = {
-  label: null,
-  loading: false,
-};
 
 const mapStateToProps = state => ({
   label: getLabel(state),

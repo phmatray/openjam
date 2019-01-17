@@ -1,10 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
 import { Divider, Header, Container } from 'semantic-ui-react';
 
 import TitleBreadcrumb from './TitleBreadcrumb';
 
-const Body = ({ breadcrumbSegments, description, children }) => (
+type Props = {
+  breadcrumbSegments: [any],
+  children?: React.Node,
+  description?: any,
+};
+
+const Body = ({ breadcrumbSegments, description, children }: Props) => (
   <Container>
     <Header as="h1">
       <TitleBreadcrumb breadcrumbSegments={breadcrumbSegments} />
@@ -18,12 +25,8 @@ const Body = ({ breadcrumbSegments, description, children }) => (
   </Container>
 );
 
-Body.propTypes = {
-  breadcrumbSegments: PropTypes.arrayOf(PropTypes.any).isRequired,
-  description: PropTypes.any,
-};
-
 Body.defaultProps = {
+  children: null,
   description: null,
 };
 

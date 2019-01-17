@@ -1,8 +1,16 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Icon, Button } from 'semantic-ui-react';
 
-const LikeButton = ({ likeAction, unlikeAction, likes, active }) => (
+type Props = {
+  likeAction: () => void,
+  unlikeAction: () => void,
+  likes: number,
+  active: boolean,
+};
+
+const LikeButton = ({ likeAction, unlikeAction, likes, active }: Props) => (
   <Button
     basic={!active}
     compact
@@ -20,12 +28,5 @@ const LikeButton = ({ likeAction, unlikeAction, likes, active }) => (
     </Button.Content>
   </Button>
 );
-
-LikeButton.propTypes = {
-  likeAction: PropTypes.func.isRequired,
-  unlikeAction: PropTypes.func.isRequired,
-  likes: PropTypes.number.isRequired,
-  active: PropTypes.bool.isRequired,
-};
 
 export default LikeButton;

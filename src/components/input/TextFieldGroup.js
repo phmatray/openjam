@@ -1,6 +1,21 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Form, Input } from 'semantic-ui-react';
+
+type Props = {
+  type?: string,
+  name: string,
+  placeholder?: string,
+  value: string,
+  label?: string,
+  icon?: string,
+  error?: string,
+  info?: string,
+  onChange: () => void,
+  disabled?: boolean,
+  required?: boolean,
+};
 
 const TextFieldGroup = ({
   type,
@@ -14,7 +29,7 @@ const TextFieldGroup = ({
   onChange,
   disabled,
   required,
-}) => {
+}: Props) => {
   const messageStyle = {
     fontSize: '0.8em',
     margin: '-0.6rem 0 1rem 0',
@@ -64,20 +79,6 @@ const TextFieldGroup = ({
   );
 };
 
-TextFieldGroup.propTypes = {
-  type: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  icon: PropTypes.string,
-  error: PropTypes.string,
-  info: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  required: PropTypes.bool,
-};
-
 TextFieldGroup.defaultProps = {
   placeholder: null,
   label: null,
@@ -86,9 +87,6 @@ TextFieldGroup.defaultProps = {
   info: null,
   disabled: false,
   required: false,
-};
-
-TextFieldGroup.defaultProps = {
   type: 'text',
 };
 

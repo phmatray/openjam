@@ -1,8 +1,13 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Icon, Button } from 'semantic-ui-react';
 
-class ShareButton extends Component {
+type Props = {
+  shares: number,
+};
+
+class ShareButton extends Component<Props> {
   render() {
     const { shares } = this.props;
 
@@ -17,9 +22,5 @@ class ShareButton extends Component {
     );
   }
 }
-
-ShareButton.propTypes = {
-  shares: PropTypes.number.isRequired,
-};
 
 export default ShareButton;

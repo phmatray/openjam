@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
@@ -10,7 +11,25 @@ import { getErrors } from '../../reducers/data/error';
 import { getUser } from '../../reducers/auth';
 import withTheme from '../../hocs/withTheme';
 
-class PostForm extends PureComponent {
+type NewPost = {
+  type: 'post-basic',
+  text: string,
+  byUser: string,
+};
+
+type Props = {
+  addPost: (newPost: NewPost) => void,
+  user: { _id: string, firstName: string },
+  errors: {},
+  theme: any,
+};
+
+type State = {
+  text: string,
+  errors: {},
+};
+
+class PostForm extends PureComponent<Props, State> {
   state = {
     text: '',
     errors: {},
@@ -66,12 +85,6 @@ class PostForm extends PureComponent {
     );
   }
 }
-
-PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   user: getUser(state),

@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
@@ -7,7 +8,17 @@ import { fetchLabels, getLabels, getLoading } from '../reducers/data/label';
 
 import LabelsPresenter from './labels/LabelsPresenter';
 
-class Labels extends PureComponent {
+type Props = {
+  fetchLabels: () => void,
+  labels?: {}[],
+  loading: boolean,
+};
+
+class Labels extends PureComponent<Props> {
+  static defaultProps = {
+    labels: null,
+  };
+
   componentDidMount() {
     this.props.fetchLabels();
   }
@@ -15,7 +26,7 @@ class Labels extends PureComponent {
   render() {
     const { labels, loading } = this.props;
 
-    if (labels === null || loading) {
+    if (labels === null || labels === undefined || loading) {
       return <Spinner />;
     }
     if (labels.length === 0) {
@@ -24,16 +35,6 @@ class Labels extends PureComponent {
     return <LabelsPresenter labels={labels} />;
   }
 }
-
-Labels.propTypes = {
-  fetchLabels: PropTypes.func.isRequired,
-  labels: PropTypes.array,
-  loading: PropTypes.bool.isRequired,
-};
-
-Labels.defaultProps = {
-  labels: null,
-};
 
 const mapStateToProps = state => ({
   labels: getLabels(state),

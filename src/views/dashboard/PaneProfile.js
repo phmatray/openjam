@@ -1,10 +1,19 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Header, Button, Tab } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
 
-const PaneProfile = ({ loading, user: { profiles, artists } }) => (
+type Props = {
+  loading: boolean,
+  user: {
+    profiles: {}[],
+    artists: {}[],
+  },
+};
+
+const PaneProfile = ({ loading, user: { profiles, artists } }: Props) => (
   <Tab.Pane attached={false} loading={loading}>
     <Header as="h5" dividing sub>
       Profil public
@@ -39,13 +48,5 @@ const PaneProfile = ({ loading, user: { profiles, artists } }) => (
     </Div>
   </Tab.Pane>
 );
-
-PaneProfile.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
-    profiles: PropTypes.array.isRequired,
-    artists: PropTypes.array.isRequired,
-  }).isRequired,
-};
 
 export default PaneProfile;

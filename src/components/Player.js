@@ -1,5 +1,6 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sound from 'react-sound';
 
@@ -16,7 +17,17 @@ import {
 
 import PlayerPresenter from './player/PlayerPresenter';
 
-class Player extends Component {
+type Props = {
+  fetchTracks: () => void,
+  loadCollection: () => void,
+  updateAudioInfo: () => void,
+  next: () => void,
+  status: 'PLAYING' | 'PAUSED' | 'STOPPED',
+  current?: { audiourl: string },
+  audioInfo?: { position: number, duration: number, volume: number },
+};
+
+class Player extends Component<Props> {
   async componentDidMount() {
     const { fetchTracks, loadCollection } = this.props;
     await fetchTracks();
@@ -58,21 +69,6 @@ class Player extends Component {
     );
   }
 }
-
-Player.propTypes = {
-  fetchTracks: PropTypes.func.isRequired,
-  loadCollection: PropTypes.func.isRequired,
-  updateAudioInfo: PropTypes.func.isRequired,
-  next: PropTypes.func.isRequired,
-  current: PropTypes.shape({
-    audiourl: PropTypes.string.isRequired,
-  }),
-  status: PropTypes.oneOf(['PLAYING', 'PAUSED', 'STOPPED']).isRequired,
-  audioInfo: PropTypes.shape({
-    position: PropTypes.number.isRequired,
-    duration: PropTypes.number.isRequired,
-  }),
-};
 
 Player.defaultProps = {
   current: null,

@@ -1,10 +1,15 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Card, Responsive } from 'semantic-ui-react';
 import ProfileCardMobile from './ProfileCardMobile';
 import ProfileCardDefault from './ProfileCardDefault';
 
-const Jammer = ({ jammer }) => (
+type Props = {
+  jammer: {},
+};
+
+const Jammer = ({ jammer }: Props) => (
   <React.Fragment>
     <Responsive as={Card} {...Responsive.onlyMobile}>
       <ProfileCardMobile profile={jammer} />
@@ -17,9 +22,5 @@ const Jammer = ({ jammer }) => (
     </Responsive>
   </React.Fragment>
 );
-
-Jammer.propTypes = {
-  jammer: PropTypes.object.isRequired,
-};
 
 export default Jammer;

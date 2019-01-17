@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
@@ -11,7 +12,33 @@ import { createProfile } from '../reducers/data/profile';
 import { getErrors } from '../reducers/data/error';
 import { getIsAuthenticated, getUser } from '../reducers/auth';
 
-class CreateProfile extends PureComponent {
+type Props = {
+  createProfile: () => void,
+  isAuthenticated: boolean,
+  user: {},
+  errors: {},
+  history: any,
+};
+
+type State = {
+  displaySocialInputs: boolean,
+  handle: string,
+  website: string,
+  location: string,
+  status: string,
+  skills: string,
+  githubusername: string,
+  bio: string,
+  soundcloud: string,
+  twitter: string,
+  facebook: string,
+  linkedin: string,
+  youtube: string,
+  instagram: string,
+  errors: {},
+};
+
+class CreateProfile extends PureComponent<Props, State> {
   state = {
     displaySocialInputs: false,
     handle: '',
@@ -305,13 +332,6 @@ class CreateProfile extends PureComponent {
     );
   }
 }
-
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),

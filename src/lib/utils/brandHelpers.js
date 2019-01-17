@@ -1,15 +1,5 @@
 // @flow
-
-type Domain =
-  | 'youtube'
-  | 'facebook'
-  | 'linkedin'
-  | 'instagram'
-  | 'github'
-  | 'twitter'
-  | 'soundcloud'
-  | 'bandcamp'
-  | 'openjam';
+import type { Domain } from '../types/common';
 
 export const getBrandColor = (domain: Domain) => {
   switch (domain) {

@@ -1,11 +1,17 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Header } from 'semantic-ui-react';
 
 import Social from '../../../../components/Social';
 import isEmpty from '../../../../lib/validation/is-empty';
 
-const Socials = ({ website, socials }) => (
+type Props = {
+  website: string,
+  socials: string[],
+};
+
+const Socials = ({ website, socials }: Props) => (
   <React.Fragment>
     <Header as="h3">Socials</Header>
     <div>
@@ -17,10 +23,5 @@ const Socials = ({ website, socials }) => (
     <br />
   </React.Fragment>
 );
-
-Socials.propTypes = {
-  website: PropTypes.string.isRequired,
-  socials: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default Socials;

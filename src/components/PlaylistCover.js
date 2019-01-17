@@ -1,7 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const PlaylistCover = ({ tracks, radius }) => (
+import React from 'react';
+
+type Props = {
+  tracks: {
+    track: { coverurl: { w400: string } }[],
+  },
+  radius?: string,
+};
+
+const PlaylistCover = ({ tracks, radius }: Props) => (
   <div
     style={{
       display: 'flex',
@@ -33,19 +41,6 @@ const PlaylistCover = ({ tracks, radius }) => (
     />
   </div>
 );
-
-PlaylistCover.propTypes = {
-  tracks: PropTypes.arrayOf(
-    PropTypes.shape({
-      track: PropTypes.shape({
-        coverurl: PropTypes.shape({
-          w400: PropTypes.string.isRequired,
-        }).isRequired,
-      }).isRequired,
-    }).isRequired,
-  ).isRequired,
-  radius: PropTypes.string,
-};
 
 PlaylistCover.defaultProps = {
   radius: '3%',

@@ -1,12 +1,24 @@
+// @flow
+
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Comment, Icon } from 'semantic-ui-react';
 
 import { deleteComment } from '../../reducers/ui/views/share';
 import { getUser } from '../../reducers/auth';
 
-class CommentItem extends PureComponent {
+type Props = {
+  deleteComment: (postId: string, commentId: string) => void,
+  postId: string,
+  comment: {
+    firstname: string,
+    lastname: string,
+    avatar: string,
+  },
+  user: {},
+};
+
+class CommentItem extends PureComponent<Props> {
   handleDeleteClick = (postId, commentId) => {
     this.props.deleteComment(postId, commentId);
   };
@@ -35,13 +47,6 @@ class CommentItem extends PureComponent {
     );
   }
 }
-
-CommentItem.propTypes = {
-  deleteComment: PropTypes.func.isRequired,
-  postId: PropTypes.string.isRequired,
-  comment: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   user: getUser(state),

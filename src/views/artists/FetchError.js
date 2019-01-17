@@ -1,7 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const FetchError = ({ message, onRetry }) => (
+import React from 'react';
+
+type Props = {
+  message: string,
+  onRetry: () => void,
+};
+
+const FetchError = ({ message, onRetry }: Props) => (
   <div>
     <p>
       {'Could not fetch artists.'}
@@ -12,10 +18,5 @@ const FetchError = ({ message, onRetry }) => (
     </button>
   </div>
 );
-
-FetchError.propTypes = {
-  message: PropTypes.string.isRequired,
-  onRetry: PropTypes.func.isRequired,
-};
 
 export default FetchError;

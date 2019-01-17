@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Segment, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
 
@@ -11,7 +12,15 @@ import { getIsAuthenticated } from '../reducers/auth';
 import ProfileHeader from './jammer/ProfileHeader';
 import ProfileAbout from './jammer/ProfileAbout';
 
-class Profile extends PureComponent {
+type Props = {
+  fetchProfileByHandle: (handle: string) => void,
+  profile: {},
+  loading: boolean,
+  isAuthenticated: boolean,
+  match: { params: { handle: string } },
+};
+
+class Profile extends PureComponent<Props> {
   componentDidMount() {
     if (this.props.match.params.handle) {
       this.props.fetchProfileByHandle(this.props.match.params.handle);
@@ -52,13 +61,6 @@ class Profile extends PureComponent {
     return <Segment basic>{profileContent}</Segment>;
   }
 }
-
-Profile.propTypes = {
-  fetchProfileByHandle: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
   profile: getProfile(state),

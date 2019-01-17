@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
 
@@ -7,7 +8,14 @@ import Spinner from '../../components/Spinner';
 
 import ProfileActions from './ProfileActions';
 
-class DashboardContent extends PureComponent {
+type Props = {
+  deleteAccount: () => void,
+  profile: { handle: string },
+  user: { firstName: string },
+  loading: boolean,
+};
+
+class DashboardContent extends PureComponent<Props> {
   onDeleteClick = () => {
     this.props.deleteAccount();
   };
@@ -45,7 +53,7 @@ class DashboardContent extends PureComponent {
       // User is logged in but has no profile
       dashboardContent = (
         <div>
-          <p>{`Welcome ${user.firstName}`}</p>
+          <p>{`Welcome ${firstName}`}</p>
           <p>You have not yet setup a profile, please add some info</p>
 
           <Button as={Link} primary to="/create-profile">
@@ -58,15 +66,5 @@ class DashboardContent extends PureComponent {
     return dashboardContent;
   }
 }
-
-DashboardContent.propTypes = {
-  deleteAccount: PropTypes.func.isRequired,
-  profile: PropTypes.shape({
-    handle: PropTypes.string,
-  }).isRequired,
-  user: PropTypes.shape({
-    firstName: PropTypes.string,
-  }).isRequired,
-};
 
 export default DashboardContent;

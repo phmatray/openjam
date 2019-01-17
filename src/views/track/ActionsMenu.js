@@ -1,10 +1,23 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Container, Menu, Icon, Button } from 'semantic-ui-react';
 
 import withTheme from '../../hocs/withTheme';
 
-const ActionsMenu = ({ track, theme }) => (
+type Props = {
+  track: {
+    type2: string,
+    audiourl: string,
+    meta: {
+      downloadable: boolean,
+      downloads: [],
+    },
+  },
+  theme: any,
+};
+
+const ActionsMenu = ({ track, theme }: Props) => (
   <Container style={{ height: '48px' }}>
     <Menu secondary>
       {/* <Menu.Item>
@@ -54,12 +67,5 @@ const ActionsMenu = ({ track, theme }) => (
     {/* TODO: Add more actions */}
   </Container>
 );
-
-ActionsMenu.propTypes = {
-  track: PropTypes.shape({
-    type2: PropTypes.string.isRequired,
-    audiourl: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default withTheme(ActionsMenu);

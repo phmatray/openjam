@@ -1,5 +1,6 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Segment, SegmentGroup } from 'semantic-ui-react';
 
@@ -13,7 +14,19 @@ import Intro from './Intro';
 import Comment from './Comment';
 import { Content } from './styles';
 
-class PostBasic extends Component {
+type Props = {
+  user: {},
+  post: {
+    _id: string,
+    text: string,
+    likes?: [],
+    shares?: [],
+    comments?: [],
+  },
+  isAuthenticated: boolean,
+};
+
+class PostBasic extends Component<Props> {
   findUserLike = likes => {
     const { user } = this.props;
     return likes && likes.filter(like => like.user === user._id).length > 0;
@@ -64,25 +77,6 @@ class PostBasic extends Component {
     );
   }
 }
-
-PostBasic.propTypes = {
-  user: PropTypes.object.isRequired,
-  post: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    likes: PropTypes.array,
-    shares: PropTypes.array,
-    comments: PropTypes.array,
-  }),
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-
-PostBasic.defaultProps = {
-  post: {
-    likes: [],
-    shares: [],
-    comments: [],
-  },
-};
 
 const mapStateToProps = state => ({
   user: getUser(state),

@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Segment, Button, Feed } from 'semantic-ui-react';
@@ -11,7 +12,18 @@ import { fetchPost, getLoading, getPost } from '../reducers/ui/views/share';
 import CommentForm from './post/CommentForm';
 import CommentFeed from './post/CommentFeed';
 
-class Post extends PureComponent {
+type Props = {
+  fetchPost: (postId: string) => void,
+  match: { params: { id: string } },
+  loading: boolean,
+  post: {
+    _id: string,
+    type: string,
+    comments: {}[],
+  },
+};
+
+class Post extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetchPost(this.props.match.params.id);
   }
@@ -42,11 +54,6 @@ class Post extends PureComponent {
     return <Segment basic>{postContent}</Segment>;
   }
 }
-
-Post.propTypes = {
-  fetchPost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   post: getPost(state),

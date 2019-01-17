@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Container, Grid, Image, Header, Divider } from 'semantic-ui-react';
 
 import Hero from '../../components/Hero';
@@ -10,7 +11,16 @@ import ActionsMenu from './artist-presenter/ActionsMenu';
 import Tabs from './artist-presenter/Tabs';
 import Aside from './artist-presenter/Aside';
 
-const ArtistPresenter = ({ artist, loading }) =>
+type Props = {
+  artist: {
+    name: string,
+    images: any,
+    information: any,
+  },
+  loading: boolean,
+};
+
+const ArtistPresenter = ({ artist, loading }: Props) =>
   artist.images && artist.information ? (
     <React.Fragment>
       <Hero src={artist.images[0].url}>
@@ -46,12 +56,5 @@ const ArtistPresenter = ({ artist, loading }) =>
   ) : (
     <span>This artist has no profile</span>
   );
-
-ArtistPresenter.propTypes = {
-  artist: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  loading: PropTypes.bool.isRequired,
-};
 
 export default ArtistPresenter;

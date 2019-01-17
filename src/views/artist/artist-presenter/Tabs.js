@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { Header, Tab, Card, Label } from 'semantic-ui-react';
 
@@ -7,7 +8,20 @@ import getYears from '../../../lib/utils/getYears';
 import Section from '../../../components/Section';
 import withTheme from '../../../hocs/withTheme';
 
-const Tabs = ({ artist, loading, theme }) => {
+type Props = {
+  artist: {
+    tracks: {
+      track: any,
+    }[],
+    information: {
+      description: any,
+      members: any,
+    },
+  },
+  loading?: boolean,
+};
+
+const Tabs = ({ artist, loading, theme }: Props) => {
   const { description, members } = artist.information;
   const hasDescription = description && description[0].length > 0;
 
@@ -72,13 +86,6 @@ const Tabs = ({ artist, loading, theme }) => {
   const panes = [titlesPane, descriptionPane];
 
   return <Tab menu={{ secondary: true, pointing: true }} panes={panes} />;
-};
-
-Tabs.propTypes = {
-  artist: PropTypes.shape({
-    tracks: PropTypes.array,
-  }).isRequired,
-  loading: PropTypes.bool,
 };
 
 Tabs.defaultProps = {

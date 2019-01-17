@@ -1,5 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -9,15 +10,15 @@ import { getPlaying } from '../reducers/ui/player';
 import LayoutPresenter from './layout/LayoutPresenter';
 import { getIsAuthenticated, getUser } from '../reducers/auth';
 
-const Layout = props => <LayoutPresenter {...props} />;
-
-Layout.propTypes = {
-  sidebarVisible: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  showSidebar: PropTypes.func.isRequired,
-  hideSidebar: PropTypes.func.isRequired,
-  toggleSidebar: PropTypes.func.isRequired,
+type Props = {
+  sidebarVisible: boolean,
+  children: React.Node,
+  showSidebar: () => void,
+  hideSidebar: () => void,
+  toggleSidebar: () => void,
 };
+
+const Layout = (props: Props) => <LayoutPresenter {...props} />;
 
 const mapStateToProps = state => ({
   sidebarVisible: getSidebarVisible(state),

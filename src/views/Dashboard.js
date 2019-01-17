@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Header, Container, Tab } from 'semantic-ui-react';
 
@@ -10,6 +11,19 @@ import { fetchMe, getUser, getLoading } from '../reducers/ui/views/dashboard';
 import PaneAccount from './dashboard/PaneAccount';
 import PaneProfile from './dashboard/PaneProfile';
 import PaneMarketplace from './dashboard/PaneMarketplace';
+
+type Props = {
+  fetchMe: () => void,
+  user: {
+    email: string,
+    firstName: string,
+    lastName: string,
+    profileImageUrl: string,
+    createdAt: string,
+    roleName: string,
+  },
+  loading?: boolean,
+};
 
 const panes = [
   {
@@ -26,7 +40,7 @@ const panes = [
   },
 ];
 
-class Dashboard extends PureComponent {
+class Dashboard extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetchMe();
   }
@@ -70,20 +84,6 @@ class Dashboard extends PureComponent {
     );
   }
 }
-
-Dashboard.propTypes = {
-  fetchMe: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
-
-  user: PropTypes.shape({
-    email: PropTypes.string,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    profileImageUrl: PropTypes.string,
-    createdAt: PropTypes.string,
-    roleName: PropTypes.string,
-  }).isRequired,
-};
 
 Dashboard.defaultProps = {
   loading: false,

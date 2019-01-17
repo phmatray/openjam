@@ -1,15 +1,28 @@
+// @flow
+
 import React, { Component } from 'react';
 import { ThemeConsumer } from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Sidebar, Menu, Icon, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import { logoutUser, getIsAuthenticated } from '../../../reducers/auth';
 import { actions as profileActions } from '../../../reducers/data/profile';
 
-class NavbarSide extends Component {
+type Props = {
+  hideSidebar: () => void,
+  visible: boolean,
+  logoutUser: () => void,
+  clearCurrentProfile: () => void,
+  isAuthenticated: boolean,
+};
+
+type State = {
+  activeItem: 'home',
+};
+
+class NavbarSide extends Component<Props, State> {
   state = { activeItem: 'home' };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -107,14 +120,6 @@ class NavbarSide extends Component {
     );
   }
 }
-
-NavbarSide.propTypes = {
-  hideSidebar: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  clearCurrentProfile: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),

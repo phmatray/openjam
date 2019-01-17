@@ -1,7 +1,13 @@
-import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
+// @flow
 
-const HeroContainer = styled.div`
+import type { ComponentType } from 'react';
+import styled, { css } from 'styled-components';
+
+type Props = {
+  src: string,
+};
+
+const HeroContainer: ComponentType<Props> = styled.div`
   height: 256px;
 
   ${props =>
@@ -14,9 +20,5 @@ const HeroContainer = styled.div`
           background-color: black;
         `};
 `;
-
-HeroContainer.propTypes = {
-  src: PropTypes.string.isRequired,
-};
 
 export default HeroContainer;

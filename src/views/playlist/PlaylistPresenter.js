@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Container, Grid, Divider, Header } from 'semantic-ui-react';
@@ -13,7 +14,17 @@ import PlaylistCover from '../../components/PlaylistCover';
 import Body from '../../components/Body';
 import LinkEntity from '../../components/LinkEntity';
 
-const PlaylistPresenter = ({ playlist, t }) => (
+type Props = {
+  playlist: {
+    name: string,
+    description: string,
+    tracks: {
+      track: { coverurl: { w800: string } },
+    }[],
+  },
+};
+
+const PlaylistPresenter = ({ playlist, t }: Props) => (
   <React.Fragment>
     <Hero src={playlist.tracks[0].track.coverurl.w800}>
       <Flex fluid row alignCenter>
@@ -53,11 +64,5 @@ const PlaylistPresenter = ({ playlist, t }) => (
     </Container>
   </React.Fragment>
 );
-
-PlaylistPresenter.propTypes = {
-  playlist: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default withNamespaces('common')(PlaylistPresenter);

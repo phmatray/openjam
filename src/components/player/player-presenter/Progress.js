@@ -1,11 +1,18 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { actions } from '../../../reducers/ui/player';
 import { ProgressStyled, ProgressInner } from './styles';
 
-class Progress extends Component {
+type Props = {
+  updatePosition: () => void,
+  position: number,
+  duration: number,
+};
+
+class Progress extends Component<Props> {
   handleSeekTrack = e => {
     const { updatePosition, duration } = this.props;
 
@@ -39,12 +46,6 @@ class Progress extends Component {
     );
   }
 }
-
-Progress.propTypes = {
-  updatePosition: PropTypes.func.isRequired,
-  position: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
-};
 
 export default connect(
   null,

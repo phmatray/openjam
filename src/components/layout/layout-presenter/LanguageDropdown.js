@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
@@ -13,7 +14,11 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
-const LanguageDropdown = ({ updateLanguage, i18n }) => {
+type Props = {
+  updateLanguage: () => void,
+};
+
+const LanguageDropdown = ({ updateLanguage, i18n }: Props) => {
   const languages = [
     {
       text: 'English',
@@ -43,10 +48,6 @@ const LanguageDropdown = ({ updateLanguage, i18n }) => {
       }}
     />
   );
-};
-
-LanguageDropdown.propTypes = {
-  updateLanguage: PropTypes.func.isRequired,
 };
 
 export default connect(

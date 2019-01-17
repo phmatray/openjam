@@ -1,8 +1,14 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Breadcrumb, Header } from 'semantic-ui-react';
 
-const H1 = ({ header, description }) => (
+type Props = {
+  header?: string,
+  description?: string,
+};
+
+const H1 = ({ header, description }: Props) => (
   <Header as="h1">
     <Breadcrumb as="h1" size="massive">
       <Breadcrumb.Section active>
@@ -18,11 +24,6 @@ const H1 = ({ header, description }) => (
     </Header.Subheader>
   </Header>
 );
-
-H1.propTypes = {
-  header: PropTypes.string,
-  description: PropTypes.string,
-};
 
 H1.defaultProps = {
   header: 'header',

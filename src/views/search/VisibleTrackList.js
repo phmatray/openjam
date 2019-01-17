@@ -1,7 +1,7 @@
+// @flow
 /* eslint-disable no-class-assign */
 
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -11,7 +11,23 @@ import { getVisibleTracks, getErrorMessage, getIsFetching } from '../../reducers
 import TrackList from './visible-track-list/TrackList';
 import FetchError from './visible-track-list/FetchError';
 
-class VisibleTrackList extends PureComponent {
+type Filter = 'all' | 'original' | 'remix';
+
+type Props = {
+  filter: Filter,
+  errorMessage?: string,
+  tracks: {}[],
+  isFetching?: boolean,
+  fetchTracks: (filter: Filter) => void,
+  toggleTrack: () => void,
+};
+
+class VisibleTrackList extends PureComponent<Props> {
+  static defaultProps = {
+    isFetching: false,
+    errorMessage: null,
+  };
+
   componentDidMount() {
     this.fetchData();
   }
@@ -39,20 +55,6 @@ class VisibleTrackList extends PureComponent {
     return <TrackList tracks={tracks} onTrackClick={toggleTrack} />;
   }
 }
-
-VisibleTrackList.propTypes = {
-  filter: PropTypes.oneOf(['all', 'original', 'remix']).isRequired,
-  errorMessage: PropTypes.string,
-  tracks: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool,
-  fetchTracks: PropTypes.func.isRequired,
-  toggleTrack: PropTypes.func.isRequired,
-};
-
-VisibleTrackList.defaultProps = {
-  isFetching: false,
-  errorMessage: null,
-};
 
 const mapStateToProps = (state, { match: { params } }) => {
   const filter = params.filter || 'all';

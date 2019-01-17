@@ -1,11 +1,20 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { Container, Menu, Button } from 'semantic-ui-react';
 
 import withTheme from '../../../hocs/withTheme';
 
-const ActionsMenu = ({ artist, theme }) => (
+type Props = {
+  artist: {
+    followers: { total: number },
+    fans: { total: number },
+  },
+  theme: any,
+};
+
+const ActionsMenu = ({ artist, theme }: Props) => (
   <Container style={{ height: '48px' }}>
     <Menu secondary>
       <Menu.Item style={{ paddingLeft: 0 }}>
@@ -23,9 +32,5 @@ const ActionsMenu = ({ artist, theme }) => (
     </Menu>
   </Container>
 );
-
-ActionsMenu.propTypes = {
-  artist: PropTypes.object.isRequired,
-};
 
 export default withTheme(ActionsMenu);

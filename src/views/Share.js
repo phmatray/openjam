@@ -1,6 +1,7 @@
+// @flow
+
 import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Grid, GridRow, GridColumn, Menu, Container } from 'semantic-ui-react';
 
@@ -16,7 +17,18 @@ import { fetchPosts, getPosts, getLoading } from '../reducers/ui/views/share';
 import ActionsMenu from './share/ActionsMenu';
 import PostForm from './share/PostForm';
 
-class Share extends PureComponent {
+type Props = {
+  fetchPosts: () => void,
+  posts: {}[],
+  loading: boolean,
+  isAuthenticated: boolean,
+};
+
+type State = {
+  activeItem: 'newsfeed',
+};
+
+class Share extends PureComponent<Props, State> {
   state = { activeItem: 'newsfeed' };
 
   componentDidMount() {
@@ -73,13 +85,6 @@ class Share extends PureComponent {
     );
   }
 }
-
-Share.propTypes = {
-  fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loading: PropTypes.bool.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
   posts: getPosts(state),

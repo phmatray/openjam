@@ -1,11 +1,21 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { Header, Tab } from 'semantic-ui-react';
 
 import About from './tabs/About';
 
-const Tabs = ({ track }) => {
+type Props = {
+  track: {
+    meta: {
+      description: any,
+      lyrics: any,
+    },
+  },
+};
+
+const Tabs = ({ track }: Props) => {
   const { description, lyrics } = track.meta;
 
   const descriptionPane = {
@@ -43,14 +53,6 @@ const Tabs = ({ track }) => {
   }
 
   return <Tab menu={{ secondary: true, pointing: true }} panes={panes} />;
-};
-
-Tabs.propTypes = {
-  track: PropTypes.shape({
-    meta: PropTypes.shape({
-      lyrics: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default Tabs;

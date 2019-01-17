@@ -1,11 +1,25 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import withTheme from '../../../hocs/withTheme';
 
 import { Wrapper, Cover, Overlay, Icon } from './cover-toggle/Atoms';
 
-const CoverToggle = ({ playTrack, pause, track, isActive, isNew, playerPlaying, theme }) => {
+type Props = {
+  playTrack: () => void,
+  pause: () => void,
+  track: {
+    _id: string,
+    title: string,
+    coverurl: { w200: string },
+  },
+  isActive: boolean,
+  playerPlaying: boolean,
+  isNew?: boolean,
+};
+
+const CoverToggle = ({ playTrack, pause, track, isActive, isNew, playerPlaying, theme }: Props) => {
   const showPause = playerPlaying && isActive;
 
   return (
@@ -28,21 +42,6 @@ const CoverToggle = ({ playTrack, pause, track, isActive, isNew, playerPlaying, 
       </Overlay>
     </Wrapper>
   );
-};
-
-CoverToggle.propTypes = {
-  playTrack: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
-  track: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    coverurl: PropTypes.shape({
-      w200: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  isActive: PropTypes.bool.isRequired,
-  isNew: PropTypes.bool,
-  playerPlaying: PropTypes.bool.isRequired,
 };
 
 CoverToggle.defaultProps = {

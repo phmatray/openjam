@@ -1,6 +1,7 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Header, Container, Divider, Segment } from 'semantic-ui-react';
+import { Header, Container } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
 import Flex from '../../components/Flex';
@@ -9,7 +10,14 @@ import Section from '../../components/Section';
 
 import ActionsMenu from './tracks-presenter/ActionsMenu';
 
-const TracksPresenter = ({ tracks, header, subheader, background }) => (
+type Props = {
+  tracks: { _id: string }[],
+  background: string,
+  header?: string,
+  subheader?: string,
+};
+
+const TracksPresenter = ({ tracks, header, subheader, background }: Props) => (
   <React.Fragment>
     <Hero src={background}>
       <Flex fluid row alignCenter>
@@ -37,21 +45,9 @@ const TracksPresenter = ({ tracks, header, subheader, background }) => (
   </React.Fragment>
 );
 
-TracksPresenter.propTypes = {
-  tracks: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
-  header: PropTypes.string,
-  subheader: PropTypes.string,
-  background: PropTypes.string,
-};
-
 TracksPresenter.defaultProps = {
   header: null,
   subheader: null,
-  background: null,
 };
 
 export default TracksPresenter;

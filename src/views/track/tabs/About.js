@@ -1,10 +1,18 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Header } from 'semantic-ui-react';
 
 import LinkEntity from '../../../components/LinkEntity';
 
-const About = ({ track }) => (
+type Props = {
+  track: {
+    albums: { album: { _id: string } }[],
+    explicit: boolean,
+  },
+};
+
+const About = ({ track }: Props) => (
   <React.Fragment>
     <Header as="h2">Albums</Header>
     <ul>
@@ -17,12 +25,5 @@ const About = ({ track }) => (
     {track.explicit && <p>This title contains explicit content.</p>}
   </React.Fragment>
 );
-
-About.propTypes = {
-  track: PropTypes.shape({
-    albums: PropTypes.arrayOf(PropTypes.object).isRequired,
-    explicit: PropTypes.bool.isRequired,
-  }).isRequired,
-};
 
 export default About;

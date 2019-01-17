@@ -1,7 +1,7 @@
+// @flow
 /* eslint-disable react/no-unused-state */
 
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { loginUser, getIsAuthenticated, getLoading } from '../reducers/auth';
@@ -9,7 +9,15 @@ import { loginUser, getIsAuthenticated, getLoading } from '../reducers/auth';
 import LoginPresenter from './login/LoginPresenter';
 import { getErrors } from '../reducers/data/error';
 
-class Login extends PureComponent {
+type Props = {
+  loginUser: () => void,
+  isAuthenticated: boolean,
+  loading: boolean,
+  errors: {},
+  history: any,
+};
+
+class Login extends PureComponent<Props> {
   componentDidMount() {
     const { isAuthenticated } = this.props;
     if (isAuthenticated) {
@@ -32,11 +40,6 @@ class Login extends PureComponent {
     return <LoginPresenter loginUser={loginUser} errors={errors} loading={loading} />;
   }
 }
-
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),

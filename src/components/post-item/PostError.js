@@ -1,12 +1,14 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { SegmentPostError } from '../SegmentPost';
 
-const PostError = ({ message }) => <SegmentPostError>{message}</SegmentPostError>;
-
-PostError.propTypes = {
-  message: PropTypes.string,
+type Props = {
+  message?: string,
 };
+
+const PostError = ({ message }: Props) => <SegmentPostError>{message}</SegmentPostError>;
 
 PostError.defaultProps = {
   message: 'This component has not yet been developed. Come back later.',

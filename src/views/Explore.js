@@ -1,8 +1,9 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
-import { Container, Segment } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 import Div from '../components/Div';
 import HeroSimple from '../components/HeroSimple';
@@ -21,7 +22,22 @@ import {
 import background from '../assets/images/backgrounds/piano-2601498_1920.jpg';
 import ActionsMenu from './explore/ActionsMenu';
 
-class Explore extends PureComponent {
+type Props = {
+  fetchOriginalTracks: () => void,
+  fetchRemixTracks: () => void,
+  fetchArtists: () => void,
+  originalTracks?: {}[],
+  remixTracks?: {}[],
+  artists?: {}[],
+};
+
+class Explore extends PureComponent<Props> {
+  static defaultProps = {
+    originalTracks: null,
+    remixTracks: null,
+    artists: null,
+  };
+
   componentDidMount() {
     const {
       originalTracks,
@@ -94,21 +110,6 @@ class Explore extends PureComponent {
     );
   }
 }
-
-Explore.propTypes = {
-  fetchOriginalTracks: PropTypes.func.isRequired,
-  fetchRemixTracks: PropTypes.func.isRequired,
-  fetchArtists: PropTypes.func.isRequired,
-  originalTracks: PropTypes.array,
-  remixTracks: PropTypes.array,
-  artists: PropTypes.array,
-};
-
-Explore.defaultProps = {
-  originalTracks: null,
-  remixTracks: null,
-  artists: null,
-};
 
 const mapStateToProps = state => ({
   originalTracks: getOriginalTracks(state),

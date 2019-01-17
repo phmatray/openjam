@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,7 +8,14 @@ import { Feed, Icon } from 'semantic-ui-react';
 
 import { playSelected, actions, getPlaying, getCurrent } from '../../reducers/ui/player';
 
-class TrackItem extends PureComponent {
+type Props = {
+  playSelected: () => void,
+  pause: () => void,
+  playing: boolean,
+  current: {},
+};
+
+class TrackItem extends PureComponent<Props> {
   handleShareClick = trackId => {
     console.log(`Shared: ${trackId}`);
   };
@@ -75,13 +83,6 @@ class TrackItem extends PureComponent {
     );
   }
 }
-
-TrackItem.propTypes = {
-  playSelected: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
-  playing: PropTypes.bool.isRequired,
-  current: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   playing: getPlaying(state),

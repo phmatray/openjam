@@ -1,10 +1,16 @@
+// @flow
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Track = ({ onClick, type2, title }) => (
+type Props = {
+  onClick: () => void,
+  type2: string,
+  title: string,
+};
+
+const Track = ({ onClick, type2, title }: Props) => (
   <li
     onClick={onClick}
     style={{
@@ -14,11 +20,5 @@ const Track = ({ onClick, type2, title }) => (
     {title}
   </li>
 );
-
-Track.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  type2: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 export default Track;

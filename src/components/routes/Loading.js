@@ -1,8 +1,16 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
-const Loading = ({ error, retry, timedOut, pastDelay }) => {
+type Props = {
+  retry: func.isRequired,
+  timedOut: any,
+  pastDelay: any,
+  error?: any,
+};
+
+const Loading = ({ error, retry, timedOut, pastDelay }: Props) => {
   if (error) {
     return (
       <div>
@@ -27,13 +35,6 @@ const Loading = ({ error, retry, timedOut, pastDelay }) => {
     return <div>Loading...</div>;
   }
   return null;
-};
-
-Loading.propTypes = {
-  error: PropTypes.any,
-  retry: PropTypes.func.isRequired,
-  timedOut: PropTypes.any.isRequired,
-  pastDelay: PropTypes.any.isRequired,
 };
 
 Loading.defaultProps = {

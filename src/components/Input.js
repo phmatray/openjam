@@ -1,11 +1,16 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import InputGroup from './input/InputGroup';
 import SelectListGroup from './input/SelectListGroup';
 import TextAreaFieldGroup from './input/TextAreaFieldGroup';
 import TextFieldGroup from './input/TextFieldGroup';
 
-const Input = ({ as, ...rest }) => {
+type Props = {
+  as?: 'input' | 'select-list' | 'text-area-field' | 'text-field',
+};
+
+const Input = ({ as, ...rest }: Props) => {
   switch (as) {
     case 'input':
       return <InputGroup {...rest} />;
@@ -19,10 +24,6 @@ const Input = ({ as, ...rest }) => {
     default:
       return null;
   }
-};
-
-Input.propTypes = {
-  as: PropTypes.oneOf(['input', 'select-list', 'text-area-field', 'text-field']).isRequired,
 };
 
 Input.defaultProps = {

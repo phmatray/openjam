@@ -1,29 +1,19 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getBrandColor, getBrandIconName } from '../lib/utils/brandHelpers';
+
 import logoWhite from '../assets/images/logos/logo_white.svg';
+import { getBrandColor, getBrandIconName } from '../lib/utils/brandHelpers';
+import type { Domain } from '../lib/types/common';
 
-const Span = styled.span`
-  background-color: ${props => props.color};
-  width: 3em;
-  height: 3em;
-  color: white;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10em;
-  border: 0 solid ${props => props.color};
-  transition: border 0.2s ease-in-out;
+import Span from './icon/Span';
 
-  &:hover {
-    border: 0.3em solid #fff6;
-    color: white;
-  }
-`;
+type Props = {
+  name: Domain,
+};
 
-const Icon = ({ name }) => (
+const Icon = ({ name }: Props) => (
   <Span color={getBrandColor(name)}>
     {name === 'openjam' ? (
       <img src={logoWhite} style={{ height: '24px' }} alt="" />
@@ -35,9 +25,5 @@ const Icon = ({ name }) => (
     )}
   </Span>
 );
-
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-};
 
 export default Icon;

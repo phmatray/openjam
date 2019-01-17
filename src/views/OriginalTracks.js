@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 
@@ -13,7 +14,17 @@ import {
 
 import TracksPresenter from './tracks/TracksPresenter';
 
-class OriginalTracks extends PureComponent {
+type Props = {
+  fetchOriginalTracks: () => void,
+  originalTracks?: {}[],
+  originalTracksLoading: boolean,
+};
+
+class OriginalTracks extends PureComponent<Props> {
+  static defaultProps = {
+    originalTracks: null,
+  };
+
   componentDidMount() {
     const { originalTracks } = this.props;
 
@@ -42,16 +53,6 @@ class OriginalTracks extends PureComponent {
     );
   }
 }
-
-OriginalTracks.propTypes = {
-  fetchOriginalTracks: PropTypes.func.isRequired,
-  originalTracks: PropTypes.array,
-  originalTracksLoading: PropTypes.bool.isRequired,
-};
-
-OriginalTracks.defaultProps = {
-  originalTracks: null,
-};
 
 const mapStateToProps = state => ({
   originalTracks: getOriginalTracks(state),

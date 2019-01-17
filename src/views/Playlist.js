@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
@@ -8,9 +9,30 @@ import { getPlaying, getCollection, getCurrent } from '../reducers/ui/player';
 
 import PlaylistPresenter from './playlist/PlaylistPresenter';
 
-class Playlist extends PureComponent {
+type Props = {
+  fetchPlaylist: (playlistId: string) => void,
+  match: { params: { id: string } },
+  loading: boolean,
+  playlist?: {},
+  playing?: boolean,
+  playlistId?: string,
+  currentId?: string,
+};
+
+type State = {
+  playlistId: string,
+};
+
+class Playlist extends PureComponent<Props, State> {
   state = {
+    playlistId: '',
+  };
+
+  static defaultProps = {
+    playlist: null,
+    playing: false,
     playlistId: null,
+    currentId: null,
   };
 
   componentDidMount() {
@@ -39,28 +61,9 @@ class Playlist extends PureComponent {
   }
 }
 
-Playlist.propTypes = {
-  fetchPlaylist: PropTypes.func.isRequired,
-
-  playlist: PropTypes.object,
-  loading: PropTypes.bool.isRequired,
-
-  playing: PropTypes.bool,
-  playlistId: PropTypes.string,
-  currentId: PropTypes.string,
-};
-
-Playlist.defaultProps = {
-  playlist: null,
-  playing: false,
-  playlistId: null,
-  currentId: null,
-};
-
 const mapStateToProps = state => ({
   playlist: getPlaylist(state),
   loading: getLoading(state),
-
   playing: getPlaying(state),
   collection: getCollection(state),
   current: getCurrent(state),

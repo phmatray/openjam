@@ -1,15 +1,29 @@
+// @flow
+
 import React, { Component } from 'react';
 import { ThemeConsumer } from 'styled-components';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Menu, Icon, Image } from 'semantic-ui-react';
 
 import LanguageDropdown from './LanguageDropdown';
 
 import logo from '../../../assets/images/logos/logo_white.svg';
+import type { UserBasic } from '../../../lib/types/common';
 
-class NavbarMobile extends Component {
+type Props = {
+  toggleSidebar: () => void,
+  height: number,
+  isAuthenticated: boolean,
+  user: UserBasic,
+  playing: boolean,
+};
+
+type State = {
+  activeItem: 'home',
+};
+
+class NavbarMobile extends Component<Props, State> {
   state = { activeItem: 'home' };
 
   componentDidMount() {
@@ -40,7 +54,7 @@ class NavbarMobile extends Component {
         >
           <Image
             src={user.profileImageUrl}
-            alt={`${user.firstname} ${user.lastname}`}
+            alt={`${user.firstName} ${user.lastName}`}
             circular
             size="mini"
             title="You must have a Gravatar connected to your email to display an image."
@@ -94,13 +108,5 @@ class NavbarMobile extends Component {
     );
   }
 }
-
-NavbarMobile.propTypes = {
-  toggleSidebar: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
-  playing: PropTypes.bool.isRequired,
-};
 
 export default withNamespaces('common')(NavbarMobile);

@@ -1,8 +1,13 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Header, Label } from 'semantic-ui-react';
 
-const Labels = ({ labels }) => (
+type Props = {
+  labels: string[],
+};
+
+const Labels = ({ labels }: Props) => (
   <React.Fragment>
     <Header as="h3">Labels</Header>
     <div>
@@ -15,9 +20,5 @@ const Labels = ({ labels }) => (
     <br />
   </React.Fragment>
 );
-
-Labels.propTypes = {
-  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default Labels;

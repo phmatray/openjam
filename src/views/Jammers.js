@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 
@@ -9,7 +10,14 @@ import { getIsAuthenticated } from '../reducers/auth';
 
 import JammersPresenter from './jammers/JammersPresenter';
 
-class Jammers extends PureComponent {
+type Props = {
+  fetchProfiles: () => void,
+  profiles: {}[],
+  loading: boolean,
+  isAuthenticated: boolean,
+};
+
+class Jammers extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetchProfiles();
   }
@@ -26,13 +34,6 @@ class Jammers extends PureComponent {
     return <JammersPresenter jammers={profiles} isAuthenticated={isAuthenticated} />;
   }
 }
-
-Jammers.propTypes = {
-  fetchProfiles: PropTypes.func.isRequired,
-  profiles: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loading: PropTypes.bool.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
   profiles: getProfiles(state),

@@ -1,10 +1,15 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Header, Button, Tab } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
 
-const PaneMarketplace = ({ loading }) => (
+type Props = {
+  loading: boolean,
+};
+
+const PaneMarketplace = ({ loading }: Props) => (
   <Tab.Pane attached={false} loading={loading}>
     <Header as="h5" dividing sub>
       Services
@@ -28,9 +33,5 @@ const PaneMarketplace = ({ loading }) => (
     </Div>
   </Tab.Pane>
 );
-
-PaneMarketplace.propTypes = {
-  loading: PropTypes.bool.isRequired,
-};
 
 export default PaneMarketplace;

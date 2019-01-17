@@ -1,9 +1,19 @@
+// @flow
+
 import React from 'react';
 import { Header, Label, Segment, GridRow, GridColumn } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+
 import isEmpty from '../../lib/validation/is-empty';
 
-const ProfileAbout = ({ profile }) => {
+type Props = {
+  profile: {
+    user: { firstname: string },
+    skills: string[],
+    bio: string,
+  },
+};
+
+const ProfileAbout = ({ profile }: Props) => {
   // Skill list
   const skills = profile.skills.slice(0, 4).map((skill, index) => (
     <Label basic key={index}>
@@ -33,15 +43,6 @@ const ProfileAbout = ({ profile }) => {
       </GridColumn>
     </GridRow>
   );
-};
-
-ProfileAbout.propTypes = {
-  profile: PropTypes.shape({
-    user: PropTypes.shape({
-      firstname: PropTypes.string.isRequired,
-    }).isRequired,
-    bio: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 export default ProfileAbout;

@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 
@@ -9,7 +10,18 @@ import { fetchTracks, getTracks, getLoading } from '../reducers/data/track';
 
 import TracksPresenter from './tracks/TracksPresenter';
 
-class Tracks extends PureComponent {
+type Props = {
+  fetchTracks: () => void,
+  tracks?: {}[],
+  loading: boolean,
+  t: any,
+};
+
+class Tracks extends PureComponent<Props> {
+  static defaultProps = {
+    tracks: null,
+  };
+
   componentDidMount() {
     this.props.fetchTracks();
   }
@@ -17,7 +29,7 @@ class Tracks extends PureComponent {
   render() {
     const { tracks, loading, t } = this.props;
 
-    if (tracks === null || loading) {
+    if (tracks === null || tracks === undefined || loading) {
       return <Spinner />;
     }
     if (tracks.length === 0) {
@@ -34,16 +46,6 @@ class Tracks extends PureComponent {
     );
   }
 }
-
-Tracks.propTypes = {
-  fetchTracks: PropTypes.func.isRequired,
-  tracks: PropTypes.array,
-  loading: PropTypes.bool.isRequired,
-};
-
-Tracks.defaultProps = {
-  tracks: null,
-};
 
 const mapStateToProps = state => ({
   tracks: getTracks(state),

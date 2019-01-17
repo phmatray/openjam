@@ -1,11 +1,20 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import LinkEntity from '../../components/LinkEntity';
 import LinkArtistNames from '../../components/LinkArtistNames';
 import HeaderCell from './album-tracks/HeaderCell';
 
-const AlbumTracks = ({ tracks }) => {
+type Props = {
+  tracks: {
+    _id: string,
+    track_number: number,
+    track: { artists: {}[] },
+  }[],
+};
+
+const AlbumTracks = ({ tracks }: Props) => {
   const compare = (a, b) => {
     if (a.track_number < b.track_number) return -1;
     if (a.track_number > b.track_number) return 1;
@@ -36,16 +45,6 @@ const AlbumTracks = ({ tracks }) => {
       </Table.Body>
     </Table>
   );
-};
-
-AlbumTracks.propTypes = {
-  tracks: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      track_number: PropTypes.number.isRequired,
-      track: PropTypes.shape({ artists: PropTypes.array.isRequired }),
-    }).isRequired,
-  ).isRequired,
 };
 
 export default AlbumTracks;

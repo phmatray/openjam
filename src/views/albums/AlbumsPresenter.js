@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +9,13 @@ import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
 
-const AlbumsPresenter = ({ albums, t }) => (
+type Props = {
+  albums: {
+    _id: string,
+  }[],
+};
+
+const AlbumsPresenter = ({ albums, t }: Props) => (
   <Body
     breadcrumbSegments={[
       <Link to="/explore">{t('pages.explore.header')}</Link>,
@@ -24,13 +31,5 @@ const AlbumsPresenter = ({ albums, t }) => (
     </Flex>
   </Body>
 );
-
-AlbumsPresenter.propTypes = {
-  albums: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
-};
 
 export default withNamespaces('common')(AlbumsPresenter);

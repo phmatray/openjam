@@ -1,7 +1,7 @@
+// @flow
 /* eslint-disable no-class-assign */
 
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -12,7 +12,22 @@ import { getVisibleArtists, getErrorMessage, getIsFetching } from '../reducers/d
 import ArtistsPresenter from './artists/ArtistsPresenter';
 import FetchError from './artists/FetchError';
 
-class Artists extends PureComponent {
+type Filter = 'all';
+
+type Props = {
+  filter: Filter,
+  errorMessage?: string,
+  artists: {}[],
+  isFetching?: boolean,
+  fetchArtists: (filter: Filter) => void,
+};
+
+class Artists extends PureComponent<Props> {
+  static defaultProps = {
+    isFetching: false,
+    errorMessage: null,
+  };
+
   componentDidMount() {
     this.fetchData();
   }
@@ -40,20 +55,6 @@ class Artists extends PureComponent {
     return <ArtistsPresenter artists={artists} />;
   }
 }
-
-Artists.propTypes = {
-  filter: PropTypes.oneOf(['all']).isRequired,
-  errorMessage: PropTypes.string,
-  artists: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool,
-  fetchArtists: PropTypes.func.isRequired,
-  toggleArtist: PropTypes.func.isRequired,
-};
-
-Artists.defaultProps = {
-  isFetching: false,
-  errorMessage: null,
-};
 
 const mapStateToProps = (state, { match: { params } }) => {
   const filter = params.filter || 'all';

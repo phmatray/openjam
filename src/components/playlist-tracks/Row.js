@@ -1,10 +1,16 @@
+// @flow
+
+import type { ComponentType } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { TableRow } from 'semantic-ui-react';
 
 import { Wrapper, Overlay } from './cover-toggle/Atoms';
 
-const Row = styled(TableRow)`
+type Props = {
+  active: boolean,
+};
+
+const Row: ComponentType<Props> = styled(TableRow)`
   ${Wrapper} ${Overlay} {
     opacity: ${props => (props.active ? 1 : 0)};
   }
@@ -13,9 +19,5 @@ const Row = styled(TableRow)`
     opacity: 1;
   }
 `;
-
-Row.propTypes = {
-  active: PropTypes.bool.isRequired,
-};
 
 export default Row;

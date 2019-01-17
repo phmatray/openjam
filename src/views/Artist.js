@@ -1,13 +1,32 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { fetchArtist, getArtist, getArtistLoading } from '../reducers/ui/views/artist';
 import Spinner from '../components/Spinner';
+
 import ArtistPresenter from './artist/ArtistPresenter';
 
-class Artist extends PureComponent {
+type Props = {
+  fetchArtist: () => void,
+  artist?: {},
+  loading?: boolean,
+  match: { params: { id: string } },
+};
+
+type State = {
+  artistId: string,
+};
+
+class Artist extends PureComponent<Props, State> {
   state = {
-    artistId: null,
+    artistId: '',
+  };
+
+  static defaultProps = {
+    artist: null,
+    loading: false,
   };
 
   componentDidMount() {
@@ -19,8 +38,9 @@ class Artist extends PureComponent {
   componentWillReceiveProps(newProps) {
     const { params } = newProps.match;
 
-    if (params.id !== this.state.artistId)
+    if (params.id !== this.state.artistId) {
       this.setState({ artistId: params.id }, () => this.props.fetchArtist(this.state.artistId));
+    }
   }
 
   render() {
@@ -33,17 +53,6 @@ class Artist extends PureComponent {
     );
   }
 }
-
-Artist.propTypes = {
-  fetchArtist: PropTypes.func.isRequired,
-  artist: PropTypes.object,
-  loading: PropTypes.bool,
-};
-
-Artist.defaultProps = {
-  artist: null,
-  loading: false,
-};
 
 const mapStateToProps = state => ({
   artist: getArtist(state),

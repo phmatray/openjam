@@ -1,10 +1,16 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import JoinUs from './message/JoinUs';
 import FollowUs from './message/FollowUs';
 import Whitepaper from './message/Whitepaper';
 
-const Input = ({ as, ...rest }) => {
+type Props = {
+  as?: 'join-us' | 'follow-us' | 'whitepaper',
+};
+
+const Input = ({ as, ...rest }: Props) => {
   switch (as) {
     case 'join-us':
       return <JoinUs {...rest} />;
@@ -16,10 +22,6 @@ const Input = ({ as, ...rest }) => {
     default:
       return null;
   }
-};
-
-Input.propTypes = {
-  as: PropTypes.oneOf(['join-us', 'follow-us', 'whitepaper']).isRequired,
 };
 
 Input.defaultProps = {

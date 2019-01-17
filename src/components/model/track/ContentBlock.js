@@ -1,8 +1,15 @@
+// @flow
+
+import type { ComponentType } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+
 import { Wrapper, Overlay } from './cover-toggle/Atoms';
 
-const ContentBlock = styled.div`
+type Props = {
+  active: boolean,
+};
+
+const ContentBlock: ComponentType<Props> = styled.div`
   display: flex;
   width: 100%;
   max-width: calc(340px + 0.9em);
@@ -17,9 +24,5 @@ const ContentBlock = styled.div`
     opacity: 1;
   }
 `;
-
-ContentBlock.propTypes = {
-  active: PropTypes.bool.isRequired,
-};
 
 export default ContentBlock;

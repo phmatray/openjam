@@ -1,18 +1,18 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import Body from '../../components/Body';
 
-const LabelPresenter = ({ label, t }) => (
+type Props = {
+  label: { name: string },
+  t: any,
+};
+
+const LabelPresenter = ({ label, t }: Props) => (
   <Body breadcrumbSegments={[<Link to="/labels">{t('pages.label.labels')}</Link>, label.name]} />
 );
-
-LabelPresenter.propTypes = {
-  label: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default withNamespaces('common')(LabelPresenter);

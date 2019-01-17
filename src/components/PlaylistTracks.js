@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
@@ -18,6 +19,25 @@ import {
   getCurrent,
 } from '../reducers/ui/player';
 
+type Props = {
+  playlist: {
+    tracks: [
+      {
+        track: {
+          _id: string,
+          artists: [],
+        },
+      },
+    ],
+  },
+
+  playSelected: () => void,
+  pause: () => void,
+  playerPlaying: boolean,
+  playerCollection: { _id: string },
+  playerTrack: {},
+};
+
 const PlaylistTracks = ({
   playSelected,
   pause,
@@ -26,7 +46,7 @@ const PlaylistTracks = ({
   playerCollection,
   playerTrack,
   t,
-}) => {
+}: Props) => {
   const isActive = trackId =>
     playerCollection !== null &&
     playerCollection._id === playlist._id &&
@@ -78,27 +98,6 @@ const PlaylistTracks = ({
     </Table>
   );
 };
-
-PlaylistTracks.propTypes = {
-  playlist: PropTypes.shape({
-    tracks: PropTypes.arrayOf(
-      PropTypes.shape({
-        track: PropTypes.shape({
-          _id: PropTypes.string.isRequired,
-          artists: PropTypes.array.isRequired,
-        }).isRequired,
-      }).isRequired,
-    ).isRequired,
-  }).isRequired,
-
-  playSelected: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
-  playerPlaying: PropTypes.bool.isRequired,
-  playerCollection: PropTypes.object.isRequired,
-  playerTrack: PropTypes.object.isRequired,
-};
-
-PlaylistTracks.defaultProps = {};
 
 const mapStateToProps = state => ({
   playerPlaying: getPlaying(state),

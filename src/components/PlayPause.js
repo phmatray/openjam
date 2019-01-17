@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import {
@@ -12,7 +13,19 @@ import {
 
 import { PlayPauseIcon, StyledButton } from './play-pause/Atoms';
 
-const PlayPause = ({ entity, collectionId, playing, playSelected, playTrack, pause }) => {
+type Props = {
+  playSelected: () => void,
+  playTrack: () => void,
+  pause: () => void,
+  entity: {
+    _id: string,
+    type: 'track' | 'playlist' | 'album',
+  },
+  playing: boolean,
+  collectionId?: string,
+};
+
+const PlayPause = ({ entity, collectionId, playing, playSelected, playTrack, pause }: Props) => {
   const trackIsPlaying = playing && entity._id === collectionId;
 
   let playAction;
@@ -29,14 +42,6 @@ const PlayPause = ({ entity, collectionId, playing, playSelected, playTrack, pau
       <PlayPauseIcon playing={trackIsPlaying} />
     </StyledButton>
   );
-};
-
-PlayPause.propTypes = {
-  playTrack: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
-  entity: PropTypes.object.isRequired,
-  collectionId: PropTypes.string,
-  playing: PropTypes.bool.isRequired,
 };
 
 PlayPause.defaultProps = {

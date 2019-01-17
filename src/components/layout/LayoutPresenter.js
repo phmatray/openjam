@@ -1,8 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
 import { Responsive, Sidebar } from 'semantic-ui-react';
 
 import Player from '../Player';
+import type { UserBasic } from '../../lib/types/common';
+
 import NavbarDesktop from './layout-presenter/NavbarDesktop';
 import NavbarMobile from './layout-presenter/NavbarMobile';
 import NavbarSide from './layout-presenter/NavbarSide';
@@ -10,6 +13,16 @@ import Top from './layout-presenter/Top';
 import Container from './layout-presenter/Container';
 import Middle from './layout-presenter/Middle';
 import Bottom from './layout-presenter/Bottom';
+
+type Props = {
+  sidebarVisible: boolean,
+  playing: boolean,
+  isAuthenticated: boolean,
+  user: UserBasic,
+  children: React.Node,
+  hideSidebar: () => void,
+  toggleSidebar: () => void,
+};
 
 const LayoutPresenter = ({
   sidebarVisible,
@@ -19,7 +32,7 @@ const LayoutPresenter = ({
   children,
   hideSidebar,
   toggleSidebar,
-}) => {
+}: Props) => {
   const topbarHeight = 56;
   const playerHeight = 90;
   const containerHeight = `calc(100vh - ${topbarHeight}px - ${playerHeight}px)`;
@@ -63,13 +76,6 @@ const LayoutPresenter = ({
       </Bottom>
     </div>
   );
-};
-
-LayoutPresenter.propTypes = {
-  sidebarVisible: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  hideSidebar: PropTypes.func.isRequired,
-  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default LayoutPresenter;

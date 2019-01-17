@@ -1,8 +1,13 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Header, Label } from 'semantic-ui-react';
 
-const Genres = ({ genres }) => (
+type Props = {
+  genres: string[],
+};
+
+const Genres = ({ genres }: Props) => (
   <React.Fragment>
     <Header as="h3">Genres</Header>
     <div>
@@ -15,9 +20,5 @@ const Genres = ({ genres }) => (
     <br />
   </React.Fragment>
 );
-
-Genres.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default Genres;

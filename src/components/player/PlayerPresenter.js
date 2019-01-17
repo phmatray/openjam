@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Button, Icon, Responsive, Container } from 'semantic-ui-react';
 
@@ -13,6 +14,21 @@ import { fancyTimeFormat } from '../../lib/utils/playerHelpers';
 import { PlayerStyled, FlexFill, ColumnCover, ColumnTime, Cover, ArtistName } from './styles';
 import Progress from './player-presenter/Progress';
 
+type Props = {
+  play: () => void,
+  pause: () => void,
+  previous: () => void,
+  next: () => void,
+  playing: boolean,
+  current: {
+    _id: string,
+    coverurl: { w200: string },
+    title: string,
+    artists: [{}],
+  },
+  audioInfo: { position: number, duration: number },
+};
+
 const PlayerPresenter = ({
   height,
   play,
@@ -24,7 +40,7 @@ const PlayerPresenter = ({
   audioInfo,
   theme,
   t,
-}) => (
+}: Props) => (
   <PlayerStyled height={height}>
     <Container style={{ height: '100%' }}>
       <FlexFill>
@@ -105,28 +121,5 @@ const PlayerPresenter = ({
     </Container>
   </PlayerStyled>
 );
-
-PlayerPresenter.propTypes = {
-  play: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
-  previous: PropTypes.func.isRequired,
-  next: PropTypes.func.isRequired,
-
-  playing: PropTypes.bool.isRequired,
-
-  current: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    coverurl: PropTypes.shape({
-      w200: PropTypes.string.isRequired,
-    }).isRequired,
-    title: PropTypes.string.isRequired,
-    artists: PropTypes.arrayOf(PropTypes.object).isRequired,
-  }).isRequired,
-
-  audioInfo: PropTypes.shape({
-    position: PropTypes.number.isRequired,
-    duration: PropTypes.number.isRequired,
-  }).isRequired,
-};
 
 export default withTheme(withNamespaces('common')(PlayerPresenter));

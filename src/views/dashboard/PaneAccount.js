@@ -1,14 +1,27 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { Header, Button, Icon, Tab, Card, Image, Divider } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
 
+type Props = {
+  loading: boolean,
+  user: {
+    email: string,
+    firstName: string,
+    lastName: string,
+    profileImageUrl: string,
+    createdAt: string,
+    roleName: string,
+  },
+};
+
 const PaneAccount = ({
   loading,
   user: { email, firstName, lastName, profileImageUrl, createdAt, roleName },
-}) => (
+}: Props) => (
   <Tab.Pane attached={false} loading={loading}>
     <Header as="h5" dividing sub>
       Adresse e-mail
@@ -68,17 +81,5 @@ const PaneAccount = ({
     </Button>
   </Tab.Pane>
 );
-
-PaneAccount.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    profileImageUrl: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    roleName: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default PaneAccount;

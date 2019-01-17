@@ -1,6 +1,6 @@
+// @flow
+
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button, Header, Segment } from 'semantic-ui-react';
@@ -9,18 +9,17 @@ import withTheme from '../hocs/withTheme';
 
 import ModelCollection from './section/ModelCollection';
 import Flex from './Flex';
+import Scrollable from './section/Scrollable';
 
-const Scrollable = styled.div`
-  overflow-x: scroll;
-  padding-bottom: 16px;
+type Props = {
+  items: [],
+  title?: string,
+  to?: string,
+  maxHeight?: number,
+  scrollable?: boolean,
+};
 
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0);
-    border-radius: 0;
-  }
-`;
-
-const Section = ({ title, items, to, maxHeight, scrollable, theme, t }) => (
+const Section = ({ title, items, to, maxHeight, scrollable, theme, t }: Props) => (
   <Segment>
     <Flex row fluid alignCenter justifyBetween mb="1em">
       {title && (
@@ -48,14 +47,6 @@ const Section = ({ title, items, to, maxHeight, scrollable, theme, t }) => (
     )}
   </Segment>
 );
-
-Section.propTypes = {
-  items: PropTypes.array.isRequired,
-  title: PropTypes.string,
-  to: PropTypes.string,
-  maxHeight: PropTypes.number,
-  scrollable: PropTypes.bool,
-};
 
 Section.defaultProps = {
   title: null,

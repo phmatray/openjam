@@ -1,8 +1,19 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import HoverSpan from './link-play/HoverSpan';
 
-const LinkPlay = ({ entity, strong, handleClick }) => {
+type Props = {
+  handleClick: () => void,
+  entity: {
+    _id: string,
+    title: string,
+    edit?: string,
+  },
+  strong?: boolean,
+};
+
+const LinkPlay = ({ entity, strong, handleClick }: Props) => {
   // check entity
   if (entity === undefined || entity === null) {
     return <span />;
@@ -20,16 +31,6 @@ const LinkPlay = ({ entity, strong, handleClick }) => {
   }
 
   return <HoverSpan onClick={handleClick}>{content}</HoverSpan>;
-};
-
-LinkPlay.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  entity: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    edit: PropTypes.string,
-  }).isRequired,
-  strong: PropTypes.bool,
 };
 
 LinkPlay.defaultProps = {

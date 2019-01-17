@@ -1,9 +1,42 @@
+// @flow
+
+import type { ComponentType } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+
 import { is } from '../lib/utils/ifStyled';
+
 import Div from './Div';
 
-const Flex = styled(Div)`
+type Props = {
+  fluid?: boolean,
+  inline?: boolean,
+  row?: boolean,
+  rowReverse?: boolean,
+  column?: boolean,
+  columnReverse?: boolean,
+  nowrap?: boolean,
+  wrapBreak?: boolean,
+  wrapReverse?: boolean,
+  justifyStart?: boolean,
+  justifyEnd?: boolean,
+  justifyCenter?: boolean,
+  justifyBetween?: boolean,
+  justifyAround?: boolean,
+  contentStart?: boolean,
+  contentEnd?: boolean,
+  contentCenter?: boolean,
+  contentSpaceBetween?: boolean,
+  contentSpaceAround?: boolean,
+  contentStretch?: boolean,
+  alignStart?: boolean,
+  alignEnd?: boolean,
+  alignCenter?: boolean,
+  alignBaseline?: boolean,
+  alignStretch?: boolean,
+  center?: boolean,
+};
+
+const Flex: ComponentType<Props> = styled(Div)`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -117,34 +150,5 @@ const Flex = styled(Div)`
     justify-content: center;
   `};
 `;
-
-Flex.propTypes = {
-  fluid: PropTypes.bool,
-  inline: PropTypes.bool,
-  row: PropTypes.bool,
-  rowReverse: PropTypes.bool,
-  column: PropTypes.bool,
-  columnReverse: PropTypes.bool,
-  nowrap: PropTypes.bool,
-  wrapBreak: PropTypes.bool,
-  wrapReverse: PropTypes.bool,
-  justifyStart: PropTypes.bool,
-  justifyEnd: PropTypes.bool,
-  justifyCenter: PropTypes.bool,
-  justifyBetween: PropTypes.bool,
-  justifyAround: PropTypes.bool,
-  contentStart: PropTypes.bool,
-  contentEnd: PropTypes.bool,
-  contentCenter: PropTypes.bool,
-  contentSpaceBetween: PropTypes.bool,
-  contentSpaceAround: PropTypes.bool,
-  contentStretch: PropTypes.bool,
-  alignStart: PropTypes.bool,
-  alignEnd: PropTypes.bool,
-  alignCenter: PropTypes.bool,
-  alignBaseline: PropTypes.bool,
-  alignStretch: PropTypes.bool,
-  center: PropTypes.bool,
-};
 
 export default Flex;

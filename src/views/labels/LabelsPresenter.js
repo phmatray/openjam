@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +9,12 @@ import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
 
-const LabelItems = ({ labels, t }) => (
+type Props = {
+  labels: { _id: string }[],
+  t: any,
+};
+
+const LabelItems = ({ labels, t }: Props) => (
   <Body
     breadcrumbSegments={[
       <Link to="/explore">{t('pages.explore.header')}</Link>,
@@ -24,13 +30,5 @@ const LabelItems = ({ labels, t }) => (
     </Flex>
   </Body>
 );
-
-LabelItems.propTypes = {
-  labels: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
-};
 
 export default withNamespaces('common')(LabelItems);

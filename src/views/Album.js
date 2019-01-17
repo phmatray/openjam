@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Container, Grid, Divider, Header } from 'semantic-ui-react';
@@ -17,6 +18,15 @@ import { fetchAlbum, getAlbum, getAlbumLoading } from '../reducers/ui/views/albu
 import AlbumTracks from './album/AlbumTracks';
 import Description from './album/Description';
 
+type Props = {
+  entity: {
+    name: string,
+    release_date: string,
+    images: { href: string }[],
+    tracks: { track: { coverurl: { w800: string } } }[],
+  },
+};
+
 const getAlbumName = album => {
   let albumName = '';
   if (album && album.name) {
@@ -30,7 +40,7 @@ const getAlbumName = album => {
   return albumName;
 };
 
-const Album = ({ entity, t }) => (
+const Album = ({ entity, t }: Props) => (
   <React.Fragment>
     <Hero src={entity.tracks[0].track.coverurl.w800}>
       <Flex fluid row alignCenter>
@@ -70,19 +80,6 @@ const Album = ({ entity, t }) => (
     </Container>
   </React.Fragment>
 );
-
-Album.propTypes = {
-  entity: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(
-      PropTypes.shape({
-        href: PropTypes.string.isRequired,
-      }).isRequired,
-    ).isRequired,
-    tracks: PropTypes.array.isRequired,
-  }).isRequired,
-};
 
 const mapStateToProps = state => ({
   entity: getAlbum(state),

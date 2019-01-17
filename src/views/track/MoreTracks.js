@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 
@@ -11,7 +12,19 @@ import {
   getByArtistLoading,
 } from '../../reducers/ui/views/track';
 
-class MoreTracks extends PureComponent {
+type Props = {
+  fetchTracksByArtistId: (artistId: string, limit: number) => void,
+  artist: { _id: string },
+  byArtist?: { _id: string }[],
+  limit?: number,
+};
+
+class MoreTracks extends PureComponent<Props> {
+  static defaultProps = {
+    byArtist: [],
+    limit: 3,
+  };
+
   async componentDidMount() {
     const { artist, limit } = this.props;
     await this.props.fetchTracksByArtistId(artist._id, limit);
@@ -34,17 +47,6 @@ class MoreTracks extends PureComponent {
     );
   }
 }
-
-MoreTracks.propTypes = {
-  artist: PropTypes.object.isRequired,
-  byArtist: PropTypes.array,
-  limit: PropTypes.number,
-};
-
-MoreTracks.defaultProps = {
-  byArtist: [],
-  limit: 3,
-};
 
 const mapStateToProps = state => ({
   byArtist: getByArtist(state),

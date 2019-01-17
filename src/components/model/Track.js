@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { Divider } from 'semantic-ui-react';
@@ -19,7 +20,16 @@ import ContentBlock from './track/ContentBlock';
 import CoverToggle from './track/CoverToggle';
 import { Details, Artists } from './track/Atoms';
 
-const TrackItem = ({ track, playTrack, pause, playerPlaying, playerCollectionId }) => {
+type Props = {
+  track: {
+    artists: [{ artist: { name: string } }],
+    title: string,
+    coverurl: { w200: string },
+    edit: string,
+  },
+};
+
+const TrackItem = ({ track, playTrack, pause, playerPlaying, playerCollectionId }: Props) => {
   const isNew = () => {
     const startDate = moment().subtract(21, 'days');
     const trackDate = moment(track.date);
@@ -50,23 +60,6 @@ const TrackItem = ({ track, playTrack, pause, playerPlaying, playerCollectionId 
       </Details>
     </ContentBlock>
   );
-};
-
-TrackItem.propTypes = {
-  track: PropTypes.shape({
-    artists: PropTypes.arrayOf(
-      PropTypes.shape({
-        artist: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-        }),
-      }).isRequired,
-    ).isRequired,
-    title: PropTypes.string.isRequired,
-    coverurl: PropTypes.shape({
-      w200: PropTypes.string.isRequired,
-    }).isRequired,
-    edit: PropTypes.string,
-  }).isRequired,
 };
 
 const mapStateToProps = state => ({

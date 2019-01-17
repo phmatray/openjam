@@ -1,10 +1,11 @@
+// @flow
+
 import React, { Component } from 'react';
-import { ThemeConsumer } from 'styled-components';
+import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { ThemeConsumer } from 'styled-components';
 import { Menu, Container, Image, Button, Icon } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 
 import LanguageDropdown from './LanguageDropdown';
 
@@ -12,8 +13,22 @@ import { logoutUser, getIsAuthenticated, getUser } from '../../../reducers/auth'
 import { getPlaying } from '../../../reducers/ui/player';
 import { actions as profileActions } from '../../../reducers/data/profile';
 import logo from '../../../assets/images/logos/logo_white.svg';
+import type { UserBasic } from '../../../lib/types/common';
 
-class NavbarDesktop extends Component {
+type Props = {
+  height: number,
+  logoutUser: () => void,
+  clearCurrentProfile: () => void,
+  isAuthenticated: boolean,
+  user: UserBasic,
+  playing: boolean,
+};
+
+type State = {
+  activeItem: 'home',
+};
+
+class NavbarDesktop extends Component<Props, State> {
   state = { activeItem: 'home' };
 
   componentDidMount() {
@@ -149,15 +164,6 @@ class NavbarDesktop extends Component {
     );
   }
 }
-
-NavbarDesktop.propTypes = {
-  height: PropTypes.number.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  clearCurrentProfile: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
-  playing: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),

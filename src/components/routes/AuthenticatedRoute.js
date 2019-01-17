@@ -1,11 +1,16 @@
+// @flow
+
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import { getIsAuthenticated } from '../../reducers/auth';
 
-const AuthenticatedRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+type Props = {
+  isAuthenticated: boolean,
+};
+
+const AuthenticatedRoute = ({ component: Component, isAuthenticated, ...rest }: Props) => (
   <Route
     {...rest}
     render={props =>
@@ -13,10 +18,6 @@ const AuthenticatedRoute = ({ component: Component, isAuthenticated, ...rest }) 
     }
   />
 );
-
-AuthenticatedRoute.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),

@@ -22,7 +22,6 @@
     "moment": "^2.23.0",
     "normalizr": "^3.3.0",
     "popmotion": "^8.5.5",
-    "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

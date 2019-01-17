@@ -1,8 +1,18 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TextArea } from 'semantic-ui-react';
 
-const TextAreaFieldGroup = ({ name, placeholder, value, error, info, onChange }) => {
+type Props = {
+  name: string,
+  value: string,
+  onChange: () => void,
+  placeholder?: string,
+  error?: string,
+  info?: string,
+};
+
+const TextAreaFieldGroup = ({ name, value, onChange, placeholder, error, info }: Props) => {
   const messageStyle = {
     fontSize: '0.8em',
     margin: '-0.6rem 0 1rem 0',
@@ -41,15 +51,6 @@ const TextAreaFieldGroup = ({ name, placeholder, value, error, info, onChange })
       )}
     </React.Fragment>
   );
-};
-
-TextAreaFieldGroup.propTypes = {
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  error: PropTypes.string,
-  info: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
 };
 
 TextAreaFieldGroup.defaultProps = {

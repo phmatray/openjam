@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Container, Grid, Divider, Header } from 'semantic-ui-react';
 
 import Div from '../components/Div';
@@ -16,7 +17,18 @@ import ActionsMenu from './track/ActionsMenu';
 import Tabs from './track/Tabs';
 import MoreTracks from './track/MoreTracks';
 
-const Track = ({ entity }) => (
+type Props = {
+  entity: {
+    title: string,
+    artists: [{ artist: {} }],
+    albums: [{ album: { name: string } }],
+    coverurl: {
+      w800: string,
+    },
+  },
+};
+
+const Track = ({ entity }: Props) => (
   <React.Fragment>
     <Hero src={entity.coverurl.w800}>
       <Flex fluid row alignCenter>
@@ -59,27 +71,6 @@ const Track = ({ entity }) => (
     </Container>
   </React.Fragment>
 );
-
-Track.propTypes = {
-  entity: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    artists: PropTypes.arrayOf(
-      PropTypes.shape({
-        artist: PropTypes.object.isRequired,
-      }).isRequired,
-    ).isRequired,
-    albums: PropTypes.arrayOf(
-      PropTypes.shape({
-        album: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-        }).isRequired,
-      }),
-    ).isRequired,
-    coverurl: PropTypes.shape({
-      w800: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 const mapStateToProps = state => ({
   entity: getTrack(state),

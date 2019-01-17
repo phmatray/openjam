@@ -1,8 +1,18 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Form, Dropdown } from 'semantic-ui-react';
 
-const SelectListGroup = ({ placeholder, error, info, onChange, options, value }) => {
+type Props = {
+  value: any,
+  placeholder?: string,
+  onChange: () => void,
+  options: [],
+  error?: string,
+  info?: string,
+};
+
+const SelectListGroup = ({ value, placeholder, onChange, options, error, info }: Props) => {
   const messageStyle = {
     fontSize: '0.8em',
     margin: '-0.6rem 0 1rem 0',
@@ -47,14 +57,6 @@ const SelectListGroup = ({ placeholder, error, info, onChange, options, value })
       </Form.Field>
     </React.Fragment>
   );
-};
-
-SelectListGroup.propTypes = {
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-  info: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
 };
 
 SelectListGroup.defaultProps = {

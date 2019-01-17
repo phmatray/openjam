@@ -1,5 +1,6 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Flex from '../Flex';
@@ -12,7 +13,19 @@ import { getUser } from '../../reducers/auth';
 import { getErrors } from '../../reducers/data/error';
 import withTheme from '../../hocs/withTheme';
 
-class AddComment extends Component {
+type Props = {
+  postId: string,
+  user: {
+    firstName: string,
+    lastName: string,
+    handle: string,
+    profileImageUrl: string,
+  },
+};
+
+type State = { text: string, errors: {} };
+
+class AddComment extends Component<Props, State> {
   state = {
     text: '',
     errors: {},
@@ -74,16 +87,6 @@ class AddComment extends Component {
     );
   }
 }
-
-AddComment.propTypes = {
-  postId: PropTypes.string.isRequired,
-  user: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    handle: PropTypes.string.isRequired,
-    profileImageUrl: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 const mapStateToProps = state => ({
   user: getUser(state),

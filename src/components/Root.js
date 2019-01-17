@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import HttpsRedirect from 'react-https-redirect';
 import { Provider } from 'react-redux';
@@ -10,7 +11,9 @@ import { actions } from '../reducers/auth';
 
 import App from './App';
 
-const Root = ({ store }) => {
+type Props = { store: any };
+
+const Root = ({ store }: Props) => {
   // Check for token
   const { accessToken, refreshToken } = localStorage;
   if (accessToken && refreshToken) {
@@ -45,10 +48,6 @@ const Root = ({ store }) => {
       </Provider>
     </HttpsRedirect>
   );
-};
-
-Root.propTypes = {
-  store: PropTypes.object.isRequired,
 };
 
 export default Root;

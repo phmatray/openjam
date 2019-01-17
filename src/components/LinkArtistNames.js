@@ -1,8 +1,21 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import LinkEntity from './LinkEntity';
 
-const LinkArtistNames = ({ artists, as }) =>
+type Props = {
+  artists: [
+    {
+      _id: string,
+      name: string,
+      images: [],
+      information: {},
+    },
+  ],
+  as?: 'link' | 'table' | 'inverted',
+};
+
+const LinkArtistNames = ({ artists, as }: Props) =>
   artists.length > 0 &&
   artists
     .map(artist => {
@@ -16,15 +29,6 @@ const LinkArtistNames = ({ artists, as }) =>
       return null;
     })
     .reduce((prev, curr) => [prev, ' & ', curr]);
-
-LinkArtistNames.propTypes = {
-  artists: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
-  as: PropTypes.oneOf(['link', 'table', 'inverted']),
-};
 
 LinkEntity.defaultProps = {
   as: 'link',

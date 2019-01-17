@@ -1,13 +1,20 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import { Card } from 'semantic-ui-react';
 
-import Jammer from './jammers-presenter/Jammer';
 import Body from '../../components/Body';
 import Message from '../../components/Message';
 
-const JammersPresenter = ({ jammers, isAuthenticated, t }) => (
+import Jammer from './jammers-presenter/Jammer';
+
+type Props = {
+  jammers: { _id: string }[],
+  isAuthenticated: boolean,
+};
+
+const JammersPresenter = ({ jammers, isAuthenticated, t }: Props) => (
   <Body breadcrumbSegments={[t('pages.jammers.header')]} description={t('pages.jammers.subheader')}>
     {!isAuthenticated && <Message />}
 
@@ -20,14 +27,5 @@ const JammersPresenter = ({ jammers, isAuthenticated, t }) => (
     )}
   </Body>
 );
-
-JammersPresenter.propTypes = {
-  jammers: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 export default withNamespaces('common')(JammersPresenter);

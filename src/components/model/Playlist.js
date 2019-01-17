@@ -1,11 +1,23 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Title from './playlist/Title';
-import Description from './playlist/Description';
+
 import PlaylistCover from '../PlaylistCover';
 
-const Playlist = ({ playlist }) => (
+import Title from './playlist/Title';
+import Description from './playlist/Description';
+
+type Props = {
+  playlist: {
+    _id: string,
+    name: string,
+    description: string,
+    tracks: [],
+  },
+};
+
+const Playlist = ({ playlist }: Props) => (
   <div
     style={{
       width: 'calc(250px + 0.9em)',
@@ -22,10 +34,6 @@ const Playlist = ({ playlist }) => (
   </div>
 );
 
-Playlist.propTypes = {
-  playlist: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-};
+Playlist.propTypes = {};
 
 export default Playlist;

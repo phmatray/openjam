@@ -1,10 +1,23 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card, Image, Label } from 'semantic-ui-react';
+
 import isEmpty from '../../../lib/validation/is-empty';
 
-const ProfileCardDefault = ({ profile }) => (
+type Props = {
+  profile: {
+    profileImageUrl: string,
+    firstName: string,
+    lastName: string,
+    handle: string,
+    location?: string,
+    skills: [string],
+  },
+};
+
+const ProfileCardDefault = ({ profile }: Props) => (
   <React.Fragment>
     <Link to={`/jammer/${profile.handle}`}>
       <Image src={profile.profileImageUrl} size="medium" />
@@ -25,18 +38,5 @@ const ProfileCardDefault = ({ profile }) => (
     </Card.Content>
   </React.Fragment>
 );
-
-ProfileCardDefault.propTypes = {
-  profile: PropTypes.shape({
-    user: PropTypes.shape({
-      profileImageUrl: PropTypes.string.isRequired,
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-    }).isRequired,
-    handle: PropTypes.string.isRequired,
-    location: PropTypes.string,
-    skills: PropTypes.arrayOf(PropTypes.string.isRequired),
-  }).isRequired,
-};
 
 export default ProfileCardDefault;

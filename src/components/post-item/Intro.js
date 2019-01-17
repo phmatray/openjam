@@ -1,12 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Avatar, FromNow } from './styles';
-import Span from '../Span';
-import Flex from '../Flex';
+// @flow
 
-const Intro = ({ post }) => {
-  const { firstname, lastname, handle, avatar, date } = post;
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+// import Span from '../Span';
+import Flex from '../Flex';
+import type { UserBasic } from '../../lib/types/common';
+
+import { Avatar, FromNow } from './styles';
+
+type Props = {
+  post: {
+    byUser: UserBasic,
+    createdAt: string,
+    handle: string,
+  },
+};
+
+const Intro = ({ post }: Props) => {
+  const { handle } = post;
   const {
     byUser: { firstName, lastName, profileImageUrl },
     createdAt,
@@ -30,18 +42,6 @@ const Intro = ({ post }) => {
       </div>
     </Flex>
   );
-};
-
-Intro.propTypes = {
-  post: PropTypes.shape({
-    byUser: PropTypes.shape({
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-      profileImageUrl: PropTypes.string.isRequired,
-    }).isRequired,
-    createdAt: PropTypes.string.isRequired,
-    handle: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 export default Intro;

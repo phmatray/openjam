@@ -1,7 +1,8 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import { Segment, Container } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
 import HeroSimple from '../../components/HeroSimple';
@@ -10,7 +11,14 @@ import Section from '../../components/Section';
 
 import ActionsMenu from './artists-presenter/ActionsMenu';
 
-const ArtistsPresenter = ({ artists, t }) => {
+type Props = {
+  artists: {
+    _id: string,
+    images: any,
+  }[],
+};
+
+const ArtistsPresenter = ({ artists, t }: Props) => {
   const filteredArtists = artists.filter(a => a.images && a.images.length > 0);
 
   return (
@@ -33,14 +41,6 @@ const ArtistsPresenter = ({ artists, t }) => {
       </Div>
     </React.Fragment>
   );
-};
-
-ArtistsPresenter.propTypes = {
-  artists: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
 };
 
 export default withNamespaces('common')(ArtistsPresenter);

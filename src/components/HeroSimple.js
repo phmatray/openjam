@@ -1,11 +1,19 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Header, Divider } from 'semantic-ui-react';
 
 import Hero from './Hero';
 import Flex from './Flex';
 
-const HeroSimple = ({ background, header, subheader, divider }) => (
+type Props = {
+  header: string,
+  subheader: string,
+  background: string,
+  divider?: boolean,
+};
+
+const HeroSimple = ({ header, subheader, background, divider }: Props) => (
   <React.Fragment>
     <Hero src={background}>
       <Flex fluid row alignCenter>
@@ -25,15 +33,7 @@ const HeroSimple = ({ background, header, subheader, divider }) => (
   </React.Fragment>
 );
 
-HeroSimple.propTypes = {
-  background: PropTypes.string,
-  header: PropTypes.string.isRequired,
-  subheader: PropTypes.string.isRequired,
-  divider: PropTypes.bool,
-};
-
 HeroSimple.defaultProps = {
-  background: null,
   divider: true,
 };
 

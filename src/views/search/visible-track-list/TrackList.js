@@ -1,9 +1,19 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Track from './track-list/Track';
 
-const TrackList = ({ tracks, onTrackClick }) => (
+type Props = {
+  tracks: {
+    _id: string,
+    type2: string,
+    title: string,
+  }[],
+  onTrackClick: (trackId: string) => void,
+};
+
+const TrackList = ({ tracks, onTrackClick }: Props) => (
   <ul>
     {tracks.map(
       track =>
@@ -11,16 +21,5 @@ const TrackList = ({ tracks, onTrackClick }) => (
     )}
   </ul>
 );
-
-TrackList.propTypes = {
-  tracks: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      type2: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
-  onTrackClick: PropTypes.func.isRequired,
-};
 
 export default TrackList;

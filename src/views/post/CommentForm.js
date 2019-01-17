@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
@@ -9,7 +10,24 @@ import { getErrors } from '../../reducers/data/error';
 import { getUser } from '../../reducers/auth';
 import withTheme from '../../hocs/withTheme';
 
-class CommentForm extends PureComponent {
+type Props = {
+  addComment: (postId: string) => void,
+  postId: string,
+  user: {
+    firstName: string,
+    lastName: string,
+    avatar: string,
+  },
+  errors: {},
+  theme: { primarySemantic: string },
+};
+
+type State = {
+  text: string,
+  errors: {},
+};
+
+class CommentForm extends PureComponent<Props, State> {
   state = {
     text: '',
     errors: {},
@@ -66,13 +84,6 @@ class CommentForm extends PureComponent {
     );
   }
 }
-
-CommentForm.propTypes = {
-  addComment: PropTypes.func.isRequired,
-  postId: PropTypes.string.isRequired,
-  user: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   user: getUser(state),

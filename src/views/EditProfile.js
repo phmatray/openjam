@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
@@ -10,7 +11,32 @@ import withTheme from '../hocs/withTheme';
 import { getErrors } from '../reducers/data/error';
 import { createProfile, fetchCurrentProfile, getProfile } from '../reducers/data/profile';
 
-class EditProfile extends PureComponent {
+type Props = {
+  createProfile: () => void,
+  fetchCurrentProfile: () => void,
+  profile: {},
+  errors: {},
+};
+
+type State = {
+  displaySocialInputs: boolean,
+  handle: string,
+  website: string,
+  location: string,
+  status: string,
+  skills: string,
+  githubusername: string,
+  bio: string,
+  soundcloud: string,
+  twitter: string,
+  facebook: string,
+  linkedin: string,
+  youtube: string,
+  instagram: string,
+  errors: {},
+};
+
+class EditProfile extends PureComponent<Props, State> {
   state = {
     displaySocialInputs: false,
     handle: '',
@@ -323,13 +349,6 @@ class EditProfile extends PureComponent {
     );
   }
 }
-
-EditProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
-  fetchCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   profile: getProfile(state),

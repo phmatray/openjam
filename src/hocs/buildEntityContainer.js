@@ -1,12 +1,29 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
 
+type Props = {
+  fetchEntity: (entityId: string) => void,
+  entity?: {},
+  loading?: boolean,
+  match: { params: { id: string } },
+};
+
+type State = {
+  entityId: string,
+};
+
 const EntityContainerHOC = (ComposedComponent, mapStateToProps, mapDispatchToProps) => {
-  class EntityContainer extends Component {
-    state = { entityId: null };
+  class EntityContainer extends Component<Props, State> {
+    state = { entityId: '' };
+
+    static defaultProps = {
+      entity: null,
+      loading: false,
+    };
 
     componentDidMount() {
       this.setState(
@@ -14,7 +31,9 @@ const EntityContainerHOC = (ComposedComponent, mapStateToProps, mapDispatchToPro
           entityId: this.props.match.params.id,
         },
         async () => {
-          await this.props.fetchEntity(this.state.entityId);
+          if (this.state.entityId !== '') {
+            await this.props.fetchEntity(this.state.entityId);
+          }
         },
       );
     }
@@ -38,17 +57,6 @@ const EntityContainerHOC = (ComposedComponent, mapStateToProps, mapDispatchToPro
       );
     }
   }
-
-  EntityContainer.propTypes = {
-    fetchEntity: PropTypes.func.isRequired,
-    entity: PropTypes.object,
-    loading: PropTypes.bool,
-  };
-
-  EntityContainer.defaultProps = {
-    entity: null,
-    loading: false,
-  };
 
   return connect(
     mapStateToProps,

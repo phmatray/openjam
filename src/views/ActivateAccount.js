@@ -1,5 +1,6 @@
+// @flow
+
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
@@ -11,9 +12,18 @@ import BackgroundScreen from '../components/BackgroundScreen';
 import { getErrors } from '../reducers/data/error';
 import withTheme from '../hocs/withTheme';
 
-class ActivateAccount extends PureComponent {
+type Props = {
+  activateAccount: (token: string, history: any) => void,
+  errors: {},
+  location: any,
+  history: any,
+};
+
+type State = { token: string };
+
+class ActivateAccount extends PureComponent<Props, State> {
   state = {
-    token: null,
+    token: '',
   };
 
   componentDidMount() {
@@ -82,11 +92,6 @@ class ActivateAccount extends PureComponent {
     );
   }
 }
-
-ActivateAccount.propTypes = {
-  activateAccount: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = state => ({
   errors: getErrors(state),

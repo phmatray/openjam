@@ -1,7 +1,7 @@
+// @flow
 /* eslint-disable react/no-unused-state */
 
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -10,7 +10,15 @@ import { getErrors } from '../reducers/data/error';
 
 import RegisterPresenter from './register/RegisterPresenter';
 
-class Register extends PureComponent {
+type Props = {
+  registerUser: () => void,
+  errors: {},
+  isAuthenticated: boolean,
+  loading: boolean,
+  history: any,
+};
+
+class Register extends PureComponent<Props> {
   componentDidMount() {
     if (this.props.isAuthenticated) {
       this.props.history.push('/explore');
@@ -35,13 +43,6 @@ class Register extends PureComponent {
     );
   }
 }
-
-Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),

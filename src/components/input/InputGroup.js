@@ -1,8 +1,19 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Form, Input } from 'semantic-ui-react';
 
-const InputGroup = ({ name, placeholder, value, error, icon, type, onChange }) => {
+type Props = {
+  name: string,
+  value: string,
+  type?: string,
+  placeholder?: string,
+  icon?: string,
+  error?: string,
+  onChange: () => void,
+};
+
+const InputGroup = ({ name, value, type, placeholder, icon, error, onChange }: Props) => {
   const messageStyle = {
     fontSize: '0.8em',
     margin: '-0.6rem 0 1rem 0',
@@ -37,24 +48,11 @@ const InputGroup = ({ name, placeholder, value, error, icon, type, onChange }) =
   );
 };
 
-InputGroup.propTypes = {
-  type: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-  error: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-};
-
 InputGroup.defaultProps = {
+  type: 'text',
   placeholder: null,
   icon: null,
   error: null,
-};
-
-InputGroup.defaultProps = {
-  type: 'text',
 };
 
 export default InputGroup;

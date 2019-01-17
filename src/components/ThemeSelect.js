@@ -1,9 +1,14 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
 
-import { updateTheme } from '../reducers/ui/layout';
+import { actions } from '../reducers/ui/layout';
+
+type Props = {
+  updateTheme: () => void,
+};
 
 const themes = [
   {
@@ -16,15 +21,11 @@ const themes = [
   },
 ];
 
-const ThemeSelect = ({ updateTheme }) => (
+const ThemeSelect = ({ updateTheme }: Props) => (
   <Dropdown selection options={themes} onChange={(e, { value }) => updateTheme(value)} />
 );
 
-ThemeSelect.propTypes = {
-  updateTheme: PropTypes.func.isRequired,
-};
-
 export default connect(
   null,
-  { updateTheme },
+  { updateTheme: actions.updateTheme },
 )(ThemeSelect);

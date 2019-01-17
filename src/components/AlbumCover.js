@@ -1,7 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const AlbumCover = ({ album }) => (
+import React from 'react';
+
+type Props = {
+  album: {
+    name: string,
+    images: {
+      href: string,
+    },
+  },
+};
+
+const AlbumCover = ({ album }: Props) => (
   <div
     style={{
       display: 'flex',
@@ -14,15 +24,5 @@ const AlbumCover = ({ album }) => (
     <img src={album.images[2].href} alt={album.name} style={{ width: '100%', height: '100%' }} />
   </div>
 );
-
-AlbumCover.propTypes = {
-  album: PropTypes.shape({
-    images: PropTypes.arrayOf(
-      PropTypes.shape({
-        href: PropTypes.string,
-      }).isRequired,
-    ).isRequired,
-  }).isRequired,
-};
 
 export default AlbumCover;

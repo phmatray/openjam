@@ -1,6 +1,6 @@
 // @flow
 
-type Year = { from: string, to: ?string };
+import type { Year } from '../types/common';
 
 const getYears = (years: Year[]) =>
   years

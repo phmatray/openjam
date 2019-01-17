@@ -1,13 +1,26 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { AvatarSmall, CommentText, FromNow, CommentContainer } from './styles';
+
 import Flex from '../Flex';
 import Div from '../Div';
 
-const Comment = ({ comment }) => {
-  const { avatar, firstname, lastname, handle, text, date } = comment;
-  const fullName = `${firstname} ${lastname}`;
+import { AvatarSmall, CommentText, FromNow, CommentContainer } from './styles';
+
+type Props = {
+  comment: {
+    avatar: string,
+    firstName: string,
+    lastName: string,
+    text: string,
+    date: string,
+  },
+};
+
+const Comment = ({ comment }: Props) => {
+  const { avatar, firstName, lastName, handle, text, date } = comment;
+  const fullName = `${firstName} ${lastName}`;
 
   return (
     <Div pt="0.5em" pb="0.5em">
@@ -33,10 +46,6 @@ const Comment = ({ comment }) => {
       </Flex>
     </Div>
   );
-};
-
-Comment.propTypes = {
-  comment: PropTypes.object.isRequired,
 };
 
 export default Comment;

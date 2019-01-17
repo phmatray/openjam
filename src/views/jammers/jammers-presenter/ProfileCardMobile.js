@@ -1,10 +1,23 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card, Image, Label } from 'semantic-ui-react';
+
 import isEmpty from '../../../lib/validation/is-empty';
 
-const ProfileCardMobile = ({ profile }) => (
+type Props = {
+  profile: {
+    profileImageUrl: string,
+    firstName: string,
+    lastName: string,
+    handle: string,
+    location?: string,
+    skills: [string],
+  },
+};
+
+const ProfileCardMobile = ({ profile }: Props) => (
   <React.Fragment>
     <Card.Content>
       <Image floated="left" size="mini" src={profile.profileImageUrl} />
@@ -23,18 +36,5 @@ const ProfileCardMobile = ({ profile }) => (
     </Card.Content>
   </React.Fragment>
 );
-
-ProfileCardMobile.propTypes = {
-  profile: PropTypes.shape({
-    user: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-    }).isRequired,
-    handle: PropTypes.string.isRequired,
-    location: PropTypes.string,
-    skills: PropTypes.arrayOf(PropTypes.string.isRequired),
-  }).isRequired,
-};
 
 export default ProfileCardMobile;

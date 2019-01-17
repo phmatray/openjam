@@ -1,11 +1,34 @@
+// @flow
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Button, GridRow, GridColumn } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+
 import isEmpty from '../../lib/validation/is-empty';
 import Social from '../../components/Social';
 
-const ProfileGithub = ({ profile }) => (
+type Props = {
+  profile: {
+    user: {
+      avatar: string,
+      fullname: string,
+    },
+    status: string,
+    company: string,
+    location: string,
+    website: string,
+    social: {
+      soundcloud: string,
+      twitter: string,
+      facebook: string,
+      linkedin: string,
+      instagram: string,
+      youtube: string,
+    },
+  },
+};
+
+const ProfileGithub = ({ profile }: Props) => (
   <React.Fragment>
     <GridRow>
       <GridColumn width={16} color="blue" style={{ borderRadius: '.28571429rem .28571429rem 0 0' }}>
@@ -57,9 +80,5 @@ const ProfileGithub = ({ profile }) => (
     </GridRow>
   </React.Fragment>
 );
-
-ProfileGithub.propTypes = {
-  profile: PropTypes.object.isRequired,
-};
 
 export default ProfileGithub;

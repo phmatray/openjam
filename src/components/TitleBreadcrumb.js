@@ -1,6 +1,11 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Breadcrumb } from 'semantic-ui-react';
+
+type Props = {
+  breadcrumbSegments: {}[],
+};
 
 const SectionBold = ({ segment }) => (
   <strong style={{ fontWeight: '900', fontSize: '1.1em' }}>
@@ -10,7 +15,7 @@ const SectionBold = ({ segment }) => (
 
 const SectionRegular = ({ segment }) => <Breadcrumb.Section>{segment}</Breadcrumb.Section>;
 
-const TitleBreadcrumb = ({ breadcrumbSegments }) => {
+const TitleBreadcrumb = ({ breadcrumbSegments }: Props) => {
   let content;
   if (breadcrumbSegments.length === 1) {
     content = <SectionBold segment={breadcrumbSegments[0]} />;
@@ -25,10 +30,6 @@ const TitleBreadcrumb = ({ breadcrumbSegments }) => {
   }
 
   return <Breadcrumb size="massive">{content}</Breadcrumb>;
-};
-
-TitleBreadcrumb.propTypes = {
-  breadcrumbSegments: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default TitleBreadcrumb;
