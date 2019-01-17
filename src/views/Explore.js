@@ -29,6 +29,7 @@ type Props = {
   originalTracks?: {}[],
   remixTracks?: {}[],
   artists?: {}[],
+  t: any,
 };
 
 class Explore extends PureComponent<Props> {

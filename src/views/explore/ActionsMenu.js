@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { Container, Menu, Button } from 'semantic-ui-react';
 import withTheme from '../../hocs/withTheme';

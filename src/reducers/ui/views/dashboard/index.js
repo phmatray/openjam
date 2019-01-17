@@ -1,3 +1,5 @@
+// @flow
+
 import { restGetUser } from '../../../../api/logion';
 
 // Action Types

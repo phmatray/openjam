@@ -1,3 +1,5 @@
+// @flow
+
 import React, { PureComponent } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';

@@ -12,6 +12,7 @@ import Jammer from './jammers-presenter/Jammer';
 type Props = {
   jammers: { _id: string }[],
   isAuthenticated: boolean,
+  t: any,
 };
 
 const JammersPresenter = ({ jammers, isAuthenticated, t }: Props) => (

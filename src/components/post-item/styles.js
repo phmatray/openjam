@@ -1,3 +1,5 @@
+// @flow
+
 import styled from 'styled-components';
 import {
   TextArea as TextAreaSemantic,

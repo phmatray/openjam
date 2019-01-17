@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { Icon, Button } from 'semantic-ui-react';
 

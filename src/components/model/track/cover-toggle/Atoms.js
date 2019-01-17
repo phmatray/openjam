@@ -1,3 +1,5 @@
+// @flow
+
 import styled from 'styled-components';
 import { Icon as SemanticIcon, Image as SemanticImage } from 'semantic-ui-react';
 

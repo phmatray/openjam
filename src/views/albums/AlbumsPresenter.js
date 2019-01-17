@@ -10,9 +10,8 @@ import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
 
 type Props = {
-  albums: {
-    _id: string,
-  }[],
+  albums: { _id: string }[],
+  t: any,
 };
 
 const AlbumsPresenter = ({ albums, t }: Props) => (

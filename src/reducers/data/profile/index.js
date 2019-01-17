@@ -1,3 +1,4 @@
+// @flow
 /* eslint-disable no-alert */
 
 import { actions as errorActions } from '../error';

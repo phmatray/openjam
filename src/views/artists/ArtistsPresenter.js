@@ -12,10 +12,8 @@ import Section from '../../components/Section';
 import ActionsMenu from './artists-presenter/ActionsMenu';
 
 type Props = {
-  artists: {
-    _id: string,
-    images: any,
-  }[],
+  artists: { _id: string, images: any }[],
+  t: any,
 };
 
 const ArtistsPresenter = ({ artists, t }: Props) => {

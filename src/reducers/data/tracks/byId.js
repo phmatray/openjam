@@ -1,3 +1,5 @@
+// @flow
+
 const byId = (state = {}, action) => {
   if (action.response) {
     return {

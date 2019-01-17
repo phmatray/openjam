@@ -1,3 +1,5 @@
+// @flow
+
 import _ from 'lodash';
 import jwtDecode from 'jwt-decode';
 

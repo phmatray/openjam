@@ -15,6 +15,7 @@ type Props = {
   profiles: {}[],
   loading: boolean,
   isAuthenticated: boolean,
+  t: any,
 };
 
 class Jammers extends PureComponent<Props> {

@@ -1,3 +1,5 @@
+// @flow
+
 import { restGetTracks, restGetArtists } from '../../../../api/logion';
 
 // Action Types

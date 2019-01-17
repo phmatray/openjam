@@ -1,3 +1,5 @@
+// @flow
+
 import { schema } from 'normalizr';
 
 export const artist = new schema.Entity('artists', {}, { idAttribute: '_id' });

@@ -1,3 +1,5 @@
+// @flow
+
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
 

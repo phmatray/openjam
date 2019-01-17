@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { withNamespaces } from 'react-i18next';
 import { Grid, Divider, Container } from 'semantic-ui-react';

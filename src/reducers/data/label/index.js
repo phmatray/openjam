@@ -1,3 +1,4 @@
+// @flow
 import { restGetLabels, restGetLabel } from '../../../api/logion';
 
 // Action Types

@@ -17,6 +17,7 @@ type Props = {
   errors: {},
   location: any,
   history: any,
+  t: any,
 };
 
 type State = { token: string };

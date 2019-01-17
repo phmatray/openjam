@@ -1,3 +1,5 @@
+// @flow
+
 import React, { PureComponent } from 'react';
 import { Ghost } from 'react-kawaii';
 import { styler, tween, merge, action, easing } from 'popmotion';

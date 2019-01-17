@@ -1,3 +1,4 @@
+// @flow
 /* eslint-disable no-plusplus */
 /* eslint-disable func-names */
 /* eslint-disable no-restricted-syntax */

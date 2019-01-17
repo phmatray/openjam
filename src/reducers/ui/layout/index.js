@@ -1,3 +1,5 @@
+// @flow
+
 // Action Types
 //
 export const types = {

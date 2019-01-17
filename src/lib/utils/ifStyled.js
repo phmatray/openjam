@@ -1,3 +1,5 @@
+// @flow
+
 import { css } from 'styled-components';
 
 const ifStyled = (method, condition) => (...names) => (...args) => props =>

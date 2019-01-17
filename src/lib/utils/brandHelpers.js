@@ -1,4 +1,5 @@
 // @flow
+
 import type { Domain } from '../types/common';
 
 export const getBrandColor = (domain: Domain) => {

@@ -1,3 +1,5 @@
+// @flow
+
 import { restGetAlbum } from '../../../../api/logion';
 
 // Action Types

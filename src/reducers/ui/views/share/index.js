@@ -1,3 +1,5 @@
+// @flow
+
 import { actions as errorActions } from '../../../data/error';
 import {
   restGetPosts,

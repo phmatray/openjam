@@ -1,3 +1,5 @@
+// @flow
+
 import styled from 'styled-components';
 import loginBackground from '../../assets/images/backgrounds/login-background.jpg';
 

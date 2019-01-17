@@ -1,3 +1,4 @@
+// @flow
 import { restGetPlaylists, restGetPlaylist } from '../../../api/logion';
 
 // Action Types

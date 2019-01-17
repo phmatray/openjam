@@ -1,3 +1,5 @@
+// @flow
+
 import styled from 'styled-components';
 import { Feed as FeedSemantic } from 'semantic-ui-react';
 

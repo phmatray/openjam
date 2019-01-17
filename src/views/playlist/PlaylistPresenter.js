@@ -18,10 +18,9 @@ type Props = {
   playlist: {
     name: string,
     description: string,
-    tracks: {
-      track: { coverurl: { w800: string } },
-    }[],
+    tracks: { track: { coverurl: { w800: string } } }[],
   },
+  t: any,
 };
 
 const PlaylistPresenter = ({ playlist, t }: Props) => (

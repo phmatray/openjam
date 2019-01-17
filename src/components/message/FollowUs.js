@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { Message } from 'semantic-ui-react';
 import Social from '../Social';

@@ -22,6 +22,7 @@ type Props = {
   posts: {}[],
   loading: boolean,
   isAuthenticated: boolean,
+  t: any,
 };
 
 type State = {

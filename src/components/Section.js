@@ -17,6 +17,8 @@ type Props = {
   to?: string,
   maxHeight?: number,
   scrollable?: boolean,
+  theme: any,
+  t: any,
 };
 
 const Section = ({ title, items, to, maxHeight, scrollable, theme, t }: Props) => (

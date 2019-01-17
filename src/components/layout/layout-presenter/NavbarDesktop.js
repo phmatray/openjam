@@ -22,6 +22,7 @@ type Props = {
   isAuthenticated: boolean,
   user: UserBasic,
   playing: boolean,
+  t: any,
 };
 
 type State = {

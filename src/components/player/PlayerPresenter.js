@@ -27,6 +27,7 @@ type Props = {
     artists: [{}],
   },
   audioInfo: { position: number, duration: number },
+  t: any,
 };
 
 const PlayerPresenter = ({

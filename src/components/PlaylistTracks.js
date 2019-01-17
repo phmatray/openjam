@@ -21,21 +21,15 @@ import {
 
 type Props = {
   playlist: {
-    tracks: [
-      {
-        track: {
-          _id: string,
-          artists: [],
-        },
-      },
-    ],
+    _id: string,
+    tracks: { track: { _id: string, artists: [] } }[],
   },
-
   playSelected: () => void,
   pause: () => void,
   playerPlaying: boolean,
   playerCollection: { _id: string },
-  playerTrack: {},
+  playerTrack: { _id: string },
+  t: any,
 };
 
 const PlaylistTracks = ({

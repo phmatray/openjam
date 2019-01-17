@@ -1,3 +1,5 @@
+// @flow
+
 function optionsAreValid(types) {
   if (!types) return false;
   if (types) return true;

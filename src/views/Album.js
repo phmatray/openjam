@@ -25,6 +25,7 @@ type Props = {
     images: { href: string }[],
     tracks: { track: { coverurl: { w800: string } } }[],
   },
+  t: any,
 };
 
 const getAlbumName = album => {

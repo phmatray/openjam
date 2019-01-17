@@ -16,6 +16,7 @@ type Props = {
   logoutUser: () => void,
   clearCurrentProfile: () => void,
   isAuthenticated: boolean,
+  t: any,
 };
 
 type State = {

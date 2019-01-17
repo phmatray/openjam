@@ -18,6 +18,7 @@ type Props = {
   fetchOriginalTracks: () => void,
   originalTracks?: {}[],
   originalTracksLoading: boolean,
+  t: any,
 };
 
 class OriginalTracks extends PureComponent<Props> {

@@ -1,3 +1,5 @@
+// @flow
+
 import { normalize } from 'normalizr';
 import * as schema from './schema';
 import * as api from '../api/logion';
