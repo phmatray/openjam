@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,6 +10,7 @@ import { addComment } from '../../reducers/ui/views/share';
 import { AvatarSmall, Button, AddCommentForm } from './styles';
 import { getUser } from '../../reducers/auth';
 import { getErrors } from '../../reducers/data/error';
+import withTheme from '../../hocs/withTheme';
 
 class AddComment extends Component {
   state = {
@@ -45,36 +45,32 @@ class AddComment extends Component {
 
   render() {
     const { errors } = this.state;
-    const { user } = this.props;
+    const { user, theme } = this.props;
 
     return (
-      <ThemeConsumer>
-        {theme => (
-          <Flex>
-            <AvatarSmall src={user.profileImageUrl} />
-            <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
-              <Div mb="-1em">
-                <Input
-                  as="text-area-field"
-                  placeholder={`Express yourself ${user.firstName}...`}
-                  name="text"
-                  value={this.state.text}
-                  onChange={this.handleChange}
-                  error={errors.text}
-                />
-                <Button
-                  circular
-                  compact
-                  icon="send"
-                  color={theme.primarySemantic}
-                  content="Send"
-                  onClick={this.handleSubmit}
-                />
-              </Div>
-            </AddCommentForm>
-          </Flex>
-        )}
-      </ThemeConsumer>
+      <Flex>
+        <AvatarSmall src={user.profileImageUrl} />
+        <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
+          <Div mb="-1em">
+            <Input
+              as="text-area-field"
+              placeholder={`Express yourself ${user.firstName}...`}
+              name="text"
+              value={this.state.text}
+              onChange={this.handleChange}
+              error={errors.text}
+            />
+            <Button
+              circular
+              compact
+              icon="send"
+              color={theme.primarySemantic}
+              content="Send"
+              onClick={this.handleSubmit}
+            />
+          </Div>
+        </AddCommentForm>
+      </Flex>
     );
   }
 }
@@ -94,7 +90,9 @@ const mapStateToProps = state => ({
   errors: getErrors(state),
 });
 
-export default connect(
-  mapStateToProps,
-  { addComment },
-)(AddComment);
+export default withTheme(
+  connect(
+    mapStateToProps,
+    { addComment },
+  )(AddComment),
+);

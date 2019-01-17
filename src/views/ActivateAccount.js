@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
@@ -10,6 +9,7 @@ import { Grid, Icon, Header, Button, Divider, Message } from 'semantic-ui-react'
 import { activateAccount } from '../reducers/auth';
 import BackgroundScreen from '../components/BackgroundScreen';
 import { getErrors } from '../reducers/data/error';
+import withTheme from '../hocs/withTheme';
 
 class ActivateAccount extends PureComponent {
   state = {
@@ -58,31 +58,27 @@ class ActivateAccount extends PureComponent {
   }
 
   render() {
-    const { t, location, errors } = this.props;
+    const { theme, t, location, errors } = this.props;
     const { token } = queryString.parse(location.search);
 
     return (
-      <ThemeConsumer>
-        {theme => (
-          <BackgroundScreen>
-            <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
-              <Grid.Column style={{ maxWidth: 500 }}>
-                <Header as="h1" icon inverted>
-                  <Icon name={(errors && errors.message) || !token ? 'lock' : 'unlock'} />
-                  {t('pages.activate-account.header')}
-                  <Header.Subheader>{t('pages.activate-account.subheader')}</Header.Subheader>
-                </Header>
-                <Divider />
-                {this.getMessage(token, errors)}
+      <BackgroundScreen>
+        <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
+          <Grid.Column style={{ maxWidth: 500 }}>
+            <Header as="h1" icon inverted>
+              <Icon name={(errors && errors.message) || !token ? 'lock' : 'unlock'} />
+              {t('pages.activate-account.header')}
+              <Header.Subheader>{t('pages.activate-account.subheader')}</Header.Subheader>
+            </Header>
+            <Divider />
+            {this.getMessage(token, errors)}
 
-                <Button as={Link} to="login" color={theme.primarySemantic} fluid>
-                  {t('pages.activate-account.sign-in')}
-                </Button>
-              </Grid.Column>
-            </Grid>
-          </BackgroundScreen>
-        )}
-      </ThemeConsumer>
+            <Button as={Link} to="login" color={theme.primarySemantic} fluid>
+              {t('pages.activate-account.sign-in')}
+            </Button>
+          </Grid.Column>
+        </Grid>
+      </BackgroundScreen>
     );
   }
 }
@@ -97,10 +93,12 @@ const mapStateToProps = state => ({
 });
 
 export default withRouter(
-  withNamespaces('common')(
-    connect(
-      mapStateToProps,
-      { activateAccount },
-    )(ActivateAccount),
+  withTheme(
+    withNamespaces('common')(
+      connect(
+        mapStateToProps,
+        { activateAccount },
+      )(ActivateAccount),
+    ),
   ),
 );

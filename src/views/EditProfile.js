@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
-import { ThemeConsumer } from 'styled-components';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Segment, Container, Header, Form, Button, Label } from 'semantic-ui-react';
 
 import Input from '../components/Input';
-import { createProfile, fetchCurrentProfile, getProfile } from '../reducers/data/profile';
 import isEmpty from '../lib/validation/is-empty';
+import withTheme from '../hocs/withTheme';
 import { getErrors } from '../reducers/data/error';
+import { createProfile, fetchCurrentProfile, getProfile } from '../reducers/data/profile';
 
 class EditProfile extends PureComponent {
   state = {
@@ -121,6 +121,8 @@ class EditProfile extends PureComponent {
       displaySocialInputs,
     } = this.state;
 
+    const { theme } = this.props;
+
     let socialInputs;
 
     if (displaySocialInputs) {
@@ -204,128 +206,120 @@ class EditProfile extends PureComponent {
     ];
 
     return (
-      <ThemeConsumer>
-        {theme => (
-          <Segment basic>
-            <Header as="h1">Edit Profile</Header>
-            <Button as={Link} to="/dashboard">
-              Go Back
-            </Button>
+      <Segment basic>
+        <Header as="h1">Edit Profile</Header>
+        <Button as={Link} to="/dashboard">
+          Go Back
+        </Button>
 
-            <Form error noValidate onSubmit={this.handleSubmit}>
-              <Input
-                as="text-field"
-                icon="address card"
-                placeholder="Profile handle"
-                name="handle"
-                value={handle}
-                onChange={this.handleChange}
-                error={errors.handle}
-                info="An unique handle for your profile URL. Your full name, band name, nickname, etc..."
-                disabled
-                required
-              />
+        <Form error noValidate onSubmit={this.handleSubmit}>
+          <Input
+            as="text-field"
+            icon="address card"
+            placeholder="Profile handle"
+            name="handle"
+            value={handle}
+            onChange={this.handleChange}
+            error={errors.handle}
+            info="An unique handle for your profile URL. Your full name, band name, nickname, etc..."
+            disabled
+            required
+          />
 
-              <Input
-                as="select-list"
-                icon="microphone"
-                placeholder="* Status"
-                name="status"
-                value={status}
-                onChange={(e, data) => {
-                  this.setState({ status: data.value });
-                }}
-                error={errors.status}
-                info="Give us an idea of where you are in your music life."
-                options={options}
-              />
+          <Input
+            as="select-list"
+            icon="microphone"
+            placeholder="* Status"
+            name="status"
+            value={status}
+            onChange={(e, data) => {
+              this.setState({ status: data.value });
+            }}
+            error={errors.status}
+            info="Give us an idea of where you are in your music life."
+            options={options}
+          />
 
-              <Input
-                as="text-field"
-                icon="world"
-                placeholder="Website"
-                name="website"
-                value={website}
-                onChange={this.handleChange}
-                error={errors.website}
-                info="Could be your own website or one of your band."
-              />
+          <Input
+            as="text-field"
+            icon="world"
+            placeholder="Website"
+            name="website"
+            value={website}
+            onChange={this.handleChange}
+            error={errors.website}
+            info="Could be your own website or one of your band."
+          />
 
-              <Input
-                as="text-field"
-                icon="location arrow"
-                placeholder="Location"
-                name="location"
-                value={location}
-                onChange={this.handleChange}
-                error={errors.location}
-                info="City or city &amp; state suggested (eg. BOSTON, MA)"
-              />
+          <Input
+            as="text-field"
+            icon="location arrow"
+            placeholder="Location"
+            name="location"
+            value={location}
+            onChange={this.handleChange}
+            error={errors.location}
+            info="City or city &amp; state suggested (eg. BOSTON, MA)"
+          />
 
-              <Input
-                as="text-field"
-                icon="music"
-                placeholder="Skills"
-                name="skills"
-                value={skills}
-                onChange={this.handleChange}
-                error={errors.skills}
-                info="Please use comma separated values (eg. Synthetizer,Guitar,Bass,Drums)"
-                required
-              />
+          <Input
+            as="text-field"
+            icon="music"
+            placeholder="Skills"
+            name="skills"
+            value={skills}
+            onChange={this.handleChange}
+            error={errors.skills}
+            info="Please use comma separated values (eg. Synthetizer,Guitar,Bass,Drums)"
+            required
+          />
 
-              <Input
-                as="text-field"
-                icon="github"
-                placeholder="GitHub username"
-                name="githubusername"
-                value={githubusername}
-                onChange={this.handleChange}
-                error={errors.githubusername}
-                info="If you are a developer and you want a GitHub link, include your username"
-              />
+          <Input
+            as="text-field"
+            icon="github"
+            placeholder="GitHub username"
+            name="githubusername"
+            value={githubusername}
+            onChange={this.handleChange}
+            error={errors.githubusername}
+            info="If you are a developer and you want a GitHub link, include your username"
+          />
 
-              <Input
-                as="text-area-field"
-                placeholder="Short bio"
-                name="bio"
-                value={bio}
-                onChange={this.handleChange}
-                error={errors.bio}
-                info="Tell us a little about yourself"
-              />
+          <Input
+            as="text-area-field"
+            placeholder="Short bio"
+            name="bio"
+            value={bio}
+            onChange={this.handleChange}
+            error={errors.bio}
+            info="Tell us a little about yourself"
+          />
 
-              <Form.Field>
-                <Button
-                  type="button"
-                  content="Edit Social Network Links"
-                  onClick={() => {
-                    this.setState(prevState => ({
-                      displaySocialInputs: !prevState.displaySocialInputs,
-                    }));
-                  }}
-                />
-                <Label
-                  pointing="left"
-                  color="blue"
-                  style={{ marginTop: '1em', marginBottom: '1.5em' }}
-                >
-                  Optional
-                </Label>
-              </Form.Field>
-              {socialInputs}
+          <Form.Field>
+            <Button
+              type="button"
+              content="Edit Social Network Links"
+              onClick={() => {
+                this.setState(prevState => ({
+                  displaySocialInputs: !prevState.displaySocialInputs,
+                }));
+              }}
+            />
+            <Label pointing="left" color="blue" style={{ marginTop: '1em', marginBottom: '1.5em' }}>
+              Optional
+            </Label>
+          </Form.Field>
+          {socialInputs}
 
-              <Form.Button
-                fluid
-                size="large"
-                color={theme.primarySemantic}
-                content="Submit"
-                onClick={this.handleSubmit}
-              />
-            </Form>
-          </Segment>
-        )}
-      </ThemeConsumer>
+          <Form.Button
+            fluid
+            size="large"
+            color={theme.primarySemantic}
+            content="Submit"
+            onClick={this.handleSubmit}
+          />
+        </Form>
+      </Segment>
     );
   }
 }
@@ -343,8 +337,10 @@ const mapStateToProps = state => ({
 });
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    { createProfile, fetchCurrentProfile },
-  )(EditProfile),
+  withTheme(
+    connect(
+      mapStateToProps,
+      { createProfile, fetchCurrentProfile },
+    )(EditProfile),
+  ),
 );

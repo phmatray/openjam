@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { ThemeConsumer } from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
@@ -8,6 +7,7 @@ import TextAreaFieldGroup from '../../components/input/TextAreaFieldGroup';
 import { addComment } from '../../reducers/ui/views/share';
 import { getErrors } from '../../reducers/data/error';
 import { getUser } from '../../reducers/auth';
+import withTheme from '../../hocs/withTheme';
 
 class CommentForm extends PureComponent {
   state = {
@@ -41,31 +41,28 @@ class CommentForm extends PureComponent {
 
   render() {
     const { errors } = this.state;
+    const { theme } = this.props;
 
     return (
-      <ThemeConsumer>
-        {theme => (
-          <div>
-            <p>Make a comment...</p>
-            <Form error noValidate onSubmit={this.handleSubmit}>
-              <TextAreaFieldGroup
-                placeholder="Reply to post"
-                name="text"
-                value={this.state.text}
-                onChange={this.handleChange}
-                error={errors.text}
-              />
-              <Form.Button
-                fluid
-                size="large"
-                color={theme.primarySemantic}
-                content="Submit"
-                onClick={this.handleSubmit}
-              />
-            </Form>
-          </div>
-        )}
-      </ThemeConsumer>
+      <div>
+        <p>Make a comment...</p>
+        <Form error noValidate onSubmit={this.handleSubmit}>
+          <TextAreaFieldGroup
+            placeholder="Reply to post"
+            name="text"
+            value={this.state.text}
+            onChange={this.handleChange}
+            error={errors.text}
+          />
+          <Form.Button
+            fluid
+            size="large"
+            color={theme.primarySemantic}
+            content="Submit"
+            onClick={this.handleSubmit}
+          />
+        </Form>
+      </div>
     );
   }
 }
@@ -82,7 +79,9 @@ const mapStateToProps = state => ({
   errors: getErrors(state),
 });
 
-export default connect(
-  mapStateToProps,
-  { addComment },
-)(CommentForm);
+export default withTheme(
+  connect(
+    mapStateToProps,
+    { addComment },
+  )(CommentForm),
+);
