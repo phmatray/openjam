@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { Dropdown } from 'semantic-ui-react';
 
-import { actions } from '../../../reducers/ui/layout';
+import { actions } from '../reducers/ui/layout';
 
 const StyledDropdown = styled(Dropdown)`
   & i.icon {
@@ -15,7 +15,8 @@ const StyledDropdown = styled(Dropdown)`
 `;
 
 type Props = {
-  updateLanguage: () => void,
+  updateLanguage: (value: string) => void,
+  i18n: any,
 };
 
 const LanguageDropdown = ({ updateLanguage, i18n }: Props) => {

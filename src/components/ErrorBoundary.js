@@ -1,12 +1,12 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+type Props = { children: React.Node };
+type State = { hasError: boolean };
+
+class ErrorBoundary extends React.Component<Props, State> {
+  state = { hasError: false };
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.

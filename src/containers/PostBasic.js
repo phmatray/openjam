@@ -4,20 +4,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Segment, SegmentGroup } from 'semantic-ui-react';
 
-import { SegmentPostBasic } from '../SegmentPost';
-import { deletePost, addLike, removeLike } from '../../reducers/ui/views/share';
-import { getUser, getIsAuthenticated } from '../../reducers/auth';
+import LikeButton from '../components/post-item/LikeButton';
+import Intro from '../components/post-item/Intro';
+import Comment from '../components/post-item/Comment';
+import { Content } from '../components/post-item/styles';
+import { SegmentPostBasic } from '../components/SegmentPost';
+import { deletePost, addLike, removeLike } from '../reducers/ui/views/share';
+import { getUser, getIsAuthenticated } from '../reducers/auth';
 
-import LikeButton from './LikeButton';
 import AddComment from './AddComment';
-import Intro from './Intro';
-import Comment from './Comment';
-import { Content } from './styles';
 
 type Props = {
-  user: {},
+  addLike: (postId: string) => void,
+  removeLike: () => void,
+  user: {
+    _id: string,
+  },
   post: {
     _id: string,
+    avatar: string,
     text: string,
     likes?: [],
     shares?: [],

@@ -3,12 +3,12 @@
 import * as React from 'react';
 import { Responsive, Sidebar } from 'semantic-ui-react';
 
-import Player from '../Player';
+import Player from '../../containers/Player';
+import NavbarDesktop from '../../containers/NavbarDesktop';
+import NavbarSide from '../../containers/NavbarSide';
 import type { UserBasic } from '../../types';
 
-import NavbarDesktop from './layout-presenter/NavbarDesktop';
 import NavbarMobile from './layout-presenter/NavbarMobile';
-import NavbarSide from './layout-presenter/NavbarSide';
 import Top from './layout-presenter/Top';
 import Container from './layout-presenter/Container';
 import Middle from './layout-presenter/Middle';

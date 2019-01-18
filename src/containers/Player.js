@@ -15,19 +15,25 @@ import {
   getStatus,
 } from '../reducers/ui/player';
 
-import PlayerPresenter from './player/PlayerPresenter';
+import PlayerPresenter from '../components/player/PlayerPresenter';
 
 type Props = {
   fetchTracks: () => void,
-  loadCollection: () => void,
-  updateAudioInfo: () => void,
+  loadCollection: ({}[]) => void,
+  updateAudioInfo: ({ position: number, duration: number, volume: number }) => void,
   next: () => void,
+  tracks: {}[],
   status: 'PLAYING' | 'PAUSED' | 'STOPPED',
   current?: { audiourl: string },
   audioInfo?: { position: number, duration: number, volume: number },
 };
 
 class Player extends Component<Props> {
+  static defaultProps = {
+    current: null,
+    audioInfo: null,
+  };
+
   async componentDidMount() {
     const { fetchTracks, loadCollection } = this.props;
     await fetchTracks();
@@ -53,7 +59,10 @@ class Player extends Component<Props> {
     const { current, status, audioInfo, next } = this.props;
 
     return (
-      current !== null && (
+      current !== null &&
+      current !== undefined &&
+      audioInfo !== null &&
+      audioInfo !== undefined && (
         <React.Fragment>
           <Sound
             url={current.audiourl}
@@ -69,11 +78,6 @@ class Player extends Component<Props> {
     );
   }
 }
-
-Player.defaultProps = {
-  current: null,
-  audioInfo: null,
-};
 
 const mapStateToProps = state => ({
   tracks: getTracks(state),

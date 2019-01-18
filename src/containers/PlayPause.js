@@ -11,16 +11,18 @@ import {
   getPlaying,
 } from '../reducers/ui/player';
 
-import { PlayPauseIcon, StyledButton } from './play-pause/Atoms';
+import { PlayPauseIcon, StyledButton } from '../components/play-pause/Atoms';
+
+type Entity = {
+  _id: string,
+  type: 'track' | 'playlist' | 'album',
+};
 
 type Props = {
-  playSelected: () => void,
-  playTrack: () => void,
+  playSelected: (entity: Entity) => void,
+  playTrack: (entity: Entity) => void,
   pause: () => void,
-  entity: {
-    _id: string,
-    type: 'track' | 'playlist' | 'album',
-  },
+  entity: Entity,
   playing: boolean,
   collectionId?: string,
 };

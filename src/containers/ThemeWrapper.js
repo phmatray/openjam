@@ -5,9 +5,9 @@ import { ThemeProvider } from 'styled-components';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import themeOpenjam from '../../theme/themeOpenjam';
-import themeRemix from '../../theme/themeRemix';
-import { getTheme } from '../../reducers/ui/layout';
+import themeOpenjam from '../theme/themeOpenjam';
+import themeRemix from '../theme/themeRemix';
+import { getTheme } from '../reducers/ui/layout';
 
 type Props = {
   theme: any,

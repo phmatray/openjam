@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 import { ThemeConsumer } from 'styled-components';
 import { Menu, Container, Image, Button, Icon } from 'semantic-ui-react';
 
-import LanguageDropdown from './LanguageDropdown';
+import logo from '../assets/images/logos/logo_white.svg';
+import { logoutUser, getIsAuthenticated, getUser } from '../reducers/auth';
+import { getPlaying } from '../reducers/ui/player';
+import { actions as profileActions } from '../reducers/data/profile';
+import type { UserBasic } from '../types';
 
-import { logoutUser, getIsAuthenticated, getUser } from '../../../reducers/auth';
-import { getPlaying } from '../../../reducers/ui/player';
-import { actions as profileActions } from '../../../reducers/data/profile';
-import logo from '../../../assets/images/logos/logo_white.svg';
-import type { UserBasic } from '../../../types';
+import LanguageDropdown from './LanguageDropdown';
 
 type Props = {
   height: number,

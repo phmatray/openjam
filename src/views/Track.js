@@ -6,11 +6,11 @@ import { Container, Grid, Divider, Header } from 'semantic-ui-react';
 import Div from '../components/Div';
 import Flex from '../components/Flex';
 import Hero from '../components/Hero';
-import PlayPause from '../components/PlayPause';
 import AlbumCover from '../components/AlbumCover';
 import LinkEntity from '../components/LinkEntity';
 import LinkArtistNames from '../components/LinkArtistNames';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
+import PlayPause from '../containers/PlayPause';
 import { fetchTrack, getTrack } from '../reducers/ui/views/track';
 
 import ActionsMenu from './track/ActionsMenu';

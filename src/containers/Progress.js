@@ -3,11 +3,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { actions } from '../../../reducers/ui/player';
-import { ProgressStyled, ProgressInner } from './styles';
+import { actions } from '../reducers/ui/player';
+import { ProgressStyled, ProgressInner } from '../components/player/player-presenter/styles';
 
 type Props = {
-  updatePosition: () => void,
+  updatePosition: (position: number) => void,
   position: number,
   duration: number,
 };

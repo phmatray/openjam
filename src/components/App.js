@@ -7,11 +7,11 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-import Layout from './Layout';
-import Routes from './Routes';
-import ThemeWrapper from './app/ThemeWrapper';
-
+import Layout from '../containers/Layout';
+import ThemeWrapper from '../containers/ThemeWrapper';
 import { GlobalStyle } from '../theme/GlobalStyle';
+
+import Routes from './Routes';
 
 // Add fontAwesome Brand Icons
 library.add(fab, faGlobe);

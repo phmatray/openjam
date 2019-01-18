@@ -3,15 +3,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Flex from '../Flex';
-import Div from '../Div';
-import Input from '../Input';
-import { addComment } from '../../reducers/ui/views/share';
+import Flex from '../components/Flex';
+import Div from '../components/Div';
+import Input from '../components/Input';
+import withTheme from '../hocs/withTheme';
+import { addComment } from '../reducers/ui/views/share';
+import { getUser } from '../reducers/auth';
+import { getErrors } from '../reducers/data/error';
 
-import { AvatarSmall, Button, AddCommentForm } from './styles';
-import { getUser } from '../../reducers/auth';
-import { getErrors } from '../../reducers/data/error';
-import withTheme from '../../hocs/withTheme';
+import { AvatarSmall, Button, AddCommentForm } from '../components/post-item/styles';
 
 type Props = {
   postId: string,

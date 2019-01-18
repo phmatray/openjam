@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 
-import Track from '../../components/model/Track';
+import Track from '../../containers/Track';
 import LinkEntity from '../../components/LinkEntity';
 import {
   fetchTracksByArtistId,

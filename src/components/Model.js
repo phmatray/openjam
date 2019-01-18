@@ -2,8 +2,9 @@
 
 import React from 'react';
 
+import Track from '../containers/Track';
+
 import Artist from './model/Artist';
-import Track from './model/Track';
 import Album from './model/Album';
 import Playlist from './model/Playlist';
 import Label from './model/Label';

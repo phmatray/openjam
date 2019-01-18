@@ -5,27 +5,28 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { Divider } from 'semantic-ui-react';
 
-import LinkArtistNames from '../LinkArtistNames';
-import LinkEntity from '../LinkEntity';
-import Div from '../Div';
-import {
-  playTrack,
-  actions,
-  getPlaying,
-  getCollectionId,
-  getCurrent,
-} from '../../reducers/ui/player';
+import Div from '../components/Div';
+import LinkArtistNames from '../components/LinkArtistNames';
+import LinkEntity from '../components/LinkEntity';
+import { playTrack, actions, getPlaying, getCollectionId, getCurrent } from '../reducers/ui/player';
 
-import ContentBlock from './track/ContentBlock';
-import CoverToggle from './track/CoverToggle';
-import { Details, Artists } from './track/Atoms';
+import ContentBlock from '../components/model/track/ContentBlock';
+import CoverToggle from '../components/model/track/CoverToggle';
+import { Details, Artists } from '../components/model/track/Atoms';
 
 type Props = {
+  playTrack: () => void,
+  pause: () => void,
+  playerPlaying: boolean,
+  playerCollectionId: string,
   track: {
-    artists: [{ artist: { name: string } }],
+    _id: string,
+    type: string,
     title: string,
-    coverurl: { w200: string },
+    date: string,
     edit: string,
+    coverurl: { w200: string },
+    artists: [{ artist: { name: string } }],
   },
 };
 

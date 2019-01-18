@@ -9,10 +9,10 @@ import Div from '../Div';
 import LinkArtistNames from '../LinkArtistNames';
 import LinkEntity from '../LinkEntity';
 import withTheme from '../../hocs/withTheme';
+import Progress from '../../containers/Progress';
 import { fancyTimeFormat } from '../../lib/utils/playerHelpers';
 
 import { PlayerStyled, FlexFill, ColumnCover, ColumnTime, Cover, ArtistName } from './styles';
-import Progress from './player-presenter/Progress';
 
 type Props = {
   play: () => void,

@@ -5,12 +5,12 @@ import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
 
-import LinkEntity from './LinkEntity';
-import LinkArtistNames from './LinkArtistNames';
-import LinkPlay from './playlist-tracks/LinkPlay';
-import CoverToggle from './playlist-tracks/CoverToggle';
-import Row from './playlist-tracks/Row';
-import { HeaderCell } from './playlist-tracks/Atoms';
+import LinkEntity from '../components/LinkEntity';
+import LinkArtistNames from '../components/LinkArtistNames';
+import LinkPlay from '../components/playlist-tracks/LinkPlay';
+import CoverToggle from '../components/playlist-tracks/CoverToggle';
+import Row from '../components/playlist-tracks/Row';
+import { HeaderCell } from '../components/playlist-tracks/Atoms';
 import {
   playSelected,
   actions,

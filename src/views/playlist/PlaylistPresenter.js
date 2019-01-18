@@ -8,11 +8,11 @@ import { Container, Grid, Divider, Header } from 'semantic-ui-react';
 import Div from '../../components/Div';
 import Flex from '../../components/Flex';
 import Hero from '../../components/Hero';
-import PlayPause from '../../components/PlayPause';
-import PlaylistTracks from '../../components/PlaylistTracks';
 import PlaylistCover from '../../components/PlaylistCover';
 import Body from '../../components/Body';
 import LinkEntity from '../../components/LinkEntity';
+import PlayPause from '../../containers/PlayPause';
+import PlaylistTracks from '../../containers/PlaylistTracks';
 
 type Props = {
   playlist: {

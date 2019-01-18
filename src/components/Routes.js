@@ -3,9 +3,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import AuthenticatedRoute from './routes/AuthenticatedRoute';
-import Loading from './routes/Loading';
+
+import AuthenticatedRoute from '../containers/AuthenticatedRoute';
 import Search from '../views/Search';
+
+import Loading from './routes/Loading';
 
 const AsyncLogin = Loadable({
   loader: () => import('../views/Login'),

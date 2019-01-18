@@ -8,11 +8,11 @@ import { Container, Grid, Divider, Header } from 'semantic-ui-react';
 import Div from '../components/Div';
 import Flex from '../components/Flex';
 import Hero from '../components/Hero';
-import PlayPause from '../components/PlayPause';
 import AlbumCover from '../components/AlbumCover';
 import LinkEntity from '../components/LinkEntity';
 import Body from '../components/Body';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
+import PlayPause from '../containers/PlayPause';
 import { fetchAlbum, getAlbum, getAlbumLoading } from '../reducers/ui/views/album';
 
 import AlbumTracks from './album/AlbumTracks';

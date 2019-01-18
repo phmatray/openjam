@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { actions, getSidebarVisible } from '../reducers/ui/layout';
 import { getPlaying } from '../reducers/ui/player';
 
-import LayoutPresenter from './layout/LayoutPresenter';
+import LayoutPresenter from '../components/layout/LayoutPresenter';
 import { getIsAuthenticated, getUser } from '../reducers/auth';
 
 type Props = {

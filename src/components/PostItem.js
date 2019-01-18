@@ -1,7 +1,9 @@
 // @flow
 
 import React from 'react';
-import PostBasic from './post-item/PostBasic';
+
+import PostBasic from '../containers/PostBasic';
+
 import PostAudio from './post-item/PostAudio';
 import PostError from './post-item/PostError';
 

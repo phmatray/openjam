@@ -7,7 +7,7 @@ import { Dropdown } from 'semantic-ui-react';
 import { actions } from '../reducers/ui/layout';
 
 type Props = {
-  updateTheme: () => void,
+  updateTheme: (theme: { text: string, value: string }) => void,
 };
 
 const themes = [
