@@ -4,12 +4,12 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
-import Div from '../../components/Div';
-import Input from '../../components/Input';
-import { addPost } from '../../reducers/ui/views/share';
-import { getErrors } from '../../reducers/data/error';
-import { getUser } from '../../reducers/auth';
-import withTheme from '../../hocs/withTheme';
+import withTheme from '../hocs/withTheme';
+import Div from '../components/Div';
+import Input from '../components/Input';
+import { addPost } from '../reducers/ui/views/share';
+import { getErrors } from '../reducers/data/error';
+import { getUser } from '../reducers/auth';
 
 type NewPost = {
   type: 'post-basic',

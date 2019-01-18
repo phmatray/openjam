@@ -4,13 +4,10 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 
-import Track from '../../containers/Track';
-import LinkEntity from '../../components/LinkEntity';
-import {
-  fetchTracksByArtistId,
-  getByArtist,
-  getByArtistLoading,
-} from '../../reducers/ui/views/track';
+import LinkEntity from '../components/LinkEntity';
+import { fetchTracksByArtistId, getByArtist, getByArtistLoading } from '../reducers/ui/views/track';
+
+import Track from './Track';
 
 type Props = {
   fetchTracksByArtistId: (artistId: string, limit: number) => void,

@@ -2,13 +2,13 @@
 
 import { combineReducers } from 'redux';
 
-const createList = filter => {
+import type { TrackFilter } from '../../../types';
+
+const createList = (filter: TrackFilter) => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case 'FETCH_TRACKS_SUCCESS':
         return filter === action.filter ? action.response.result : state;
-      case 'ADD_TRACK_SUCCESS':
-        return filter !== 'completed' ? [...state, action.response.result] : state;
       default:
         return state;
     }

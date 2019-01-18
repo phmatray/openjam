@@ -29,8 +29,11 @@ export function getApi() {
   return api;
 }
 
-export * from './logion/tracks';
+export * from './logion/albums';
 export * from './logion/artists';
+export * from './logion/labels';
+export * from './logion/playlists';
+export * from './logion/tracks';
 
 const apiAlbum = `${getApi()}/album`;
 const apiArtist = `${getApi()}/artist`;

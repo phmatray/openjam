@@ -20,15 +20,17 @@ import {
   getArtistsLoading,
 } from '../reducers/ui/views/explore';
 import background from '../assets/images/backgrounds/piano-2601498_1920.jpg';
+import type { ArtistBasic, TrackBasic } from '../types';
+
 import ActionsMenu from './explore/ActionsMenu';
 
 type Props = {
   fetchOriginalTracks: () => void,
   fetchRemixTracks: () => void,
   fetchArtists: () => void,
-  originalTracks?: {}[],
-  remixTracks?: {}[],
-  artists?: {}[],
+  originalTracks?: TrackBasic[],
+  remixTracks?: TrackBasic[],
+  artists?: ArtistBasic[],
   t: any,
 };
 
@@ -80,15 +82,15 @@ class Explore extends PureComponent<Props> {
 
         <Div mb="1em">
           <Container>
-            {originalTracks !== null && (
+            {originalTracks !== null && originalTracks !== undefined && (
               <Section
                 title={t('pages.explore.original-titles')}
-                items={originalTracks}
+                items={originalTracks.slice(0, 32)}
                 to="/tracks/originals"
                 maxHeight={256}
               />
             )}
-            {remixTracks !== null && (
+            {remixTracks !== null && remixTracks !== undefined && (
               <Section
                 title={t('pages.explore.remix-titles')}
                 items={remixTracks.slice(0, 32)}
@@ -96,7 +98,7 @@ class Explore extends PureComponent<Props> {
                 maxHeight={256}
               />
             )}
-            {artists !== null && (
+            {artists !== null && artists !== undefined && (
               <Section
                 title={t('pages.explore.artists')}
                 items={artists.slice(0, 16)}

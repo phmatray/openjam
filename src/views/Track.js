@@ -11,11 +11,11 @@ import LinkEntity from '../components/LinkEntity';
 import LinkArtistNames from '../components/LinkArtistNames';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
 import PlayPause from '../containers/PlayPause';
+import MoreTracks from '../containers/MoreTracks';
 import { fetchTrack, getTrack } from '../reducers/ui/views/track';
 
 import ActionsMenu from './track/ActionsMenu';
 import Tabs from './track/Tabs';
-import MoreTracks from './track/MoreTracks';
 
 type Props = {
   entity: {

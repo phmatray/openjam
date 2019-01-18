@@ -2,14 +2,12 @@
 
 import React from 'react';
 
+import type { TrackBasic } from '../../types';
+
 import Track from './track-list/Track';
 
 type Props = {
-  tracks: {
-    _id: string,
-    type2: string,
-    title: string,
-  }[],
+  tracks: TrackBasic[],
   onTrackClick: (trackId: string) => void,
 };
 

@@ -4,8 +4,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Comment, Icon } from 'semantic-ui-react';
 
-import { deleteComment } from '../../reducers/ui/views/share';
-import { getUser } from '../../reducers/auth';
+import { deleteComment } from '../reducers/ui/views/share';
+import { getUser } from '../reducers/auth';
 
 type Props = {
   deleteComment: (postId: string, commentId: string) => void,

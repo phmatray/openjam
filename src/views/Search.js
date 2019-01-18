@@ -2,9 +2,11 @@
 
 import React, { PureComponent } from 'react';
 
-import VisibleTrackList from './search/VisibleTrackList';
+import VisibleTrackList from '../containers/VisibleTrackList';
 
-class Search extends PureComponent {
+type Props = {};
+
+class Search extends PureComponent<Props> {
   componentDidMount() {}
 
   render() {

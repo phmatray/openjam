@@ -12,11 +12,17 @@ import configureStore from './configureStore';
 
 const store = configureStore();
 
+const root = document.getElementById('root');
+
+if (root === null) {
+  throw new Error('root is null');
+}
+
 ReactDOM.render(
   <I18nWrapper>
     <Root store={store} />
   </I18nWrapper>,
-  document.getElementById('root'),
+  root,
 );
 
 // If you want your app to work offline and load faster, you can change

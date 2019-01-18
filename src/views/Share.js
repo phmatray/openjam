@@ -10,12 +10,12 @@ import HeroSimple from '../components/HeroSimple';
 import Feed from '../components/Feed';
 import Spinner from '../components/Spinner';
 import Message from '../components/Message';
+import PostForm from '../containers/PostForm';
 import background from '../assets/images/backgrounds/container-1867697_1920.jpg';
 import { getIsAuthenticated } from '../reducers/auth';
 import { fetchPosts, getPosts, getLoading } from '../reducers/ui/views/share';
 
 import ActionsMenu from './share/ActionsMenu';
-import PostForm from './share/PostForm';
 
 type Props = {
   fetchPosts: () => void,

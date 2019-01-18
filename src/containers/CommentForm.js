@@ -4,11 +4,11 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
-import TextAreaFieldGroup from '../../components/input/TextAreaFieldGroup';
-import { addComment } from '../../reducers/ui/views/share';
-import { getErrors } from '../../reducers/data/error';
-import { getUser } from '../../reducers/auth';
-import withTheme from '../../hocs/withTheme';
+import TextAreaFieldGroup from '../components/input/TextAreaFieldGroup';
+import { addComment } from '../reducers/ui/views/share';
+import { getErrors } from '../reducers/data/error';
+import { getUser } from '../reducers/auth';
+import withTheme from '../hocs/withTheme';
 
 type Props = {
   addComment: (postId: string) => void,
