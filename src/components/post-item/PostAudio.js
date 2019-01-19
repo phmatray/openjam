@@ -13,7 +13,8 @@ import ShareButton from './ShareButton';
 import PlayButton from './PlayButton';
 import Intro from './Intro';
 import graph from './graph.jpg';
-import { Content, PostAudioSegmentGroup } from './styles';
+import Content from './styled/Content';
+import PostAudioSegmentGroup from './styled/PostAudioSegmentGroup';
 import Cover from './post-audio/Cover';
 
 type Props = {

@@ -3,20 +3,21 @@
 import React from 'react';
 
 import withTheme from '../../../hocs/withTheme';
+import type { TrackBasic } from '../../../types';
 
-import { Wrapper, Cover, Overlay, Icon } from './cover-toggle/Atoms';
+import Wrapper from './cover-toggle/Wrapper';
+import Cover from './cover-toggle/Cover';
+import Overlay from './cover-toggle/Overlay';
+import Icon from './cover-toggle/Icon';
 
 type Props = {
-  playTrack: () => void,
+  playTrack: (track: TrackBasic) => void,
   pause: () => void,
-  track: {
-    _id: string,
-    title: string,
-    coverurl: { w200: string },
-  },
+  track: TrackBasic,
   isActive: boolean,
   playerPlaying: boolean,
   isNew?: boolean,
+  theme: any,
 };
 
 const CoverToggle = ({ playTrack, pause, track, isActive, isNew, playerPlaying, theme }: Props) => {

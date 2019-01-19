@@ -3,16 +3,7 @@
 import styled from 'styled-components';
 import loginBackground from '../../assets/images/backgrounds/login-background.jpg';
 
-export const FullHeightContainer = styled.div`
-  display: table;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-`;
-
-export const BackgroundOverlay = styled.div`
+const BackgroundOverlay = styled.div`
   background: #000;
   background-image: ${`url(${loginBackground})`};
   background-position: 50%;
@@ -31,3 +22,5 @@ export const BackgroundOverlay = styled.div`
     top: 0;
   }
 `;
+
+export default BackgroundOverlay;

@@ -11,8 +11,14 @@ import LinkEntity from '../LinkEntity';
 import withTheme from '../../hocs/withTheme';
 import Progress from '../../containers/Progress';
 import { fancyTimeFormat } from '../../lib/utils/playerHelpers';
+import type { TrackBasic } from '../../types';
 
-import { PlayerStyled, FlexFill, ColumnCover, ColumnTime, Cover, ArtistName } from './styles';
+import PlayerStyled from './PlayerStyled';
+import FlexFill from './FlexFill';
+import ColumnCover from './ColumnCover';
+import ColumnTime from './ColumnTime';
+import Cover from './Cover';
+import ArtistName from './ArtistName';
 
 type Props = {
   play: () => void,
@@ -20,13 +26,9 @@ type Props = {
   previous: () => void,
   next: () => void,
   playing: boolean,
-  current: {
-    _id: string,
-    coverurl: { w200: string },
-    title: string,
-    artists: [{}],
-  },
+  current: TrackBasic,
   audioInfo: { position: number, duration: number },
+  theme: any,
   t: any,
 };
 

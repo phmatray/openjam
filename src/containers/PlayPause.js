@@ -11,7 +11,8 @@ import {
   getPlaying,
 } from '../reducers/ui/player';
 
-import { PlayPauseIcon, StyledButton } from '../components/play-pause/Atoms';
+import PlayPauseIcon from '../components/play-pause/PlayPauseIcon';
+import StyledButton from '../components/play-pause/StyledButton';
 
 type Entity = {
   _id: string,

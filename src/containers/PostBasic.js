@@ -7,7 +7,7 @@ import { Segment, SegmentGroup } from 'semantic-ui-react';
 import LikeButton from '../components/post-item/LikeButton';
 import Intro from '../components/post-item/Intro';
 import Comment from '../components/post-item/Comment';
-import { Content } from '../components/post-item/styles';
+import Content from '../components/post-item/styled/Content';
 import { SegmentPostBasic } from '../components/SegmentPost';
 import { deletePost, addLike, removeLike } from '../reducers/ui/views/share';
 import { getUser, getIsAuthenticated } from '../reducers/auth';

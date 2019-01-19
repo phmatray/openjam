@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 import Flex from '../Flex';
 import type { UserBasic } from '../../types';
 
-import { Avatar, FromNow } from './styles';
+import Avatar from './styled/Avatar';
+import FromNow from './styled/FromNow';
 
 type Props = {
   post: {

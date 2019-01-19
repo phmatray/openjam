@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+
 import HoverSpan from './link-play/HoverSpan';
 
 type Props = {

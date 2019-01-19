@@ -12,7 +12,8 @@ import { playTrack, actions } from '../reducers/ui/player';
 
 import ContentBlock from '../components/model/track/ContentBlock';
 import CoverToggle from '../components/model/track/CoverToggle';
-import { Details, Artists } from '../components/model/track/Atoms';
+import Details from '../components/model/track/Details';
+import Artists from '../components/model/track/Artists';
 import withPlayer from '../hocs/withPlayer';
 import type { TrackBasic } from '../types';
 

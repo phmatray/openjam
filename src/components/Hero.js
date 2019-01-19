@@ -3,7 +3,8 @@
 import * as React from 'react';
 
 import HeroContainer from './hero/HeroContainer';
-import { Overlay, ContainerFullHeight } from './hero/Atoms';
+import Overlay from './hero/Overlay';
+import ContainerFullHeight from './hero/ContainerFullHeight';
 
 type Props = {
   src: string,

@@ -10,7 +10,12 @@ import Div from '../../components/Div';
 import Logo from './landing-presenter/Logo';
 import ButtonRegister from './landing-presenter/ButtonRegister';
 import ButtonLogin from './landing-presenter/ButtonLogin';
-import { GridContent, H1, H3, Ul, Li, Features } from './landing-presenter/Atoms';
+import GridContent from './landing-presenter/GridContent';
+import H1 from './landing-presenter/H1';
+import H3 from './landing-presenter/H3';
+import Ul from './landing-presenter/Ul';
+import Li from './landing-presenter/Li';
+import Features from './landing-presenter/Features';
 
 const LandingPresenter = ({ t }) => (
   <BackgroundScreen>

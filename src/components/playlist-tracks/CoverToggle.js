@@ -2,7 +2,10 @@
 
 import React from 'react';
 
-import { Wrapper, Cover, Overlay, Icon } from './cover-toggle/Atoms';
+import Wrapper from './cover-toggle/Wrapper';
+import Cover from './cover-toggle/Cover';
+import Overlay from './cover-toggle/Overlay';
+import Icon from './cover-toggle/Icon';
 
 type Playlist = {};
 

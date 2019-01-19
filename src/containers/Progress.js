@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { actions } from '../reducers/ui/player';
-import { ProgressStyled, ProgressInner } from '../components/player/player-presenter/styles';
+import ProgressStyled from '../components/player/player-presenter/ProgressStyled';
+import ProgressInner from '../components/player/player-presenter/ProgressInner';
 
 type Props = {
   updatePosition: (position: number) => void,

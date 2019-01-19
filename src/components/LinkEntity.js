@@ -3,7 +3,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { TableLink, InvertedLink, Alternate, AlternateEdit } from './link-entity/Atoms';
+import TableLink from './link-entity/TableLink';
+import InvertedLink from './link-entity/InvertedLink';
+import Alternate from './link-entity/Alternate';
+import AlternateEdit from './link-entity/AlternateEdit';
 
 type Entity = {
   _id: string,

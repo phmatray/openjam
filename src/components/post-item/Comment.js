@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 import Flex from '../Flex';
 import Div from '../Div';
 
-import { AvatarSmall, CommentText, FromNow, CommentContainer } from './styles';
+import AvatarSmall from './styled/AvatarSmall';
+import CommentText from './styled/CommentText';
+import FromNow from './styled/FromNow';
+import CommentContainer from './styled/CommentContainer';
 
 type Props = {
   comment: {

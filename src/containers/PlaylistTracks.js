@@ -10,7 +10,7 @@ import LinkArtistNames from '../components/LinkArtistNames';
 import LinkPlay from '../components/playlist-tracks/LinkPlay';
 import CoverToggle from '../components/playlist-tracks/CoverToggle';
 import Row from '../components/playlist-tracks/Row';
-import { HeaderCell } from '../components/playlist-tracks/Atoms';
+import HeaderCell from '../components/playlist-tracks/HeaderCell';
 import {
   playSelected,
   actions,

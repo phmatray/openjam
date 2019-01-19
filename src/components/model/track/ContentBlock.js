@@ -3,7 +3,8 @@
 import type { ComponentType } from 'react';
 import styled from 'styled-components';
 
-import { Wrapper, Overlay } from './cover-toggle/Atoms';
+import Wrapper from './cover-toggle/Wrapper';
+import Overlay from './cover-toggle/Overlay';
 
 type Props = {
   active: boolean,

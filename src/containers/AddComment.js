@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 import Flex from '../components/Flex';
 import Div from '../components/Div';
 import Input from '../components/Input';
+import AvatarSmall from '../components/post-item/styled/AvatarSmall';
+import Button from '../components/post-item/styled/Button';
+import AddCommentForm from '../components/post-item/styled/AddCommentForm';
 import withTheme from '../hocs/withTheme';
 import { addComment } from '../reducers/ui/views/share';
 import { getUser } from '../reducers/auth';
 import { getErrors } from '../reducers/data/error';
-
-import { AvatarSmall, Button, AddCommentForm } from '../components/post-item/styles';
 
 type Props = {
   postId: string,

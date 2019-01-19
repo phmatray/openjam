@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Icon, Button } from 'semantic-ui-react';
+
 import withTheme from '../../hocs/withTheme';
 
 const PlayButton = ({ theme }) => (
