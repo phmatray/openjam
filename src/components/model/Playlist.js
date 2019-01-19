@@ -4,17 +4,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import PlaylistCover from '../PlaylistCover';
+import type { PlaylistBasic } from '../../types';
 
 import Title from './playlist/Title';
 import Description from './playlist/Description';
 
 type Props = {
-  playlist: {
-    _id: string,
-    name: string,
-    description: string,
-    tracks: [],
-  },
+  playlist: PlaylistBasic,
 };
 
 const Playlist = ({ playlist }: Props) => (

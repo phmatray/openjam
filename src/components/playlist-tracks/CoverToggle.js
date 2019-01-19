@@ -2,26 +2,18 @@
 
 import React from 'react';
 
+import type { PlaylistBasic, TrackBasic } from '../../types';
+
 import Wrapper from './cover-toggle/Wrapper';
 import Cover from './cover-toggle/Cover';
 import Overlay from './cover-toggle/Overlay';
 import Icon from './cover-toggle/Icon';
 
-type Playlist = {};
-
-type Track = {
-  _id: string,
-  title: string,
-  coverurl: {
-    w200: string,
-  },
-};
-
 type Props = {
-  playSelected: (playlist: Playlist, track: Track) => void,
+  playSelected: (playlist: PlaylistBasic, track: TrackBasic) => void,
   pause: () => void,
-  playlist: Playlist,
-  track: Track,
+  playlist: PlaylistBasic,
+  track: TrackBasic,
   isActive: boolean,
   playerPlaying: boolean,
 };

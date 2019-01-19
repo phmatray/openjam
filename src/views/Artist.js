@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 
 import { fetchArtist, getArtist, getArtistLoading } from '../reducers/ui/views/artist';
 import Spinner from '../components/Spinner';
+import type { ArtistBasic } from '../types';
 
 import ArtistPresenter from './artist/ArtistPresenter';
 
 type Props = {
-  fetchArtist: () => void,
-  artist?: {},
+  fetchArtist: (artistId: string) => void,
+  artist?: ArtistBasic,
   loading?: boolean,
   match: { params: { id: string } },
 };
@@ -49,7 +50,7 @@ class Artist extends PureComponent<Props, State> {
     return artist === null || artist === undefined || loading ? (
       <Spinner />
     ) : (
-      <ArtistPresenter artist={artist} loading={loading} />
+      <ArtistPresenter artist={artist} loading={false} />
     );
   }
 }

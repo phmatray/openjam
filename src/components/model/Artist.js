@@ -3,16 +3,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import type { ArtistBasic } from '../../types';
+
 import Card from './artist/Card';
 import Content from './artist/Content';
 import Title from './artist/Title';
 
 type Props = {
-  artist: {
-    _id: string,
-    name: string,
-    images: { url: string }[],
-  },
+  artist: ArtistBasic,
 };
 
 const Artist = ({ artist }: Props) => (

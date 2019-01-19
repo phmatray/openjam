@@ -11,11 +11,12 @@ import withTheme from '../hocs/withTheme';
 import { createProfile } from '../reducers/data/profile';
 import { getErrors } from '../reducers/data/error';
 import { getIsAuthenticated, getUser } from '../reducers/auth';
+import type { UserBasic } from '../types';
 
 type Props = {
   createProfile: () => void,
   isAuthenticated: boolean,
-  user: {},
+  user: UserBasic,
   errors: {},
   history: any,
 };

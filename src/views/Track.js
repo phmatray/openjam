@@ -13,19 +13,13 @@ import EntityContainerHOC from '../hocs/buildEntityContainer';
 import PlayPause from '../containers/PlayPause';
 import MoreTracks from '../containers/MoreTracks';
 import { fetchTrack, getTrack } from '../reducers/ui/views/track';
+import type { TrackBasic } from '../types';
 
 import ActionsMenu from './track/ActionsMenu';
 import Tabs from './track/Tabs';
 
 type Props = {
-  entity: {
-    title: string,
-    artists: [{ artist: {} }],
-    albums: [{ album: { name: string } }],
-    coverurl: {
-      w800: string,
-    },
-  },
+  entity: TrackBasic,
 };
 
 const Track = ({ entity }: Props) => (

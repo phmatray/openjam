@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
 import { fetchPlaylists, getPlaylists, getLoading } from '../reducers/data/playlist';
+import type { PlaylistBasic } from '../types';
 
 import PlaylistsPresenter from './playlists/PlaylistsPresenter';
 
 type Props = {
   fetchPlaylists: () => void,
   loading: boolean,
-  playlists?: {}[],
+  playlists?: PlaylistBasic[],
 };
 
 class Playlists extends PureComponent<Props> {
@@ -26,7 +27,7 @@ class Playlists extends PureComponent<Props> {
   render() {
     const { playlists, loading } = this.props;
 
-    if (playlists === null || loading) {
+    if (playlists === null || playlists === undefined || loading) {
       return <Spinner />;
     }
     if (playlists.length === 0) {

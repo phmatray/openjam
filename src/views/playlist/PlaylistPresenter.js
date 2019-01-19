@@ -13,13 +13,10 @@ import Body from '../../components/Body';
 import LinkEntity from '../../components/LinkEntity';
 import PlayPause from '../../containers/PlayPause';
 import PlaylistTracks from '../../containers/PlaylistTracks';
+import type { PlaylistBasic } from '../../types';
 
 type Props = {
-  playlist: {
-    name: string,
-    description: string,
-    tracks: { track: { coverurl: { w800: string } } }[],
-  },
+  playlist: PlaylistBasic,
   t: any,
 };
 

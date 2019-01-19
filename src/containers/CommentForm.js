@@ -9,15 +9,12 @@ import { addComment } from '../reducers/ui/views/share';
 import { getErrors } from '../reducers/data/error';
 import { getUser } from '../reducers/auth';
 import withTheme from '../hocs/withTheme';
+import type { UserBasic } from '../types';
 
 type Props = {
-  addComment: (postId: string) => void,
+  addComment: (postId: string, newComment: any) => void,
   postId: string,
-  user: {
-    firstName: string,
-    lastName: string,
-    avatar: string,
-  },
+  user: UserBasic,
   errors: {},
   theme: { primarySemantic: string },
 };

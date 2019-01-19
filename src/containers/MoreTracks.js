@@ -6,13 +6,14 @@ import { Header } from 'semantic-ui-react';
 
 import LinkEntity from '../components/LinkEntity';
 import { fetchTracksByArtistId, getByArtist, getByArtistLoading } from '../reducers/ui/views/track';
+import type { ArtistBasic } from '../types';
 
 import Track from './Track';
 
 type Props = {
   fetchTracksByArtistId: (artistId: string, limit: number) => void,
-  artist: { _id: string },
-  byArtist?: { _id: string }[],
+  artist: ArtistBasic,
+  byArtist?: ArtistBasic[],
   limit?: number,
 };
 

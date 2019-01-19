@@ -2,10 +2,10 @@
 
 import React from 'react';
 
+import type { TrackBasic } from '../types';
+
 type Props = {
-  tracks: {
-    track: { coverurl: { w400: string } }[],
-  },
+  tracks: TrackBasic[],
   radius?: string,
 };
 

@@ -6,16 +6,13 @@ import { Comment, Icon } from 'semantic-ui-react';
 
 import { deleteComment } from '../reducers/ui/views/share';
 import { getUser } from '../reducers/auth';
+import type { CommentBasic, UserBasic } from '../types';
 
 type Props = {
   deleteComment: (postId: string, commentId: string) => void,
   postId: string,
-  comment: {
-    firstname: string,
-    lastname: string,
-    avatar: string,
-  },
-  user: {},
+  comment: CommentBasic,
+  user: UserBasic,
 };
 
 class CommentItem extends PureComponent<Props> {

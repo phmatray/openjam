@@ -10,6 +10,7 @@ import Input from '../components/Input';
 import { addPost } from '../reducers/ui/views/share';
 import { getErrors } from '../reducers/data/error';
 import { getUser } from '../reducers/auth';
+import type { UserBasic } from '../types';
 
 type NewPost = {
   type: 'post-basic',
@@ -19,7 +20,7 @@ type NewPost = {
 
 type Props = {
   addPost: (newPost: NewPost) => void,
-  user: { _id: string, firstName: string },
+  user: UserBasic,
   errors: {},
   theme: any,
 };

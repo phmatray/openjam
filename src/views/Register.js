@@ -18,7 +18,11 @@ type Props = {
   history: any,
 };
 
-class Register extends PureComponent<Props> {
+type State = {
+  errors: any,
+};
+
+class Register extends PureComponent<Props, State> {
   componentDidMount() {
     if (this.props.isAuthenticated) {
       this.props.history.push('/explore');

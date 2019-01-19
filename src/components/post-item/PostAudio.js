@@ -7,6 +7,7 @@ import Flex from '../Flex';
 import Div from '../Div';
 import Span from '../Span';
 import { SegmentPostAudio } from '../SegmentPost';
+import type { PostAudio } from '../../types';
 
 import LikeButton from './LikeButton';
 import ShareButton from './ShareButton';
@@ -18,16 +19,10 @@ import PostAudioSegmentGroup from './styled/PostAudioSegmentGroup';
 import Cover from './post-audio/Cover';
 
 type Props = {
-  post: {
-    track: {
-      title: string,
-      coverurl: { w200: string },
-      artists: { name: string }[],
-    },
-  },
+  post: PostAudio,
 };
 
-const PostAudio = ({ post }: Props) => {
+const PostAudioComponent = ({ post }: Props) => {
   const { coverurl, title, artists } = post.track;
   const artistName = artists[0].name;
 
@@ -65,4 +60,4 @@ const PostAudio = ({ post }: Props) => {
   );
 };
 
-export default PostAudio;
+export default PostAudioComponent;

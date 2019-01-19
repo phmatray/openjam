@@ -5,17 +5,11 @@ import Moment from 'react-moment';
 import { Header, Button, Icon, Tab, Card, Image, Divider } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
+import type { UserBasic } from '../../types';
 
 type Props = {
   loading: boolean,
-  user: {
-    email: string,
-    firstName: string,
-    lastName: string,
-    profileImageUrl: string,
-    createdAt: string,
-    roleName: string,
-  },
+  user: UserBasic,
 };
 
 const PaneAccount = ({

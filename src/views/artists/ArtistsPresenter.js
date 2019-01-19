@@ -8,11 +8,12 @@ import Div from '../../components/Div';
 import HeroSimple from '../../components/HeroSimple';
 import background from '../../assets/images/backgrounds/people-2562222_1920.jpg';
 import Section from '../../components/Section';
+import type { ArtistBasic } from '../../types';
 
 import ActionsMenu from './artists-presenter/ActionsMenu';
 
 type Props = {
-  artists: { _id: string, images: any }[],
+  artists: ArtistBasic[],
   t: any,
 };
 

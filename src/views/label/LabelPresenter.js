@@ -5,9 +5,10 @@ import { withNamespaces } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import Body from '../../components/Body';
+import type { LabelBasic } from '../../types';
 
 type Props = {
-  label: { name: string },
+  label: LabelBasic,
   t: any,
 };
 

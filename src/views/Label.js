@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
 import { fetchLabel, getLabel, getLoading } from '../reducers/data/label';
+import type { LabelBasic } from '../types';
 
 import LabelPresenter from './label/LabelPresenter';
 
 type Props = {
   fetchLabel: (labelId: string) => void,
   match: { params: { id: string } },
-  label?: {},
+  label?: LabelBasic,
   loading?: boolean,
 };
 

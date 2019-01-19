@@ -3,6 +3,7 @@
 import React from 'react';
 
 import isEmpty from '../../../lib/validation/is-empty';
+import type { ArtistBasic } from '../../../types';
 
 import Genres from './aside/Genres';
 import Socials from './aside/Socials';
@@ -10,15 +11,7 @@ import YearsActive from './aside/YearsActive';
 import Labels from './aside/Labels';
 
 type Props = {
-  artist: {
-    genres: [],
-    information: {
-      website: string,
-      years: [{ from: string, to: string }],
-      labels: [],
-      socials: [],
-    },
-  },
+  artist: ArtistBasic,
 };
 
 const Aside = ({ artist }: Props) => {

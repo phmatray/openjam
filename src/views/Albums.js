@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 
 import { fetchAlbums, getAlbums, getLoading } from '../reducers/data/album';
 import Spinner from '../components/Spinner';
+import type { AlbumBasic } from '../types';
 
 import AlbumsPresenter from './albums/AlbumsPresenter';
 
 type Props = {
   fetchAlbums: () => void,
-  albums?: {}[],
+  albums?: AlbumBasic[],
   loading: boolean,
 };
 
@@ -26,7 +27,7 @@ class Albums extends PureComponent<Props> {
   render() {
     const { albums, loading } = this.props;
 
-    if (albums === null || loading) {
+    if (albums === null || albums === undefined || loading) {
       return <Spinner />;
     }
     if (albums.length === 0) {

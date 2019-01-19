@@ -3,6 +3,7 @@
 import axios from 'axios';
 
 import { getApi } from '../logion';
+import type { AlbumBasic } from '../../types';
 
 const apiAlbum = `${getApi()}/album`;
 
@@ -14,6 +15,6 @@ export async function fetchAlbums() {
   return albums;
 }
 
-export function addAlbum() {
-  console.warn('not implemented');
+export function addAlbum(album: AlbumBasic) {
+  console.warn('not implemented', album);
 }

@@ -13,15 +13,11 @@ import withTheme from '../hocs/withTheme';
 import { addComment } from '../reducers/ui/views/share';
 import { getUser } from '../reducers/auth';
 import { getErrors } from '../reducers/data/error';
+import type { UserBasic } from '../types';
 
 type Props = {
   postId: string,
-  user: {
-    firstName: string,
-    lastName: string,
-    handle: string,
-    profileImageUrl: string,
-  },
+  user: UserBasic,
 };
 
 type State = { text: string, errors: {} };

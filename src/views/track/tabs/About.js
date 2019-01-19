@@ -4,12 +4,10 @@ import React from 'react';
 import { Header } from 'semantic-ui-react';
 
 import LinkEntity from '../../../components/LinkEntity';
+import type { TrackBasic } from '../../../types';
 
 type Props = {
-  track: {
-    albums: { album: { _id: string } }[],
-    explicit: boolean,
-  },
+  track: TrackBasic,
 };
 
 const About = ({ track }: Props) => (

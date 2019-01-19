@@ -7,18 +7,12 @@ import { Header, Tab, Card, Label } from 'semantic-ui-react';
 import getYears from '../../../lib/utils/getYears';
 import Section from '../../../components/Section';
 import withTheme from '../../../hocs/withTheme';
+import type { ArtistBasic } from '../../../types';
 
 type Props = {
-  artist: {
-    tracks: {
-      track: any,
-    }[],
-    information: {
-      description: any,
-      members: any,
-    },
-  },
+  artist: ArtistBasic,
   loading?: boolean,
+  theme: any,
 };
 
 const Tabs = ({ artist, loading, theme }: Props) => {

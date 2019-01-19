@@ -14,12 +14,13 @@ import PostForm from '../containers/PostForm';
 import background from '../assets/images/backgrounds/container-1867697_1920.jpg';
 import { getIsAuthenticated } from '../reducers/auth';
 import { fetchPosts, getPosts, getLoading } from '../reducers/ui/views/share';
+import type { PostBasic } from '../types';
 
 import ActionsMenu from './share/ActionsMenu';
 
 type Props = {
   fetchPosts: () => void,
-  posts: {}[],
+  posts: PostBasic[],
   loading: boolean,
   isAuthenticated: boolean,
   t: any,

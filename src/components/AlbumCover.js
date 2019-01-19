@@ -2,13 +2,10 @@
 
 import React from 'react';
 
+import type { AlbumBasic } from '../types';
+
 type Props = {
-  album: {
-    name: string,
-    images: {
-      href: string,
-    },
-  },
+  album: AlbumBasic,
 };
 
 const AlbumCover = ({ album }: Props) => (

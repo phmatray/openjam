@@ -10,14 +10,11 @@ import {
   getCollectionId,
   getPlaying,
 } from '../reducers/ui/player';
-
 import PlayPauseIcon from '../components/play-pause/PlayPauseIcon';
 import StyledButton from '../components/play-pause/StyledButton';
+import type { AlbumBasic, PlaylistBasic, TrackBasic } from '../types';
 
-type Entity = {
-  _id: string,
-  type: 'track' | 'playlist' | 'album',
-};
+type Entity = AlbumBasic | PlaylistBasic | TrackBasic;
 
 type Props = {
   playSelected: (entity: Entity) => void,

@@ -1,11 +1,14 @@
 // @flow
 
 import React from 'react';
-import FeedStyled from './feed-presenter/FeedStyled';
+
 import PostItem from '../PostItem';
+import type { PostBasic } from '../../types';
+
+import FeedStyled from './feed-presenter/FeedStyled';
 
 type Props = {
-  posts: [],
+  posts: PostBasic[],
 };
 
 const FeedPresenter = ({ posts }: Props) => (

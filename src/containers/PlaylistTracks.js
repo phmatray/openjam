@@ -18,17 +18,15 @@ import {
   getCollection,
   getCurrent,
 } from '../reducers/ui/player';
+import type { PlaylistBasic, TrackBasic } from '../types';
 
 type Props = {
-  playlist: {
-    _id: string,
-    tracks: { track: { _id: string, artists: [] } }[],
-  },
+  playlist: PlaylistBasic,
   playSelected: () => void,
   pause: () => void,
   playerPlaying: boolean,
   playerCollection: { _id: string },
-  playerTrack: { _id: string },
+  playerTrack: TrackBasic,
   t: any,
 };
 

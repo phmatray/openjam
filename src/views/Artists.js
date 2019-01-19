@@ -8,18 +8,17 @@ import { withRouter } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import * as actions from '../actions/artists';
 import { getVisibleArtists, getErrorMessage, getIsFetching } from '../reducers/data/artists';
+import type { ArtistFilter, ArtistBasic } from '../types';
 
 import ArtistsPresenter from './artists/ArtistsPresenter';
 import FetchError from './artists/FetchError';
 
-type Filter = 'all';
-
 type Props = {
-  filter: Filter,
+  filter: ArtistFilter,
   errorMessage?: string,
-  artists: {}[],
+  artists: ArtistBasic[],
   isFetching?: boolean,
-  fetchArtists: (filter: Filter) => void,
+  fetchArtists: (filter: ArtistFilter) => void,
 };
 
 class Artists extends PureComponent<Props> {

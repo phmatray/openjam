@@ -4,7 +4,7 @@ import { normalize } from 'normalizr';
 
 import * as api from '../api/logion';
 import { getIsFetching } from '../reducers/data/tracks';
-import type { TrackFilter, Dispatch, GetState } from '../types';
+import type { TrackFilter, Dispatch, GetState, TrackBasic } from '../types';
 
 import * as schema from './schema';
 
@@ -36,8 +36,8 @@ export const fetchTracks = (filter: TrackFilter) => (dispatch: Dispatch, getStat
   );
 };
 
-export const addTrack = (text: string) => (dispatch: Dispatch) =>
-  api.addTrack(text).then(response => {
+export const addTrack = (track: TrackBasic) => (dispatch: Dispatch) =>
+  api.addTrack(track).then(response => {
     dispatch({
       type: 'ADD_TRACK_SUCCESS',
       response: normalize(response, schema.track),

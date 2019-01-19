@@ -11,12 +11,13 @@ import {
   getOriginalTracks,
   getOriginalTracksLoading,
 } from '../reducers/ui/views/explore';
+import type { TrackBasic } from '../types';
 
 import TracksPresenter from './tracks/TracksPresenter';
 
 type Props = {
   fetchOriginalTracks: () => void,
-  originalTracks?: {}[],
+  originalTracks?: TrackBasic[],
   originalTracksLoading: boolean,
   t: any,
 };
@@ -37,7 +38,7 @@ class OriginalTracks extends PureComponent<Props> {
   render() {
     const { originalTracks, originalTracksLoading, t } = this.props;
 
-    if (originalTracks === null || originalTracksLoading) {
+    if (originalTracks === null || originalTracks === undefined || originalTracksLoading) {
       return <Spinner />;
     }
     if (originalTracks.length === 0) {

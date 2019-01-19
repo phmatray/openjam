@@ -11,27 +11,19 @@ import Content from '../components/post-item/styled/Content';
 import { SegmentPostBasic } from '../components/SegmentPost';
 import { deletePost, addLike, removeLike } from '../reducers/ui/views/share';
 import { getUser, getIsAuthenticated } from '../reducers/auth';
+import type { PostBasic, UserBasic } from '../types';
 
 import AddComment from './AddComment';
 
 type Props = {
   addLike: (postId: string) => void,
-  removeLike: () => void,
-  user: {
-    _id: string,
-  },
-  post: {
-    _id: string,
-    avatar: string,
-    text: string,
-    likes?: [],
-    shares?: [],
-    comments?: [],
-  },
+  removeLike: (postId: string) => void,
+  user: UserBasic,
+  post: PostBasic,
   isAuthenticated: boolean,
 };
 
-class PostBasic extends Component<Props> {
+class PostBasicContainer extends Component<Props> {
   findUserLike = likes => {
     const { user } = this.props;
     return likes && likes.filter(like => like.user === user._id).length > 0;
@@ -91,4 +83,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { deletePost, addLike, removeLike },
-)(PostBasic);
+)(PostBasicContainer);

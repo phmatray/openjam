@@ -7,11 +7,7 @@ import { styler, tween, merge, action, easing } from 'popmotion';
 type Props = {};
 
 class KawaiiAnimation extends PureComponent<Props> {
-  constructor(props) {
-    super(props);
-
-    this.ghostRef = React.createRef();
-  }
+  ghostRef = React.createRef();
 
   componentDidMount() {
     const mouth = styler(this.ghostRef.current.querySelector('#Combined-Shape'));

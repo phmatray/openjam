@@ -8,9 +8,10 @@ import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
 import Playlist from '../../components/model/Playlist';
+import type { PlaylistBasic } from '../../types';
 
 type Props = {
-  playlists: { _id: string }[],
+  playlists: PlaylistBasic[],
   t: any,
 };
 

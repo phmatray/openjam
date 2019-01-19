@@ -4,16 +4,10 @@ import React from 'react';
 import { Container, Menu, Icon, Button } from 'semantic-ui-react';
 
 import withTheme from '../../hocs/withTheme';
+import type { TrackBasic } from '../../types';
 
 type Props = {
-  track: {
-    type2: string,
-    audiourl: string,
-    meta: {
-      downloadable: boolean,
-      downloads: [],
-    },
-  },
+  track: TrackBasic,
   theme: any,
 };
 

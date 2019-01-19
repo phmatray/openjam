@@ -9,6 +9,7 @@ import LandingPresenter from './landing/LandingPresenter';
 
 type Props = {
   isAuthenticated: boolean,
+  history: any,
 };
 
 class Landing extends PureComponent<Props> {

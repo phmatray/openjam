@@ -3,15 +3,10 @@
 import React from 'react';
 import LinkEntity from './LinkEntity';
 
+import type { ArtistBasic } from '../types';
+
 type Props = {
-  artists: [
-    {
-      _id: string,
-      name: string,
-      images: [],
-      information: {},
-    },
-  ],
+  artists: ArtistBasic[],
   as?: 'link' | 'table' | 'inverted',
 };
 
@@ -30,7 +25,7 @@ const LinkArtistNames = ({ artists, as }: Props) =>
     })
     .reduce((prev, curr) => [prev, ' & ', curr]);
 
-LinkEntity.defaultProps = {
+LinkArtistNames.defaultProps = {
   as: 'link',
 };
 

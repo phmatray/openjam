@@ -11,12 +11,13 @@ import {
   getRemixTracks,
   getRemixTracksLoading,
 } from '../reducers/ui/views/explore';
+import type { TrackBasic } from '../types';
 
 import TracksPresenter from './tracks/TracksPresenter';
 
 type Props = {
   fetchRemixTracks: () => void,
-  remixTracks?: {}[],
+  remixTracks?: TrackBasic[],
   remixTracksLoading: boolean,
   t: any,
 };

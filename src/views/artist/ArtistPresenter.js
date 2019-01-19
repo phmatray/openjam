@@ -6,17 +6,14 @@ import { Container, Grid, Image, Header, Divider } from 'semantic-ui-react';
 import Hero from '../../components/Hero';
 import Flex from '../../components/Flex';
 import Div from '../../components/Div';
+import type { ArtistBasic } from '../../types';
 
 import ActionsMenu from './artist-presenter/ActionsMenu';
 import Tabs from './artist-presenter/Tabs';
 import Aside from './artist-presenter/Aside';
 
 type Props = {
-  artist: {
-    name: string,
-    images: any,
-    information: any,
-  },
+  artist: ArtistBasic,
   loading: boolean,
 };
 

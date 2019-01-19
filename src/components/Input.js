@@ -6,11 +6,13 @@ import SelectListGroup from './input/SelectListGroup';
 import TextAreaFieldGroup from './input/TextAreaFieldGroup';
 import TextFieldGroup from './input/TextFieldGroup';
 
+type InputAs = 'input' | 'select-list' | 'text-area-field' | 'text-field';
+
 type Props = {
   name: string,
   value: string,
   onChange: () => void,
-  as?: 'input' | 'select-list' | 'text-area-field' | 'text-field',
+  as?: InputAs,
 };
 
 const Input = ({ as, ...rest }: Props) => {

@@ -7,20 +7,17 @@ import { Segment, Button, Feed } from 'semantic-ui-react';
 
 import Spinner from '../components/Spinner';
 import PostItem from '../components/PostItem';
+import CommentForm from '../containers/CommentForm';
 import { fetchPost, getLoading, getPost } from '../reducers/ui/views/share';
+import type { PostBasic } from '../types';
 
-import CommentForm from './post/CommentForm';
 import CommentFeed from './post/CommentFeed';
 
 type Props = {
   fetchPost: (postId: string) => void,
   match: { params: { id: string } },
   loading: boolean,
-  post: {
-    _id: string,
-    type: string,
-    comments: {}[],
-  },
+  post: PostBasic,
 };
 
 class Post extends PureComponent<Props> {

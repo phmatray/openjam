@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 import { getApi } from '../logion';
-import type { TrackFilter } from '../../types';
+import type { TrackFilter, TrackBasic } from '../../types';
 
 const apiTrack = `${getApi()}/track`;
 
@@ -18,6 +18,6 @@ export async function fetchTracks(filter: TrackFilter) {
   return tracks;
 }
 
-export function addTrack() {
-  console.warn('not implemented');
+export function addTrack(track: TrackBasic) {
+  console.warn('not implemented', track);
 }

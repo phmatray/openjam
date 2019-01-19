@@ -7,6 +7,7 @@ import { Header, Container, Tab } from 'semantic-ui-react';
 import Div from '../components/Div';
 import { deleteAccount } from '../reducers/data/profile';
 import { fetchMe, getUser, getLoading } from '../reducers/ui/views/dashboard';
+import type { UserBasic } from '../types';
 
 import PaneAccount from './dashboard/PaneAccount';
 import PaneProfile from './dashboard/PaneProfile';
@@ -14,15 +15,10 @@ import PaneMarketplace from './dashboard/PaneMarketplace';
 
 type Props = {
   fetchMe: () => void,
-  user: {
-    email: string,
-    firstName: string,
-    lastName: string,
-    profileImageUrl: string,
-    createdAt: string,
-    roleName: string,
-  },
+  user: UserBasic,
   loading?: boolean,
+  match: { params: { tabKey: string } },
+  history: any,
 };
 
 const panes = [
@@ -41,6 +37,10 @@ const panes = [
 ];
 
 class Dashboard extends PureComponent<Props> {
+  static defaultProps = {
+    loading: false,
+  };
+
   componentDidMount() {
     this.props.fetchMe();
   }
@@ -84,10 +84,6 @@ class Dashboard extends PureComponent<Props> {
     );
   }
 }
-
-Dashboard.defaultProps = {
-  loading: false,
-};
 
 const mapStateToProps = state => ({
   user: getUser(state),

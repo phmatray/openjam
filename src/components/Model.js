@@ -3,6 +3,7 @@
 import React from 'react';
 
 import Track from '../containers/Track';
+import type { AlbumBasic, ArtistBasic, LabelBasic, PlaylistBasic, TrackBasic } from '../types';
 
 import Artist from './model/Artist';
 import Album from './model/Album';
@@ -10,10 +11,7 @@ import Playlist from './model/Playlist';
 import Label from './model/Label';
 
 type Props = {
-  model: {
-    _id: string,
-    type: 'artist' | 'track' | 'album' | 'playlist' | 'label',
-  },
+  model: AlbumBasic | ArtistBasic | LabelBasic | PlaylistBasic | TrackBasic,
 };
 
 const Model = ({ model }: Props) => {

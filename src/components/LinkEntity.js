@@ -3,21 +3,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import type { AlbumBasic, ArtistBasic, LabelBasic, PlaylistBasic, TrackBasic } from '../types';
+
 import TableLink from './link-entity/TableLink';
 import InvertedLink from './link-entity/InvertedLink';
 import Alternate from './link-entity/Alternate';
 import AlternateEdit from './link-entity/AlternateEdit';
 
-type Entity = {
-  _id: string,
-  type: 'album' | 'artist' | 'label' | 'playlist' | 'track',
-  name?: string,
-  title?: string,
-  edit?: string,
-};
-
 type Props = {
-  entity: Entity,
+  entity: AlbumBasic | ArtistBasic | LabelBasic | PlaylistBasic | TrackBasic,
   as: 'link' | 'table' | 'inverted',
   strong: boolean,
   alternate: boolean,

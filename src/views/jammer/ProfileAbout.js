@@ -4,10 +4,11 @@ import React from 'react';
 import { Header, Label, Segment, GridRow, GridColumn } from 'semantic-ui-react';
 
 import isEmpty from '../../lib/validation/is-empty';
+import type { UserBasic } from '../../types';
 
 type Props = {
   profile: {
-    user: { firstname: string },
+    user: UserBasic,
     skills: string[],
     bio: string,
   },
@@ -26,10 +27,10 @@ const ProfileAbout = ({ profile }: Props) => {
       <GridColumn>
         <Segment.Group>
           <Segment>
-            <Header as="h3">{`${profile.user.firstname}'s Bio`}</Header>
+            <Header as="h3">{`${profile.user.firstName}'s Bio`}</Header>
             <p>
               {isEmpty(profile.bio) ? (
-                <span>{`${profile.user.firstname} does not have a bio`}</span>
+                <span>{`${profile.user.firstName} does not have a bio`}</span>
               ) : (
                 <span>{profile.bio}</span>
               )}

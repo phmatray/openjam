@@ -8,9 +8,10 @@ import Album from '../../components/model/Album';
 import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
+import type { AlbumBasic } from '../../types';
 
 type Props = {
-  albums: { _id: string }[],
+  albums: AlbumBasic[],
   t: any,
 };
 

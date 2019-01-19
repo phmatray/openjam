@@ -2,15 +2,18 @@
 
 import React from 'react';
 import { Table } from 'semantic-ui-react';
+
 import LinkEntity from '../../components/LinkEntity';
 import LinkArtistNames from '../../components/LinkArtistNames';
+import type { TrackBasic } from '../../types';
+
 import HeaderCell from './album-tracks/HeaderCell';
 
 type Props = {
   tracks: {
     _id: string,
     track_number: number,
-    track: { artists: {}[] },
+    track: TrackBasic,
   }[],
 };
 

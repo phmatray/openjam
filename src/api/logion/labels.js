@@ -3,6 +3,7 @@
 import axios from 'axios';
 
 import { getApi } from '../logion';
+import type { LabelBasic } from '../../types';
 
 const apiLabel = `${getApi()}/label`;
 
@@ -14,6 +15,6 @@ export async function fetchLabels() {
   return labels;
 }
 
-export function addLabel() {
-  console.warn('not implemented');
+export function addLabel(label: LabelBasic) {
+  console.warn('not implemented', label);
 }

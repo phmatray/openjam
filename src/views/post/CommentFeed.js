@@ -3,10 +3,11 @@
 import React from 'react';
 import { Comment } from 'semantic-ui-react';
 
-import CommentItem from './CommentItem';
+import CommentItem from '../../containers/CommentItem';
+import type { CommentBasic } from '../../types';
 
 type Props = {
-  comments: { _id: string }[],
+  comments: CommentBasic[],
   postId: string,
 };
 

@@ -4,12 +4,13 @@ import React from 'react';
 import { Header, Button, Tab } from 'semantic-ui-react';
 
 import Div from '../../components/Div';
+import type { ArtistBasic } from '../../types';
 
 type Props = {
   loading: boolean,
   user: {
     profiles: {}[],
-    artists: {}[],
+    artists: ArtistBasic[],
   },
 };
 

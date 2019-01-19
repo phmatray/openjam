@@ -2,15 +2,13 @@
 
 import React from 'react';
 
+import type { AlbumBasic, PlaylistBasic, TrackBasic } from '../../types';
+
 import HoverSpan from './link-play/HoverSpan';
 
 type Props = {
   handleClick: () => void,
-  entity: {
-    _id: string,
-    title: string,
-    edit?: string,
-  },
+  entity: AlbumBasic | PlaylistBasic | TrackBasic,
   strong?: boolean,
 };
 
@@ -21,9 +19,22 @@ const LinkPlay = ({ entity, strong, handleClick }: Props) => {
   }
 
   // get content
-  let content = entity.title;
-  if (entity.edit) {
-    content += ` (${entity.edit})`;
+  let content = '';
+  switch (entity.type) {
+    case 'album':
+    case 'playlist':
+      content = entity.name;
+      break;
+
+    case 'track':
+      content = entity.title;
+      if (entity.type === 'track' && entity.edit) {
+        content += ` (${entity.edit})`;
+      }
+      break;
+
+    default:
+      break;
   }
 
   // set strong if needed

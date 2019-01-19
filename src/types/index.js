@@ -3,6 +3,12 @@
 
 // COMMON
 //
+export type AudioInfo = {
+  position: number,
+  duration: number,
+  volume: number,
+};
+
 export type Year = {
   from: string,
   to?: string,
@@ -23,39 +29,105 @@ export type Domain =
 //
 export type AlbumBasic = {
   _id: string,
-  name: string,
-  images: { href: string }[],
+  type: 'album',
   album_type: string,
+  name: string,
+  release_date: string,
+  images: { href: string }[],
+  tracks: TrackBasic[],
   label: {},
 };
 
 export type ArtistBasic = {
   _id: string,
+  type: 'artist',
+  name: string,
+  images: { url: string }[],
+  genres: string[],
+  information: {
+    description: any,
+    members: any,
+    website: string,
+    years: Year[],
+    labels: string[],
+    socials: string[],
+  },
+  followers: { total: number },
+  fans: { total: number },
+  tracks: { track: TrackBasic },
 };
 
 export type LabelBasic = {
   _id: string,
+  type: 'label',
+  name: string,
+  imagesrc?: string,
 };
 
 export type PlaylistBasic = {
   _id: string,
+  type: 'playlist',
+  name: string,
+  description: string,
+  tracks: TrackBasic[],
 };
 
 export type TrackBasic = {
   _id: string,
-  type: string,
-  type2: string,
+  type: 'track',
+  type2: 'original' | 'remix',
   title: string,
   edit: string,
+  explicit: boolean,
   date: string,
-  coverurl: { w200: string },
-  artists: { artist: { name: string } }[],
+  audiourl: string,
+  coverurl: { w200: string, w400: string, w800: string },
+  artists: { artist: ArtistBasic }[],
+  albums: { album: AlbumBasic }[],
+  meta: {
+    description: any,
+    lyrics: any,
+    downloadable: boolean,
+    downloads: [],
+  },
 };
 
 export type UserBasic = {
+  _id: string,
+  email: string,
   profileImageUrl: string,
   firstName: string,
   lastName: string,
+  handle: string,
+  createdAt: string,
+  roleName: string,
+};
+
+export type PostBasic = {
+  _id: string,
+  type: 'post-basic',
+  byUser: UserBasic,
+  createdAt: string,
+  handle: string,
+  text: string,
+  likes?: [],
+  shares?: [],
+  comments?: CommentBasic[],
+};
+
+export type PostAudio = {
+  _id: string,
+  type: string,
+  track: TrackBasic,
+};
+
+export type CommentBasic = {
+  _id: string,
+  type: 'comment',
+  text: string,
+  firstname: string,
+  lastname: string,
+  avatar: string,
 };
 
 // FILTERS

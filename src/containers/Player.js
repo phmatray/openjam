@@ -14,18 +14,18 @@ import {
   getAudioInfo,
   getStatus,
 } from '../reducers/ui/player';
-
 import PlayerPresenter from '../components/player/PlayerPresenter';
+import type { AudioInfo, TrackBasic } from '../types';
 
 type Props = {
   fetchTracks: () => void,
-  loadCollection: ({}[]) => void,
-  updateAudioInfo: ({ position: number, duration: number, volume: number }) => void,
+  loadCollection: (TrackBasic[]) => void,
+  updateAudioInfo: AudioInfo => void,
   next: () => void,
-  tracks: {}[],
+  tracks: TrackBasic[],
   status: 'PLAYING' | 'PAUSED' | 'STOPPED',
-  current?: { audiourl: string },
-  audioInfo?: { position: number, duration: number, volume: number },
+  current?: TrackBasic,
+  audioInfo?: AudioInfo,
 };
 
 class Player extends Component<Props> {

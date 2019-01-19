@@ -3,6 +3,7 @@
 import axios from 'axios';
 
 import { getApi } from '../logion';
+import type { PlaylistBasic } from '../../types';
 
 const apiPlaylist = `${getApi()}/playlist`;
 
@@ -14,6 +15,6 @@ export async function fetchPlaylists() {
   return playlists;
 }
 
-export function addPlaylist() {
-  console.warn('not implemented');
+export function addPlaylist(playlist: PlaylistBasic) {
+  console.warn('not implemented', playlist);
 }

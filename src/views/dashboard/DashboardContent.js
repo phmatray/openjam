@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
 
 import Spinner from '../../components/Spinner';
+import type { UserBasic } from '../../types';
 
 import ProfileActions from './ProfileActions';
 
 type Props = {
   deleteAccount: () => void,
   profile: { handle: string },
-  user: { firstName: string },
+  user: UserBasic,
   loading: boolean,
 };
 

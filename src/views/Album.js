@@ -14,17 +14,13 @@ import Body from '../components/Body';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
 import PlayPause from '../containers/PlayPause';
 import { fetchAlbum, getAlbum, getAlbumLoading } from '../reducers/ui/views/album';
+import type { AlbumBasic } from '../types';
 
 import AlbumTracks from './album/AlbumTracks';
 import Description from './album/Description';
 
 type Props = {
-  entity: {
-    name: string,
-    release_date: string,
-    images: { href: string }[],
-    tracks: { track: { coverurl: { w800: string } } }[],
-  },
+  entity: AlbumBasic,
   t: any,
 };
 

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 import { fetchPlaylist, getPlaylist, getLoading } from '../reducers/data/playlist';
 import { getPlaying, getCollection, getCurrent } from '../reducers/ui/player';
+import type { PlaylistBasic } from '../types';
 
 import PlaylistPresenter from './playlist/PlaylistPresenter';
 
@@ -13,7 +14,7 @@ type Props = {
   fetchPlaylist: (playlistId: string) => void,
   match: { params: { id: string } },
   loading: boolean,
-  playlist?: {},
+  playlist?: PlaylistBasic,
   playing?: boolean,
   playlistId?: string,
   currentId?: string,

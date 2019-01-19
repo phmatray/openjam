@@ -5,17 +5,13 @@ import { Link } from 'react-router-dom';
 
 // import Span from '../Span';
 import Flex from '../Flex';
-import type { UserBasic } from '../../types';
+import type { PostBasic } from '../../types';
 
 import Avatar from './styled/Avatar';
 import FromNow from './styled/FromNow';
 
 type Props = {
-  post: {
-    byUser: UserBasic,
-    createdAt: string,
-    handle: string,
-  },
+  post: PostBasic,
 };
 
 const Intro = ({ post }: Props) => {

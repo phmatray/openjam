@@ -3,6 +3,7 @@
 import axios from 'axios';
 
 import { getApi } from '../logion';
+import type { ArtistBasic } from '../../types';
 
 const apiArtist = `${getApi()}/artist`;
 
@@ -14,6 +15,6 @@ export async function fetchArtists() {
   return artists;
 }
 
-export function addArtist() {
-  console.warn('not implemented');
+export function addArtist(artist: ArtistBasic) {
+  console.warn('not implemented', artist);
 }

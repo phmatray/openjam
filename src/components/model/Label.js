@@ -3,17 +3,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import type { LabelBasic } from '../../types';
+
 import Card from './label/Card';
 import Content from './label/Content';
 import Title from './label/Title';
 
 type Props = {
-  label: {
-    _id: string,
-    type: string,
-    name: string,
-    imagesrc?: string,
-  },
+  label: LabelBasic,
 };
 
 const Label = ({ label }: Props) => (

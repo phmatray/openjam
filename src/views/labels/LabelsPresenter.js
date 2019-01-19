@@ -8,9 +8,10 @@ import Label from '../../components/model/Label';
 import Body from '../../components/Body';
 import Flex from '../../components/Flex';
 import H2 from '../../components/H2';
+import type { LabelBasic } from '../../types';
 
 type Props = {
-  labels: { _id: string }[],
+  labels: LabelBasic[],
   t: any,
 };
 

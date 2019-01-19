@@ -5,12 +5,10 @@ import ReactMarkdown from 'react-markdown';
 import { Container, Menu, Button } from 'semantic-ui-react';
 
 import withTheme from '../../../hocs/withTheme';
+import type { ArtistBasic } from '../../../types';
 
 type Props = {
-  artist: {
-    followers: { total: number },
-    fans: { total: number },
-  },
+  artist: ArtistBasic,
   theme: any,
 };
 

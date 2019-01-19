@@ -4,15 +4,12 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Header, Tab } from 'semantic-ui-react';
 
+import type { TrackBasic } from '../../types';
+
 import About from './tabs/About';
 
 type Props = {
-  track: {
-    meta: {
-      description: any,
-      lyrics: any,
-    },
-  },
+  track: TrackBasic,
 };
 
 const Tabs = ({ track }: Props) => {

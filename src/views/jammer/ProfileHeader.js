@@ -6,13 +6,11 @@ import { Image, Button, GridRow, GridColumn } from 'semantic-ui-react';
 
 import isEmpty from '../../lib/validation/is-empty';
 import Social from '../../components/Social';
+import type { UserBasic } from '../../types';
 
 type Props = {
   profile: {
-    user: {
-      avatar: string,
-      fullname: string,
-    },
+    user: UserBasic,
     status: string,
     company: string,
     location: string,
