@@ -9,6 +9,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import Layout from '../containers/Layout';
 import ThemeWrapper from '../containers/ThemeWrapper';
+import DataStore from '../containers/DataStore';
 import { GlobalStyle } from '../theme/GlobalStyle';
 
 import Routes from './Routes';
@@ -21,6 +22,7 @@ const App = () => (
     <Layout style={{ height: '100vh' }}>
       <Routes />
       <GlobalStyle />
+      <DataStore />
     </Layout>
   </ThemeWrapper>
 );

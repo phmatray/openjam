@@ -6,7 +6,8 @@ import { withNamespaces } from 'react-i18next';
 
 import Spinner from '../components/Spinner';
 import background from '../assets/images/backgrounds/vinyl-2592068_1920.jpg';
-import { fetchTracks, getTracks, getLoading } from '../reducers/data/track';
+import * as actions from '../actions/tracks';
+import { getVisibleTracks, getIsFetching } from '../reducers/data/tracks';
 import type { TrackBasic } from '../types';
 
 import TracksPresenter from './tracks/TracksPresenter';
@@ -49,11 +50,11 @@ class Tracks extends PureComponent<Props> {
 }
 
 const mapStateToProps = state => ({
-  tracks: getTracks(state),
-  loading: getLoading(state),
+  tracks: getVisibleTracks(state),
+  loading: getIsFetching(state),
 });
 
 export default connect(
   mapStateToProps,
-  { fetchTracks },
+  actions,
 )(withNamespaces('common')(Tracks));

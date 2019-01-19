@@ -8,7 +8,6 @@ import error from './error';
 import label from './label';
 import playlist from './playlist';
 import profile from './profile';
-import track from './track';
 import tracks from './tracks';
 
 const data = combineReducers({
@@ -18,7 +17,6 @@ const data = combineReducers({
   label,
   playlist,
   profile,
-  track,
   tracks,
 });
 
