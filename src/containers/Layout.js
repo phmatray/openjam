@@ -4,14 +4,18 @@ import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { actions, getSidebarVisible } from '../reducers/ui/layout';
-import { getPlaying } from '../reducers/ui/player';
-
 import LayoutPresenter from '../components/layout/LayoutPresenter';
+import { getSidebarVisible } from '../reducers/ui/layout';
+import { showSidebar, hideSidebar, toggleSidebar } from '../actions/ui/layout';
+import { getPlaying } from '../reducers/ui/player';
 import { getIsAuthenticated, getUser } from '../reducers/auth';
+import type { UserBasic } from '../types/index';
 
 type Props = {
   sidebarVisible: boolean,
+  playing: boolean,
+  isAuthenticated: boolean,
+  user: UserBasic,
   children: React.Node,
   showSidebar: () => void,
   hideSidebar: () => void,
@@ -30,6 +34,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    actions,
+    { showSidebar, hideSidebar, toggleSidebar },
   )(Layout),
 );

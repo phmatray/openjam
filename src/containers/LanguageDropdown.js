@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withNamespaces } from 'react-i18next';
 import { Dropdown } from 'semantic-ui-react';
 
-import { actions } from '../reducers/ui/layout';
+import { updateLanguage } from '../actions/ui/layout';
 
 const StyledDropdown = styled(Dropdown)`
   & i.icon {
@@ -53,5 +53,5 @@ const LanguageDropdown = ({ updateLanguage, i18n }: Props) => {
 
 export default connect(
   null,
-  actions,
+  { updateLanguage },
 )(withNamespaces('common')(LanguageDropdown));

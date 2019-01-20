@@ -9,9 +9,7 @@ import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
 
 type State = {
-  data: {
-    tracks: TrackBasic[],
-  },
+  data: { tracks: TrackBasic[] },
 };
 
 const listByFilter = combineReducers({

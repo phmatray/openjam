@@ -1,11 +1,13 @@
 // @flow
 
-import type { FetchAction } from '../../../types';
+type ActionById = {
+  response: { entities: { tracks: any } },
+};
 
 type StateById = {};
 type State = {};
 
-const byId = (state: StateById = {}, action: FetchAction) => {
+const byId = (state: StateById = {}, action: ActionById) => {
   if (action.response) {
     return {
       ...state,

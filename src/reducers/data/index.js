@@ -2,22 +2,22 @@
 
 import { combineReducers } from 'redux';
 
-import album from './album';
+import albums from './albums';
 import artists from './artists';
-import error from './error';
-import label from './label';
-import playlist from './playlist';
-import profile from './profile';
+import labels from './labels';
+import playlists from './playlists';
 import tracks from './tracks';
+import error from './error';
+import profile from './profile';
 
 const data = combineReducers({
-  album,
+  albums,
   artists,
-  error,
-  label,
-  playlist,
-  profile,
+  labels,
+  playlists,
   tracks,
+  error,
+  profile,
 });
 
 export default data;

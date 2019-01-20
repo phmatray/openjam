@@ -1,73 +1,109 @@
 // @flow
 
-// Action Types
-//
-export const types = {
-  UPDATE_LANGUAGE: 'layout/UPDATE_LANGUAGE',
-  UPDATE_THEME: 'layout/UPDATE_THEME',
-  SHOW_PENDING: 'layout/SHOW_PENDING',
-  HIDE_PENDING: 'layout/HIDE_PENDING',
-  SHOW_SIDEBAR: 'layout/SHOW_SIDEBAR',
-  HIDE_SIDEBAR: 'layout/HIDE_SIDEBAR',
-  TOGGLE_SIDEBAR: 'layout/TOGGLE_SIDEBAR',
+import { combineReducers } from 'redux';
+import { createSelector } from 'reselect';
+
+import types from '../../../actions/types/layout-types';
+import type { LayoutAction } from '../../../types';
+
+type State = {
+  ui: {
+    layout: {
+      language: string,
+      theme: string,
+      playerVisible: boolean,
+      pendingVisible: boolean,
+      sidebarVisible: boolean,
+    },
+  },
 };
 
 // Reducer
 //
-export const initialState = {
-  language: process.env.REACT_APP_LANGUAGE || 'en',
-  theme: process.env.REACT_APP_THEME || 'openjam',
-  playerVisible: true,
-  pendingVisible: false,
-  sidebarVisible: false,
-};
-
-const reducer = (state = initialState, action = {}) => {
+const language = (state: string = process.env.REACT_APP_LANGUAGE || 'en', action: LayoutAction) => {
   switch (action.type) {
     case types.UPDATE_LANGUAGE:
-      return { ...state, language: action.payload };
-
-    case types.UPDATE_THEME:
-      return { ...state, theme: action.payload };
-
-    case types.SHOW_PENDING:
-      return { ...state, pendingVisible: true };
-
-    case types.HIDE_PENDING:
-      return { ...state, pendingVisible: false };
-
-    case types.SHOW_SIDEBAR:
-      return { ...state, sidebarVisible: true };
-
-    case types.HIDE_SIDEBAR:
-      return { ...state, sidebarVisible: false };
-
-    case types.TOGGLE_SIDEBAR:
-      return { ...state, sidebarVisible: !state.sidebarVisible };
-
+      return action.language;
     default:
       return state;
   }
 };
 
-export default reducer;
+const theme = (state: string = process.env.REACT_APP_THEME || 'openjam', action: LayoutAction) => {
+  switch (action.type) {
+    case types.UPDATE_THEME:
+      return action.theme;
+    default:
+      return state;
+  }
+};
+
+const playerVisible = (state: boolean = true, action: LayoutAction) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+const pendingVisible = (state: boolean = false, action: LayoutAction) => {
+  switch (action.type) {
+    case types.SHOW_PENDING:
+      return true;
+    case types.HIDE_PENDING:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const sidebarVisible = (state: boolean = false, action: LayoutAction) => {
+  switch (action.type) {
+    case types.SHOW_SIDEBAR:
+      return true;
+    case types.HIDE_SIDEBAR:
+      return false;
+    case types.TOGGLE_SIDEBAR:
+      return action.sidebarVisible;
+    default:
+      return state;
+  }
+};
+
+const layout = combineReducers({
+  language,
+  theme,
+  playerVisible,
+  pendingVisible,
+  sidebarVisible,
+});
+
+export default layout;
 
 // Selectors
 //
-export const getLanguage = state => state.ui.layout.language;
-export const getTheme = state => state.ui.layout.theme;
-export const getPlayerVisible = state => state.ui.layout.playerVisible;
-export const getPendingVisible = state => state.ui.layout.pendingVisible;
-export const getSidebarVisible = state => state.ui.layout.sidebarVisible;
+export const getLayout = (state: State) => state.ui.layout;
 
-// Action Creators
-//
-export const actions = {
-  updateLanguage: language => ({ type: types.UPDATE_LANGUAGE, payload: language }),
-  updateTheme: theme => ({ type: types.UPDATE_THEME, payload: theme }),
-  showPending: () => ({ type: types.SHOW_PENDING }),
-  hidePending: () => ({ type: types.HIDE_PENDING }),
-  showSidebar: () => ({ type: types.SHOW_SIDEBAR }),
-  hideSidebar: () => ({ type: types.HIDE_SIDEBAR }),
-  toggleSidebar: () => ({ type: types.TOGGLE_SIDEBAR }),
-};
+export const getLanguage = createSelector(
+  [getLayout],
+  layout => layout.language,
+);
+
+export const getTheme = createSelector(
+  [getLayout],
+  layout => layout.theme,
+);
+
+export const getPlayerVisible = createSelector(
+  [getLayout],
+  layout => layout.playerVisible,
+);
+
+export const getPendingVisible = createSelector(
+  [getLayout],
+  layout => layout.pendingVisible,
+);
+
+export const getSidebarVisible = createSelector(
+  [getLayout],
+  layout => layout.sidebarVisible,
+);

@@ -8,7 +8,9 @@ import type { ArtistFilter, ArtistBasic } from '../../../types';
 import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
 
-type State = { data: { artists: ArtistBasic[] } };
+type State = {
+  data: { artists: ArtistBasic[] },
+};
 
 const listByFilter = combineReducers({
   all: createList('all'),

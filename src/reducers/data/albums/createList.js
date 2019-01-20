@@ -2,7 +2,7 @@
 
 import { combineReducers } from 'redux';
 
-import type { ArtistFilter, ArtistAction } from '../../../types';
+import type { AlbumFilter, AlbumAction } from '../../../types';
 
 type StateIds = {}[];
 type StateIsFetching = boolean;
@@ -14,42 +14,42 @@ type State = {
   errorMessage: any,
 };
 
-const createList = (filter: ArtistFilter) => {
-  const ids = (state: StateIds = [], action: ArtistAction) => {
+const createList = (filter: AlbumFilter) => {
+  const ids = (state: StateIds = [], action: AlbumAction) => {
     switch (action.type) {
-      case 'FETCH_ARTISTS_SUCCESS':
+      case 'FETCH_ALBUMS_SUCCESS':
         return filter === action.filter ? action.response.result : state;
-      case 'ADD_ARTIST_SUCCESS':
+      case 'ADD_ALBUM_SUCCESS':
         return [...state, action.response.result];
       default:
         return state;
     }
   };
 
-  const isFetching = (state: StateIsFetching = false, action: ArtistAction) => {
+  const isFetching = (state: StateIsFetching = false, action: AlbumAction) => {
     if (filter !== action.filter) {
       return state;
     }
     switch (action.type) {
-      case 'FETCH_ARTISTS_REQUEST':
+      case 'FETCH_ALBUMS_REQUEST':
         return true;
-      case 'FETCH_ARTISTS_SUCCESS':
-      case 'FETCH_ARTISTS_FAILURE':
+      case 'FETCH_ALBUMS_SUCCESS':
+      case 'FETCH_ALBUMS_FAILURE':
         return false;
       default:
         return state;
     }
   };
 
-  const errorMessage = (state: StateErrorMessage = null, action: ArtistAction) => {
+  const errorMessage = (state: StateErrorMessage = null, action: AlbumAction) => {
     if (filter !== action.filter) {
       return state;
     }
     switch (action.type) {
-      case 'FETCH_ARTISTS_FAILURE':
+      case 'FETCH_ALBUMS_FAILURE':
         return action.message;
-      case 'FETCH_ARTISTS_REQUEST':
-      case 'FETCH_ARTISTS_SUCCESS':
+      case 'FETCH_ALBUMS_REQUEST':
+      case 'FETCH_ALBUMS_SUCCESS':
         return null;
       default:
         return state;

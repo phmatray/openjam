@@ -1,0 +1,11 @@
+// @flow
+
+export default {
+  UPDATE_LANGUAGE: 'layout/UPDATE_LANGUAGE',
+  UPDATE_THEME: 'layout/UPDATE_THEME',
+  SHOW_PENDING: 'layout/SHOW_PENDING',
+  HIDE_PENDING: 'layout/HIDE_PENDING',
+  SHOW_SIDEBAR: 'layout/SHOW_SIDEBAR',
+  HIDE_SIDEBAR: 'layout/HIDE_SIDEBAR',
+  TOGGLE_SIDEBAR: 'layout/TOGGLE_SIDEBAR',
+};

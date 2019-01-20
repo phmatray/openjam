@@ -1,7 +1,7 @@
 // @flow
 
 type ActionById = {
-  response: { entities: { artists: any } },
+  response: { entities: { playlists: any } },
 };
 
 type StateById = {};
@@ -11,7 +11,7 @@ const byId = (state: StateById = {}, action: ActionById) => {
   if (action.response) {
     return {
       ...state,
-      ...action.response.entities.artists,
+      ...action.response.entities.playlists,
     };
   }
   return state;
@@ -19,4 +19,4 @@ const byId = (state: StateById = {}, action: ActionById) => {
 
 export default byId;
 
-export const getArtist = (state: State, id: string) => state[id];
+export const getPlaylist = (state: State, id: string) => state[id];
