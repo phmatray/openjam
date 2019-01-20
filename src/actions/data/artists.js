@@ -2,9 +2,9 @@
 
 import { normalize } from 'normalizr';
 
-import * as api from '../api/logion';
-import { getIsFetching } from '../reducers/data/artists';
-import type { ArtistFilter, Dispatch, GetState } from '../types';
+import * as api from '../../api/logion';
+import { getIsFetching } from '../../reducers/data/artists';
+import type { ArtistBasic, ArtistFilter, Dispatch, GetState } from '../../types';
 
 import * as schema from './schema';
 
@@ -33,8 +33,8 @@ export const fetchArtists = (filter: ArtistFilter) => (dispatch: Dispatch, getSt
   );
 };
 
-export const addArtist = (text: string) => (dispatch: Dispatch) =>
-  api.addArtist(text).then(response => {
+export const addArtist = (artist: ArtistBasic) => (dispatch: Dispatch) =>
+  api.addArtist(artist).then(response => {
     dispatch({
       type: 'ADD_ARTIST_SUCCESS',
       response: normalize(response, schema.artist),

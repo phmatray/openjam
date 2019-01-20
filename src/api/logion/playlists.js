@@ -1,13 +1,14 @@
 // @flow
+/* eslint-disable no-unused-vars */
 
 import axios from 'axios';
 
 import { getApi } from '../logion';
-import type { PlaylistBasic } from '../../types';
+import type { PlaylistBasic, PlaylistFilter } from '../../types';
 
 const apiPlaylist = `${getApi()}/playlist`;
 
-export async function fetchPlaylists() {
+export async function fetchPlaylists(filter: PlaylistFilter) {
   const baseUrl = `${apiPlaylist}?`;
 
   const response = await axios.get(`${baseUrl}`);

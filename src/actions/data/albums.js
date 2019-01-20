@@ -2,9 +2,9 @@
 
 import { normalize } from 'normalizr';
 
-import * as api from '../api/logion';
-import { getIsFetching } from '../reducers/data/albums';
-import type { AlbumFilter, Dispatch, GetState } from '../types';
+import * as api from '../../api/logion';
+import { getIsFetching } from '../../reducers/data/albums';
+import type { AlbumBasic, AlbumFilter, Dispatch, GetState } from '../../types';
 
 import * as schema from './schema';
 
@@ -36,8 +36,8 @@ export const fetchAlbums = (filter: AlbumFilter) => (dispatch: Dispatch, getStat
   );
 };
 
-export const addAlbum = (text: string) => (dispatch: Dispatch) =>
-  api.addAlbum(text).then(response => {
+export const addAlbum = (album: AlbumBasic) => (dispatch: Dispatch) =>
+  api.addAlbum(album).then(response => {
     dispatch({
       type: 'ADD_ALBUM_SUCCESS',
       response: normalize(response, schema.album),

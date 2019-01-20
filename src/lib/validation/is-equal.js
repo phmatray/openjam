@@ -3,7 +3,10 @@
 /* eslint-disable func-names */
 /* eslint-disable no-restricted-syntax */
 
-const isEqual = (value, other) => {
+type Value = any;
+type Other = any;
+
+const isEqual = (value: Value, other: Other) => {
   // Get the value type
   const type = Object.prototype.toString.call(value);
 

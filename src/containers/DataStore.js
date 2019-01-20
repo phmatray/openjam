@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import * as artistActions from '../actions/artists';
-import * as trackActions from '../actions/tracks';
+import * as artistActions from '../actions/data/artists';
+import * as trackActions from '../actions/data/tracks';
 import { getVisibleTracks } from '../reducers/data/tracks';
 import type { ArtistFilter, TrackFilter } from '../types';
 

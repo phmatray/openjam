@@ -3,12 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Flex from '../components/Flex';
-import Div from '../components/Div';
-import Input from '../components/Input';
-import AvatarSmall from '../components/post-item/styled/AvatarSmall';
-import Button from '../components/post-item/styled/Button';
-import AddCommentForm from '../components/post-item/styled/AddCommentForm';
+import AddComment from '../components/AddComment';
 import withTheme from '../hocs/withTheme';
 import { addComment } from '../reducers/ui/views/share';
 import { getUser } from '../reducers/auth';
@@ -16,13 +11,16 @@ import { getErrors } from '../reducers/data/error';
 import type { UserBasic } from '../types';
 
 type Props = {
+  addComment: (postId: string, newComment: any) => void,
   postId: string,
   user: UserBasic,
+  errors: any,
+  theme: any,
 };
 
 type State = { text: string, errors: {} };
 
-class AddComment extends Component<Props, State> {
+class AddCommentContainer extends Component<Props, State> {
   state = {
     text: '',
     errors: {},
@@ -53,35 +51,16 @@ class AddComment extends Component<Props, State> {
     this.setState({ text: '' });
   };
 
-  render() {
-    const { errors } = this.state;
-    const { user, theme } = this.props;
+  generateProps = () => ({
+    ...this.props,
+    ...this.state,
+    onChange: this.handleChange,
+    onSubmit: this.handleSubmit,
+  });
 
-    return (
-      <Flex>
-        <AvatarSmall src={user.profileImageUrl} />
-        <AddCommentForm error noValidate onSubmit={this.handleSubmit}>
-          <Div mb="-1em">
-            <Input
-              as="text-area-field"
-              placeholder={`Express yourself ${user.firstName}...`}
-              name="text"
-              value={this.state.text}
-              onChange={this.handleChange}
-              error={errors.text}
-            />
-            <Button
-              circular
-              compact
-              icon="send"
-              color={theme.primarySemantic}
-              content="Send"
-              onClick={this.handleSubmit}
-            />
-          </Div>
-        </AddCommentForm>
-      </Flex>
-    );
+  render() {
+    const props = this.generateProps();
+    return <AddComment {...props} />;
   }
 }
 
@@ -94,5 +73,5 @@ export default withTheme(
   connect(
     mapStateToProps,
     { addComment },
-  )(AddComment),
+  )(AddCommentContainer),
 );

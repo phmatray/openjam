@@ -1,13 +1,14 @@
 // @flow
+/* eslint-disable no-unused-vars */
 
 import axios from 'axios';
 
 import { getApi } from '../logion';
-import type { ArtistBasic } from '../../types';
+import type { ArtistBasic, ArtistFilter } from '../../types';
 
 const apiArtist = `${getApi()}/artist`;
 
-export async function fetchArtists() {
+export async function fetchArtists(filter: ArtistFilter) {
   const baseUrl = `${apiArtist}?`;
 
   const response = await axios.get(`${baseUrl}`);

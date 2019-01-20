@@ -1,6 +1,8 @@
 // @flow
 
-const isEmpty = value =>
+type Value = null | {} | string;
+
+const isEmpty = (value: Value) =>
   value === undefined ||
   value === null ||
   (typeof value === 'object' && Object.keys(value).length === 0) ||

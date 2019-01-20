@@ -4,25 +4,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Sound from 'react-sound';
 
-import {
-  fetchTracks,
-  actions,
-  getTracks,
-  getPlaylist,
-  getPlaying,
-  getCurrent,
-  getAudioInfo,
-  getStatus,
-} from '../reducers/ui/player';
+import { getTracks } from '../reducers/data/tracks';
+import { getPlaying, getCurrent, getAudioInfo, getStatus } from '../reducers/ui/player';
+import { play, pause, previous, next, updateTracks, updateAudioInfo } from '../actions/ui/player';
 import PlayerPresenter from '../components/player/PlayerPresenter';
 import type { AudioInfo, TrackBasic } from '../types';
 
 type Props = {
   fetchTracks: () => void,
-  loadCollection: (TrackBasic[]) => void,
+  updateTracks: (TrackBasic[]) => void,
   updateAudioInfo: AudioInfo => void,
   next: () => void,
-  tracks: TrackBasic[],
+  tracks: { byId: any, listByFilter: { all: { ids: string[] } } },
   status: 'PLAYING' | 'PAUSED' | 'STOPPED',
   current?: TrackBasic,
   audioInfo?: AudioInfo,
@@ -34,23 +27,34 @@ class Player extends Component<Props> {
     audioInfo: null,
   };
 
-  async componentDidMount() {
-    const { fetchTracks, loadCollection } = this.props;
-    await fetchTracks();
-
-    const { tracks } = this.props;
-
-    // Select 20 tracks randomly
-    const randomly = [];
-    for (let index = 0; index < 20; index += 1) {
-      const track = tracks[Math.floor(Math.random() * tracks.length)];
-      randomly.push(track);
-    }
-
-    loadCollection(randomly);
+  componentDidMount() {
+    this.reset();
   }
 
-  setAudioInfo = ({ position, duration, volume }) => {
+  componentDidUpdate(prevProps) {
+    if (this.props.tracks.byId !== prevProps.tracks.byId) {
+      this.reset();
+    }
+  }
+
+  reset = () => {
+    const { updateTracks, tracks } = this.props;
+
+    if (tracks.listByFilter.all.ids.length > 0) {
+      // Select 20 track ids randomly
+      const randomly = [];
+      const { ids } = tracks.listByFilter.all;
+      for (let index = 0; index < 20; index += 1) {
+        const track = ids[Math.floor(Math.random() * ids.length)];
+        randomly.push(track);
+      }
+
+      const randomTracks = randomly.map(id => tracks.byId[id]);
+      updateTracks(randomTracks);
+    }
+  };
+
+  setAudioInfo = ({ position, duration, volume }: AudioInfo) => {
     const { updateAudioInfo } = this.props;
     updateAudioInfo({ position, duration, volume });
   };
@@ -81,7 +85,6 @@ class Player extends Component<Props> {
 
 const mapStateToProps = state => ({
   tracks: getTracks(state),
-  playlist: getPlaylist(state),
   playing: getPlaying(state),
   current: getCurrent(state),
   audioInfo: getAudioInfo(state),
@@ -90,5 +93,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchTracks, ...actions },
+  { play, pause, previous, next, updateTracks, updateAudioInfo },
 )(Player);

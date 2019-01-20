@@ -1,9 +1,9 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { getPlaying, getCollectionId, getCurrent } from '../reducers/ui/player';
+import { getPlaying, getCurrent } from '../reducers/ui/player';
 import type { TrackBasic } from '../types';
 
 type Props = {
@@ -12,8 +12,8 @@ type Props = {
   playerTrack: TrackBasic,
 };
 
-const withPlayer = ComposedComponent => {
-  class PlayerContainer extends Component<Props> {
+const withPlayer = (ComposedComponent: React.AbstractComponent) => {
+  class PlayerContainer extends React.Component<Props> {
     render() {
       return <ComposedComponent {...this.props} />;
     }
@@ -21,7 +21,6 @@ const withPlayer = ComposedComponent => {
 
   const mapStateToProps = state => ({
     playerPlaying: getPlaying(state),
-    playerCollectionId: getCollectionId(state),
     playerTrack: getCurrent(state),
   });
 

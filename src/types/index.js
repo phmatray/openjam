@@ -89,6 +89,8 @@ export type TrackBasic = {
     lyrics: any,
     downloadable: boolean,
     downloads: [],
+    shares: [],
+    likes: [],
   },
 };
 
@@ -130,6 +132,11 @@ export type CommentBasic = {
   avatar: string,
 };
 
+export type Response = {
+  entities: { artists?: any, tracks?: any },
+  result: any,
+};
+
 // FILTERS
 //
 export type AlbumFilter = ?'all';
@@ -140,27 +147,51 @@ export type TrackFilter = ?'all' | ?'original' | ?'remix';
 
 // REDUX
 //
-export type Action =
-  | { type: 'FETCH_ALBUMS_REQUEST', filter: AlbumFilter }
-  | { type: 'FETCH_ALBUMS_SUCCESS', filter: AlbumFilter, response: {}[] }
+export type Action = FailureAction | RequestAction | FetchAction | AddAction | PlayerAction;
+
+export type FailureAction =
   | { type: 'FETCH_ALBUMS_FAILURE', filter: AlbumFilter, message: string }
-  | { type: 'ADD_ALBUM_SUCCESS', response: {} }
-  | { type: 'FETCH_ARTISTS_REQUEST', filter: ArtistFilter }
-  | { type: 'FETCH_ARTISTS_SUCCESS', filter: ArtistFilter, response: {}[] }
   | { type: 'FETCH_ARTISTS_FAILURE', filter: ArtistFilter, message: string }
-  | { type: 'ADD_ARTIST_SUCCESS', response: {} }
-  | { type: 'FETCH_LABELS_REQUEST', filter: LabelFilter }
-  | { type: 'FETCH_LABELS_SUCCESS', filter: LabelFilter, response: {}[] }
   | { type: 'FETCH_LABELS_FAILURE', filter: LabelFilter, message: string }
-  | { type: 'ADD_LABEL_SUCCESS', response: {} }
-  | { type: 'FETCH_PLAYLISTS_REQUEST', filter: PlaylistFilter }
-  | { type: 'FETCH_PLAYLISTS_SUCCESS', filter: PlaylistFilter, response: {}[] }
   | { type: 'FETCH_PLAYLISTS_FAILURE', filter: PlaylistFilter, message: string }
-  | { type: 'ADD_PLAYLIST_SUCCESS', response: {} }
-  | { type: 'FETCH_TRACKS_REQUEST', filter: TrackFilter }
-  | { type: 'FETCH_TRACKS_SUCCESS', filter: TrackFilter, response: {}[] }
-  | { type: 'FETCH_TRACKS_FAILURE', filter: TrackFilter, message: string }
-  | { type: 'ADD_TRACK_SUCCESS', response: {} };
+  | { type: 'FETCH_TRACKS_FAILURE', filter: TrackFilter, message: string };
+
+export type RequestAction =
+  | { type: 'FETCH_ALBUMS_REQUEST', filter: AlbumFilter }
+  | { type: 'FETCH_ARTISTS_REQUEST', filter: ArtistFilter }
+  | { type: 'FETCH_LABELS_REQUEST', filter: LabelFilter }
+  | { type: 'FETCH_PLAYLISTS_REQUEST', filter: PlaylistFilter }
+  | { type: 'FETCH_TRACKS_REQUEST', filter: TrackFilter };
+
+export type FetchAction =
+  | { type: 'FETCH_ALBUMS_SUCCESS', filter: AlbumFilter, response: Response }
+  | { type: 'FETCH_ARTISTS_SUCCESS', filter: ArtistFilter, response: Response }
+  | { type: 'FETCH_LABELS_SUCCESS', filter: LabelFilter, response: Response }
+  | { type: 'FETCH_PLAYLISTS_SUCCESS', filter: PlaylistFilter, response: Response }
+  | { type: 'FETCH_TRACKS_SUCCESS', filter: TrackFilter, response: Response };
+
+export type AddAction =
+  | { type: 'ADD_ALBUM_SUCCESS', response: Response }
+  | { type: 'ADD_ARTIST_SUCCESS', response: Response }
+  | { type: 'ADD_LABEL_SUCCESS', response: Response }
+  | { type: 'ADD_PLAYLIST_SUCCESS', response: Response }
+  | { type: 'ADD_TRACK_SUCCESS', response: Response };
+
+export type PlayerAction =
+  | { type: 'player/PLAY' }
+  | { type: 'player/PAUSE' }
+  | { type: 'player/STOP' }
+  | {
+      type: 'player/PREVIOUS' | 'player/NEXT',
+      currentIndex: number,
+      previous: TrackBasic,
+      current: TrackBasic,
+      next: TrackBasic,
+    }
+  | { type: 'player/UPDATE_VOLUME', volume: number }
+  | { type: 'player/UPDATE_AUDIO_INFO', audioInfo: AudioInfo }
+  | { type: 'player/UPDATE_POSITION', position: number }
+  | { type: 'player/UPDATE_TRACKS', tracks: TrackBasic[], length: number };
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
 export type GetState = () => Object;

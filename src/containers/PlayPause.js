@@ -3,13 +3,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  playSelected,
-  playTrack,
-  actions,
-  getCollectionId,
-  getPlaying,
-} from '../reducers/ui/player';
+import { playSelected, playTrack, pause } from '../actions/ui/player';
+import { getPlaying } from '../reducers/ui/player';
 import PlayPauseIcon from '../components/play-pause/PlayPauseIcon';
 import StyledButton from '../components/play-pause/StyledButton';
 import type { AlbumBasic, PlaylistBasic, TrackBasic } from '../types';
@@ -22,11 +17,10 @@ type Props = {
   pause: () => void,
   entity: Entity,
   playing: boolean,
-  collectionId?: string,
 };
 
-const PlayPause = ({ entity, collectionId, playing, playSelected, playTrack, pause }: Props) => {
-  const trackIsPlaying = playing && entity._id === collectionId;
+const PlayPause = ({ entity, playing, playSelected, playTrack, pause }: Props) => {
+  const trackIsPlaying = playing;
 
   let playAction;
   if (entity.type === 'track') {
@@ -44,16 +38,11 @@ const PlayPause = ({ entity, collectionId, playing, playSelected, playTrack, pau
   );
 };
 
-PlayPause.defaultProps = {
-  collectionId: null,
-};
-
 const mapStateToProps = state => ({
-  collectionId: getCollectionId(state),
   playing: getPlaying(state),
 });
 
 export default connect(
   mapStateToProps,
-  { playSelected, playTrack, pause: actions.pause },
+  { playSelected, playTrack, pause },
 )(PlayPause);

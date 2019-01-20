@@ -11,13 +11,8 @@ import LinkPlay from '../components/playlist-tracks/LinkPlay';
 import CoverToggle from '../components/playlist-tracks/CoverToggle';
 import Row from '../components/playlist-tracks/Row';
 import HeaderCell from '../components/playlist-tracks/HeaderCell';
-import {
-  playSelected,
-  actions,
-  getPlaying,
-  getCollection,
-  getCurrent,
-} from '../reducers/ui/player';
+import { playSelected, pause } from '../actions/ui/player';
+import { getPlaying, getTracks, getCurrent } from '../reducers/ui/player';
 import type { PlaylistBasic, TrackBasic } from '../types';
 
 type Props = {
@@ -93,11 +88,11 @@ const PlaylistTracks = ({
 
 const mapStateToProps = state => ({
   playerPlaying: getPlaying(state),
-  playerCollection: getCollection(state),
+  playerCollection: getTracks(state),
   playerTrack: getCurrent(state),
 });
 
 export default connect(
   mapStateToProps,
-  { playSelected, pause: actions.pause },
+  { playSelected, pause },
 )(withNamespaces('common')(PlaylistTracks));

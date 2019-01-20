@@ -2,9 +2,9 @@
 
 import { normalize } from 'normalizr';
 
-import * as api from '../api/logion';
-import { getIsFetching } from '../reducers/data/labels';
-import type { LabelFilter, Dispatch, GetState } from '../types';
+import * as api from '../../api/logion';
+import { getIsFetching } from '../../reducers/data/labels';
+import type { LabelBasic, LabelFilter, Dispatch, GetState } from '../../types';
 
 import * as schema from './schema';
 
@@ -36,8 +36,8 @@ export const fetchLabels = (filter: LabelFilter) => (dispatch: Dispatch, getStat
   );
 };
 
-export const addLabel = (text: string) => (dispatch: Dispatch) =>
-  api.addLabel(text).then(response => {
+export const addLabel = (label: LabelBasic) => (dispatch: Dispatch) =>
+  api.addLabel(label).then(response => {
     dispatch({
       type: 'ADD_LABEL_SUCCESS',
       response: normalize(response, schema.label),

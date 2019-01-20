@@ -2,9 +2,9 @@
 
 import { normalize } from 'normalizr';
 
-import * as api from '../api/logion';
-import { getIsFetching } from '../reducers/data/tracks';
-import type { TrackFilter, Dispatch, GetState, TrackBasic } from '../types';
+import * as api from '../../api/logion';
+import { getIsFetching } from '../../reducers/data/tracks';
+import type { TrackFilter, Dispatch, GetState, TrackBasic } from '../../types';
 
 import * as schema from './schema';
 

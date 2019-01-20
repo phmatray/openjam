@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import TrackList from '../components/visible-track-list/TrackList';
 import FetchError from '../components/visible-track-list/FetchError';
-import * as actions from '../actions/tracks';
+import * as actions from '../actions/data/tracks';
 import { getVisibleTracks, getErrorMessage, getIsFetching } from '../reducers/data/tracks';
 import type { TrackBasic, TrackFilter } from '../types';
 

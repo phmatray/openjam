@@ -2,9 +2,9 @@
 
 import { normalize } from 'normalizr';
 
-import * as api from '../api/logion';
-import { getIsFetching } from '../reducers/data/playlists';
-import type { PlaylistFilter, Dispatch, GetState } from '../types';
+import * as api from '../../api/logion';
+import { getIsFetching } from '../../reducers/data/playlists';
+import type { PlaylistBasic, PlaylistFilter, Dispatch, GetState } from '../../types';
 
 import * as schema from './schema';
 
@@ -39,8 +39,8 @@ export const fetchPlaylists = (filter: PlaylistFilter) => (
   );
 };
 
-export const addPlaylist = (text: string) => (dispatch: Dispatch) =>
-  api.addPlaylist(text).then(response => {
+export const addPlaylist = (playlist: PlaylistBasic) => (dispatch: Dispatch) =>
+  api.addPlaylist(playlist).then(response => {
     dispatch({
       type: 'ADD_PLAYLIST_SUCCESS',
       response: normalize(response, schema.playlist),

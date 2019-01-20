@@ -2,8 +2,20 @@
 
 import { combineReducers } from 'redux';
 
-const createList = filter => {
-  const ids = (state = [], action) => {
+import type { ArtistFilter, Action } from '../../../types';
+
+type StateIds = {}[];
+type StateIsFetching = boolean;
+type StateErrorMessage = ?string;
+
+type State = {
+  ids: any,
+  isFetching: any,
+  errorMessage: any,
+};
+
+const createList = (filter: ArtistFilter) => {
+  const ids = (state: StateIds = [], action: Action) => {
     switch (action.type) {
       case 'FETCH_ARTISTS_SUCCESS':
         return filter === action.filter ? action.response.result : state;
@@ -14,7 +26,7 @@ const createList = filter => {
     }
   };
 
-  const isFetching = (state = false, action) => {
+  const isFetching = (state: StateIsFetching = false, action: Action) => {
     if (filter !== action.filter) {
       return state;
     }
@@ -29,7 +41,7 @@ const createList = filter => {
     }
   };
 
-  const errorMessage = (state = null, action) => {
+  const errorMessage = (state: StateErrorMessage = null, action: Action) => {
     if (filter !== action.filter) {
       return state;
     }
@@ -53,6 +65,6 @@ const createList = filter => {
 
 export default createList;
 
-export const getIds = state => state.ids;
-export const getIsFetching = state => state.isFetching;
-export const getErrorMessage = state => state.errorMessage;
+export const getIds = (state: State) => state.ids;
+export const getIsFetching = (state: State) => state.isFetching;
+export const getErrorMessage = (state: State) => state.errorMessage;

@@ -1,23 +1,24 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Feed, Icon } from 'semantic-ui-react';
 
-import { playSelected, actions } from '../reducers/ui/player';
-import withPlayer from '../hocs/withPlayer';
 import type { TrackBasic } from '../types';
 
 type Props = {
-  playSelected: (track: TrackBasic) => void,
   pause: () => void,
-  playerPlaying: boolean,
+  playSelected: (track: TrackBasic) => void,
+  onShareClick: (trackId: string) => void,
+  onLikeClick: (trackId: string) => void,
+  track: TrackBasic,
   playerTrack: TrackBasic,
+  playerPlaying: boolean,
+  isAuthenticated: boolean,
 };
 
-const Presenter = ({
+const TrackItem = ({
   playSelected,
   pause,
   onShareClick,
@@ -26,7 +27,7 @@ const Presenter = ({
   isAuthenticated,
   playerPlaying,
   playerTrack,
-}) => {
+}: Props) => {
   const buttonPlayPause = playerPlaying ? (
     <Feed.Like onClick={() => pause()}>
       <Icon name="pause" />
@@ -54,7 +55,7 @@ const Presenter = ({
             <Link to={`/track/${track._id}`}>{track.title}</Link>
             {','}
             <br />
-            {`the newest track from ${track.artist}.`}
+            {`the newest track from ${track.artists[0].artist.name}.`}
           </span>
         </Feed.Summary>
 
@@ -83,31 +84,4 @@ const Presenter = ({
   );
 };
 
-class TrackItem extends PureComponent<Props> {
-  handleShareClick = (trackId: string) => {
-    console.log(`Shared: ${trackId}`);
-  };
-
-  handleLikeClick = (trackId: string) => {
-    console.log(`Liked: ${trackId}`);
-  };
-
-  generateProps = () => ({
-    ...this.props,
-    ...this.state,
-    onShareClick: this.handleShareClick,
-    onLikeClick: this.handleLikeClick,
-  });
-
-  render() {
-    const props = this.generateProps();
-    return <Presenter {...props} />;
-  }
-}
-
-export default withPlayer(
-  connect(
-    null,
-    { playSelected, pause: actions.pause },
-  )(TrackItem),
-);
+export default TrackItem;

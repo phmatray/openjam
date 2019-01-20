@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { actions } from '../reducers/ui/player';
+import { updatePosition } from '../actions/ui/player';
 import ProgressStyled from '../components/player/player-presenter/ProgressStyled';
 import ProgressInner from '../components/player/player-presenter/ProgressInner';
 
@@ -50,5 +50,5 @@ class Progress extends Component<Props> {
 
 export default connect(
   null,
-  { updatePosition: actions.updatePosition },
+  { updatePosition },
 )(Progress);

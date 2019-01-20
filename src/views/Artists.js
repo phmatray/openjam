@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Spinner from '../components/Spinner';
-import * as actions from '../actions/artists';
+import * as actions from '../actions/data/artists';
 import { getVisibleArtists, getErrorMessage, getIsFetching } from '../reducers/data/artists';
 import type { ArtistFilter, ArtistBasic } from '../types';
 

@@ -1,8 +1,11 @@
 // @flow
 
+import type { FetchAction } from '../../../types';
+
+type StateById = {};
 type State = {};
 
-const byId = (state: State = {}, action) => {
+const byId = (state: StateById = {}, action: FetchAction) => {
   if (action.response) {
     return {
       ...state,
@@ -14,4 +17,4 @@ const byId = (state: State = {}, action) => {
 
 export default byId;
 
-export const getArtist = (state, id) => state[id];
+export const getArtist = (state: State, id: string) => state[id];

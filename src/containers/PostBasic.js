@@ -13,7 +13,7 @@ import { deletePost, addLike, removeLike } from '../reducers/ui/views/share';
 import { getUser, getIsAuthenticated } from '../reducers/auth';
 import type { PostBasic, UserBasic } from '../types';
 
-import AddComment from './AddComment';
+import AddCommentContainer from './AddCommentContainer';
 
 type Props = {
   addLike: (postId: string) => void,
@@ -53,7 +53,7 @@ class PostBasicContainer extends Component<Props> {
               {comments.length > 0 && <Segment>{this.renderComments(comments)}</Segment>}
               {isAuthenticated && (
                 <Segment>
-                  <AddComment avatar={avatar} postId={post._id} />
+                  <AddCommentContainer avatar={avatar} postId={post._id} />
                 </Segment>
               )}
             </SegmentGroup>

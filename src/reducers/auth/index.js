@@ -8,6 +8,20 @@ import isEmpty from '../../lib/validation/is-empty';
 import setAuthToken from '../../lib/utils/setAuthToken';
 import { USER_ROLES } from '../../config';
 import { restLogout, restLogin, restRegisterActivate, restRegister } from '../../api/logion';
+import type { UserBasic } from '../../types';
+
+type State = {
+  auth: {
+    user: UserBasic,
+    scope: any,
+    exp: number,
+    iat: number,
+    accessToken: string,
+    refreshToken: string,
+    loading: boolean,
+    isAuthenticated: boolean,
+  },
+};
 
 // Action Types
 //
@@ -95,14 +109,14 @@ export const actions = {
 
 // Selectors
 //
-export const getUser = state => state.auth.user;
-export const getScope = state => state.auth.scope;
-export const getExo = state => state.auth.exp;
-export const getIat = state => state.auth.iat;
-export const getAccessToken = state => state.auth.accessToken;
-export const getRefreshToken = state => state.auth.refreshToken;
-export const getLoading = state => state.auth.loading;
-export const getIsAuthenticated = state => state.auth.isAuthenticated;
+export const getUser = (state: State) => state.auth.user;
+export const getScope = (state: State) => state.auth.scope;
+export const getExo = (state: State) => state.auth.exp;
+export const getIat = (state: State) => state.auth.iat;
+export const getAccessToken = (state: State) => state.auth.accessToken;
+export const getRefreshToken = (state: State) => state.auth.refreshToken;
+export const getLoading = (state: State) => state.auth.loading;
+export const getIsAuthenticated = (state: State) => state.auth.isAuthenticated;
 
 // Side effects, only as applicable (thunks)
 //

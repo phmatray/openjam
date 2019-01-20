@@ -3,10 +3,16 @@
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 
-import type { TrackFilter } from '../../../types';
+import type { TrackFilter, TrackBasic } from '../../../types';
 
 import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
+
+type State = {
+  data: {
+    tracks: TrackBasic[],
+  },
+};
 
 const listByFilter = combineReducers({
   all: createList('all'),
@@ -23,8 +29,8 @@ export default tracks;
 
 // Selectors
 //
-export const getTracks = state => state.data.tracks;
-export const getFilter = (state, filter: TrackFilter) => filter;
+export const getTracks = (state: State) => state.data.tracks;
+export const getFilter = (state: State, filter: TrackFilter) => filter;
 
 export const getVisibleTracks = createSelector(
   [getTracks, getFilter],

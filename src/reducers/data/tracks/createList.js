@@ -2,10 +2,20 @@
 
 import { combineReducers } from 'redux';
 
-import type { TrackFilter } from '../../../types';
+import type { TrackFilter, Action } from '../../../types';
+
+type StateIds = {}[];
+type StateIsFetching = boolean;
+type StateErrorMessage = ?string;
+
+type State = {
+  ids: any,
+  isFetching: any,
+  errorMessage: any,
+};
 
 const createList = (filter: TrackFilter) => {
-  const ids = (state = [], action) => {
+  const ids = (state: StateIds = [], action: Action) => {
     switch (action.type) {
       case 'FETCH_TRACKS_SUCCESS':
         return filter === action.filter ? action.response.result : state;
@@ -14,7 +24,7 @@ const createList = (filter: TrackFilter) => {
     }
   };
 
-  const isFetching = (state = false, action) => {
+  const isFetching = (state: StateIsFetching = false, action: Action) => {
     if (filter !== action.filter) {
       return state;
     }
@@ -29,7 +39,7 @@ const createList = (filter: TrackFilter) => {
     }
   };
 
-  const errorMessage = (state = null, action) => {
+  const errorMessage = (state: StateErrorMessage = null, action: Action) => {
     if (filter !== action.filter) {
       return state;
     }
@@ -53,6 +63,6 @@ const createList = (filter: TrackFilter) => {
 
 export default createList;
 
-export const getIds = state => state.ids;
-export const getIsFetching = state => state.isFetching;
-export const getErrorMessage = state => state.errorMessage;
+export const getIds = (state: State) => state.ids;
+export const getIsFetching = (state: State) => state.isFetching;
+export const getErrorMessage = (state: State) => state.errorMessage;

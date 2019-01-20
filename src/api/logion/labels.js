@@ -1,13 +1,14 @@
 // @flow
+/* eslint-disable no-unused-vars */
 
 import axios from 'axios';
 
 import { getApi } from '../logion';
-import type { LabelBasic } from '../../types';
+import type { LabelBasic, LabelFilter } from '../../types';
 
 const apiLabel = `${getApi()}/label`;
 
-export async function fetchLabels() {
+export async function fetchLabels(filter: LabelFilter) {
   const baseUrl = `${apiLabel}?`;
 
   const response = await axios.get(`${baseUrl}`);

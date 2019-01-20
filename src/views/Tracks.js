@@ -6,7 +6,7 @@ import { withNamespaces } from 'react-i18next';
 
 import Spinner from '../components/Spinner';
 import background from '../assets/images/backgrounds/vinyl-2592068_1920.jpg';
-import * as actions from '../actions/tracks';
+import * as actions from '../actions/data/tracks';
 import { getVisibleTracks, getIsFetching } from '../reducers/data/tracks';
 import type { TrackBasic } from '../types';
 

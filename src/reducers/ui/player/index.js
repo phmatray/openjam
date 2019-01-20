@@ -1,216 +1,183 @@
 // @flow
 /* eslint-disable no-param-reassign */
 
-import { getPreviousIndex, getNextIndex } from '../../../lib/utils/playerHelpers';
-import { restGetTracks } from '../../../api/logion';
+import { combineReducers } from 'redux';
+import { createSelector } from 'reselect';
 
-// Action Types
-//
-export const types = {
-  FETCH_TRACKS_PENDING: 'player/FETCH_TRACKS_PENDING',
-  FETCH_TRACKS_SUCCESS: 'player/FETCH_TRACKS_SUCCESS',
-  FETCH_TRACKS_ERROR: 'player/FETCH_TRACKS_ERROR',
+import types from '../../../actions/types/player-types';
+import type { TrackBasic, AudioInfo, PlayerAction } from '../../../types';
 
-  PLAY: 'player/PLAY',
-  PAUSE: 'player/PAUSE',
-  STOP: 'player/STOP',
-  PREVIOUS: 'player/PREVIOUS',
-  NEXT: 'player/NEXT',
+type Status = 'PLAYING' | 'PAUSED' | 'STOPPED';
 
-  UPDATE_AUDIO_INFO: 'player/UPDATE_AUDIO_INFO',
-  UPDATE_POSITION: 'player/UPDATE_POSITION',
-  UPDATE_VOLUME: 'player/UPDATE_VOLUME',
-
-  LOAD_COLLECTION: 'player/LOAD_COLLECTION',
+type State = {
+  ui: {
+    player: {
+      status: Status,
+      tracks: TrackBasic[],
+      currentIndex: number,
+      previous: ?TrackBasic,
+      current: ?TrackBasic,
+      next: ?TrackBasic,
+      audioInfo: AudioInfo,
+    },
+  },
 };
 
 // Reducer
 //
-const initialState = {
-  tracks: null, // array
-  tracksLoading: false, // bool
-  tracksError: null,
-
-  playing: false,
-  status: 'STOPPED',
-  collection: null,
-  collectionId: null,
-  current: null,
-  currentId: null,
-  audioInfo: {
-    position: 0,
-    duration: 0,
-    volume: 1,
-  },
-};
-
-const reducer = (state = initialState, action = {}) => {
+const status = (state: Status = 'STOPPED', action: PlayerAction) => {
   switch (action.type) {
-    case types.FETCH_TRACKS_PENDING:
-      return { ...state, tracksLoading: true };
-
-    case types.FETCH_TRACKS_SUCCESS:
-      return { ...state, tracks: action.payload.docs, tracksLoading: false };
-
-    case types.FETCH_TRACKS_ERROR:
-      return { ...state, tracksError: action.payload, tracks: null, tracksLoading: false };
-
     case types.PLAY:
-      return { ...state, playing: true, status: 'PLAYING' };
-
+      return 'PLAYING';
     case types.PAUSE:
-      return { ...state, playing: false, status: 'PAUSED' };
-
+      return 'PAUSED';
     case types.STOP:
-      return {
-        ...state,
-        playing: false,
-        status: 'STOPPED',
-        audioInfo: {
-          position: initialState.audioInfo.position,
-          duration: initialState.audioInfo.duration,
-        },
-      };
-
-    case types.PREVIOUS:
-      return {
-        ...state,
-        current:
-          state.collection.tracks[
-            getPreviousIndex(state.collection.tracks.length, state.current.index)
-          ],
-        currentId: getNextIndex(state.collection.tracks.length, state.current.index)._id,
-        audioInfo: {
-          position: initialState.audioInfo.position,
-          duration: initialState.audioInfo.duration,
-        },
-      };
-
-    case types.NEXT:
-      return {
-        ...state,
-        current:
-          state.collection.tracks[
-            getNextIndex(state.collection.tracks.length, state.current.index)
-          ],
-        currentId: getNextIndex(state.collection.tracks.length, state.current.index)._id,
-        audioInfo: {
-          position: initialState.audioInfo.position,
-          duration: initialState.audioInfo.duration,
-        },
-      };
-
-    case types.UPDATE_AUDIO_INFO:
-      return { ...state, audioInfo: action.payload };
-
-    case types.UPDATE_POSITION:
-      return { ...state, audioInfo: { ...state.audioInfo, position: action.payload } };
-
-    case types.UPDATE_VOLUME:
-      return { ...state, audioInfo: { ...state.audioInfo, volume: action.payload } };
-
-    case types.LOAD_COLLECTION:
-      return {
-        ...state,
-        collection: action.payload.collection,
-        collectionId: action.payload.collection._id,
-        current: action.payload.current,
-        currentId: action.payload.current._id,
-        audioInfo: {
-          position: initialState.audioInfo.position,
-          duration: initialState.audioInfo.duration,
-        },
-      };
-
+      return 'STOPPED';
     default:
       return state;
   }
 };
 
-export default reducer;
+const tracks = (state: ?(TrackBasic[]) = null, action: PlayerAction) => {
+  switch (action.type) {
+    case types.UPDATE_TRACKS:
+      return action.tracks;
+    default:
+      return state;
+  }
+};
+
+const tracksLength = (state: ?number = null, action: PlayerAction) => {
+  switch (action.type) {
+    case types.UPDATE_TRACKS:
+      return action.length;
+    default:
+      return state;
+  }
+};
+
+const currentIndex = (state: ?number = null, action: PlayerAction) => {
+  switch (action.type) {
+    case types.PREVIOUS:
+    case types.NEXT:
+      return action.currentIndex;
+    case types.UPDATE_TRACKS:
+      return 0;
+    default:
+      return state;
+  }
+};
+
+const previous = (state: ?TrackBasic = null, action: PlayerAction) => {
+  switch (action.type) {
+    case types.PREVIOUS:
+    case types.NEXT:
+      return action.previous;
+    case types.UPDATE_TRACKS:
+      return null;
+    default:
+      return state;
+  }
+};
+
+const current = (state: ?TrackBasic = null, action: PlayerAction) => {
+  switch (action.type) {
+    case types.PREVIOUS:
+    case types.NEXT:
+      return action.current;
+    case types.UPDATE_TRACKS:
+      return action.tracks[0];
+    default:
+      return state;
+  }
+};
+
+const next = (state: ?TrackBasic = null, action: PlayerAction) => {
+  switch (action.type) {
+    case types.PREVIOUS:
+    case types.NEXT:
+      return action.next;
+    case types.UPDATE_TRACKS:
+      return action.tracks[1];
+    default:
+      return state;
+  }
+};
+
+const audioInfo = (
+  state: AudioInfo = { position: 0, duration: 0, volume: 1 },
+  action: PlayerAction,
+) => {
+  switch (action.type) {
+    case types.UPDATE_TRACKS:
+    case types.PREVIOUS:
+    case types.NEXT:
+    case types.STOP:
+      return { ...state, position: 0, duration: 0 };
+    case types.UPDATE_AUDIO_INFO:
+      return action.audioInfo;
+    case types.UPDATE_POSITION:
+      return { ...state, position: action.position };
+    case types.UPDATE_VOLUME:
+      return { ...state, volume: action.volume };
+    default:
+      return state;
+  }
+};
+
+const player = combineReducers({
+  status,
+  tracks,
+  tracksLength,
+  currentIndex,
+  previous,
+  current,
+  next,
+  audioInfo,
+});
+
+export default player;
 
 // Selectors
 //
-export const getTracks = state => state.ui.player.tracks;
-export const getPlaylist = state => state.ui.player.playlist;
-export const getPlaying = state => state.ui.player.playing;
-export const getCurrent = state => state.ui.player.current;
-export const getAudioInfo = state => state.ui.player.audioInfo;
-export const getStatus = state => state.ui.player.status;
-export const getCollection = state => state.ui.player.collection;
-export const getCollectionId = state => state.ui.player.collectionId;
+export const getPlayer = (state: State) => state.ui.player;
 
-// Action Creators
-//
-export const actions = {
-  play: () => ({ type: types.PLAY }),
-  pause: () => ({ type: types.PAUSE }),
-  stop: () => ({ type: types.STOP }),
-  previous: () => ({ type: types.PREVIOUS }),
-  next: () => ({ type: types.NEXT }),
-  volume: volume => ({ type: types.UPDATE_VOLUME, payload: volume }),
-  updateAudioInfo: audioInfo => ({ type: types.UPDATE_AUDIO_INFO, payload: audioInfo }),
-  updatePosition: position => ({ type: types.UPDATE_POSITION, payload: position }),
+export const getStatus = createSelector(
+  [getPlayer],
+  player => player.status,
+);
 
-  loadCollection: (collection, index = 0) => {
-    if (collection.length) {
-      collection = { type: 'default', tracks: collection };
-    }
+export const getTracks = createSelector(
+  [getPlayer],
+  player => player.tracks,
+);
 
-    return {
-      type: types.LOAD_COLLECTION,
-      payload: {
-        collection: {
-          ...collection,
-          tracks: collection.tracks.map((track, i) => ({ ...track, index: i })),
-        },
-        current: { ...collection.tracks[index], index },
-      },
-    };
-  },
-};
+export const getPrevious = createSelector(
+  [getPlayer],
+  player => player.previous,
+);
 
-// Side effects, only as applicable (thunks)
-//
-// Play the selected collection (playlist, album...)
-// (A collection is an object containing the "tracks" property)
-export const playSelected = (collection, track = null) => (dispatch, getState) => {
-  if (collection === null || collection === undefined || collection.tracks.length === 0) {
-    throw new Error('collection cannot be null, undefined or empty');
-  }
+export const getCurrent = createSelector(
+  [getPlayer],
+  player => player.current,
+);
 
-  const { collectionId, currentId } = getState().player;
-  const sameCollection = collection._id === collectionId;
+export const getNext = createSelector(
+  [getPlayer],
+  player => player.next,
+);
 
-  if (track === null) {
-    dispatch(actions.loadCollection(collection, 0));
-  } else {
-    const sameTrack = sameCollection && track._id === currentId;
-    if (!sameTrack) {
-      const index = collection.tracks.findIndex(element => element._id === track._id);
-      dispatch(actions.loadCollection(collection, index));
-    }
-  }
+export const getAudioInfo = createSelector(
+  [getPlayer],
+  player => player.audioInfo,
+);
 
-  dispatch(actions.play());
-};
+export const getPlaying = createSelector(
+  [getStatus],
+  status => !!(status === 'PLAYING'),
+);
 
-export const playTrack = (track = null) => (dispatch, getState) => {
-  if (track !== null) {
-    const collection = { tracks: [track], _id: track._id };
-
-    const { collectionId } = getState().player;
-    const sameCollection = collection._id === collectionId;
-
-    if (!sameCollection) {
-      dispatch(actions.loadCollection(collection, 0));
-    }
-    dispatch(actions.play());
-  }
-};
-
-export const fetchTracks = () => ({
-  types: [types.FETCH_TRACKS_PENDING, types.FETCH_TRACKS_SUCCESS, types.FETCH_TRACKS_ERROR],
-  callAPI: () => restGetTracks(),
-  shouldCallAPI: () => true,
-});
+export const getCurrentIndex = createSelector(
+  [getTracks, getCurrent],
+  (tracks, current) => tracks.findIndex(current),
+);

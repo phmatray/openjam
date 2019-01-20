@@ -7,7 +7,8 @@ import throttle from 'lodash/throttle';
 
 import slimAsync from './middlewares/slim-async/slimAsync';
 import rootReducer from './reducers/rootReducer';
-import { loadState, saveState } from './localStorage';
+import { saveState } from './localStorage';
+// import { loadState, saveState } from './localStorage';
 
 const configureStore = () => {
   const middlewares = [slimAsync, thunk];

@@ -8,7 +8,7 @@ import { Divider } from 'semantic-ui-react';
 import Div from '../components/Div';
 import LinkArtistNames from '../components/LinkArtistNames';
 import LinkEntity from '../components/LinkEntity';
-import { playTrack, actions } from '../reducers/ui/player';
+import { playTrack, pause } from '../actions/ui/player';
 
 import ContentBlock from '../components/model/track/ContentBlock';
 import CoverToggle from '../components/model/track/CoverToggle';
@@ -71,6 +71,6 @@ class TrackItem extends PureComponent<Props> {
 export default withPlayer(
   connect(
     null,
-    { playTrack, pause: actions.pause },
+    { playTrack, pause },
   )(TrackItem),
 );

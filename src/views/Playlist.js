@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
 import { fetchPlaylist, getPlaylist, getLoading } from '../reducers/data/playlist';
-import { getPlaying, getCollection, getCurrent } from '../reducers/ui/player';
+import { getTracks, getPlaying, getCurrent } from '../reducers/ui/player';
 import type { PlaylistBasic } from '../types';
 
 import PlaylistPresenter from './playlist/PlaylistPresenter';
@@ -66,7 +66,7 @@ const mapStateToProps = state => ({
   playlist: getPlaylist(state),
   loading: getLoading(state),
   playing: getPlaying(state),
-  collection: getCollection(state),
+  tracks: getTracks(state),
   current: getCurrent(state),
 });
 
