@@ -7,7 +7,7 @@ import { withNamespaces } from 'react-i18next';
 import { withRouter, Link } from 'react-router-dom';
 import { Grid, Icon, Header, Button, Divider, Message } from 'semantic-ui-react';
 
-import { activateAccount } from '../reducers/auth';
+import { activateAccount } from '../actions/auth';
 import BackgroundScreen from '../components/BackgroundScreen';
 import { getErrors } from '../reducers/data/error';
 import withTheme from '../hocs/withTheme';

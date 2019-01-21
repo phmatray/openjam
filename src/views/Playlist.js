@@ -4,7 +4,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
-import { fetchPlaylist, getPlaylist, getLoading } from '../reducers/data/playlist';
+import { getPlaylist } from '../reducers/ui/views/playlist.reducer';
+// // import { fetchPlaylist, getLoading } from '../reducers/ui/views/playlist.reducer';
 import { getTracks, getPlaying, getCurrent } from '../reducers/ui/player';
 import type { PlaylistBasic } from '../types';
 
@@ -64,7 +65,7 @@ class Playlist extends PureComponent<Props, State> {
 
 const mapStateToProps = state => ({
   playlist: getPlaylist(state),
-  loading: getLoading(state),
+  // // loading: getLoading(state),
   playing: getPlaying(state),
   tracks: getTracks(state),
   current: getCurrent(state),
@@ -72,5 +73,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchPlaylist },
+  // // { fetchPlaylist },
 )(Playlist);

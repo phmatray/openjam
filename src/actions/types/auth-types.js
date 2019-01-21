@@ -1,0 +1,9 @@
+// @flow
+
+export default {
+  LOAD: 'auth/LOAD',
+  UPDATE_USER: 'auth/UPDATE_USER',
+  UPDATE_ACCESS_TOKEN: 'auth/UPDATE_ACCESS_TOKEN',
+  UPDATE_REFRESH_TOKEN: 'auth/UPDATE_REFRESH_TOKEN',
+  UPDATE_ERROR: 'auth/UPDATE_ERROR',
+};

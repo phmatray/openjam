@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable no-param-reassign */
 
 import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';

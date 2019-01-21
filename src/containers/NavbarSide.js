@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 import { Sidebar, Menu, Icon, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-import { logoutUser, getIsAuthenticated } from '../reducers/auth';
+import { logoutUser } from '../actions/auth';
+import { getIsAuthenticated } from '../reducers/auth';
 import { actions as profileActions } from '../reducers/data/profile';
 
 type Props = {

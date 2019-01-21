@@ -3,7 +3,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchAlbums, getAlbums, getLoading } from '../reducers/data/album';
+import { fetchAlbums } from '../actions/data/albums';
+import { getAlbums, getIsFetching } from '../reducers/data/albums';
 import Spinner from '../components/Spinner';
 import type { AlbumBasic } from '../types';
 
@@ -39,7 +40,7 @@ class Albums extends PureComponent<Props> {
 
 const mapStateToProps = state => ({
   albums: getAlbums(state),
-  loading: getLoading(state),
+  loading: getIsFetching(state),
 });
 
 export default connect(

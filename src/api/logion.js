@@ -2,24 +2,7 @@
 
 import axios from 'axios';
 
-type PostInput = {
-  type: 'post-basic',
-  text: string,
-  byUser: string,
-};
-
-type LoginInput = {
-  email: string,
-  password: string,
-};
-
-type RegisterInput = {
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-  pin: number,
-};
+import type { PostInput, LoginInput, RegisterInput } from '../types';
 
 export function getApi() {
   const api = process.env.REACT_APP_ENDPOINT;

@@ -5,7 +5,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { registerUser, getIsAuthenticated, getLoading } from '../reducers/auth';
+import { registerUser } from '../actions/auth';
+import { getIsAuthenticated, getLoading } from '../reducers/auth';
 import { getErrors } from '../reducers/data/error';
 
 import RegisterPresenter from './register/RegisterPresenter';

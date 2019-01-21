@@ -6,6 +6,7 @@ import { createSelector } from 'reselect';
 import type { TrackFilter, TrackBasic } from '../../../types';
 
 import byId, * as fromById from './byId';
+import byArtistId, * as fromByArtistId from './byArtistId';
 import createList, * as fromList from './createList';
 
 type State = {
@@ -20,6 +21,7 @@ const listByFilter = combineReducers({
 
 const tracks = combineReducers({
   byId,
+  byArtistId,
   listByFilter,
 });
 

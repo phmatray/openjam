@@ -4,7 +4,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { loginUser, getIsAuthenticated, getLoading } from '../reducers/auth';
+import { loginUser } from '../actions/auth';
+import { getIsAuthenticated, getLoading } from '../reducers/auth';
 
 import LoginPresenter from './login/LoginPresenter';
 import { getErrors } from '../reducers/data/error';

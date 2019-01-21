@@ -4,7 +4,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
-import { fetchLabels, getLabels, getLoading } from '../reducers/data/label';
+import { fetchLabels } from '../actions/data/labels';
+import { getLabels, getIsFetching } from '../reducers/data/labels';
 import type { LabelBasic } from '../types';
 
 import LabelsPresenter from './labels/LabelsPresenter';
@@ -39,7 +40,7 @@ class Labels extends PureComponent<Props> {
 
 const mapStateToProps = state => ({
   labels: getLabels(state),
-  loading: getLoading(state),
+  loading: getIsFetching(state),
 });
 
 export default connect(

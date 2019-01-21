@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import setAuthToken from '../lib/utils/setAuthToken';
-import { actions } from '../reducers/auth';
+import { updateAccessToken, updateRefreshToken, updateUser } from '../actions/auth';
 
 import App from './App';
 
@@ -22,9 +22,9 @@ const Root = ({ store }: Props) => {
     // Decode token and get user info and exp
     const decoded = jwtDecode(accessToken);
     // Set user and isAuthenticated
-    store.dispatch(actions.updateAccessToken(accessToken));
-    store.dispatch(actions.updateRefreshToken(refreshToken));
-    store.dispatch(actions.updateUser(decoded.user));
+    store.dispatch(updateAccessToken(accessToken));
+    store.dispatch(updateRefreshToken(refreshToken));
+    store.dispatch(updateUser(decoded.user));
 
     // Check for expire token
     const currentTime = Date.now() / 1000;

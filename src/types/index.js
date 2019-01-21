@@ -25,6 +25,27 @@ export type Domain =
   | 'bandcamp'
   | 'openjam';
 
+// FORMS
+//
+export type PostInput = {
+  type: 'post-basic',
+  text: string,
+  byUser: string,
+};
+
+export type LoginInput = {
+  email: string,
+  password: string,
+};
+
+export type RegisterInput = {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  pin: number,
+};
+
 // ENTITIES
 //
 export type AlbumBasic = {
@@ -153,6 +174,7 @@ export type Action =
   | LabelAction
   | PlaylistAction
   | TrackAction
+  | AuthAction
   | PlayerAction
   | LayoutAction;
 
@@ -185,6 +207,13 @@ export type TrackAction =
   | { type: 'FETCH_TRACKS_REQUEST', filter: TrackFilter }
   | { type: 'FETCH_TRACKS_SUCCESS', filter: TrackFilter, response: Response }
   | { type: 'ADD_TRACK_SUCCESS', response: Response };
+
+export type AuthAction =
+  | { type: 'auth/LOAD' }
+  | { type: 'auth/UPDATE_USER', user: UserBasic }
+  | { type: 'auth/UPDATE_ACCESS_TOKEN', accessToken: string, scope: [], exp: ?number, iat: ?number }
+  | { type: 'auth/UPDATE_REFRESH_TOKEN', refreshToken: string }
+  | { type: 'auth/UPDATE_ERROR', errorMessage: ?string };
 
 export type PlayerAction =
   | { type: 'player/PLAY' }

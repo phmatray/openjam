@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 
 import LinkEntity from '../components/LinkEntity';
-import { fetchTracksByArtistId, getByArtist, getByArtistLoading } from '../reducers/ui/views/track';
+import { fetchTracksByArtistId, getByArtist, getByArtistLoading } from '../reducers/data/tracks';
+// // import { fetchTracksByArtistId, getByArtist, getByArtistLoading } from '../reducers/ui/views/track';
 import type { ArtistBasic } from '../types';
 
 import Track from './Track';

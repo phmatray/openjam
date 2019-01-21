@@ -2,7 +2,7 @@
 /* eslint-disable no-alert */
 
 import { actions as errorActions } from '../error';
-import { logoutUser } from '../../auth';
+import { logoutUser } from '../../../actions/auth';
 import {
   restGetProfileMe,
   restGetProfileByHandle,

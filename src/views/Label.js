@@ -4,13 +4,15 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner';
-import { fetchLabel, getLabel, getLoading } from '../reducers/data/label';
+// // import { fetchLabel } from '../actions/data/labels';
+// // import { getLabel, getLoading } from '../reducers/data/labels';
+import { getLabel } from '../reducers/ui/views/label.reducer';
 import type { LabelBasic } from '../types';
 
 import LabelPresenter from './label/LabelPresenter';
 
 type Props = {
-  fetchLabel: (labelId: string) => void,
+  // // fetchLabel: (labelId: string) => void,
   match: { params: { id: string } },
   label?: LabelBasic,
   loading?: boolean,
@@ -31,16 +33,17 @@ class Label extends PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    this.setState({ labelId: this.props.match.params.id }, () =>
-      this.props.fetchLabel(this.state.labelId),
-    );
+    // // this.setState({ labelId: this.props.match.params.id }, () =>
+    // //   this.props.fetchLabel(this.state.labelId),
+    // // );
   }
 
   componentWillReceiveProps(newProps) {
     const { params } = newProps.match;
 
-    if (params.id !== this.state.labelId)
-      this.setState({ labelId: params.id }, () => this.props.fetchLabel(this.state.labelId));
+    if (params.id !== this.state.labelId) {
+      // // this.setState({ labelId: params.id }, () => this.props.fetchLabel(this.state.labelId));
+    }
   }
 
   render() {
@@ -56,10 +59,10 @@ class Label extends PureComponent<Props, State> {
 
 const mapStateToProps = state => ({
   label: getLabel(state),
-  loading: getLoading(state),
+  // // loading: getLoading(state),
 });
 
 export default connect(
   mapStateToProps,
-  { fetchLabel },
+  // // { fetchLabel },
 )(Label);

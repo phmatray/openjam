@@ -13,7 +13,8 @@ import LinkEntity from '../components/LinkEntity';
 import Body from '../components/Body';
 import EntityContainerHOC from '../hocs/buildEntityContainer';
 import PlayPause from '../containers/PlayPause';
-import { fetchAlbum, getAlbum, getAlbumLoading } from '../reducers/ui/views/album';
+import { getAlbum } from '../reducers/ui/views/album.reducer';
+// // import { fetchAlbum, getAlbum, getAlbumLoading } from '../reducers/ui/views/album';
 import type { AlbumBasic } from '../types';
 
 import AlbumTracks from './album/AlbumTracks';
@@ -80,9 +81,9 @@ const Album = ({ entity, t }: Props) => (
 
 const mapStateToProps = state => ({
   entity: getAlbum(state),
-  loading: getAlbumLoading(state),
+  // // loading: getAlbumLoading(state),
 });
 
 export default EntityContainerHOC(withNamespaces('common')(Album), mapStateToProps, {
-  fetchEntity: fetchAlbum,
+  // // fetchEntity: fetchAlbum,
 });

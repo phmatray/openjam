@@ -8,7 +8,8 @@ import { ThemeConsumer } from 'styled-components';
 import { Menu, Container, Image, Button, Icon } from 'semantic-ui-react';
 
 import logo from '../assets/images/logos/logo_white.svg';
-import { logoutUser, getIsAuthenticated, getUser } from '../reducers/auth';
+import { logoutUser } from '../actions/auth';
+import { getIsAuthenticated, getUser } from '../reducers/auth';
 import { getPlaying } from '../reducers/ui/player';
 import { actions as profileActions } from '../reducers/data/profile';
 import type { UserBasic } from '../types';

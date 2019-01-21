@@ -3,7 +3,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchArtist, getArtist, getArtistLoading } from '../reducers/ui/views/artist';
+import { getArtist } from '../reducers/ui/views/artist.reducer';
+// // import { fetchArtist, getArtist, getArtistLoading } from '../reducers/ui/views/artist';
 import Spinner from '../components/Spinner';
 import type { ArtistBasic } from '../types';
 
@@ -57,10 +58,10 @@ class Artist extends PureComponent<Props, State> {
 
 const mapStateToProps = state => ({
   artist: getArtist(state),
-  loading: getArtistLoading(state),
+  // // loading: getArtistLoading(state),
 });
 
 export default connect(
   mapStateToProps,
-  { fetchArtist },
+  // // { fetchArtist },
 )(Artist);
