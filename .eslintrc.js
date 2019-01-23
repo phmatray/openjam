@@ -6,6 +6,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
   ],
   env: {
+    node: true,
     browser: true,
     jest: true,
   },
@@ -28,5 +29,12 @@ module.exports = {
     'react/jsx-no-bind': [false],
     'react/no-array-index-key': [false],
     'react/prop-types': [false],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules', 'src/'],
+      },
+    },
   },
 };

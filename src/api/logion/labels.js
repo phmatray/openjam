@@ -3,8 +3,8 @@
 
 import axios from 'axios';
 
-import { getApi } from '../logion';
-import type { LabelBasic, LabelFilter } from '../../types';
+import { getApi } from 'api/logion';
+import type { LabelBasic, LabelFilter } from 'lib/types';
 
 const apiLabel = `${getApi()}/label`;
 
@@ -12,8 +12,7 @@ export async function fetchLabels(filter: LabelFilter) {
   const baseUrl = `${apiLabel}?`;
 
   const response = await axios.get(`${baseUrl}`);
-  const labels = response.data.docs;
-  return labels;
+  return response.data.docs;
 }
 
 export function addLabel(label: LabelBasic) {

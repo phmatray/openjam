@@ -3,8 +3,8 @@
 
 import axios from 'axios';
 
-import { getApi } from '../logion';
-import type { PlaylistBasic, PlaylistFilter } from '../../types';
+import { getApi } from 'api/logion';
+import type { PlaylistBasic, PlaylistFilter } from 'lib/types';
 
 const apiPlaylist = `${getApi()}/playlist`;
 
@@ -12,8 +12,7 @@ export async function fetchPlaylists(filter: PlaylistFilter) {
   const baseUrl = `${apiPlaylist}?`;
 
   const response = await axios.get(`${baseUrl}`);
-  const playlists = response.data.docs;
-  return playlists;
+  return response.data.docs;
 }
 
 export function addPlaylist(playlist: PlaylistBasic) {

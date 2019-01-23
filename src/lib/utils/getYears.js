@@ -1,6 +1,6 @@
 // @flow
 
-import type { Year } from '../../types';
+import type { Year } from 'lib/types';
 
 const getYears = (years: Year[]) =>
   years

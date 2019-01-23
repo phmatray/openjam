@@ -1,8 +1,6 @@
 // @flow
 
-import type { Domain } from '../../types';
-
-export const getBrandColor = (domain: Domain) => {
+export const getBrandColor = (domain: string) => {
   switch (domain) {
     case 'youtube':
       return '#ff0000';
@@ -28,7 +26,7 @@ export const getBrandColor = (domain: Domain) => {
   }
 };
 
-export const getBrandIconName = (domain: Domain) => {
+export const getBrandIconName = (domain: string) => {
   switch (domain) {
     case 'facebook':
       return ['fab', 'facebook-f'];

@@ -1,6 +1,6 @@
 // @flow
 
-type Value = null | {} | string;
+type Value = any;
 
 const isEmpty = (value: Value) =>
   value === undefined ||

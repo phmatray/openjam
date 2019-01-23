@@ -1,0 +1,65 @@
+// @flow
+
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { Header } from 'semantic-ui-react';
+
+import LinkEntity from 'views/components/LinkEntity';
+// // import {
+// //   fetchTracksByArtistId,
+// //   getByArtist,
+// //   getByArtistLoading,
+// //   byArtistId,
+// // } from 'store/modules/data/tracks';
+// // import { fetchTracksByArtistId, getByArtist, getByArtistLoading } from 'store/modules/ui/views/track';
+import type { ArtistBasic } from 'lib/types';
+
+// // import Track from './Track';
+
+type Props = {
+  fetchTracksByArtistId: (artistId: string, limit: number) => void,
+  artist: ArtistBasic,
+  byArtist?: ArtistBasic[],
+  limit?: number,
+};
+
+class MoreTracks extends PureComponent<Props> {
+  static defaultProps = {
+    byArtist: [],
+    limit: 3,
+  };
+
+  async componentDidMount() {
+    const { artist, limit } = this.props;
+    await this.props.fetchTracksByArtistId(artist._id, limit);
+  }
+
+  render() {
+    const { artist, byArtist } = this.props;
+
+    return (
+      <React.Fragment>
+        <Header as="h3">
+          More tracks from
+          <br />
+          <LinkEntity entity={artist} as="table" strong />
+        </Header>
+        {
+          // //   byArtist.map(_ => (
+          // //   <Track track={_} key={_._id} />
+          // // ))
+        }
+      </React.Fragment>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  // // byArtist: getByArtist(state),
+  // // byArtistLoading: getByArtistLoading(state),
+});
+
+export default connect(
+  mapStateToProps,
+  // // { fetchTracksByArtistId },
+)(MoreTracks);

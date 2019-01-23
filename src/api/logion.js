@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-import type { PostInput, LoginInput, RegisterInput } from '../types';
+import type { PostInput, LoginInput, RegisterInput } from 'lib/types';
 
 export function getApi() {
   const api = process.env.REACT_APP_ENDPOINT;

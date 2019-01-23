@@ -2,15 +2,13 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import 'index.css';
 import 'semantic-ui-css/semantic.min.css';
 
-import * as serviceWorker from './serviceWorker';
-import I18nWrapper from './components/I18nWrapper';
-import Root from './components/Root';
-import configureStore from './configureStore';
-
-const store = configureStore();
+import store from 'store';
+import I18nWrapper from 'views/components/I18nWrapper';
+import Root from 'views/components/Root';
+import * as serviceWorker from 'serviceWorker';
 
 const root = document.getElementById('root');
 

@@ -1,0 +1,73 @@
+// @flow
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import type { AlbumBasic, ArtistBasic, LabelBasic, PlaylistBasic, TrackBasic } from 'lib/types';
+
+import TableLink from './styled/TableLink';
+import InvertedLink from './styled/InvertedLink';
+import Alternate from './styled/Alternate';
+import AlternateEdit from './styled/AlternateEdit';
+
+type Props = {
+  entity: AlbumBasic | ArtistBasic | LabelBasic | PlaylistBasic | TrackBasic,
+  as: 'link' | 'table' | 'inverted',
+  strong: boolean,
+  alternate: boolean,
+};
+
+const LinkEntity = ({ entity, as, strong, alternate }: Props) => {
+  // check entity
+  if (entity === undefined || entity === null) {
+    return <span />;
+  }
+
+  // get route
+  const href = `/${entity.type}/${entity._id}`;
+
+  // get content
+  let content;
+  // set alternate if needed
+  if (alternate) {
+    content = (
+      <Alternate>
+        {entity.title ? entity.title : entity.name}
+        {entity.title && entity.edit && <AlternateEdit>{` (${entity.edit})`}</AlternateEdit>}
+      </Alternate>
+    );
+  } else if (entity.title) {
+    content = entity.title;
+    if (entity.edit) {
+      content += ` (${entity.edit})`;
+    }
+  } else {
+    content = entity.name;
+  }
+
+  // set strong if needed
+  if (strong) {
+    content = <strong>{content}</strong>;
+  }
+
+  // return the right component
+  switch (as) {
+    case 'table':
+      return <TableLink to={href}>{content}</TableLink>;
+
+    case 'inverted':
+      return <InvertedLink to={href}>{content}</InvertedLink>;
+
+    case 'link':
+    default:
+      return <Link to={href}>{content}</Link>;
+  }
+};
+
+LinkEntity.defaultProps = {
+  as: 'link',
+  strong: false,
+  alternate: false,
+};
+
+export default LinkEntity;
