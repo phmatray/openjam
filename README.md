@@ -4,6 +4,8 @@
 
 ---
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/openjam-eu/openjam.svg)](https://greenkeeper.io/)
+
 <p align="center">
   <a href="https://www.openjam.eu/">
     <img src="https://www.openjam.eu/img/site_logo_2.png" width="318px" alt="OpenJam logo" />
